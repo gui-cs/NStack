@@ -1,10 +1,541 @@
 ﻿using System;
 namespace NStack
 {
-    public class MyClass
-    {
-        public MyClass()
-        {
-        }
-    }
+	public class Utf8
+	{
+		/// <summary>
+		/// // the "error" Rune or "Unicode replacement character"
+		/// </summary>
+		public uint RuneError = 0xfffd;
+
+		/// <summary>
+		/// Characters below RuneSelf are represented as themselves in a single byte
+		/// </summary>
+		public const byte RuneSelf = 0x80;
+
+		const int UTF8Max = 4;
+
+		/// <summary>
+		/// Maximum valid Unicode code point.
+		/// </summary>
+		public const uint MaxRune = 0x10ffff;
+
+		// Code points in the surrogate range are not valid for UTF-8.
+		const uint surrogateMin = 0xd800;
+		const uint surrogateMax = 0xdfff;
+
+		const byte t1 = 0x00; // 0000 0000
+		const byte tx = 0x80; // 1000 0000
+		const byte t2 = 0xC0; // 1100 0000
+		const byte t3 = 0xE0; // 1110 0000
+		const byte t4 = 0xF0; // 1111 0000
+		const byte t5 = 0xF8; // 1111 1000
+
+		const byte maskx = 0x3F; // 0011 1111
+		const byte mask2 = 0x1F; // 0001 1111
+		const byte mask3 = 0x0F; // 0000 1111
+		const byte mask4 = 0x07; // 0000 0111
+
+		const uint rune1Max = 1 << 7 - 1;
+		const uint rune2Max = 1 << 11 - 1;
+		const uint rune3Max = 1 << 16 - 1;
+
+		// The default lowest and highest continuation byte.
+		const byte locb = 0x80; // 1000 0000
+		const byte hicb = 0xBF; // 1011 1111
+
+		// These names of these constants are chosen to give nice alignment in the
+		// table below. The first nibble is an index into acceptRanges or F for
+		// special one-byte ca1es. The second nibble is the Rune length or the
+		// Status for the special one-byte ca1e.
+		const byte xx = 0xF1; // invalid: size 1
+		const byte a1 = 0xF0; // a1CII: size 1
+		const byte s1 = 0x02; // accept 0, size 2
+		const byte s2 = 0x13; // accept 1, size 3
+		const byte s3 = 0x03; // accept 0, size 3
+		const byte s4 = 0x23; // accept 2, size 3
+		const byte s5 = 0x34; // accept 3, size 4
+		const byte s6 = 0x04; // accept 0, size 4
+		const byte s7 = 0x44; // accept 4, size 4
+
+		static byte [] first = new byte [256]{
+			//   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x00-0x0F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1,a1, a1, a1, a1, a1, // 0x10-0x1F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x20-0x2F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x30-0x3F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x40-0x4F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x50-0x5F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x60-0x6F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x70-0x7F
+
+			//   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
+			xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0x80-0x8F
+			xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0x90-0x9F
+			xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0xA0-0xAF
+			xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0xB0-0xBF
+			xx, xx, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, // 0xC0-0xCF
+			s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, s1, // 0xD0-0xDF
+			s2, s3, s3, s3, s3, s3, s3, s3, s3, s3, s3, s3, s3, s4, s3, s3, // 0xE0-0xEF
+			s5, s6, s6, s6, s7, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0xF0-0xFF
+		};
+
+		struct AcceptRange
+		{
+			public byte Lo, Hi;
+			public AcceptRange (byte lo, byte hi)
+			{
+				Lo = lo;
+				Hi = hi;
+			}
+		}
+
+		static AcceptRange [] AcceptRanges = new AcceptRange [] {
+			new AcceptRange (locb, hicb),
+			new AcceptRange (0xa0, hicb),
+			new AcceptRange (locb, 0x9f),
+			new AcceptRange (0x90, hicb),
+			new AcceptRange (locb, 0x8f),
+		};
+
+		/// <summary>
+		/// FullRune reports whether the bytes in p begin with a full UTF-8 encoding of a rune.
+		/// An invalid encoding is considered a full Rune since it will convert as a width-1 error rune.
+		/// </summary>
+		/// <returns><c>true</c>, if the bytes in p begin with a full UTF-8 encoding of a rune, <c>false</c> otherwise.</returns>
+		/// <param name="p">byte array.</param>
+		public bool FullRune (byte [] p)
+		{
+			if (p == null)
+				throw new ArgumentNullException (nameof (p));
+			var n = p.Length;
+
+			if (n == 0)
+				return false;
+			var x = first [p [0]];
+			if (n >= (x & 7)) {
+				// ascii, invalid or valid
+				return true;
+			}
+			// must be short or invalid
+			if (n > 1) {
+				var accept = AcceptRanges [x >> 4];
+				var c = p [1];
+				if (c < accept.Lo || accept.Hi < c)
+					return true;
+				else if (n > 2 && (p [2] < locb || hicb < p [2]))
+					return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// FullRune reports whether the ustring begins with a full UTF-8 encoding of a rune.
+		/// An invalid encoding is considered a full Rune since it will convert as a width-1 error rune.
+		/// </summary>
+		/// <returns><c>true</c>, if the bytes in p begin with a full UTF-8 encoding of a rune, <c>false</c> otherwise.</returns>
+		/// <param name="p">byte array.</param>
+		public bool FullRune (ustring p)
+		{
+			return FullRune (p.Bytes);
+		}
+
+		/// <summary>
+		/// DecodeRune unpacks the first UTF-8 encoding in p and returns the rune and
+		// its width in bytes. 
+		/// </summary>
+		/// <returns>If p is empty it returns (RuneError, 0). Otherwise, if
+		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
+		/// results for correct, non-empty UTF-8.
+		/// </returns>
+		/// <param name="buffer">Byte buffer containing the utf8 string.</param>
+		/// <param name="start">Starting offset to look into..</param>
+		/// <param n="buffer">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+		public (uint Rune, int Size) DecodeRune (byte [] buffer, int start = 0, int n = -1)
+		{
+			if (buffer == null)
+				throw new ArgumentNullException (nameof (buffer));
+			if (start < 0)
+				throw new ArgumentException ("invalid offset", nameof (start));
+			if (n < 0)
+				n = buffer.Length - start;
+			if (start > buffer.Length - n)
+				throw new ArgumentException ("Out of bounds");
+
+			if (n < 1)
+				return (RuneError, 0);
+
+			var p0 = buffer [start];
+			var x = first [p0];
+			if (x >= a1) {
+				// The following code simulates an additional check for x == xx and
+				// handling the ASCII and invalid cases accordingly. This mask-and-or
+				// approach prevents an additional branch.
+				var mask = ((uint)x) << 31 >> 31; // Create 0x0000 or 0xFFFF.
+				return (((buffer [0]) & ~mask | RuneError & mask), 1);
+			}
+
+			var sz = x & 7;
+			var accept = AcceptRanges [x >> 4];
+			if (n < (int)sz)
+				return (RuneError, 1);
+
+			var b1 = buffer [start + 1];
+			if (b1 < accept.Lo || accept.Hi < b1)
+				return (RuneError, 1);
+
+			if (sz == 2)
+				return ((uint)((p0 & mask2)) << 6 | (uint)((b1 & maskx)), 2);
+
+			var b2 = buffer [start + 2];
+			if (b2 < locb || hicb < b2)
+				return (RuneError, 1);
+
+			if (sz == 3)
+				return (((uint)((p0 & mask3)) << 12 | (uint)((b1 & maskx)) << 6 | (uint)((b2 & maskx))), 3);
+
+			var b3 = buffer [start + 3];
+			if (b3 < locb || hicb < b3) {
+				return (RuneError, 1);
+			}
+			return ((uint)(p0 & mask4) << 18 | (uint)(b1 & maskx) << 12 | (uint)(b2 & maskx) << 6 | (uint)(b3 & maskx), 4);
+		}
+
+		/// <summary>
+		/// DecodeRune unpacks the first UTF-8 encoding in the ustring returns the rune and
+		// its width in bytes. 
+		/// </summary>
+		/// <returns>If p is empty it returns (RuneError, 0). Otherwise, if
+		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
+		/// results for correct, non-empty UTF-8.
+		/// </returns>
+		/// <param name="str">ustring to decode.</param>
+		public (uint Rune, int size) DecodeRune (ustring str)
+		{
+			return DecodeRune (str.Bytes);
+		}
+
+		// RuneStart reports whether the byte could be the first byte of an encoded,
+		// possibly invalid rune. Second and subsequent bytes always have the top two
+		// bits set to 10.
+		static bool RuneStart (byte b) => (b & 0xc0) != 0x80;
+
+		/// <summary>
+		/// DecodeLastRune unpacks the last UTF-8 encoding in buffer
+		/// </summary>
+		/// <returns>The last rune and its width in bytes.</returns>
+		/// <param name="buffer">Buffer to decode rune from;   if it is empty,
+		/// it returns (RuneError, 0). Otherwise, if
+		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
+		/// results for correct, non-empty UTF-8.</param>
+		/// <remarks>
+		/// An encoding is invalid if it is incorrect UTF-8, encodes a rune that is
+		/// out of range, or is not the shortest possible UTF-8 encoding for the
+		/// value. No other validation is performed.</remarks> 
+		public (uint Rune, int size) DecodeLastRune (byte [] buffer)
+		{
+			if (buffer == null)
+				throw new ArgumentNullException (nameof (buffer));
+			var end = buffer.Length;
+
+			if (end == 0)
+				return (RuneError, 0);
+			var start = end - 1;
+			uint r = buffer [start];
+			if (r < RuneSelf)
+				return (r, 1);
+			// guard against O(n^2) behavior when traversing
+			// backwards through strings with long sequences of
+			// invalid UTF-8.
+			var lim = end - UTF8Max;
+
+			if (lim < 0)
+				lim = 0;
+
+			for (start--; start >= lim; start--) {
+				if (RuneStart (buffer [start])) {
+					break;
+				}
+			}
+			if (start < 0)
+				start = 0;
+			int size;
+			(r, size) = DecodeRune (buffer, start, end - start);
+			if (start + size != end)
+				return (RuneError, 1);
+			return (r, size);
+		}
+
+		/// <summary>
+		/// DecodeLastRune unpacks the last UTF-8 encoding in the ustring.
+		/// </summary>
+		/// <returns>The last rune and its width in bytes.</returns>
+		/// <param name="str">String to decode rune from;   if it is empty,
+		/// it returns (RuneError, 0). Otherwise, if
+		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
+		/// results for correct, non-empty UTF-8.</param>
+		/// <remarks>
+		/// An encoding is invalid if it is incorrect UTF-8, encodes a rune that is
+		/// out of range, or is not the shortest possible UTF-8 encoding for the
+		/// value. No other validation is performed.</remarks> 
+		public (uint Rune, int size) DecodeLastRune (ustring str)
+		{
+			return DecodeLastRune (str);
+		}
+
+		/// <summary>
+		/// number of bytes required to encode the rune.
+		/// </summary>
+		/// <returns>The length, or -1 if the rune is not a valid value to encode in UTF-8.</returns>
+		/// <param name="rune">Rune to probe.</param>
+		public int RuneLen (uint rune)
+		{
+			if (rune < 0)
+				return -1;
+			if (rune <= rune1Max)
+				return 1;
+			if (rune <= rune2Max)
+				return 2;
+			if (surrogateMin <= rune && rune <= surrogateMax)
+				return -1;
+			if (rune <= rune3Max)
+				return 3;
+			if (rune <= MaxRune)
+				return 4;
+			return -1;
+		}
+
+		/// <summary>
+		/// Writes into the destination buffer starting at offset the UTF8 encoded version of the rune
+		/// </summary>
+		/// <returns>The number of bytes written into the destination buffer.</returns>
+		/// <param name="rune">Rune to encode.</param>
+		/// <param name="dest">Destination buffer.</param>
+		/// <param name="offset">Offset into the destination buffer.</param>
+		public int EncodeRune (uint rune, byte [] dest, int offset)
+		{
+			if (dest == null)
+				throw new ArgumentNullException (nameof (dest));
+			if (rune <= rune1Max) {
+				dest [offset] = (byte) rune;
+				return 1;
+			}
+			if (rune <= rune2Max) {
+				dest [offset++] = (byte)(t2 | (byte)(rune >> 6));
+				dest [offset] = (byte)(tx | (byte)(rune & maskx));
+				return 2;
+			}
+			if (rune > MaxRune && surrogateMin <= rune && rune <= surrogateMax) {
+				// error
+				dest [offset++] = 0xef;
+				dest [offset++] = 0x3f;
+				dest [offset] = 0x3d;
+				return 3;
+			}
+			if (rune <= rune3Max) {
+				dest [offset++] = (byte)(t3 | (byte)(rune >> 12));
+				dest [offset++] = (byte)(tx | (byte)(rune >> 6) & maskx);
+				dest [offset] = (byte)(tx | (byte)(rune) & maskx);
+				return 3;
+			}
+			dest [offset++] = (byte)(tx | (byte)(rune >> 12) & maskx);
+			dest [offset++] = (byte)(t4 | (byte)(rune >> 18));
+			dest [offset++] = (byte)(tx | (byte)(rune >> 6) & maskx);
+			dest [offset++] = (byte)(tx | (byte)(rune) & maskx);
+			return 4;
+		}
+
+		/// <summary>
+		/// Returns the number of runes in a utf8 encoded buffer
+		/// </summary>
+		/// <returns>Numnber of runes.</returns>
+		/// <param name="buffer">Byte buffer containing a utf8 string.</param>
+		/// <param name="offset">Starting offset in the buffer.</param>
+		public int RuneCount (byte [] buffer, int offset = 0)
+		{
+			if (buffer == null)
+				throw new ArgumentNullException (nameof (buffer));
+			var np = buffer.Length;
+			int n = 0;
+			for (int i = offset; i < np;) {
+				var c = buffer [i];
+
+				if (c < RuneSelf) {
+					// ASCII fast path
+					i++;
+					continue;
+				}
+				var x = first [c];
+				if (x == xx) {
+					i++; // invalid.
+					continue;
+				}
+
+				var size = (int)(x & 7);
+
+				if (i + size > np) {
+					i++; // Short or invalid.
+					continue;
+				}
+				var accept = AcceptRanges [x >> 4];
+				c = buffer [i + 1];
+				if (c < accept.Lo || accept.Hi < c) {
+					i++;
+					continue;
+				}
+				if (size == 2) {
+					i += 2;
+					continue;
+				}
+				c = buffer [i + 2];
+				if (c < locb || hicb < c) {
+					i++;
+					continue;
+				}
+				if (size == 3) {
+					i += 3;
+					continue;
+				}
+				c = buffer [i + 3];
+				if (c < locb || hicb < c) {
+					i++;
+					continue;
+				}
+				i += size;
+
+			}
+			return n;
+		}
+
+		/// <summary>
+		/// Returns the number of runes in a ustring.
+		/// </summary>
+		/// <returns>Numnber of runes.</returns>
+		/// <param name="str">utf8 string.</param>
+		public int RuneCount (ustring str)
+		{
+			return RuneCount (str.Bytes, 0);
+		}
+
+		/// <summary>
+		/// Reports whether p consists entirely of valid UTF-8-encoded runes.
+		/// </summary>
+		/// <param name="buffer">Byte buffer containing a utf8 string.</param>
+		public bool Valid (byte [] buffer)
+		{
+			if (buffer == null)
+				throw new ArgumentNullException (nameof (buffer));
+			var n = buffer.Length;
+
+			for (int i = 0; i < n;) {
+				var pi = buffer [i];
+
+				if (pi < RuneSelf) {
+					i++;
+					continue;
+				}
+				var x = first [pi];
+				if (x == xx) 
+					return false; // Illegal starter byte.
+				var size = (int)(x & 7);
+				if (i + size > n)
+					return false; // Short or invalid.
+				var accept = AcceptRanges [x >> 4];
+
+				var c = buffer [i+1];
+
+				if (c < accept.Lo || accept.Hi < c)
+					return false;
+
+				if (size == 2) {
+					i += 2;
+					continue;
+				}
+				c = buffer [i + 2];
+				if (c < locb || hicb < c)
+					return false;
+				if (size == 3) {
+					i += 3;
+					continue;
+				}
+				c = buffer [i + 3];
+				if (c < locb || hicb < c)
+					return false;
+				i += size;
+			}
+			return true;
+		}
+
+		/// <summary>
+		/// Reports whether the ustring consists entirely of valid UTF-8-encoded runes.
+		/// </summary>
+		/// <param name="buffer">Byte buffer containing a utf8 string.</param>
+
+		public bool Valid (ustring str)
+		{
+			return Valid (str.Bytes);
+		}
+
+		public bool ValidRune (uint rune)
+		{
+			if (0 <= rune && rune < surrogateMin)
+				return true;
+			if (surrogateMax < rune && rune <= MaxRune)
+				return true;
+			return false;
+		}
+	}
+
+	/// <summary>
+	/// Utf8 string representation
+	/// </summary>
+	public class ustring
+	{
+		byte [] buffer;
+
+		public ustring (byte [] buffer)
+		{
+			if (buffer == null)
+				throw new ArgumentNullException (nameof (buffer));
+			this.buffer = buffer;
+		}
+
+		public ustring (byte [] buffer, int start, int count)
+		{
+			if (count < 0)
+				throw new ArgumentException ("Expected a positive value", nameof (count));
+			this.buffer = new byte [count];
+			Array.Copy (buffer, start, this.buffer, 0, count);
+		}
+
+		public byte [] Bytes => buffer;
+
+		public ustring Clone ()
+		{
+			return new ustring ((byte [])buffer.Clone ());
+		}
+
+		public static ustring Concat (params ustring [] args)
+		{
+			if (args == null)
+				throw new ArgumentNullException (nameof (args));
+			var t = 0;
+			foreach (var x in args)
+				t += x.buffer.Length;
+			var copy = new byte [t];
+			int p = 0;
+			
+			foreach (var x in args){
+				var n = x.buffer.Length;
+				Array.Copy (x.buffer, 0, copy, p, n);
+				p += n;
+			}
+			return new ustring (copy);
+		}
+
+		public bool Contains (ustring value)
+		{
+			throw new NotImplementedException ();
+		}
+	}
 }
