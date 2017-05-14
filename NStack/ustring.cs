@@ -26,15 +26,22 @@
 // 
 
 using System;
+using System.Text;
+
 namespace NStack
 {
 
 	/// <summary>
 	/// Utf8 string representation
 	/// </summary>
-	public class ustring
+	public class ustring : IComparable
 	{
-		byte [] buffer;
+		readonly byte [] buffer;
+
+		/// <summary>
+		/// The empty ustring.
+		/// </summary>
+		public static ustring Empty = new ustring (Array.Empty<byte> ());
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a byte array.
@@ -44,19 +51,149 @@ namespace NStack
 		/// No validation is performed on the contents of the byte buffer, so it
 		/// might contains invalid UTF-8 sequences.
 		/// </remarks>
-		public ustring (byte [] buffer)
+		public ustring (params byte [] buffer)
 		{
 			if (buffer == null)
 				throw new ArgumentNullException (nameof (buffer));
 			this.buffer = buffer;
 		}
 
+		/// <summary>
+		/// Initializes a new instance using the provided rune as the sole character in the string.
+		/// </summary>
+		/// <param name="rune">Rune.</param>
 		public ustring (uint rune)
 		{
 			var len = Utf8.RuneLen (rune);
 			buffer = new byte [len];
 			Utf8.EncodeRune (rune, buffer, 0);
 		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a string.
+		/// </summary>
+		/// <param name="str">C# String.</param>
+		public ustring (string str)
+		{
+			if (str == null)
+				throw new ArgumentNullException (nameof (str));
+			buffer = Encoding.UTF8.GetBytes (str);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an array of C# characters.
+		/// </summary>
+		/// <param name="chars">Characters.</param>
+		public ustring (params char [] chars)
+		{
+			if (chars == null)
+				throw new ArgumentNullException (nameof (chars));
+			buffer = Encoding.UTF8.GetBytes (chars);
+		}
+
+		public override string ToString ()
+		{
+			return Encoding.UTF8.GetString (buffer);
+		}
+
+		/// <summary>
+		/// Determines whether a specified instance of <see cref="NStack.ustring"/> is equal to another specified <see cref="NStack.ustring"/>, this means that the contents of the string are identical
+		/// </summary>
+		/// <param name="a">The first <see cref="NStack.ustring"/> to compare.</param>
+		/// <param name="b">The second <see cref="NStack.ustring"/> to compare.</param>
+		/// <returns><c>true</c> if <c>a</c> and <c>b</c> are equal; otherwise, <c>false</c>.</returns>
+		public static bool operator == (ustring a, ustring b)
+		{
+			// If both are null, or both are same instance, return true.
+			if (System.Object.ReferenceEquals (a, b)) {
+				return true;
+			}
+
+			// If one is null, but not both, return false.
+			if (((object)a == null) || ((object)b == null)) {
+				return false;
+			}
+
+			var ab = a.buffer;
+			var bb = b.buffer;
+
+			if (a.buffer == b.buffer)
+				return true;
+
+			var alen = a.buffer.Length;
+			var blen = b.buffer.Length;
+			if (alen != blen)
+				return false;
+			for (int i = 0; i < alen; i++)
+				if (ab [i] != bb [i])
+					return false;
+			return true;
+		}
+
+		/// <summary>
+		/// Determines whether a specified instance of <see cref="NStack.ustring"/> is not equal to another specified <see cref="NStack.ustring"/>.
+		/// </summary>
+		/// <param name="a">The first <see cref="NStack.ustring"/> to compare.</param>
+		/// <param name="b">The second <see cref="NStack.ustring"/> to compare.</param>
+		/// <returns><c>true</c> if <c>a</c> and <c>b</c> are not equal; otherwise, <c>false</c>.</returns>
+		public static bool operator != (ustring a, ustring b)
+		{
+			// If both are null, or both are same instance, return false
+			if (System.Object.ReferenceEquals (a, b)) {
+				return false;
+			}
+
+			// If one is null, but not both, return true.
+			if (((object)a == null) || ((object)b == null)) {
+				return true;
+			}
+
+			var ab = a.buffer;
+			var bb = b.buffer;
+
+			if (a.buffer == b.buffer)
+				return false;
+
+			var alen = a.buffer.Length;
+			var blen = b.buffer.Length;
+			if (alen != blen)
+				return true;
+			for (int i = 0; i < alen; i++)
+				if (ab [i] == bb [i])
+					return false;
+			return true;
+		}
+
+		public static implicit operator ustring (string s)
+		{
+			return new ustring (s);
+		}
+
+		public override int GetHashCode ()
+		{
+			return buffer.GetHashCode ();
+		}
+
+		/// <summary>
+		/// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:NStack.ustring"/>.
+		/// </summary>
+		/// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:NStack.ustring"/>.</param>
+		/// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="T:NStack.ustring"/>;
+		/// otherwise, <c>false</c>.</returns>
+		public override bool Equals (object obj)
+		{
+			// If parameter is null return false.
+			if (obj == null) 
+				return false;
+
+			// If parameter cannot be cast to Point return false.
+			ustring p = obj as ustring;
+			if ((object)p == null)
+				return false;
+
+			return this == p;
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a byte array.
 		/// </summary>
@@ -85,8 +222,21 @@ namespace NStack
 		/// <summary>
 		/// Returns the underlying array storying the utf8 encoded byte buffer.
 		/// </summary>
-		/// <value>The bytes.</value>
+		/// <value>The byte array.</value>
 		public byte [] Bytes => buffer;
+
+		/// <summary>
+		/// Gets the length in bytes of the byte buffer.
+		/// </summary>
+		/// <value>The length in bytes of the encoded UTF8 string, does not represent the number of runes.</value>
+		/// <remarks>To obtain the number of runes in the string, use the <see cref="P:System.ustring.RuneCount"/> property.</remarks>
+		public int Length => buffer.Length;
+
+		/// <summary>
+		/// Gets the rune count of the string.
+		/// </summary>
+		/// <value>The rune count.</value>
+		public int RuneCount => Utf8.RuneCount (buffer);
 
 		/// <summary>
 		/// Clone this instance and duplicates the undelying byte buffer contents.
@@ -512,6 +662,141 @@ namespace NStack
 				}
 			}
 			return -1;
+		}
+
+		/// <summary>
+		/// Implements the IComparable.CompareTo method
+		/// </summary>
+		/// <returns>Less than zero if this instance is less than value, zero if they are the same, and higher than zero if the instance is greater.</returns>
+		/// <param name="value">Value.</param>
+		public int CompareTo (object value)
+		{
+			if (value == null)
+				return 1;
+			var other = value as ustring;
+			if (other == null)
+				throw new ArgumentException ("Argument must be a ustring");
+			if (other.buffer == buffer)
+				return 0;
+			var blen = buffer.Length;
+			var olen = other.buffer.Length;
+			if (blen == 0) {
+				if (olen == 0)
+					return 0;
+				return -1;
+			} else if (olen == 0)
+				return 1;
+
+			// Most common case, first character is different
+			var e = buffer [0] - other.buffer [0];
+			if (e != 0)
+				return e;
+			for (int i = 1; i < blen; i++) {
+				if (i >= olen)
+					return 1;
+				e = buffer [i] - other.buffer [i];
+				if (e == 0)
+					continue;
+				return e;
+			}
+			if (olen > blen)
+				return -1;
+			return 0;
+		}
+
+		// Generic split: splits after each instance of sep,
+		// including sepSave bytes of sep in the subarrays.
+		ustring [] GenSplit (ustring sep, int sepSave, int n = -1)
+		{
+			if (n == 0)
+				return Array.Empty<ustring> ();
+			if (sep == "")
+				return Explode (n);
+			if (n < 0)
+				n = Count (sep) + 1;
+			var result = new ustring [n];
+			n--;
+			int offset = 0, i = 0;
+			while (i < n) {
+				var m = IndexOf (sep);
+				if (m < 0)
+					break;
+				result [i] = new ustring (buffer, offset, m + sepSave);
+				offset += m + sep.buffer.Length;
+				i++;
+			}
+			result [i] = new ustring (buffer, offset, buffer.Length - offset);
+			return result;
+		}
+
+		/// <summary>
+		/// Determines whether the beginning of this string instance matches the specified string.
+		/// </summary>
+		/// <returns><c>true</c> if <paramref name="value" /> matches the beginning of this string; otherwise, <c>false</c>.</returns>
+		/// <param name="prefix">Prefix.</param>
+		public bool StartsWith (ustring prefix)
+		{
+			if (prefix == null)
+				throw new ArgumentNullException (nameof (prefix));
+			if (buffer.Length < prefix.buffer.Length)
+				return false;
+			return CompareArrayRange (buffer, 0, prefix.Length, prefix.buffer);	
+		}
+
+		/// <summary>
+		/// Determines whether the end of this string instance matches the specified string.
+		/// </summary>
+		/// <returns>true if <paramref name="suffix" /> matches the end of this instance; otherwise, false.</returns>
+		/// <param name="suffix">The string to compare to the substring at the end of this instance.</param>
+		public bool EndsWith (ustring suffix)
+		{
+			if (suffix == null)
+				throw new ArgumentNullException (nameof (suffix));
+			if (buffer.Length < suffix.buffer.Length)
+				return false;
+			return CompareArrayRange (buffer, Length - suffix.Length, suffix.Length, suffix.buffer);
+		}
+
+		/// <summary>
+		/// Concatenates all the elements of a ustring array, using the specified separator between each element.
+		/// </summary>
+		/// <returns>A string that consists of the elements in <paramref name="values" /> delimited by the <paramref name="separator" /> string. If <paramref name="values" /> is an empty array, the method returns <see cref="F:System.ustring.Empty" />.</returns>
+		/// <param name="separator">Separator.</param>
+		/// <param name="values">Values.</param>
+		public static ustring Join (ustring separator, params ustring [] values)
+		{
+			if (separator == null)
+				separator = Empty;
+			if (values == null)
+				throw new ArgumentNullException (nameof (values));
+			if (values.Length == 0)
+				return Empty;
+			int size = 0, items = 0;
+			foreach (var t in values) {
+				if (t == null)
+					continue;
+				size += t.Length;
+				items++;
+			}
+			if (items == 1) {
+				foreach (var t in values)
+					if (t != null)
+						return t;
+			}
+			var slen = separator.Length;
+			size += (items - 1) * slen;
+			var result = new byte [size];
+			int offset = 0;
+			foreach (var t in values) {
+				if (t == null)
+					continue;
+				var tlen = t.Length;
+				Array.Copy (t.buffer, 0, result, offset, tlen);
+				offset += tlen;
+				Array.Copy (separator.buffer, 0, result, offset, slen);
+				offset += slen;
+			}
+			return new ustring (result);
 		}
 
 		// asciiSet is a 32-byte value, where each bit represents the presence of a

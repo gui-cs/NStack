@@ -31,13 +31,17 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ValueTuple">
-      <HintPath>..\System.ValueTuple.dll</HintPath>
+      <HintPath>..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ustring.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utf8.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
