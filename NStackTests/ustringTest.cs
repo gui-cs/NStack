@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿﻿
+using NUnit.Framework;
 using System;
 using NStack;
 
@@ -15,10 +16,14 @@ namespace NStackTests
 		ustring empty = new ustring ("");
 		ustring secondempty = new ustring ("");
 
+		ustring hello = new ustring ("hello, world");
+		ustring longhello = new ustring ("");
+		ustring kosme = new ustring (0xce, 0xba, 0xcf, 0x8c, 0xcf, 0x83, 0xce, 0xbc, 0xce, 0xb5);
+
 		[Test]
 		public void IComparableTests ()
 		{
-			
+
 
 			// Compares same-sized strings
 			Assert.AreEqual (-1, a.CompareTo (b));
@@ -65,7 +70,17 @@ namespace NStackTests
 		[Test]
 		public void IndexOf ()
 		{
-			
+
 		}
+
+		[Test]
+		public void Length ()
+		{
+			Assert.AreEqual (12, hello.Length, "Byte length");
+			Assert.AreEqual (12, hello.RuneCount, "Rune Count");
+			Assert.AreEqual (10, kosme.Length, "Byte kosme");
+			Assert.AreEqual (5, kosme.RuneCount, "Rune kosme");
+		}
+
 	}
 }

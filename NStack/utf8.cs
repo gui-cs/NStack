@@ -46,9 +46,9 @@ namespace NStack
 		const byte mask3 = 0x0F; // 0000 1111
 		const byte mask4 = 0x07; // 0000 0111
 
-		const uint rune1Max = 1 << 7 - 1;
-		const uint rune2Max = 1 << 11 - 1;
-		const uint rune3Max = 1 << 16 - 1;
+		const uint rune1Max = (1 << 7) - 1;
+		const uint rune2Max = (1 << 11) - 1;
+		const uint rune3Max = (1 << 16) - 1;
 
 		// The default lowest and highest continuation byte.
 		const byte locb = 0x80; // 1000 0000
@@ -352,8 +352,8 @@ namespace NStack
 				dest [offset] = (byte)(tx | (byte)(rune) & maskx);
 				return 3;
 			}
-			dest [offset++] = (byte)(tx | (byte)(rune >> 12) & maskx);
 			dest [offset++] = (byte)(t4 | (byte)(rune >> 18));
+			dest [offset++] = (byte)(tx | (byte)(rune >> 12) & maskx);
 			dest [offset++] = (byte)(tx | (byte)(rune >> 6) & maskx);
 			dest [offset++] = (byte)(tx | (byte)(rune) & maskx);
 			return 4;
@@ -372,6 +372,7 @@ namespace NStack
 			var np = buffer.Length;
 			int n = 0;
 			for (int i = offset; i < np;) {
+				n++;
 				var c = buffer [i];
 
 				if (c < RuneSelf) {
