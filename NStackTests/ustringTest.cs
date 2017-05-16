@@ -1,4 +1,8 @@
-﻿﻿
+﻿// 
+// ustringtest: ustring tests
+//
+//﻿ Miguel de Icaza
+//
 using NUnit.Framework;
 using System;
 using NStack;

@@ -19,21 +19,42 @@
 //     * Advanrage: could provide factory methods that return subclasses with
 //       different behaviors, in particular to allow things like passing
 //       deallocator methods for scenarios where we would allow byte * or IntPtr buffers
-// 
+//     * It might allow not only ustring over a byte[], but a subclass could be used
+//       as the result from the span operation (operator this [int start, int end]) that
+//       would provide a view into the data.   
+//     * We could expose factory methods for creating ustrings from unmanaged buffers
+//       like an (IntPtr, size)
+//
 // ustring as struct:
 //     * If we only have the "buffer" field below, passing ustrings would be
 //       very cheap
 // 
+// genSplit
+// 
+// TODO from .NET API:
+// String.Split members (array of strings, StringSplitOptions)
+// 
+
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace NStack
 {
 
 	/// <summary>
-	/// Utf8 string representation
+	/// ustrings provide a series of operations on a series of bytes that contain either valid or invalid UTF8 byte sequences.
 	/// </summary>
+	/// <remarks>
+	/// The ustring provides a series of string-like operations over an array of bytes.   The buffer
+	/// is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
+	/// sequence many of the operations will continue to work.
+	/// 
+	/// The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
+	/// property describes the number of code points (or runes) that are reprenseted by the underlying 
+	/// utf8 encoded buffer.
+	/// </remarks>
 	public class ustring : IComparable
 	{
 		readonly byte [] buffer;
@@ -855,6 +876,43 @@ namespace NStack
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Concatenates the contents of two <see cref="NStack.ustring"/> instances.
+		/// </summary>
+		/// <param name="u1">The first <see cref="NStack.ustring"/> to add, can be null.</param>
+		/// <param name="u2">The second <see cref="NStack.ustring"/> to add, can be null.</param>
+		/// <returns>The <see cref="T:NStack.ustring"/> that is the concatenation of the strings of <c>u1</c> and <c>u2</c>.</returns>
+		public static ustring operator + (ustring u1, ustring u2)
+		{
+			var u1l = u1 == null ? 0 : u1.Length;
+			var u2l = u2 == null ? 0 : u2.Length;
+			var copy = new byte [u1l + u2l];
+			if (u1 != null)
+				Array.Copy (u1.buffer, copy, u1l);
+			if (u2 != null)
+				Array.Copy (u2.buffer, 0, copy, u1l, u2l);
+			return new ustring (copy);
+		}
+
+		/// <summary>
+		/// An enumerator that returns the index within the string, and the rune found at that location
+		/// </summary>
+		/// <returns>Enumerable object that can be used to iterate and get the index of the values at the same time.</returns>
+		/// <remarks>
+		/// This is useful to iterate over the string and obtain both the index of the rune and the rune
+		/// in the same call.  
+		/// </remarks>
+		public IEnumerable<(int index, uint rune)> Range ()
+		{
+			int blen = buffer.Length;
+			for (int i = 0; i < blen;) {
+				(var rune, var size) = Utf8.DecodeRune (buffer, i, i - blen);
+				yield return (i, rune);
+				i += size;
+			}
+			yield break;
 		}
 	}
 }

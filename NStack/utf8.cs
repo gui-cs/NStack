@@ -1,10 +1,11 @@
-﻿using System;
-
-// genSplit
+﻿// 
+// ustring.cs: UTF8 String representation
+//
+// Based on the Go UTF8 code
 // 
-// TODO from .NET API:
-// String.Split members (array of strings, StringSplitOptions)
-// 
+// C# ification by Miguel de Icaza
+//
+using System;
 
 namespace NStack
 {
@@ -23,7 +24,7 @@ namespace NStack
 		/// </summary>
 		public const byte RuneSelf = 0x80;
 
-		const int UTF8Max = 4;
+		public const int Utf8Max = 4;
 
 		/// <summary>
 		/// Maximum valid Unicode code point.
@@ -181,8 +182,8 @@ namespace NStack
 				// The following code simulates an additional check for x == xx and
 				// handling the ASCII and invalid cases accordingly. This mask-and-or
 				// approach prevents an additional branch.
-				var mask = ((uint)x) << 31 >> 31; // Create 0x0000 or 0xFFFF.
-				return (((buffer [0]) & ~mask | RuneError & mask), 1);
+				uint mask = (uint)((((byte)x) << 31) >> 31); // Create 0x0000 or 0xFFFF.
+				return (((buffer [start]) & ~mask | RuneError & mask), 1);
 			}
 
 			var sz = x & 7;
@@ -261,7 +262,7 @@ namespace NStack
 			// guard against O(n^2) behavior when traversing
 			// backwards through strings with long sequences of
 			// invalid UTF-8.
-			var lim = end - UTF8Max;
+			var lim = end - Utf8Max;
 
 			if (lim < 0)
 				lim = 0;
@@ -339,7 +340,7 @@ namespace NStack
 				dest [offset] = (byte)(tx | (byte)(rune & maskx));
 				return 2;
 			}
-			if (rune > MaxRune && surrogateMin <= rune && rune <= surrogateMax) {
+			if ((rune > MaxRune) || (surrogateMin <= rune && rune <= surrogateMax)) {
 				// error
 				dest [offset++] = 0xef;
 				dest [offset++] = 0x3f;
