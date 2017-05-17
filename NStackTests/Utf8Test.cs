@@ -324,5 +324,80 @@ namespace NStackTests
 				Assert.AreEqual (t.count, Utf8.RuneCount (t.testString.Bytes));
 			}
 		}
+
+		[Test]
+		public void TestRuneLen()
+		{
+			(uint rune, int size)[] runeLenTests = new(uint, int)[] {
+				(0, 1),
+				('e', 1),
+				('é', 2),
+				('☺', 3),
+				(Utf8.RuneError, 3),
+				(Utf8.MaxRune, 4),
+				(0xd800, -1),
+				(0xdfff, -1),
+				(Utf8.MaxRune+1, -1),
+				(unchecked ((uint) -1), -1)
+			};
+			foreach (var test in runeLenTests)
+			{
+				Assert.AreEqual(test.size, Utf8.RuneLen(test.rune), "Testing size for Rune 0x{0:x}", test.rune);
+			}
+		}
+
+		[Test]
+		public void TestValid()
+		{
+			(ustring input, bool output)[] validTests = new(ustring, bool)[] {
+				(new ustring (""), true),
+				(new ustring ("a"), true),
+				(new ustring ("abc"), true),
+				(new ustring ("Ж"), true),
+				(new ustring ("ЖЖ"), true),
+				(new ustring ("брэд-ЛГТМ"), true),
+				(new ustring (0xE2, 0x98, 0xBA, 0xE2, 0x98, 0xBB, 0xE2, 0x98, 0xB9), true),
+				(new ustring (0xaa, 0xe2), false),
+				(new ustring (66, 250), false),
+				(new ustring (66, 250, 67), false),
+				(new ustring ("a\uffDb"), true),
+				(new ustring (0xf4, 0x8f, 0xbf, 0xbf),  true), // U+10FFFF
+				(new ustring (0xf4, 0x90, 0x80, 0x80), false), // U+10FFFF+1 out of range
+				(new ustring (0xF7, 0xBF, 0xBF, 0xBF), false),     // 0x1FFFFF; out of range
+				(new ustring (0xFB, 0xBF, 0xBF, 0xBF, 0xBF), false), // 0x3FFFFFF; out of range
+				(new ustring (0xc0, 0x80), false),             // U+0000 encoded in two bytes: incorrect
+				(new ustring (0xed, 0xa0, 0x80), false),         // U+D800 high surrogate (sic)
+				(new ustring (0xed, 0xbf, 0xbf), false),         // U+DFFF low surrogate (sic)
+			};
+			foreach (var test in validTests)
+			{
+				Assert.AreEqual(test.output, Utf8.Valid(test.input.Bytes));
+				Assert.AreEqual(test.output, Utf8.Valid(test.input));
+			}
+		}
+
+		[Test]
+		public void ValidRuneTests()
+		{
+			(uint rune, bool ok)[] validRuneTest = new(uint, bool)[] {
+				(0, true),
+				('e', true),
+				('é', true),
+				('☺', true),
+				(Utf8.RuneError, true),
+				(Utf8.MaxRune, true),
+				(0xd7ff, true),
+				(0xd800, false),
+				(0xdfff, false),
+				(0xe000, true),
+				(Utf8.MaxRune+1, false),
+				(unchecked ((uint) -1),false)
+			};
+			foreach (var test in validRuneTest)
+			{
+				Assert.AreEqual(test.ok, Utf8.ValidRune(test.rune), "Testing for valid rune 0x{0:x}", test.rune);
+			}
+
+		}
 	}
 }

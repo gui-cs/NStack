@@ -65,12 +65,14 @@ namespace NStack
 		public static ustring Empty = new ustring (Array.Empty<byte> ());
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a byte array.
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class using the provided byte array for its storage.
 		/// </summary>
 		/// <param name="buffer">Buffer containing the utf8 encoded string.</param>
 		/// <remarks>
 		/// No validation is performed on the contents of the byte buffer, so it
 		/// might contains invalid UTF-8 sequences.
+		/// 
+		/// No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
 		/// </remarks>
 		public ustring (params byte [] buffer)
 		{
@@ -914,5 +916,9 @@ namespace NStack
 			}
 			yield break;
 		}
+
+		// TODO: Map
+
+
 	}
 }
