@@ -502,6 +502,11 @@ namespace NStack
 			return Valid (str.Bytes);
 		}
 
+		/// <summary>
+		///  ValidRune reports whether a rune can be legally encoded as UTF-8.
+		/// </summary>
+		/// <returns><c>true</c>, if rune was valided, <c>false</c> otherwise.</returns>
+		/// <param name="rune">The rune to test.</param>
 		public static bool ValidRune (uint rune)
 		{
 			if (0 <= rune && rune < surrogateMin)

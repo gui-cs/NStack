@@ -2,6 +2,10 @@
 
 namespace NStack {
 	public partial class Unicode {
+
+		/// <summary>
+		/// Special casing rules for Turkish.
+		/// </summary>
 		public static SpecialCase TurkishCase = new SpecialCase (
 			new CaseRange [] {
 				new CaseRange (0x0049, 0x0049, 0, 0x131 - 0x49, 0),

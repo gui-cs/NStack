@@ -4,10 +4,25 @@ namespace NStack
 {
 	public partial class Unicode
 	{
-		public const int MaxRune = 0x0010FFFF;         // Maximum valid Unicode code point.
-		public const uint ReplacementChar = 0xfffd;     // Represents invalid code points.
-		public const uint MaxAscii = 0x7f;              // maximum ASCII value.
-		public const uint MaxLatin1 = 0xff;             // maximum Latin-1 value.
+		/// <summary>
+		/// Maximum valid Unicode code point.
+		/// </summary> 
+		public const int MaxRune = 0x0010FFFF;
+
+		/// <summary>
+		/// Represents invalid code points.
+		/// </summary>
+		public const uint ReplacementChar = 0xfffd;     // 
+
+		/// <summary>
+		/// The maximum ASCII value.
+		/// </summary>
+		public const uint MaxAscii = 0x7f;
+
+		/// <summary>
+		/// The maximum latin1 value.
+		/// </summary>
+		public const uint MaxLatin1 = 0xff;
 
 		// Range16 represents of a range of 16-bit Unicode code points. The range runs from Lo to Hi
 		// inclusive and has the specified stride.
@@ -37,6 +52,10 @@ namespace NStack
 
 		}
 
+		/// <summary>
+		/// Range tables describe classes of unicode code points.
+		/// </summary>
+		/// 
 		// RangeTable defines a set of Unicode code points by listing the ranges of
 		// code points within the set. The ranges are listed in two slices
 		// to save space: a slice of 16-bit ranges and a slice of 32-bit ranges.
@@ -54,6 +73,11 @@ namespace NStack
 				LatinOffset = latinOffset;
 			}
 
+			/// <summary>
+			/// Used to determine if a given rune is in the range of this RangeTable.
+			/// </summary>
+			/// <returns><c>true</c>, if the rune is in this RangeTable, <c>false</c> otherwise.</returns>
+			/// <param name="rune">Rune.</param>
 			public bool InRange (uint rune)
 			{
 				var r16l = R16.Length;
@@ -66,6 +90,11 @@ namespace NStack
 				return false;
 			}
 
+			/// <summary>
+			/// Used to determine if a given rune is in the range of this RangeTable, excluding latin1 characters.
+			/// </summary>
+			/// <returns><c>true</c>, if the rune is part of the range (not including latin), <c>false</c> otherwise.</returns>
+			/// <param name="rune">Rune.</param>
 			public bool IsExcludingLatin (uint rune)
 			{
 				var off = LatinOffset;
@@ -107,7 +136,7 @@ namespace NStack
 			}
 		}
 
-		public enum Case {
+		enum Case {
 			Upper = 0,
 			Lower = 1,
 			Title = 2
@@ -176,6 +205,11 @@ namespace NStack
 			return false;
 		}
 
+		/// <summary>
+		/// Reports whether the rune is an upper case letter.
+		/// </summary>
+		/// <returns><c>true</c>, if the rune is an upper case lette, <c>false</c> otherwise.</returns>
+		/// <param name="rune">The rune to test for.</param>
 		public static bool IsUpper (uint rune)
 		{
 			if (rune <= MaxLatin1)
@@ -183,6 +217,11 @@ namespace NStack
 			return Upper.IsExcludingLatin (rune);
 		}
 
+		/// <summary>
+		/// Reports whether the rune is a lower case letter.
+		/// </summary>
+		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <param name="rune">The rune to test for.</param>
 		public static bool IsLower (uint rune)
 		{
 			if (rune <= MaxLatin1)
@@ -190,6 +229,11 @@ namespace NStack
 			return Lower.IsExcludingLatin (rune);
 		}
 
+		/// <summary>
+		/// Reports whether the rune is a title case letter.
+		/// </summary>
+		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <param name="rune">The rune to test for.</param>
 		public static bool IsTitle (uint rune)
 		{
 			if (rune <= MaxLatin1)
@@ -242,7 +286,11 @@ namespace NStack
 			return to (toCase, rune, CaseRanges);
 		}
 
-		// ToUpper maps the rune to upper case.
+		/// <summary>
+		/// ToUpper maps the rune to upper case.
+		/// </summary>
+		/// <returns>The upper cased rune if it can be.</returns>
+		/// <param name="rune">Rune.</param>
 		public uint ToUpper (uint rune)
 		{
 			if (rune <= MaxAscii) {
@@ -253,7 +301,11 @@ namespace NStack
 			return To (Case.Upper, rune);
 		}
 
-		// ToLower maps the rune to lower case.
+		/// <summary>
+		/// ToLower maps the rune to lower case.
+		/// </summary>
+		/// <returns>The lower cased rune if it can be.</returns>
+		/// <param name="rune">Rune.</param>
 		public uint ToLower (uint rune)
 		{
 			if (rune <= MaxAscii) {
@@ -264,7 +316,11 @@ namespace NStack
 			return To (Case.Lower, rune);
 		}
 
-		// ToTitle maps the rune to title case.
+		/// <summary>
+		/// ToLower maps the rune to title case.
+		/// </summary>
+		/// <returns>The lower cased rune if it can be.</returns>
+		/// <param name="rune">Rune.</param>
 		public uint ToTitle (uint rune)
 		{
 			if (rune <= MaxAscii) {
@@ -275,8 +331,12 @@ namespace NStack
 			return To (Case.Title, rune);
 		}
 
-		// SpecialCase represents language-specific case mappings such as Turkish.
-		// Methods of SpecialCase customize (by overriding) the standard mappings.
+		/// <summary>
+		/// SpecialCase represents language-specific case mappings such as Turkish.
+		/// </summary>
+		/// <remarks>
+		/// Methods of SpecialCase customize (by overriding) the standard mappings.
+		/// </remarks>
 		public struct SpecialCase {
 			Unicode.CaseRange [] Special;
 			internal SpecialCase (CaseRange [] special)
@@ -284,7 +344,11 @@ namespace NStack
 				Special = special;
 			}
 
-			// ToUpper maps the rune to upper case giving priority to the special mapping.
+			/// <summary>
+			/// ToUpper maps the rune to upper case giving priority to the special mapping.
+			/// </summary>
+			/// <returns>The upper cased rune if it can be.</returns>
+			/// <param name="rune">Rune.</param>
 			public uint ToUpper (uint rune)
 			{
 				var result = to (Case.Upper, rune, Special);
@@ -293,7 +357,11 @@ namespace NStack
 				return result;
 			}
 
-			// ToTitle maps the rune to title case giving priority to the special mapping.
+			/// <summary>
+			/// ToTitle maps the rune to title case giving priority to the special mapping.
+			/// </summary>
+			/// <returns>The title cased rune if it can be.</returns>
+			/// <param name="rune">Rune.</param>
 			public uint ToTitle (uint rune)
 			{
 				var result = to (Case.Title, rune, Special);
@@ -302,7 +370,11 @@ namespace NStack
 				return result;
 			}
 
-			// ToLower maps the rune to lower case giving priority to the special mapping.
+			/// <summary>
+			/// ToLower maps the rune to lower case giving priority to the special mapping.
+			/// </summary>
+			/// <returns>The lower cased rune if it can be.</returns>
+			/// <param name="rune">Rune.</param>
 			public uint ToLower (uint rune)
 			{
 				var result = to (Case.Lower, rune, Special);
@@ -326,24 +398,33 @@ namespace NStack
 			}
 		}
 
-		// SimpleFold iterates over Unicode code points equivalent under
-		// the Unicode-defined simple case folding. Among the code points
-		// equivalent to rune (including rune itself), SimpleFold returns the
-		// smallest rune > r if one exists, or else the smallest rune >= 0.
-		// If r is not a valid Unicode code point, SimpleFold(r) returns r.
-		//
-		// For example:
-		//      SimpleFold('A') = 'a'
-		//      SimpleFold('a') = 'A'
-		//
-		//      SimpleFold('K') = 'k'
-		//      SimpleFold('k') = '\u212A' (Kelvin symbol, K)
-		//      SimpleFold('\u212A') = 'K'
-		//
-		//      SimpleFold('1') = '1'
-		//
-		//      SimpleFold(-2) = -2
-		//
+		/// <summary>
+		/// SimpleFold iterates over Unicode code points equivalent under
+		/// the Unicode-defined simple case folding.
+		/// </summary>
+		/// <returns>The simple-case folded rune.</returns>
+		/// <param name="rune">Rune.</param>
+		/// <remarks>
+		/// SimpleFold iterates over Unicode code points equivalent under
+		/// the Unicode-defined simple case folding. Among the code points
+		/// equivalent to rune (including rune itself), SimpleFold returns the
+		/// smallest rune > r if one exists, or else the smallest rune >= 0.
+		/// If r is not a valid Unicode code point, SimpleFold(r) returns r.
+		///
+		/// For example:
+		/// <code>
+		///      SimpleFold('A') = 'a'
+		///      SimpleFold('a') = 'A'
+		///
+		///      SimpleFold('K') = 'k'
+		///      SimpleFold('k') = '\u212A' (Kelvin symbol, K)
+		///      SimpleFold('\u212A') = 'K'
+		///
+		///      SimpleFold('1') = '1'
+		///
+		///      SimpleFold(-2) = -2
+		/// </code>
+		/// </remarks>
 		public uint SimpleFold (uint rune)
 		{
 			if (rune >= MaxRune)
