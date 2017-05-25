@@ -4,14 +4,14 @@ namespace NStack
 {
 	public partial class Unicode
 	{
-		public const uint MaxRune = 0x0010FFFF;         // Maximum valid Unicode code point.
+		public const int MaxRune = 0x0010FFFF;         // Maximum valid Unicode code point.
 		public const uint ReplacementChar = 0xfffd;     // Represents invalid code points.
 		public const uint MaxAscii = 0x7f;              // maximum ASCII value.
 		public const uint MaxLatin1 = 0xff;             // maximum Latin-1 value.
 
 		// Range16 represents of a range of 16-bit Unicode code points. The range runs from Lo to Hi
 		// inclusive and has the specified stride.
-		struct Range16 {
+		internal struct Range16 {
 			public ushort Lo, Hi, Stride;
 
 			public Range16 (ushort lo, ushort hi, ushort stride)
@@ -25,7 +25,7 @@ namespace NStack
 		// Range32 represents of a range of Unicode code points and is used when one or
 		// more of the values will not fit in 16 bits. The range runs from Lo to Hi
 		// inclusive and has the specified stride. Lo and Hi must always be >= 1<<16.
-		struct Range32 {
+		internal struct Range32 {
 			public int Lo, Hi, Stride;
 
 			public Range32 (int lo, int hi, int stride)
@@ -42,12 +42,12 @@ namespace NStack
 		// to save space: a slice of 16-bit ranges and a slice of 32-bit ranges.
 		// The two slices must be in sorted order and non-overlapping.
 		// Also, R32 should contain only values >= 0x10000 (1<<16).
-		struct RangeTable {
-			public Range16 []R16;
-			public Range32 []R32;
-			public int LatinOffset;
+		public struct RangeTable {
+			Range16 []R16;
+			Range32 []R32;
+			public readonly int LatinOffset;
 
-			public RangeTable (Range16 [] r16, Range32 [] r32, int latinOffset)
+			internal RangeTable (Range16 [] r16 = null, Range32 [] r32 = null, int latinOffset = 0)
 			{
 				R16 = r16;
 				R32 = r32;
@@ -89,24 +89,21 @@ namespace NStack
 		// pairs. It appears with a fixed Delta of
 		//      {UpperLower, UpperLower, UpperLower}
 		// The constant UpperLower has an otherwise impossible delta value.
-		struct CaseRange {
+		internal struct CaseRange {
 			public int Lo, Hi;
-			public unsafe fixed uint Delta [3];
+			public unsafe fixed int Delta [3];
 
-			public CaseRange (int lo, int hi)
+			public CaseRange (int lo, int hi, int d1, int d2, int d3)
 			{
 				Lo = lo;
 				Hi = hi;
-			}
-		}
-
-		// SpecialCase represents language-specific case mappings such as Turkish.
-		// Methods of SpecialCase customize (by overriding) the standard mappings.
-		struct SpecialCase {
-			public CaseRange [] Special;
-			public SpecialCase (CaseRange [] special)
-			{
-				Special = special;
+				unsafe {
+					fixed (int *p = Delta) {
+						p [0] = d1;
+						p [1] = d2;
+						p [2] = d3;
+					}
+				}
 			}
 		}
 
@@ -119,7 +116,7 @@ namespace NStack
 		// If the Delta field of a CaseRange is UpperLower, it means
 		// this CaseRange represents a sequence of the form (say)
 		// Upper Lower Upper Lower.
-		const uint UpperLower = MaxRune + 1;
+		const int UpperLower = MaxRune + 1;
 
 		// linearMax is the maximum size table for linear search for non-Latin1 rune.
 		const int linearMax = 18;
@@ -229,7 +226,7 @@ namespace NStack
 
 						return ((uint)cr.Lo) + ((rune - ((uint)(cr.Lo))) & 1 | ((uint)((uint)toCase) & 1));      
 					}
-					return rune + delta;
+					return (uint) ((int)rune + delta);
 				}
 				if (rune < cr.Lo)
 					hi = m;
@@ -278,6 +275,101 @@ namespace NStack
 			return To (Case.Title, rune);
 		}
 
+		// SpecialCase represents language-specific case mappings such as Turkish.
+		// Methods of SpecialCase customize (by overriding) the standard mappings.
+		public struct SpecialCase {
+			Unicode.CaseRange [] Special;
+			internal SpecialCase (CaseRange [] special)
+			{
+				Special = special;
+			}
 
+			// ToUpper maps the rune to upper case giving priority to the special mapping.
+			public uint ToUpper (uint rune)
+			{
+				var result = to (Case.Upper, rune, Special);
+				if (result == rune)
+					result = ToUpper (rune);
+				return result;
+			}
+
+			// ToTitle maps the rune to title case giving priority to the special mapping.
+			public uint ToTitle (uint rune)
+			{
+				var result = to (Case.Title, rune, Special);
+				if (result == rune)
+					result = ToTitle (rune);
+				return result;
+			}
+
+			// ToLower maps the rune to lower case giving priority to the special mapping.
+			public uint ToLower (uint rune)
+			{
+				var result = to (Case.Lower, rune, Special);
+				if (result == rune)
+					result = ToLower (rune);
+				return result;
+			}
+		}
+
+		// CaseOrbit is defined in tables.cs as foldPair []. Right now all the
+		// entries fit in ushort, so use ushort.  If that changes, compilation
+		// will fail (the constants in the composite literal will not fit in ushort)
+		// and the types here can change to uint.
+		struct FoldPair {
+			public ushort From, To;
+
+			public FoldPair (ushort from, ushort to)
+			{
+				From = from;
+				To = to;
+			}
+		}
+
+		// SimpleFold iterates over Unicode code points equivalent under
+		// the Unicode-defined simple case folding. Among the code points
+		// equivalent to rune (including rune itself), SimpleFold returns the
+		// smallest rune > r if one exists, or else the smallest rune >= 0.
+		// If r is not a valid Unicode code point, SimpleFold(r) returns r.
+		//
+		// For example:
+		//      SimpleFold('A') = 'a'
+		//      SimpleFold('a') = 'A'
+		//
+		//      SimpleFold('K') = 'k'
+		//      SimpleFold('k') = '\u212A' (Kelvin symbol, K)
+		//      SimpleFold('\u212A') = 'K'
+		//
+		//      SimpleFold('1') = '1'
+		//
+		//      SimpleFold(-2) = -2
+		//
+		public uint SimpleFold (uint rune)
+		{
+			if (rune >= MaxRune)
+				return rune;
+			if (rune < asciiFold.Length)
+				return (uint)asciiFold [rune];
+			// Consult caseOrbit table for special cases.
+			var lo = 0;
+			var hi = CaseOrbit.Length;
+			while (lo < hi) {
+				var m = lo + (hi - lo) / 2;
+				if (CaseOrbit [m].From < rune)
+					lo = m + 1;
+				else
+					hi = m;
+			}
+			if (lo < CaseOrbit.Length && CaseOrbit [lo].From == rune)
+				return CaseOrbit [lo].To;
+			// No folding specified. This is a one- or two-element
+			// equivalence class containing rune and ToLower(rune)
+			// and ToUpper(rune) if they are different from rune.
+			var l = ToLower (rune);
+			if (l != rune)
+				return l;
+			return ToUpper (rune);
+		}
 	}
+
 }
