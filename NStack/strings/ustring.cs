@@ -7,27 +7,7 @@
 //
 // TODO:
 //   Provide a string to utf8 conversion
-//
-// Topics:
-//   * Should ustring use a Span-like container instead of a direct byte[]
-//   * It would allow easy slicing at a cost.
-//   * Perhaps use the slow-perf Span implementation?
-//   * Should IndexOf, Contains, etc take C# strings as well or rely on implicit conversion?
-//   
-//
-// ustring as a class: 
-//     * Advanrage: could provide factory methods that return subclasses with
-//       different behaviors, in particular to allow things like passing
-//       deallocator methods for scenarios where we would allow byte * or IntPtr buffers
-//     * It might allow not only ustring over a byte[], but a subclass could be used
-//       as the result from the span operation (operator this [int start, int end]) that
-//       would provide a view into the data.   
-//     * We could expose factory methods for creating ustrings from unmanaged buffers
-//       like an (IntPtr, size)
-//
-// ustring as struct:
-//     * If we only have the "buffer" field below, passing ustrings would be
-//       very cheap
+//   Clone()?
 // 
 // genSplit
 // 
@@ -39,9 +19,256 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
-namespace NStack
-{
+namespace NStack {
+	class ubstring : ustring {
+		readonly IntPtr block;
+		readonly int size;
+
+		public ubstring (IntPtr block, int size)
+		{
+			if (block == IntPtr.Zero)
+				throw new ArgumentException ("Null pointer passed", nameof (block));
+			if (size < 0)
+				throw new ArgumentException ("Invalid size passed", nameof (size));
+			this.size = size;
+			this.block = block;
+		}
+
+		public override int Length => size;
+		public override byte this [int index] {
+			get {
+				if (index < 0 || index > size)
+					throw new ArgumentException (nameof (index));
+				return Marshal.ReadByte (block, index);
+			}
+		}
+
+		public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+		{
+			if (offset < 0 || offset >= size)
+				throw new ArgumentException (nameof (offset));
+			if (count < 0)
+				throw new ArgumentException (nameof (count));
+			if (offset + count > size)
+				throw new ArgumentException (nameof (count));
+			unsafe
+			{
+				byte* p = ((byte*)block) + offset;
+
+				for (int i = 0; i < count; i++, p++)
+					target [i] = *p;
+			}
+		}
+
+		public override string ToString ()
+		{
+			unsafe
+			{
+				return Encoding.UTF8.GetString ((byte*)block, size);
+			}
+		}
+
+		public override ustring this [int start, int end] {
+			get {
+				int bl = size;
+				if (start < 0 || start > bl || start >= end)
+					throw new ArgumentException (nameof (start));
+				if (end < 0 || end > bl)
+					throw new ArgumentException (nameof (start));
+				unsafe {
+					return new ubstring ((IntPtr)((byte*)block + start), end - start);
+				}
+			}
+		}
+
+		public override int IndexByte (byte b)
+		{
+			var t = size;
+			unsafe {
+				byte* p = (byte*)block;
+				for (int i = 0; i < t; i++){
+					if (p [i] == b)
+						return i;
+				}
+			}
+			return -1;
+		}
+
+		public override byte [] ToByteArray ()
+		{
+			var copy = new byte [size];
+			Marshal.Copy (block, copy, 0, size);
+			return copy;
+		}
+	}
+
+	class sstring : ustring {
+		readonly byte [] buffer;
+
+		public sstring (byte [] buffer)
+		{
+			if (buffer == null)
+				throw new ArgumentNullException (nameof (buffer));
+			this.buffer = buffer;
+		}
+
+		/// <summary>
+		/// Initializes a new instance using the provided rune as the sole character in the string.
+		/// </summary>
+		/// <param name="rune">Rune.</param>
+		public sstring (uint rune)
+		{
+			var len = Utf8.RuneLen (rune);
+			buffer = new byte [len];
+			Utf8.EncodeRune (rune, buffer, 0);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a string.
+		/// </summary>
+		/// <param name="str">C# String.</param>
+		public sstring (string str)
+		{
+			if (str == null)
+				throw new ArgumentNullException (nameof (str));
+			buffer = Encoding.UTF8.GetBytes (str);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an array of C# characters.
+		/// </summary>
+		/// <param name="chars">Characters.</param>
+		public sstring (params char [] chars)
+		{
+			if (chars == null)
+				throw new ArgumentNullException (nameof (chars));
+			buffer = Encoding.UTF8.GetBytes (chars);
+		}
+
+		public override int Length => buffer.Length;
+		public override byte this [int index] {
+			get {
+				return buffer [index];
+			}
+		}
+
+		public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+		{
+			Array.Copy (buffer, offset, target, targetOffset, count);
+		}
+
+		public override string ToString ()
+		{
+			return Encoding.UTF8.GetString (buffer);
+		}
+
+		public override int IndexByte (byte b)
+		{
+			var t = Length;
+			unsafe	{
+				fixed (byte* p = &buffer [0]) {
+					for (int i = 0; i < t; i++)
+						if (p [i] == b)
+							return i;
+				}
+			}
+			return -1;
+		}
+
+		public override ustring this [int start, int end] {
+			get {
+				int bl = buffer.Length;
+				if (start < 0 || start > bl || start >= end)
+					throw new ArgumentException (nameof (start));
+				if (end < 0 || end > bl)
+					throw new ArgumentException (nameof (start));
+				return new rstring (buffer, start, end);
+			}
+		}
+
+		public override byte [] ToByteArray ()
+		{
+			return buffer;
+		}
+	}
+
+	class rstring : ustring {
+		readonly byte [] buffer;
+		readonly int start, count;
+
+		public rstring (byte [] buffer, int start, int count)
+		{
+			if (buffer == null)
+				throw new ArgumentNullException (nameof (buffer));
+			if (start < 0)
+				throw new ArgumentException (nameof (start));
+			if (count < 0)
+				throw new ArgumentException (nameof (count));
+			if (start >= buffer.Length)
+				throw new ArgumentException (nameof (start));
+			if (buffer.Length - count < start)
+				throw new ArgumentException (nameof (count));
+			this.start = start;
+			this.count = count;
+			this.buffer = buffer;
+		}
+
+		public override int Length => count;
+		public override byte this [int index] {
+			get {
+				if (index < 0 || index >= count)
+					throw new ArgumentException (nameof (index));
+				return buffer [start + index];
+			}
+		}
+
+		public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+		{
+			if (offset < 0)
+				throw new ArgumentException (nameof (offset));
+
+			Array.Copy (buffer, offset + start, target, targetOffset, count);
+		}
+
+		public override string ToString ()
+		{
+			return Encoding.UTF8.GetString (buffer, start, count);
+		}
+
+		public override int IndexByte (byte b)
+		{
+			var t = count;
+			unsafe
+			{
+				fixed (byte* p = &buffer [start]) {
+					for (int i = 0; i < t; i++)
+						if (p [i] == b)
+							return i;
+				}
+			}
+			return -1;
+		}
+
+		public override ustring this [int start, int end] {
+			get {
+				int bl = count;
+				if (start < 0 || start > bl || start >= end)
+					throw new ArgumentException (nameof (start));
+				if (end < 0 || end > bl)
+					throw new ArgumentException (nameof (start));
+				return new rstring (buffer, start+this.start, end+this.start);
+			}
+		}
+
+		public override byte [] ToByteArray ()
+		{
+			var copy = new byte [count];
+			Array.Copy (buffer, sourceIndex: start, destinationArray: copy, destinationIndex: 0, length: count);
+			return copy;
+		}
+	}
 
 	/// <summary>
 	/// ustrings provide a series of operations on a series of bytes that contain either valid or invalid UTF8 byte sequences.
@@ -55,15 +282,13 @@ namespace NStack
 	/// property describes the number of code points (or runes) that are reprenseted by the underlying 
 	/// utf8 encoded buffer.
 	/// </remarks>
-	public class ustring : IComparable
-	{
-		readonly byte [] buffer;
-
+	public abstract class ustring : IComparable {
 		/// <summary>
 		/// The empty ustring.
 		/// </summary>
-		public static ustring Empty = new ustring (Array.Empty<byte> ());
+		public static ustring Empty = new sstring (Array.Empty<byte> ());
 
+#if false
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class using the provided byte array for its storage.
 		/// </summary>
@@ -80,44 +305,7 @@ namespace NStack
 				throw new ArgumentNullException (nameof (buffer));
 			this.buffer = buffer;
 		}
-
-		/// <summary>
-		/// Initializes a new instance using the provided rune as the sole character in the string.
-		/// </summary>
-		/// <param name="rune">Rune.</param>
-		public ustring (uint rune)
-		{
-			var len = Utf8.RuneLen (rune);
-			buffer = new byte [len];
-			Utf8.EncodeRune (rune, buffer, 0);
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a string.
-		/// </summary>
-		/// <param name="str">C# String.</param>
-		public ustring (string str)
-		{
-			if (str == null)
-				throw new ArgumentNullException (nameof (str));
-			buffer = Encoding.UTF8.GetBytes (str);
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an array of C# characters.
-		/// </summary>
-		/// <param name="chars">Characters.</param>
-		public ustring (params char [] chars)
-		{
-			if (chars == null)
-				throw new ArgumentNullException (nameof (chars));
-			buffer = Encoding.UTF8.GetBytes (chars);
-		}
-
-		public override string ToString ()
-		{
-			return Encoding.UTF8.GetString (buffer);
-		}
+#endif
 
 		/// <summary>
 		/// Determines whether a specified instance of <see cref="NStack.ustring"/> is equal to another specified <see cref="NStack.ustring"/>, this means that the contents of the string are identical
@@ -137,18 +325,12 @@ namespace NStack
 				return false;
 			}
 
-			var ab = a.buffer;
-			var bb = b.buffer;
-
-			if (a.buffer == b.buffer)
-				return true;
-
-			var alen = a.buffer.Length;
-			var blen = b.buffer.Length;
+			var alen = a.Length;
+			var blen = b.Length;
 			if (alen != blen)
 				return false;
 			for (int i = 0; i < alen; i++)
-				if (ab [i] != bb [i])
+				if (a [i] != b [i])
 					return false;
 			return true;
 		}
@@ -171,30 +353,24 @@ namespace NStack
 				return true;
 			}
 
-			var ab = a.buffer;
-			var bb = b.buffer;
-
-			if (a.buffer == b.buffer)
-				return false;
-
-			var alen = a.buffer.Length;
-			var blen = b.buffer.Length;
+			var alen = a.Length;
+			var blen = b.Length;
 			if (alen != blen)
 				return true;
 			for (int i = 0; i < alen; i++)
-				if (ab [i] == bb [i])
+				if (a [i] == b [i])
 					return false;
 			return true;
 		}
 
 		public static implicit operator ustring (string s)
 		{
-			return new ustring (s);
+			return new sstring (s);
 		}
 
 		public override int GetHashCode ()
 		{
-			return buffer.GetHashCode ();
+			return (int)HashStr ().hash;
 		}
 
 		/// <summary>
@@ -206,7 +382,7 @@ namespace NStack
 		public override bool Equals (object obj)
 		{
 			// If parameter is null return false.
-			if (obj == null) 
+			if (obj == null)
 				return false;
 
 			// If parameter cannot be cast to Point return false.
@@ -217,6 +393,7 @@ namespace NStack
 			return this == p;
 		}
 
+#if false
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a byte array.
 		/// </summary>
@@ -241,34 +418,40 @@ namespace NStack
 			this.buffer = new byte [count];
 			Array.Copy (buffer, start, this.buffer, 0, count);
 		}
-
-		/// <summary>
-		/// Returns the underlying array storying the utf8 encoded byte buffer.
-		/// </summary>
-		/// <value>The byte array.</value>
-		public byte [] Bytes => buffer;
+#endif
 
 		/// <summary>
 		/// Gets the length in bytes of the byte buffer.
 		/// </summary>
 		/// <value>The length in bytes of the encoded UTF8 string, does not represent the number of runes.</value>
 		/// <remarks>To obtain the number of runes in the string, use the <see cref="P:System.ustring.RuneCount"/> property.</remarks>
-		public int Length => buffer.Length;
+		public abstract int Length { get; }
+
+		/// <summary>
+		/// Returns the byte at the specified position.
+		/// </summary>
+		/// <value>The byte encoded at the specified position.</value>
+		/// <remarks>The index value shoudl be between 0 and Length-1.</remarks>
+		public abstract byte this [int index] { get; }
+
+		public abstract ustring this [int start, int end] { get; }
 
 		/// <summary>
 		/// Gets the rune count of the string.
 		/// </summary>
 		/// <value>The rune count.</value>
-		public int RuneCount => Utf8.RuneCount (buffer);
+		public int RuneCount => Utf8.RuneCount (this);
 
 		/// <summary>
-		/// Clone this instance and duplicates the undelying byte buffer contents.
+		/// Copies the specified number of bytes from the the underlying ustring representation to the target array at the specified offset.
 		/// </summary>
-		/// <returns>The clone.</returns>
-		public ustring Clone ()
-		{
-			return new ustring ((byte [])buffer.Clone ());
-		}
+		/// <param name="offset">Offset in the underlying ustring buffer to copy from.</param>
+		/// <param name="target">Target array where the buffer contents will be copied to.</param>
+		/// <param name="targetOffset">Offset into the target array where this will be copied to.</param>
+		/// <param name="count">Number of bytes to copy.</param>
+		public abstract void CopyTo (int offset, byte [] target, int targetOffset, int count);
+
+		public abstract byte [] ToByteArray ();
 
 		public static ustring Concat (params ustring [] args)
 		{
@@ -276,16 +459,16 @@ namespace NStack
 				throw new ArgumentNullException (nameof (args));
 			var t = 0;
 			foreach (var x in args)
-				t += x.buffer.Length;
+				t += x.Length;
 			var copy = new byte [t];
 			int p = 0;
 
 			foreach (var x in args) {
-				var n = x.buffer.Length;
-				Array.Copy (x.buffer, 0, copy, p, n);
+				var n = x.Length;
+				x.CopyTo (offset: 0, target: copy, targetOffset: p, count: n);
 				p += n;
 			}
-			return new ustring (copy);
+			return new sstring (copy);
 		}
 
 		/// <summary>
@@ -302,20 +485,22 @@ namespace NStack
 			var result = new ustring [n];
 			int offset = 0;
 			for (int i = 0; i < n - 1; i++) {
-				(var rune, var size) = Utf8.DecodeRune (buffer, offset);
+				(var rune, var size) = Utf8.DecodeRune (this, offset);
 				if (rune == Utf8.RuneError)
-					result [i] = new ustring (Utf8.RuneError);
+					result [i] = new sstring (Utf8.RuneError);
 				else {
 					var substr = new byte [size];
-					Array.Copy (buffer, offset, substr, 0, size);
-					result [i] = new ustring (substr);
+
+					CopyTo (offset: offset, target: substr, targetOffset: 0, count: size);
+					result [i] = new sstring (substr);
 				}
 				offset += size;
 			}
 			if (n > 0) {
-				var r = new byte [buffer.Length - offset];
-				Array.Copy (buffer, offset, r, 0, buffer.Length - offset);
-				result [n - 1] = new ustring (r);
+				var r = new byte [Length - offset];
+
+				CopyTo (offset: offset, target: r, targetOffset: 0, count: Length - offset);
+				result [n - 1] = new sstring (r);
 			}
 			return result;
 		}
@@ -325,14 +510,15 @@ namespace NStack
 
 		// hashStr returns the hash and the appropriate multiplicative
 		// factor for use in Rabin-Karp algorithm.
-		(uint hash, uint multFactor) HashStr ()
+		internal (uint hash, uint multFactor) HashStr ()
 		{
 			uint hash = 0;
-			for (int i = 0; i < buffer.Length; i++)
-				hash = hash * primeRK + (uint)(buffer [i]);
+			int count = Length;
+			for (int i = 0; i < count; i++)
+				hash = hash * primeRK + (uint)(this [i]);
 
 			uint pow = 0, sq = 1;
-			for (int i = buffer.Length; i > 0; i >>= 1) {
+			for (int i = count; i > 0; i >>= 1) {
 				if ((i & 1) != 0)
 					pow *= sq;
 				sq *= sq;
@@ -342,17 +528,18 @@ namespace NStack
 
 		// hashStrRev returns the hash of the reverse of sep and the
 		// appropriate multiplicative factor for use in Rabin-Karp algorithm.
-		(uint hash, uint multFactor) RevHashStr ()
+		internal (uint hash, uint multFactor) RevHashStr ()
 		{
 			uint hash = 0;
 
-			for (int i = buffer.Length - 1; i >= 0; i--) {
-				hash = hash * primeRK + (uint)(buffer [i]);
+			int count = Length;
+			for (int i = count - 1; i >= 0; i--) {
+				hash = hash * primeRK + (uint)(this [i]);
 			}
 
 			uint pow = 0, sq = 1;
 
-			for (int i = buffer.Length; i > 0; i >>= 1) {
+			for (int i = count; i > 0; i >>= 1) {
 				if ((i & 1) != 0) {
 					pow *= sq;
 				}
@@ -371,15 +558,15 @@ namespace NStack
 			if (substr == null)
 				throw new ArgumentNullException (nameof (substr));
 			int n = 0;
-			if (substr.buffer.Length == 0)
-				return Utf8.RuneCount (buffer) + 1;
+			if (substr.Length == 0)
+				return Utf8.RuneCount (substr) + 1;
 			int offset = 0;
 			while (true) {
 				var i = IndexOf (substr, offset);
 				if (i == -1)
 					return n;
 				n++;
-				offset += i + substr.buffer.Length;
+				offset += i + substr.Length;
 			}
 		}
 
@@ -435,29 +622,37 @@ namespace NStack
 			return true;
 		}
 
+		static bool CompareStringRange (ustring first, int firstStart, int firstCount, ustring second)
+		{
+			for (int i = 0; i < firstCount; i++)
+				if (first [i + firstStart] != second [i])
+					return false;
+			return true;
+		}
+
 		public int IndexOf (ustring substr, int offset = 0)
 		{
 			if (substr == null)
 				throw new ArgumentNullException (nameof (substr));
 			
-			var n = substr.buffer.Length;
+			var n = substr.Length;
 			if (n == 0)
 				return 0;
-			var blen = buffer.Length;
+			var blen = Length;
 			if (offset >= blen)
 				throw new ArgumentException ("The offset is larger than the ustring size");
 			
 			if (n == 1)
-				return IndexByte (substr.buffer [offset]);
+				return IndexByte (substr [offset]);
 			blen -= offset;
 			if (n == blen) {
 				// If the offset is zero, we can compare identity
 				if (offset == 0) {
-					if (substr == this || substr.buffer == buffer)
+					if (((object)substr == (object)this))
 						return 0;
 				}
 
-				if (CompareArrayRange (substr.buffer, offset, n, buffer))
+				if (CompareStringRange (substr, offset, n, this))
 					return 0;
 				return -1;
 			}
@@ -468,21 +663,21 @@ namespace NStack
 			uint h = 0;
 
 			for (int i = 0; i < n; i++)
-				h = h * primeRK + (uint)(buffer [i + offset]);
+				h = h * primeRK + (uint)(this [i + offset]);
 
-			if (h == hashss && CompareArrayRange (buffer, offset, n, substr.buffer))
+			if (h == hashss && CompareStringRange (this, offset, n, substr))
 				return 0;
 			
 			for (int i = n; i < blen;) {
 				var reali = offset + i;
 				h *= primeRK;
 
-				h += (uint)buffer [reali];
+				h += (uint)this [reali];
 
-				h -= pow * (uint)(buffer [reali - n]);
+				h -= pow * (uint)(this [reali - n]);
 				i++;
 
-				if (h == hashss && CompareArrayRange (buffer, reali - n, n, substr.buffer))
+				if (h == hashss && CompareStringRange (this, reali - n, n, substr))
 					return reali - n;
 			}
 			return -1;
@@ -497,37 +692,37 @@ namespace NStack
 		{
 			if (substr == null)
 				throw new ArgumentNullException (nameof (substr));
-			var n = substr.buffer.Length;
+			var n = substr.Length;
 			if (n == 0)
-				return buffer.Length;
+				return Length;
 			if (n == 1)
-				return LastIndexByte (substr.buffer [0]);
-			if (n == buffer.Length) {
-				if (substr == this || substr.buffer == buffer)
+				return LastIndexByte (substr [0]);
+			if (n == Length) {
+				if (((object)substr == (object) this))
 					return 0;
 
-				if (CompareArrayRange (substr.buffer, 0, n, buffer))
+				if (CompareStringRange (substr, 0, n, this))
 					return 0;
 				return -1;
 			}
-			if (n > buffer.Length)
+			if (n > Length)
 				return -1;
 
 			// Rabin-Karp search from the end of the string
 			(var hashss, var pow) = substr.RevHashStr ();
-			var last = buffer.Length - n;
+			var last = Length - n;
 			uint h = 0;
-			for (int i = buffer.Length - 1; i >= last; i--)
-				h = h * primeRK + (uint)buffer [i];
+			for (int i = Length - 1; i >= last; i--)
+				h = h * primeRK + (uint)this [i];
 
-			if (h == hashss && CompareArrayRange (buffer, last, buffer.Length - last, substr.buffer))
+			if (h == hashss && CompareStringRange (this, last, Length - last, substr))
 				return last;
 
 			for (int i = last - 1; i >= 0; i--) {
 				h *= primeRK;
-				h += (uint)(buffer [i]);
-				h -= pow * (uint)(buffer [i + n]);
-				if (h == hashss && CompareArrayRange (buffer, i, n, substr.buffer))
+				h += (uint)(this [i]);
+				h -= pow * (uint)(this [i + n]);
+				if (h == hashss && CompareStringRange (this, i, n, substr))
 					return i;
 			}
 			return -1;
@@ -540,8 +735,8 @@ namespace NStack
 		/// <param name="b">The byte to seek.</param>
 		public int LastIndexByte (byte b)
 		{
-			for (int i = buffer.Length - 1; i >= 0; i--)
-				if (buffer [i] == b)
+			for (int i = Length - 1; i >= 0; i--)
+				if (this [i] == b)
 					return i;
 			return -1;
 		}
@@ -556,10 +751,10 @@ namespace NStack
 			if (0 <= rune && rune < Utf8.RuneSelf)
 				return IndexByte ((byte)rune);
 			if (rune == Utf8.RuneError)
-				return Utf8.InvalidIndex (buffer);
+				return Utf8.InvalidIndex (this);
 			if (!Utf8.ValidRune (rune))
 				return -1;
-			return IndexOf (new ustring (rune));
+			return IndexOf (new sstring (rune));
 		}
 
 		/// <summary>
@@ -567,19 +762,7 @@ namespace NStack
 		/// </summary>
 		/// <returns>The zero-based index position of <paramref name="b" /> if that byte is found, or -1 if it is not.  </returns>
 		/// <param name="b">The byte to seek.</param>
-		public int IndexByte (byte b)
-		{
-			var t = buffer.Length;
-			unsafe
-			{
-				fixed (byte* p = &buffer [0]) {
-					for (int i = 0; i < t; i++)
-						if (p [i] == b)
-							return i;
-				}
-			}
-			return -1;
-		}
+		public abstract int IndexByte (byte b);
 
 		/// <summary>
 		/// Reports the zero-based index of the first occurrence in this instance of any character in the provided string
@@ -590,24 +773,24 @@ namespace NStack
 		{
 			if (chars == null)
 				throw new ArgumentNullException (nameof (chars));
-			if (chars.buffer.Length == 0)
+			if (chars.Length == 0)
 				return -1;
-			var blen = buffer.Length;
+			var blen = Length;
 			if (blen > 8) {
 				AsciiSet aset;
 				if (AsciiSet.MakeAsciiSet (ref aset, chars)) {
 					for (int i = 0; i < blen; i++)
-						if (AsciiSet.Contains (ref aset, buffer [i]))
+						if (AsciiSet.Contains (ref aset, this [i]))
 							return i;
 					return -1;
 				}
 			}
-			var clen = chars.buffer.Length;
+			var clen = chars.Length;
 
 			for (int i = 0; i < blen;) {
-				(var rune, var size) = Utf8.DecodeRune (buffer, i, i - blen);
+				(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
 				for (int j = 0; j < clen; ) {
-					(var crune, var csize) = Utf8.DecodeRune (chars.buffer, j, j - clen);
+					(var crune, var csize) = Utf8.DecodeRune (this, j, j - clen);
 					if (crune == rune)
 						return i;
 					j += csize;
@@ -628,19 +811,19 @@ namespace NStack
 				throw new ArgumentNullException (nameof (runes));
 			if (runes.Length == 0)
 				return -1;
-			var blen = buffer.Length;
+			var blen = Length;
 			if (blen > 8) {
 				AsciiSet aset;
 				if (AsciiSet.MakeAsciiSet (ref aset, runes)) {
 					for (int i = 0; i < blen; i++)
-						if (AsciiSet.Contains (ref aset, buffer [i]))
+						if (AsciiSet.Contains (ref aset, this [i]))
 							return i;
 					return -1;
 				}
 			}
 			var clen = runes.Length;
 			for (int i = 0; i < blen;) {
-				(var rune, var size) = Utf8.DecodeRune (buffer, i, i - blen);
+				(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
 				for (int j = 0; j < clen; j++) {
 					if (rune == runes [j])
 						return i;
@@ -660,25 +843,25 @@ namespace NStack
 		{
 			if (chars == null)
 				throw new ArgumentNullException (nameof (chars));
-			if (chars.buffer.Length == 0)
+			if (chars.Length == 0)
 				return -1;
-			var blen = buffer.Length;
+			var blen = Length;
 			if (blen > 8) {
 				AsciiSet aset;
 				if (AsciiSet.MakeAsciiSet (ref aset, chars)) {
 					for (int i = blen - 1; i >= 0; i--)
-						if (AsciiSet.Contains (ref aset, buffer [i]))
+						if (AsciiSet.Contains (ref aset, this [i]))
 					    		return i;
 					return -1;
 				}
 			}
-			var clen = chars.buffer.Length;
+			var clen = chars.Length;
 			for (int i = blen - 1; i >= 0;) {
-				(var rune, var size) = Utf8.DecodeLastRune (buffer, i);
+				(var rune, var size) = Utf8.DecodeLastRune (this, i);
 				i -= size;
 
 				for (int j = 0; j < clen;) {
-					(var crune, var csize) = Utf8.DecodeRune (chars.buffer, j, j - clen);
+					(var crune, var csize) = Utf8.DecodeRune (this, j, j - clen);
 					if (crune == rune)
 						return i;
 					j += csize;
@@ -699,10 +882,8 @@ namespace NStack
 			var other = value as ustring;
 			if (other == null)
 				throw new ArgumentException ("Argument must be a ustring");
-			if (other.buffer == buffer)
-				return 0;
-			var blen = buffer.Length;
-			var olen = other.buffer.Length;
+			var blen = Length;
+			var olen = other.Length;
 			if (blen == 0) {
 				if (olen == 0)
 					return 0;
@@ -711,13 +892,13 @@ namespace NStack
 				return 1;
 
 			// Most common case, first character is different
-			var e = buffer [0] - other.buffer [0];
+			var e = this [0] - other [0];
 			if (e != 0)
 				return e;
 			for (int i = 1; i < blen; i++) {
 				if (i >= olen)
 					return 1;
-				e = buffer [i] - other.buffer [i];
+				e = this [i] - other [i];
 				if (e == 0)
 					continue;
 				return e;
@@ -744,11 +925,11 @@ namespace NStack
 				var m = IndexOf (sep);
 				if (m < 0)
 					break;
-				result [i] = new ustring (buffer, offset, m + sepSave);
-				offset += m + sep.buffer.Length;
+				result [i] = this [offset, m+sepSave];
+				offset += m + sep.Length;
 				i++;
 			}
-			result [i] = new ustring (buffer, offset, buffer.Length - offset);
+			result [i] = this [offset, Length - offset];
 			return result;
 		}
 
@@ -761,9 +942,9 @@ namespace NStack
 		{
 			if (prefix == null)
 				throw new ArgumentNullException (nameof (prefix));
-			if (buffer.Length < prefix.buffer.Length)
+			if (Length < prefix.Length)
 				return false;
-			return CompareArrayRange (buffer, 0, prefix.Length, prefix.buffer);	
+			return CompareStringRange (this, 0, prefix.Length, prefix);	
 		}
 
 		/// <summary>
@@ -775,9 +956,9 @@ namespace NStack
 		{
 			if (suffix == null)
 				throw new ArgumentNullException (nameof (suffix));
-			if (buffer.Length < suffix.buffer.Length)
+			if (Length < suffix.Length)
 				return false;
-			return CompareArrayRange (buffer, Length - suffix.Length, suffix.Length, suffix.buffer);
+			return CompareStringRange (this, Length - suffix.Length, suffix.Length, suffix);
 		}
 
 		/// <summary>
@@ -814,12 +995,12 @@ namespace NStack
 				if (t == null)
 					continue;
 				var tlen = t.Length;
-				Array.Copy (t.buffer, 0, result, offset, tlen);
+				t.CopyTo (offset: 0, target: result, targetOffset: offset, count: tlen);
 				offset += tlen;
-				Array.Copy (separator.buffer, 0, result, offset, slen);
+				separator.CopyTo (offset: 0, target: result, targetOffset: offset, count: slen);
 				offset += slen;
 			}
-			return new ustring (result);
+			return new sstring (result);
 		}
 
 		// asciiSet is a 32-byte value, where each bit represents the presence of a
@@ -834,12 +1015,12 @@ namespace NStack
 
 			public static bool MakeAsciiSet (ref AsciiSet aset, ustring chars)
 			{
-				var n = chars.buffer.Length;
+				var n = chars.Length;
 				unsafe
 				{
 					fixed (uint* ascii = aset.ascii) {
 						for (int i = 0; i < n; i++) {
-							var c = chars.buffer [i];
+							var c = chars [i];
 							if (c >= Utf8.RuneSelf)
 								return false;
 
@@ -892,10 +1073,10 @@ namespace NStack
 			var u2l = u2 == null ? 0 : u2.Length;
 			var copy = new byte [u1l + u2l];
 			if (u1 != null)
-				Array.Copy (u1.buffer, copy, u1l);
+				u1.CopyTo (offset: 0, target: copy, targetOffset: 0, count: u1l);
 			if (u2 != null)
-				Array.Copy (u2.buffer, 0, copy, u1l, u2l);
-			return new ustring (copy);
+				u2.CopyTo (offset: 0, target: copy, targetOffset: u1l, count: u2l);
+			return new sstring (copy);
 		}
 
 		/// <summary>
@@ -908,9 +1089,9 @@ namespace NStack
 		/// </remarks>
 		public IEnumerable<(int index, uint rune)> Range ()
 		{
-			int blen = buffer.Length;
+			int blen = Length;
 			for (int i = 0; i < blen;) {
-				(var rune, var size) = Utf8.DecodeRune (buffer, i, i - blen);
+				(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
 				yield return (i, rune);
 				i += size;
 			}

@@ -12,17 +12,17 @@ namespace NStackTests
 	[TestFixture]
 	public class UstringTest
 	{
-		ustring a = new ustring ("a");
-		ustring seconda = new ustring ("a");
-		ustring aa = new ustring ("aa");
-		ustring b = new ustring ("b");
-		ustring bb = new ustring ("bb");
-		ustring empty = new ustring ("");
-		ustring secondempty = new ustring ("");
+		bstring a = new bstring ("a");
+		bstring seconda = new bstring ("a");
+		bstring aa = new bstring ("aa");
+		bstring b = new bstring ("b");
+		bstring bb = new bstring ("bb");
+		bstring empty = new bstring ("");
+		bstring secondempty = new bstring ("");
 
-		ustring hello = new ustring ("hello, world");
-		ustring longhello = new ustring ("");
-		ustring kosme = new ustring (0xce, 0xba, 0xcf, 0x8c, 0xcf, 0x83, 0xce, 0xbc, 0xce, 0xb5);
+		bstring hello = new bstring ("hello, world");
+		bstring longhello = new bstring ("");
+		bstring kosme = new bstring (0xce, 0xba, 0xcf, 0x8c, 0xcf, 0x83, 0xce, 0xbc, 0xce, 0xb5);
 
 		[Test]
 		public void IComparableTests ()

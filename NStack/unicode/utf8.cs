@@ -1,4 +1,4 @@
-﻿// 
+﻿﻿// 
 // ustring.cs: UTF8 String representation
 //
 // Based on the Go UTF8 code
@@ -145,10 +145,30 @@ namespace NStack
 		/// An invalid encoding is considered a full Rune since it will convert as a width-1 error rune.
 		/// </summary>
 		/// <returns><c>true</c>, if the bytes in p begin with a full UTF-8 encoding of a rune, <c>false</c> otherwise.</returns>
-		/// <param name="p">byte array.</param>
-		public static bool FullRune (ustring p)
+		/// <param name="str">The string to check.</param>
+		public static bool FullRune (ustring str)
 		{
-			return FullRune (p.Bytes);
+			if (str == null)
+				throw new ArgumentNullException (nameof (str));
+			var n = str.Length;
+
+			if (n == 0)
+				return false;
+			var x = first [str [0]];
+			if (n >= (x & 7)) {
+				// ascii, invalid or valid
+				return true;
+			}
+			// must be short or invalid
+			if (n > 1) {
+				var accept = AcceptRanges [x >> 4];
+				var c = str [1];
+				if (c < accept.Lo || accept.Hi < c)
+					return true;
+				else if (n > 2 && (str [2] < locb || hicb < str [2]))
+					return true;
+			}
+			return false;			
 		}
 
 		/// <summary>
@@ -161,7 +181,7 @@ namespace NStack
 		/// </returns>
 		/// <param name="buffer">Byte buffer containing the utf8 string.</param>
 		/// <param name="start">Starting offset to look into..</param>
-		/// <param n="buffer">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+		/// <param n="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
 		public static (uint Rune, int Size) DecodeRune (byte [] buffer, int start = 0, int n = -1)
 		{
 			if (buffer == null)
@@ -221,9 +241,56 @@ namespace NStack
 		/// results for correct, non-empty UTF-8.
 		/// </returns>
 		/// <param name="str">ustring to decode.</param>
-		public static (uint Rune, int size) DecodeRune (ustring str)
+		/// <param name="start">Starting offset to look into..</param>
+		/// <param n="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+		public static (uint Rune, int size) DecodeRune (ustring str, int start, int n = -1)
 		{
-			return DecodeRune (str.Bytes);
+			if (str == null)
+				throw new ArgumentNullException (nameof (str));
+			if (start < 0)
+				throw new ArgumentException ("invalid offset", nameof (start));
+			if (n < 0)
+				n = str.Length - start;
+			if (start > str.Length - n)
+				throw new ArgumentException ("Out of bounds");
+
+			if (n < 1)
+				return (RuneError, 0);
+
+			var p0 = str [start];
+			var x = first [p0];
+			if (x >= a1) {
+				// The following code simulates an additional check for x == xx and
+				// handling the ASCII and invalid cases accordingly. This mask-and-or
+				// approach prevents an additional branch.
+				uint mask = (uint)((((byte)x) << 31) >> 31); // Create 0x0000 or 0xFFFF.
+				return (((str [start]) & ~mask | RuneError & mask), 1);
+			}
+
+			var sz = x & 7;
+			var accept = AcceptRanges [x >> 4];
+			if (n < (int)sz)
+				return (RuneError, 1);
+
+			var b1 = str [start + 1];
+			if (b1 < accept.Lo || accept.Hi < b1)
+				return (RuneError, 1);
+
+			if (sz == 2)
+				return ((uint)((p0 & mask2)) << 6 | (uint)((b1 & maskx)), 2);
+
+			var b2 = str [start + 2];
+			if (b2 < locb || hicb < b2)
+				return (RuneError, 1);
+
+			if (sz == 3)
+				return (((uint)((p0 & mask3)) << 12 | (uint)((b1 & maskx)) << 6 | (uint)((b2 & maskx))), 3);
+
+			var b3 = str [start + 3];
+			if (b3 < locb || hicb < b3) {
+				return (RuneError, 1);
+			}
+			return ((uint)(p0 & mask4) << 18 | (uint)(b1 & maskx) << 12 | (uint)(b2 & maskx) << 6 | (uint)(b3 & maskx), 4);
 		}
 
 		// RuneStart reports whether the byte could be the first byte of an encoded,
@@ -289,13 +356,46 @@ namespace NStack
 		/// it returns (RuneError, 0). Otherwise, if
 		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
 		/// results for correct, non-empty UTF-8.</param>
+		/// <param name="end">Scan up to that point, if the value is -1, it sets the value to the lenght of the buffer.</param>
 		/// <remarks>
 		/// An encoding is invalid if it is incorrect UTF-8, encodes a rune that is
 		/// out of range, or is not the shortest possible UTF-8 encoding for the
 		/// value. No other validation is performed.</remarks> 
-		public static (uint Rune, int size) DecodeLastRune (ustring str)
+		public static (uint Rune, int size) DecodeLastRune (ustring str, int end = -1)
 		{
-			return DecodeLastRune (str.Bytes);
+			if (str == null)
+				throw new ArgumentNullException (nameof (str));
+			if (str.Length == 0)
+				return (RuneError, 0);
+			if (end == -1)
+				end = str.Length;
+			else if (end > str.Length)
+				throw new ArgumentException ("The end goes beyond the size of the buffer");
+
+			var start = end - 1;
+			uint r = str [start];
+			if (r < RuneSelf)
+				return (r, 1);
+			// guard against O(n^2) behavior when traversing
+			// backwards through strings with long sequences of
+			// invalid UTF-8.
+			var lim = end - Utf8Max;
+
+			if (lim < 0)
+				lim = 0;
+
+			for (start--; start >= lim; start--) {
+				if (RuneStart (str [start])) {
+					break;
+				}
+			}
+			if (start < 0)
+				start = 0;
+			int size;
+			(r, size) = DecodeRune (str, start, end - start);
+			if (start + size != end)
+				return (RuneError, 1);
+			return (r, size);			
 		}
 
 		/// <summary>
@@ -366,13 +466,15 @@ namespace NStack
 		/// <returns>Numnber of runes.</returns>
 		/// <param name="buffer">Byte buffer containing a utf8 string.</param>
 		/// <param name="offset">Starting offset in the buffer.</param>
-		public static int RuneCount (byte [] buffer, int offset = 0)
+		/// <param name="count">Number of bytes to process in buffer, or -1 to process until the end of the buffer.</param>
+		public static int RuneCount (byte [] buffer, int offset = 0, int count = -1)
 		{
 			if (buffer == null)
 				throw new ArgumentNullException (nameof (buffer));
-			var np = buffer.Length;
+			if (count == -1)
+				count = buffer.Length;
 			int n = 0;
-			for (int i = offset; i < np;) {
+			for (int i = offset; i < count;) {
 				n++;
 				var c = buffer [i];
 
@@ -389,7 +491,7 @@ namespace NStack
 
 				var size = (int)(x & 7);
 
-				if (i + size > np) {
+				if (i + size > count) {
 					i++; // Short or invalid.
 					continue;
 				}
@@ -430,7 +532,59 @@ namespace NStack
 		/// <param name="str">utf8 string.</param>
 		public static int RuneCount (ustring str)
 		{
-			return RuneCount (str.Bytes, 0);
+			if (str == null)
+				throw new ArgumentNullException (nameof (str));
+			var count = str.Length;
+			int n = 0;
+			for (int i = 0; i < count;) {
+				n++;
+				var c = str [i];
+
+				if (c < RuneSelf) {
+					// ASCII fast path
+					i++;
+					continue;
+				}
+				var x = first [c];
+				if (x == xx) {
+					i++; // invalid.
+					continue;
+				}
+
+				var size = (int)(x & 7);
+
+				if (i + size > count) {
+					i++; // Short or invalid.
+					continue;
+				}
+				var accept = AcceptRanges [x >> 4];
+				c = str [i + 1];
+				if (c < accept.Lo || accept.Hi < c) {
+					i++;
+					continue;
+				}
+				if (size == 2) {
+					i += 2;
+					continue;
+				}
+				c = str [i + 2];
+				if (c < locb || hicb < c) {
+					i++;
+					continue;
+				}
+				if (size == 3) {
+					i += 3;
+					continue;
+				}
+				c = str [i + 3];
+				if (c < locb || hicb < c) {
+					i++;
+					continue;
+				}
+				i += size;
+
+			}
+			return n;			
 		}
 
 		/// <summary>
@@ -440,6 +594,16 @@ namespace NStack
 		public static bool Valid (byte [] buffer)
 		{
 			return InvalidIndex (buffer) == -1;
+		}
+
+		/// <summary>
+		/// Reports whether the ustring consists entirely of valid UTF-8-encoded runes.
+		/// </summary>
+		/// <param name="buffer">Byte buffer containing a utf8 string.</param>
+
+		public static bool Valid (ustring str)
+		{
+			return InvalidIndex (str) == -1;
 		}
 
 		/// <summary>
@@ -493,13 +657,53 @@ namespace NStack
 		}
 
 		/// <summary>
-		/// Reports whether the ustring consists entirely of valid UTF-8-encoded runes.
+		/// Use to find the index of the first invalid utf8 byte sequence in a buffer
 		/// </summary>
-		/// <param name="buffer">Byte buffer containing a utf8 string.</param>
-
-		public static bool Valid (ustring str)
+		/// <returns>The index of the first insvalid byte sequence or -1 if the entire buffer is valid.</returns>
+		/// <param name="str">String containing the utf8 buffer.</param>
+		public static int InvalidIndex (ustring str)
 		{
-			return Valid (str.Bytes);
+			if (str == null)
+				throw new ArgumentNullException (nameof (str));
+			var n = str.Length;
+
+			for (int i = 0; i < n;) {
+				var pi = str [i];
+
+				if (pi < RuneSelf) {
+					i++;
+					continue;
+				}
+				var x = first [pi];
+				if (x == xx)
+					return i; // Illegal starter byte.
+				var size = (int)(x & 7);
+				if (i + size > n)
+					return i; // Short or invalid.
+				var accept = AcceptRanges [x >> 4];
+
+				var c = str [i + 1];
+
+				if (c < accept.Lo || accept.Hi < c)
+					return i;
+
+				if (size == 2) {
+					i += 2;
+					continue;
+				}
+				c = str [i + 2];
+				if (c < locb || hicb < c)
+					return i;
+				if (size == 3) {
+					i += 3;
+					continue;
+				}
+				c = str [i + 3];
+				if (c < locb || hicb < c)
+					return i;
+				i += size;
+			}
+			return -1;
 		}
 
 		/// <summary>
