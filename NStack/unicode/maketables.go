@@ -510,51 +510,51 @@ func printCategories() {
 		switch name {
 		case "C":
 		        varDecl = "\t/// <summary>Other/C is the set of Unicode control and special characters, category C.</summary>\n";
-			varDecl = "\tpublic static RangeTable Other => _C; \n"
-		        varDecl = "\t/// <summary>Other/C is the set of Unicode control and special characters, category C.</summary>\n";
+			varDecl += "\tpublic static RangeTable Other => _C; \n"
+		        varDecl += "\t/// <summary>Other/C is the set of Unicode control and special characters, category C.</summary>\n";
 			varDecl += "\tpublic static RangeTable C => _C;\n"
 		case "L":
 		        varDecl = "\t/// <summary>Letter/L is the set of Unicode letters, category L.</summary>\n";
-			varDecl = "\tpublic static RangeTable Letter => _L;\n"
-		        varDecl = "\t/// <summary>Letter/L is the set of Unicode letters, category L.</summary>\n";
+			varDecl += "\tpublic static RangeTable Letter => _L;\n"
+		        varDecl += "\t/// <summary>Letter/L is the set of Unicode letters, category L.</summary>\n";
 			varDecl += "\tpublic static RangeTable L => _L;\n"
 		case "M":
 		        varDecl = "\t/// <summary>Mark/M is the set of Unicode mark characters, category M.</summary>\n";
-			varDecl = "\tpublic static RangeTable Mark => _M;\n"
-		        varDecl = "\t/// <summary>Mark/M is the set of Unicode mark characters, category M.</summary>;\n";
+			varDecl += "\tpublic static RangeTable Mark => _M;\n"
+		        varDecl += "\t/// <summary>Mark/M is the set of Unicode mark characters, category M.</summary>;\n";
 			varDecl += "\tpublic static RangeTable M => _M;\n"
 		case "N":
 		        varDecl = "\t/// <summary>Number/N is the set of Unicode number characters, category N.</summary>\n";
-			varDecl = "\tpublic static RangeTable Number => _N;\n"
-		        varDecl = "\t/// <summary>Number/N is the set of Unicode number characters, category N.</summary>;\n";
+			varDecl += "\tpublic static RangeTable Number => _N;\n"
+		        varDecl += "\t/// <summary>Number/N is the set of Unicode number characters, category N.</summary>;\n";
 			varDecl += "\tpublic static RangeTable N => _N;\n"
 		case "P":
 		        varDecl = "\t/// <summary>Punct/P is the set of Unicode punctuation characters, category P.</summary>\n";
-			varDecl = "\tpublic static RangeTable Punct => _P;\n"
-		        varDecl = "\t/// <summary>Punct/P is the set of Unicode punctuation characters, category P.</summary>;\n";
+			varDecl += "\tpublic static RangeTable Punct => _P;\n"
+		        varDecl += "\t/// <summary>Punct/P is the set of Unicode punctuation characters, category P.</summary>;\n";
 			varDecl += "\tpublic static RangeTable P => _P;\n"
 		case "S":
 		        varDecl = "\t/// <summary>Symbol/S is the set of Unicode symbol characters, category S.</summary>\n";
-			varDecl = "\tpublic static RangeTable Symbol => _S;\n"
-		        varDecl = "\t/// <summary>Symbol/S is the set of Unicode symbol characters, category S.</summary>;\n";
+			varDecl += "\tpublic static RangeTable Symbol => _S;\n"
+		        varDecl += "\t/// <summary>Symbol/S is the set of Unicode symbol characters, category S.</summary>;\n";
 			varDecl += "\tpublic static RangeTable S => _S;\n"
 		case "Z":
 		        varDecl = "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>\n";
-			varDecl = "\tpublic RangeTable Space => _Z;\n"
-		        varDecl = "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>;\n";
+			varDecl += "\tpublic RangeTable Space => _Z;\n"
+		        varDecl += "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>;\n";
 			varDecl += "\tpublic static RangeTable Z => _Z;\n"
 		case "Nd":
 		        varDecl = "\t/// <summary>Digit is the set of Unicode characters with the \"decimal digit\" property.</summary>\n";
-			varDecl = "\tpublic static RangeTable Digit => _Nd;\n"
+			varDecl += "\tpublic static RangeTable Digit => _Nd;\n"
 		case "Lu":
 		        varDecl = "\t/// <summary>Upper is the set of Unicode upper case letters.</summary>;\n";
-			varDecl = "\tpublic static RangeTable Upper => _Lu;\n"
+			varDecl += "\tpublic static RangeTable Upper => _Lu;\n"
 		case "Ll":
 		        varDecl = "\t/// <summary>Lower is the set of Unicode lower case letters.</summary>;\n";
-			varDecl = "\tpublic static RangeTable Lower => _Ll;\n"
+			varDecl += "\tpublic static RangeTable Lower => _Ll;\n"
 		case "Lt":
 		        varDecl = "\t/// <summary>Title is the set of Unicode title case letters.</summary>;\n";
-			varDecl = "\tpublic static RangeTable Title => _Lt;\n"
+			varDecl += "\tpublic static RangeTable Title => _Lt;\n"
 		}
 		if len(name) > 1 {
 			varDecl += fmt.Sprintf(

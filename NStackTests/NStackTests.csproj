@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="ustringTest.cs" />
     <Compile Include="Utf8Test.cs" />
+    <Compile Include="UnicodeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -80,13 +80,17 @@ namespace NStack
 			/// <param name="rune">Rune.</param>
 			public bool InRange (uint rune)
 			{
-				var r16l = R16.Length;
+				if (R16 != null) {
+					var r16l = R16.Length;
 
-				if (r16l > 0 && rune <= R16 [r16l - 1].Hi)
-					return Is16 (R16, (ushort) rune);
-				var r32l = R32.Length;
-				if (r32l > 0 && rune >= R32 [0].Lo)
-					return Is32 (R32, rune);
+					if (rune <= R16 [r16l - 1].Hi)
+						return Is16 (R16, (ushort)rune);
+				}
+				if (R32 != null) {
+					var r32l = R32.Length;
+					if (rune >= R32 [0].Lo)
+						return Is32 (R32, rune);
+				}
 				return false;
 			}
 
@@ -98,12 +102,17 @@ namespace NStack
 			public bool IsExcludingLatin (uint rune)
 			{
 				var off = LatinOffset;
-				var r16l = R16.Length;
 
-				if (r16l > off && rune < R16 [r16l - 1].Hi)
-					return Is16 (R16, (ushort)rune, off);
-				if (R32.Length > 0 && rune >= R32[0].Lo)
-					return Is32 (R32, rune);
+				if (R16 != null) {
+					var r16l = R16.Length;
+
+					if (r16l > off && rune <= R16 [r16l - 1].Hi)
+						return Is16 (R16, (ushort)rune, off);
+				}
+				if (R32 != null) {
+					if (R32.Length > 0 && rune >= R32 [0].Lo)
+						return Is32 (R32, rune);
+				}
 				return false;
 			}
 		}
@@ -136,7 +145,7 @@ namespace NStack
 			}
 		}
 
-		enum Case {
+		public enum Case {
 			Upper = 0,
 			Lower = 1,
 			Title = 2
@@ -225,7 +234,7 @@ namespace NStack
 		public static bool IsLower (uint rune)
 		{
 			if (rune <= MaxLatin1)
-				return (properties [(byte)rune] & CharClass.pLmask) == CharClass.pLu;
+				return (properties [(byte)rune] & CharClass.pLmask) == CharClass.pLl;
 			return Lower.IsExcludingLatin (rune);
 		}
 
@@ -245,16 +254,16 @@ namespace NStack
 		static unsafe uint to (Case toCase, uint rune, CaseRange [] caseRange)
 		{
 			if (toCase < 0 || toCase > Case.Title)
-				throw new ArgumentException (nameof (toCase));
+				return ReplacementChar;
 			
 			// binary search over ranges
 			var lo = 0;
 			var hi = caseRange.Length;
 
-			while (hi < lo) {
+			while (lo < hi) {
 				var m = lo + (hi - lo) / 2;
 				var cr = caseRange [m];
-				if (cr.Lo <= rune && rune < cr.Hi) {
+				if (cr.Lo <= rune && rune <= cr.Hi) {
 					var delta = cr.Delta [(int) toCase];
 					if (delta > MaxRune) {
 						// In an Upper-Lower sequence, which always starts with
@@ -268,7 +277,7 @@ namespace NStack
 						// The constants UpperCase and TitleCase are even while LowerCase
 						// is odd so we take the low bit from _case.
 
-						return ((uint)cr.Lo) + ((rune - ((uint)(cr.Lo))) & 1 | ((uint)((uint)toCase) & 1));      
+						return ((uint)cr.Lo) + (((rune - ((uint)(cr.Lo))) & 0xfffffffe) | ((uint)((uint)toCase) & 1));      
 					}
 					return (uint) ((int)rune + delta);
 				}
@@ -281,7 +290,7 @@ namespace NStack
 		}
 
 		// To maps the rune to the specified case: Case.Upper, Case.Lower, or Case.Title
-		static uint To (Case toCase, uint rune)
+		public static uint To (Case toCase, uint rune)
 		{
 			return to (toCase, rune, CaseRanges);
 		}
@@ -291,7 +300,7 @@ namespace NStack
 		/// </summary>
 		/// <returns>The upper cased rune if it can be.</returns>
 		/// <param name="rune">Rune.</param>
-		public uint ToUpper (uint rune)
+		public static uint ToUpper (uint rune)
 		{
 			if (rune <= MaxAscii) {
 				if ('a' <= rune && rune <= 'z')
@@ -306,7 +315,7 @@ namespace NStack
 		/// </summary>
 		/// <returns>The lower cased rune if it can be.</returns>
 		/// <param name="rune">Rune.</param>
-		public uint ToLower (uint rune)
+		public static uint ToLower (uint rune)
 		{
 			if (rune <= MaxAscii) {
 				if ('A' <= rune && rune <= 'Z')
@@ -321,7 +330,7 @@ namespace NStack
 		/// </summary>
 		/// <returns>The lower cased rune if it can be.</returns>
 		/// <param name="rune">Rune.</param>
-		public uint ToTitle (uint rune)
+		public static uint ToTitle (uint rune)
 		{
 			if (rune <= MaxAscii) {
 				if ('a' <= rune && rune <= 'z')
@@ -425,7 +434,7 @@ namespace NStack
 		///      SimpleFold(-2) = -2
 		/// </code>
 		/// </remarks>
-		public uint SimpleFold (uint rune)
+		public static uint SimpleFold (uint rune)
 		{
 			if (rune >= MaxRune)
 				return rune;

@@ -43,6 +43,7 @@
     <Compile Include="unicode\Tables.cs" />
     <Compile Include="unicode\Graphic.cs" />
     <Compile Include="unicode\CaseTables.cs" />
+    <Compile Include="unicode\Digit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
