@@ -6,8 +6,8 @@
 // C# ification by Miguel de Icaza
 //
 // TODO:
-//   Provide a string to utf8 conversion
 //   Clone()?
+//   Implement GetHashCode for the subclasses
 // 
 // genSplit
 // 
@@ -22,11 +22,12 @@ using System.Text;
 using System.Runtime.InteropServices;
 
 namespace NStack {
-	class ubstring : ustring {
-		readonly IntPtr block;
+	class ubstring : ustring, IDisposable {
+		IntPtr block;
 		readonly int size;
+		Action<ustring, IntPtr> release;
 
-		public ubstring (IntPtr block, int size)
+		public ubstring (IntPtr block, int size, Action<ustring,IntPtr> releaseFunc = null)
 		{
 			if (block == IntPtr.Zero)
 				throw new ArgumentException ("Null pointer passed", nameof (block));
@@ -34,6 +35,7 @@ namespace NStack {
 				throw new ArgumentException ("Invalid size passed", nameof (size));
 			this.size = size;
 			this.block = block;
+			this.release = releaseFunc;
 		}
 
 		public override int Length => size;
@@ -70,16 +72,10 @@ namespace NStack {
 			}
 		}
 
-		public override ustring this [int start, int end] {
-			get {
-				int bl = size;
-				if (start < 0 || start > bl || start >= end)
-					throw new ArgumentException (nameof (start));
-				if (end < 0 || end > bl)
-					throw new ArgumentException (nameof (start));
-				unsafe {
-					return new ubstring ((IntPtr)((byte*)block + start), end - start);
-				}
+		protected override ustring GetRange (int start, int end)
+		{
+			unsafe {
+				return new ubstring ((IntPtr)((byte*)block + start), end - start, null);
 			}
 		}
 
@@ -102,6 +98,29 @@ namespace NStack {
 			Marshal.Copy (block, copy, 0, size);
 			return copy;
 		}
+
+		#region IDisposable Support
+		protected virtual void Dispose (bool disposing)
+		{
+			if (block != IntPtr.Zero) {
+				if (release != null)
+					release (this, block);
+				release = null;
+				block = IntPtr.Zero;
+			}
+		}
+
+		~ubstring() {
+			Dispose(false);
+		}
+
+		// This code added to correctly implement the disposable pattern.
+		void IDisposable.Dispose ()
+		{
+			Dispose (true);
+			GC.SuppressFinalize(this);
+		}
+		#endregion
 	}
 
 	class sstring : ustring {
@@ -114,10 +133,6 @@ namespace NStack {
 			this.buffer = buffer;
 		}
 
-		/// <summary>
-		/// Initializes a new instance using the provided rune as the sole character in the string.
-		/// </summary>
-		/// <param name="rune">Rune.</param>
 		public sstring (uint rune)
 		{
 			var len = Utf8.RuneLen (rune);
@@ -125,10 +140,6 @@ namespace NStack {
 			Utf8.EncodeRune (rune, buffer, 0);
 		}
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a string.
-		/// </summary>
-		/// <param name="str">C# String.</param>
 		public sstring (string str)
 		{
 			if (str == null)
@@ -136,10 +147,6 @@ namespace NStack {
 			buffer = Encoding.UTF8.GetBytes (str);
 		}
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an array of C# characters.
-		/// </summary>
-		/// <param name="chars">Characters.</param>
 		public sstring (params char [] chars)
 		{
 			if (chars == null)
@@ -177,15 +184,9 @@ namespace NStack {
 			return -1;
 		}
 
-		public override ustring this [int start, int end] {
-			get {
-				int bl = buffer.Length;
-				if (start < 0 || start > bl || start >= end)
-					throw new ArgumentException (nameof (start));
-				if (end < 0 || end > bl)
-					throw new ArgumentException (nameof (start));
-				return new rstring (buffer, start, end);
-			}
+		protected override ustring GetRange (int start, int end)
+		{
+			return new rstring (buffer, start, end-start);
 		}
 
 		public override byte [] ToByteArray ()
@@ -251,15 +252,9 @@ namespace NStack {
 			return -1;
 		}
 
-		public override ustring this [int start, int end] {
-			get {
-				int bl = count;
-				if (start < 0 || start > bl || start >= end)
-					throw new ArgumentException (nameof (start));
-				if (end < 0 || end > bl)
-					throw new ArgumentException (nameof (start));
-				return new rstring (buffer, start+this.start, end+this.start);
-			}
+		protected override ustring GetRange (int start, int end)
+		{
+			return new rstring (buffer, start + this.start, end - start);
 		}
 
 		public override byte [] ToByteArray ()
@@ -288,7 +283,6 @@ namespace NStack {
 		/// </summary>
 		public static ustring Empty = new sstring (Array.Empty<byte> ());
 
-#if false
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class using the provided byte array for its storage.
 		/// </summary>
@@ -299,13 +293,55 @@ namespace NStack {
 		/// 
 		/// No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
 		/// </remarks>
-		public ustring (params byte [] buffer)
+		public static ustring Make (params byte [] buffer)
 		{
-			if (buffer == null)
-				throw new ArgumentNullException (nameof (buffer));
-			this.buffer = buffer;
+			return new sstring (buffer);
 		}
-#endif
+
+		/// <summary>
+		/// Initializes a new instance using the provided rune as the sole character in the string.
+		/// </summary>
+		/// <param name="rune">Rune.</param>
+		public static ustring Make (uint rune)
+		{
+			return new sstring (rune);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a string.
+		/// </summary>
+		/// <param name="str">C# String.</param>
+		public static ustring Make (string str)
+		{
+			return new sstring (str);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an array of C# characters.
+		/// </summary>
+		/// <param name="chars">Characters.</param>
+		public static ustring Make (params char [] chars)
+		{
+			return new sstring (chars);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a block of memory and a size.
+		/// </summary>
+		/// <param name="block">Pointer to a block of memory.</param>
+		/// <param name="size">Number of bytes in the block to treat as a string.</param>
+		/// <param name="releaseFunc">Optional method to invoke to release when this string is finalized to clear the associated resources, you can use this for example to release the unamanged resource to which the block belongs.</param>
+		/// <remarks>
+		/// This will return a ustring that represents the block of memory provided.
+		/// 
+		/// The returned object will be a subclass of ustring that implements IDisposable, which you can use
+		/// to trigger the synchronous execution of the <paramref name="releaseFunc"/>.   If you do not call
+		/// Dispose manually, the provided release function will be invoked from the finalizer thread.
+		/// </remarks>
+		public static ustring Make (IntPtr block, int size, Action<ustring, IntPtr> releaseFunc = null)
+		{
+			return new ubstring (block, size, releaseFunc);
+		}
 
 		/// <summary>
 		/// Determines whether a specified instance of <see cref="NStack.ustring"/> is equal to another specified <see cref="NStack.ustring"/>, this means that the contents of the string are identical
@@ -393,7 +429,6 @@ namespace NStack {
 			return this == p;
 		}
 
-#if false
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a byte array.
 		/// </summary>
@@ -406,19 +441,10 @@ namespace NStack {
 		/// 
 		/// This will make a copy of the buffer range.
 		/// </remarks>
-		public ustring (byte [] buffer, int start, int count)
+		public static ustring Make (byte [] buffer, int start, int count)
 		{
-			if (buffer == null)
-				throw new ArgumentNullException (nameof (buffer));
-			if (start < 0)
-				throw new ArgumentNullException ("Expected a positive start value", nameof (start));
-
-			if (count < 0)
-				throw new ArgumentException ("Expected a positive value", nameof (count));
-			this.buffer = new byte [count];
-			Array.Copy (buffer, start, this.buffer, 0, count);
+			return new rstring (buffer, start, count);
 		}
-#endif
 
 		/// <summary>
 		/// Gets the length in bytes of the byte buffer.
@@ -434,7 +460,33 @@ namespace NStack {
 		/// <remarks>The index value shoudl be between 0 and Length-1.</remarks>
 		public abstract byte this [int index] { get; }
 
-		public abstract ustring this [int start, int end] { get; }
+		protected abstract ustring GetRange (int start, int end);
+
+		/// <summary>
+		/// Returns a slice of the ustring delimited by the [start, end) range.  If the range is invalid, the return is the Empty string.
+		/// </summary>
+		/// <param name="start">Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
+		/// <param name="end">End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.   If the value is zero, the end is computed as the last index of the string.</param>
+		public ustring this [int start, int end] {
+			get {
+				int size = Length;
+				if (end <= 0) {
+					if (end == 0)
+						end = size;
+					else
+						end = size + end;
+				}
+				if (start < 0)
+					start = size + start;
+
+				if (start < 0 || start >= size || start >= end)
+					return Empty;
+				if (end < 0 || end > size)
+					return Empty;
+				return GetRange (start, end);
+			}
+		}
+
 
 		/// <summary>
 		/// Gets the rune count of the string.
@@ -480,11 +532,11 @@ namespace NStack {
 		public ustring [] Explode (int limit = -1)
 		{
 			var n = Utf8.RuneCount (this);
-			if (n < 0 || n > limit)
-				n = limit;
-			var result = new ustring [n];
+			if (limit < 0 || n > limit)
+				limit = n;
+			var result = new ustring [limit];
 			int offset = 0;
-			for (int i = 0; i < n - 1; i++) {
+			for (int i = 0; i < limit - 1; i++) {
 				(var rune, var size) = Utf8.DecodeRune (this, offset);
 				if (rune == Utf8.RuneError)
 					result [i] = new sstring (Utf8.RuneError);
@@ -501,6 +553,26 @@ namespace NStack {
 
 				CopyTo (offset: offset, target: r, targetOffset: 0, count: Length - offset);
 				result [n - 1] = new sstring (r);
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// Converts a ustring into a rune array.
+		/// </summary>
+		/// <returns>An array containing the runes for the string up to the specified limit.</returns>
+		/// <param name="limit">Maximum number of entries to return, or -1 for no limits.</param>
+		public uint [] ToRunes (int limit = -1)
+		{
+			var n = Utf8.RuneCount (this);
+			if (limit < 0 || n > limit)
+				limit = n;
+			var result = new uint [limit];
+			int offset = 0;
+			for (int i = 0; i < limit; i++) {
+				(var rune, var size) = Utf8.DecodeRune (this, offset);
+				result [i] = rune;
+				offset += size;
 			}
 			return result;
 		}

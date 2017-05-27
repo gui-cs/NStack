@@ -26,16 +26,16 @@ namespace NStackTests
 			}
 		};
 
-		bstring [] testStrings = new bstring [] {
-			bstring.Empty,
-			new bstring ("abcd"),
-			new bstring (0xE2, 0x98, 0xBA, 0xE2, 0x98, 0xBB, 0xE2, 0x98, 0xB9),
-			new bstring (
+		ustring [] testStrings = new ustring [] {
+			ustring.Empty,
+			ustring.Make ("abcd"),
+			ustring.Make (0xE2, 0x98, 0xBA, 0xE2, 0x98, 0xBB, 0xE2, 0x98, 0xB9),
+			ustring.Make (
 				0xE6, 0x97, 0xA5, 0x61, 0xE6, 0x9C, 0xAC, 0x62, 0xE8, 0xAA, 0x9E, 0xC3,
 				0xA7, 0xE6, 0x97, 0xA5, 0xC3, 0xB0, 0xE6, 0x9C, 0xAC, 0xC3, 0x8A, 0xE8,
 				0xAA, 0x9E, 0xC3, 0xBE, 0xE6, 0x97, 0xA5, 0xC2, 0xA5, 0xE6, 0x9C, 0xAC,
 				0xC2, 0xBC, 0xE8, 0xAA, 0x9E, 0x69, 0xE6, 0x97, 0xA5, 0xC2, 0xA9),
-			new bstring (
+			ustring.Make (
 				0xE6, 0x97, 0xA5, 0x61, 0xE6, 0x9C, 0xAC, 0x62, 0xE8, 0xAA, 0x9E, 0xC3,
 				0xA7, 0xE6, 0x97, 0xA5, 0xC3, 0xB0, 0xE6, 0x9C, 0xAC, 0xC3, 0x8A, 0xE8,
 				0xAA, 0x9E, 0xC3, 0xBE, 0xE6, 0x97, 0xA5, 0xC2, 0xA5, 0xE6, 0x9C, 0xAC,
@@ -48,7 +48,7 @@ namespace NStackTests
 				0x97, 0xA5, 0xC3, 0xB0, 0xE6, 0x9C, 0xAC, 0xC3, 0x8A, 0xE8, 0xAA, 0x9E,
 				0xC3, 0xBE, 0xE6, 0x97, 0xA5, 0xC2, 0xA5, 0xE6, 0x9C, 0xAC, 0xC2, 0xBC,
 				0xE8, 0xAA, 0x9E, 0x69, 0xE6, 0x97, 0xA5, 0xC2, 0xA9),
-			new bstring (0x80, 0x80, 0x80, 0x80)
+			ustring.Make (0x80, 0x80, 0x80, 0x80)
 		};
 
 		RuneMap [] runeMap = new RuneMap [] {
@@ -96,15 +96,15 @@ namespace NStackTests
 		{
 			foreach (var rm in runeMap) {
 				Assert.IsTrue (Utf8.FullRune (rm.Bytes), "Error with FullRune on ({0})", rm.Bytes);
-				Assert.IsTrue (Utf8.FullRune (new bstring (rm.Bytes)), "Error with FullRune(ustring) on {0}", rm.Bytes);
+				Assert.IsTrue (Utf8.FullRune (ustring.Make (rm.Bytes)), "Error with FullRune(ustring) on {0}", rm.Bytes);
 
 				var brokenSequence = new byte [rm.Bytes.Length - 1];
 				Array.Copy (rm.Bytes, brokenSequence, rm.Bytes.Length - 1);
 				Assert.IsFalse (Utf8.FullRune (brokenSequence), "Expected false for a partial sequence");
-				Assert.IsFalse (Utf8.FullRune (new bstring (brokenSequence)), "Expected false for a partial sequence");
+				Assert.IsFalse (Utf8.FullRune (ustring.Make (brokenSequence)), "Expected false for a partial sequence");
 			}
-			Assert.IsTrue (Utf8.FullRune (new bstring (0xc0)));
-			Assert.IsTrue (Utf8.FullRune (new bstring (0xc0)));
+			Assert.IsTrue (Utf8.FullRune (ustring.Make (0xc0)));
+			Assert.IsTrue (Utf8.FullRune (ustring.Make (0xc0)));
 		}
 
 		[Test]
@@ -128,7 +128,7 @@ namespace NStackTests
 				(var rune, var size) = Utf8.DecodeRune (buffer);
 				Assert.AreEqual (rune, rm.Rune, "Decoding rune 0x{0:x} got 0x{1:x}", rm.Rune, rune);
 				Assert.AreEqual (rm.Bytes.Length, size, "Decoding rune size for 0x{0:x} got 0x{1:x}", rm.Bytes.Length, size);
-				(rune, size) = Utf8.DecodeRune (new bstring (rm.Bytes));
+				(rune, size) = Utf8.DecodeRune (ustring.Make (rm.Bytes));
 				Assert.AreEqual (rune, rm.Rune, "Decoding rune from string 0x{0:x} got 0x{1:x}", rm.Rune, rune);
 				Assert.AreEqual (rm.Bytes.Length, size, "Decoding rune size for 0x{0:x} got 0x{1:x}", rm.Bytes.Length, size);
 
@@ -138,7 +138,7 @@ namespace NStackTests
 				(rune, size) = Utf8.DecodeRune (buffer2);
 				Assert.AreEqual (rune, rm.Rune, "Decoding rune 0x{0:x} got 0x{1:x}", rm.Rune, rune);
 				Assert.AreEqual (rm.Bytes.Length, size, "Decoding rune size for 0x{0:x} got 0x{1:x}", rm.Bytes.Length, size);
-				(rune, size) = Utf8.DecodeRune (new bstring (buffer2));
+				(rune, size) = Utf8.DecodeRune (ustring.Make (buffer2));
 				Assert.AreEqual (rune, rm.Rune, "Decoding rune from string 0x{0:x} got 0x{1:x}", rm.Rune, rune);
 				Assert.AreEqual (rm.Bytes.Length, size, "Decoding rune size for 0x{0:x} got 0x{1:x}", rm.Bytes.Length, size);
 
@@ -162,7 +162,7 @@ namespace NStackTests
 				Assert.AreEqual (rune, Utf8.RuneError, "Expected malformed buffer to return an error for rune 0x{0:x}", rm.Rune);
 				Assert.AreEqual (1, size, "Expected malformed buffer to return size 1");
 
-				(rune, size) = Utf8.DecodeRune (new bstring (buffer4));
+				(rune, size) = Utf8.DecodeRune (ustring.Make (buffer4));
 				Assert.AreEqual (rune, Utf8.RuneError, "Expected malformed buffer to return an error");
 				Assert.AreEqual (1, size, "Expected malformed buffer to return size 1");
 			}
@@ -176,7 +176,7 @@ namespace NStackTests
 				Assert.AreEqual (rune, Utf8.RuneError);
 				Assert.AreEqual (1, size);
 
-				(rune, size) = Utf8.DecodeRune (new bstring (rm.Bytes));
+				(rune, size) = Utf8.DecodeRune (ustring.Make (rm.Bytes));
 				Assert.AreEqual (rune, Utf8.RuneError);
 				Assert.AreEqual (1, size);
 			}
@@ -192,7 +192,7 @@ namespace NStackTests
 			return result;
 		}
 
-		public void TestSequence (bstring s)
+		public void TestSequence (ustring s)
 		{
 			var index = new(int idx, uint rune) [s.Length];
 			var si = 0;
@@ -201,20 +201,23 @@ namespace NStackTests
 				Assert.AreEqual (i, si, "Sequence mismatch at index {0} = {1}", i, si);
 				index [j] = (i, rune);
 				j++;
-				(var r1, var size1) = Utf8.DecodeRune (Subset (s.Bytes, i, -1));
+				(var r1, var size1) = Utf8.DecodeRune (Subset (s.ToByteArray (), i, -1));
 				Assert.AreEqual (rune, r1, "DecodeRune 0x{0:x} = want 0x{1:x} with {2}", r1, rune, s);
-				(var r2, var size2) = Utf8.DecodeRune (new bstring (Subset (s.Bytes, i, -1)));
+				(var r2, var size2) = Utf8.DecodeRune (s [i, 0]);
 				Assert.AreEqual (size1, size2);
 				si += size1;
 			}
 			j--;
 
 			for (si = s.Length; si > 0;) {
-				(var r1, var size1) = Utf8.DecodeLastRune (Subset (s.Bytes, 0, si));
-				(var r2, var size2) = Utf8.DecodeLastRune (new bstring (Subset (s.Bytes, 0, si)));
+				(var r1, var size1) = Utf8.DecodeLastRune (Subset (s.ToByteArray (), 0, si));
+				(var r2, var size2) = Utf8.DecodeLastRune (ustring.Make (Subset (s.ToByteArray (), 0, si)));
+				(var r3, var size3) = Utf8.DecodeLastRune (s [0, si]);
 				Assert.AreEqual (size1, size2);
+				Assert.AreEqual (size1, size3);
 				Assert.AreEqual (r1, index [j].rune);
 				Assert.AreEqual (r2, index [j].rune);
+				Assert.AreEqual (r3, index [j].rune);
 				si -= size1;
 				Assert.AreEqual (si, index [j].idx);
 				j--;
@@ -225,13 +228,13 @@ namespace NStackTests
 		[Test]
 		public void TestSequencing ()
 		{
-			TestSequence (new bstring ("abcd"));
+			TestSequence (ustring.Make ("abcd"));
 			foreach (var ts in testStrings) {
 				foreach (var m in runeMap) {
-					var variations = new bstring [] {
-						ts + new bstring (m.Bytes),
-						new bstring (m.Bytes) + ts,
-						ts + new bstring (m.Bytes) + ts
+					var variations = new ustring [] {
+						ts + ustring.Make (m.Bytes),
+						ustring.Make (m.Bytes) + ts,
+						ts + ustring.Make (m.Bytes) + ts
 					};
 					foreach (var x in variations)
 						TestSequence (x);
@@ -239,89 +242,90 @@ namespace NStackTests
 			}
 		}
 
-		bstring [] invalidSequenceTests = new bstring [] {
-		        new bstring (0xed, 0xa0, 0x80, 0x80),// surrogate min
-			new bstring (0xed, 0xbf, 0xbf, 0x80),// surrogate max
+		ustring [] invalidSequenceTests = new ustring [] {
+		        ustring.Make (0xed, 0xa0, 0x80, 0x80),// surrogate min
+			ustring.Make (0xed, 0xbf, 0xbf, 0x80),// surrogate max
 
 			// xx
-			new bstring (0x91, 0x80, 0x80, 0x80),
+			ustring.Make (0x91, 0x80, 0x80, 0x80),
 			        
 			// s1
-			new bstring (0xC2, 0x7F, 0x80, 0x80),
-			new bstring (0xC2, 0xC0, 0x80, 0x80),
-			new bstring (0xDF, 0x7F, 0x80, 0x80),
-			new bstring (0xDF, 0xC0, 0x80, 0x80),
+			ustring.Make (0xC2, 0x7F, 0x80, 0x80),
+			ustring.Make (0xC2, 0xC0, 0x80, 0x80),
+			ustring.Make (0xDF, 0x7F, 0x80, 0x80),
+			ustring.Make (0xDF, 0xC0, 0x80, 0x80),
 			
 			// s2
-			new bstring (0xE0, 0x9F, 0xBF, 0x80),
-			new bstring (0xE0, 0xA0, 0x7F, 0x80),
-			new bstring (0xE0, 0xBF, 0xC0, 0x80),
-			new bstring (0xE0, 0xC0, 0x80, 0x80),
+			ustring.Make (0xE0, 0x9F, 0xBF, 0x80),
+			ustring.Make (0xE0, 0xA0, 0x7F, 0x80),
+			ustring.Make (0xE0, 0xBF, 0xC0, 0x80),
+			ustring.Make (0xE0, 0xC0, 0x80, 0x80),
 			        
 			// s3
-			new bstring (0xE1, 0x7F, 0xBF, 0x80),
-			new bstring (0xE1, 0x80, 0x7F, 0x80),
-			new bstring (0xE1, 0xBF, 0xC0, 0x80),
-			new bstring (0xE1, 0xC0, 0x80, 0x80),
+			ustring.Make (0xE1, 0x7F, 0xBF, 0x80),
+			ustring.Make (0xE1, 0x80, 0x7F, 0x80),
+			ustring.Make (0xE1, 0xBF, 0xC0, 0x80),
+			ustring.Make (0xE1, 0xC0, 0x80, 0x80),
 			                
 			//s4
-			new bstring (0xED, 0x7F, 0xBF, 0x80),
-			new bstring (0xED, 0x80, 0x7F, 0x80),
-			new bstring (0xED, 0x9F, 0xC0, 0x80),
-			new bstring (0xED, 0xA0, 0x80, 0x80),
+			ustring.Make (0xED, 0x7F, 0xBF, 0x80),
+			ustring.Make (0xED, 0x80, 0x7F, 0x80),
+			ustring.Make (0xED, 0x9F, 0xC0, 0x80),
+			ustring.Make (0xED, 0xA0, 0x80, 0x80),
 			                
 			// s5
-			new bstring (0xF0, 0x8F, 0xBF, 0xBF),
-			new bstring (0xF0, 0x90, 0x7F, 0xBF),
-			new bstring (0xF0, 0x90, 0x80, 0x7F),
-			new bstring (0xF0, 0xBF, 0xBF, 0xC0),
-			new bstring (0xF0, 0xBF, 0xC0, 0x80),
-			new bstring (0xF0, 0xC0, 0x80, 0x80),
+			ustring.Make (0xF0, 0x8F, 0xBF, 0xBF),
+			ustring.Make (0xF0, 0x90, 0x7F, 0xBF),
+			ustring.Make (0xF0, 0x90, 0x80, 0x7F),
+			ustring.Make (0xF0, 0xBF, 0xBF, 0xC0),
+			ustring.Make (0xF0, 0xBF, 0xC0, 0x80),
+			ustring.Make (0xF0, 0xC0, 0x80, 0x80),
 			        
 			// s6
-			new bstring (0xF1, 0x7F, 0xBF, 0xBF),
-			new bstring (0xF1, 0x80, 0x7F, 0xBF),
-			new bstring (0xF1, 0x80, 0x80, 0x7F),
-			new bstring (0xF1, 0xBF, 0xBF, 0xC0),
-			new bstring (0xF1, 0xBF, 0xC0, 0x80),
-			new bstring (0xF1, 0xC0, 0x80, 0x80),
+			ustring.Make (0xF1, 0x7F, 0xBF, 0xBF),
+			ustring.Make (0xF1, 0x80, 0x7F, 0xBF),
+			ustring.Make (0xF1, 0x80, 0x80, 0x7F),
+			ustring.Make (0xF1, 0xBF, 0xBF, 0xC0),
+			ustring.Make (0xF1, 0xBF, 0xC0, 0x80),
+			ustring.Make (0xF1, 0xC0, 0x80, 0x80),
 						
 			// s7
-			new bstring (0xF4, 0x7F, 0xBF, 0xBF),
-			new bstring (0xF4, 0x80, 0x7F, 0xBF),
-			new bstring (0xF4, 0x80, 0x80, 0x7F),
-			new bstring (0xF4, 0x8F, 0xBF, 0xC0),
-			new bstring (0xF4, 0x8F, 0xC0, 0x80),
-			new bstring (0xF4, 0x90, 0x80, 0x80),
+			ustring.Make (0xF4, 0x7F, 0xBF, 0xBF),
+			ustring.Make (0xF4, 0x80, 0x7F, 0xBF),
+			ustring.Make (0xF4, 0x80, 0x80, 0x7F),
+			ustring.Make (0xF4, 0x8F, 0xBF, 0xC0),
+			ustring.Make (0xF4, 0x8F, 0xC0, 0x80),
+			ustring.Make (0xF4, 0x90, 0x80, 0x80),
 		};
 
 		[Test]
 		public void TestDecodeInvalidSequence ()
 		{
 			foreach (var str in invalidSequenceTests) {
-				(var r1, _) = Utf8.DecodeRune (str.Bytes);
+				(var r1, _) = Utf8.DecodeRune (str.ToByteArray ());
 				Assert.AreEqual (r1, Utf8.RuneError);
-				(var r2, _) = Utf8.DecodeRune (new bstring (str.Bytes));
+				(var r2, _) = Utf8.DecodeRune (ustring.Make (str.ToByteArray ()));
 				Assert.AreEqual (r1, Utf8.RuneError);
 
 				Assert.AreEqual (r1, r2);
 			}
 		}
 
-		(bstring testString, int count) [] runeCountTests = new (bstring,int) [] {
-			(new bstring ("abcd"), 4),
-			(new bstring (0xE2, 0x98, 0xBA, 0xE2, 0x98, 0xBB, 0xE2, 0x98, 0xB9), 3),
-			(new bstring ("1,2,3,4"), 7),
-			(new bstring (0xe2, 0x00), 2),
-			(new bstring (0xe2, 0x80), 2),
-			(new bstring (0x61, 0xe2, 0x80), 3),
+		(ustring testString, int count) [] runeCountTests = new (ustring,int) [] {
+			(ustring.Make ("abcd"), 4),
+			(ustring.Make (0xE2, 0x98, 0xBA, 0xE2, 0x98, 0xBB, 0xE2, 0x98, 0xB9), 3),
+			(ustring.Make ("1,2,3,4"), 7),
+			(ustring.Make (0xe2, 0x00), 2),
+			(ustring.Make (0xe2, 0x80), 2),
+			(ustring.Make (0x61, 0xe2, 0x80), 3),
 		};
 
 		[Test]
 		public void TestRuneCount ()
 		{
 			foreach (var t in runeCountTests) {
-				Assert.AreEqual (t.count, Utf8.RuneCount (t.testString.Bytes));
+				Assert.AreEqual (t.count, Utf8.RuneCount (t.testString.ToByteArray ()));
+				Assert.AreEqual (t.count, t.testString.RuneCount);
 			}
 		}
 
@@ -349,29 +353,29 @@ namespace NStackTests
 		[Test]
 		public void TestValid()
 		{
-			(bstring input, bool output)[] validTests = new(bstring, bool)[] {
-				(new bstring (""), true),
-				(new bstring ("a"), true),
-				(new bstring ("abc"), true),
-				(new bstring ("Ж"), true),
-				(new bstring ("ЖЖ"), true),
-				(new bstring ("брэд-ЛГТМ"), true),
-				(new bstring (0xE2, 0x98, 0xBA, 0xE2, 0x98, 0xBB, 0xE2, 0x98, 0xB9), true),
-				(new bstring (0xaa, 0xe2), false),
-				(new bstring (66, 250), false),
-				(new bstring (66, 250, 67), false),
-				(new bstring ("a\uffDb"), true),
-				(new bstring (0xf4, 0x8f, 0xbf, 0xbf),  true), // U+10FFFF
-				(new bstring (0xf4, 0x90, 0x80, 0x80), false), // U+10FFFF+1 out of range
-				(new bstring (0xF7, 0xBF, 0xBF, 0xBF), false),     // 0x1FFFFF; out of range
-				(new bstring (0xFB, 0xBF, 0xBF, 0xBF, 0xBF), false), // 0x3FFFFFF; out of range
-				(new bstring (0xc0, 0x80), false),             // U+0000 encoded in two bytes: incorrect
-				(new bstring (0xed, 0xa0, 0x80), false),         // U+D800 high surrogate (sic)
-				(new bstring (0xed, 0xbf, 0xbf), false),         // U+DFFF low surrogate (sic)
+			(ustring input, bool output)[] validTests = new(ustring, bool)[] {
+				(ustring.Make (""), true),
+				(ustring.Make ("a"), true),
+				(ustring.Make ("abc"), true),
+				(ustring.Make ("Ж"), true),
+				(ustring.Make ("ЖЖ"), true),
+				(ustring.Make ("брэд-ЛГТМ"), true),
+				(ustring.Make (0xE2, 0x98, 0xBA, 0xE2, 0x98, 0xBB, 0xE2, 0x98, 0xB9), true),
+				(ustring.Make (0xaa, 0xe2), false),
+				(ustring.Make (66, 250), false),
+				(ustring.Make (66, 250, 67), false),
+				(ustring.Make ("a\uffDb"), true),
+				(ustring.Make (0xf4, 0x8f, 0xbf, 0xbf),  true), // U+10FFFF
+				(ustring.Make (0xf4, 0x90, 0x80, 0x80), false), // U+10FFFF+1 out of range
+				(ustring.Make (0xF7, 0xBF, 0xBF, 0xBF), false),     // 0x1FFFFF; out of range
+				(ustring.Make (0xFB, 0xBF, 0xBF, 0xBF, 0xBF), false), // 0x3FFFFFF; out of range
+				(ustring.Make (0xc0, 0x80), false),             // U+0000 encoded in two bytes: incorrect
+				(ustring.Make (0xed, 0xa0, 0x80), false),         // U+D800 high surrogate (sic)
+				(ustring.Make (0xed, 0xbf, 0xbf), false),         // U+DFFF low surrogate (sic)
 			};
 			foreach (var test in validTests)
 			{
-				Assert.AreEqual(test.output, Utf8.Valid(test.input.Bytes));
+				Assert.AreEqual(test.output, Utf8.Valid(test.input.ToByteArray ()));
 				Assert.AreEqual(test.output, Utf8.Valid(test.input));
 			}
 		}

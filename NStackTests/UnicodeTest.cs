@@ -401,11 +401,72 @@ namespace NStackTests {
 		[Test]
 		public void TestLetterOptimizations ()
 		{
-			Unicode.To (Unicode.Case.Lower, 0x5a);
 			for (uint rune = 0; rune < Unicode.MaxLatin1; rune++) {
 				Assert.AreEqual (Unicode.To (Unicode.Case.Lower, rune), Unicode.ToLower (rune), "For rune 0x{0:x} ToLower", rune);
 				Assert.AreEqual (Unicode.To (Unicode.Case.Upper, rune), Unicode.ToUpper (rune), "For rune 0x{0:x} ToUpper", rune);
 				Assert.AreEqual (Unicode.To (Unicode.Case.Title, rune), Unicode.ToTitle (rune), "For rune 0x{0:x} ToTitle", rune);
+			}
+		}
+
+		[Test]
+		public void TestTurkishCase ()
+		{
+			var lower = "abcçdefgğhıijklmnoöprsştuüvyz";
+			var upper = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ";
+
+			Assert.AreEqual (lower.Length, upper.Length);
+			for (int i = 0; i < lower.Length; i++) {
+				var l = lower [i];
+				var u = upper [i];
+
+				Assert.AreEqual (l, Unicode.TurkishCase.ToLower (l), "l == Tolower(l) Must be the same for rune 0x{0:x}", (int) l);
+				Assert.AreEqual (u, Unicode.TurkishCase.ToUpper (u), "u == ToLower (u) Must be the same for rune 0x{0:x}", (int)l);
+				Assert.AreEqual (u, Unicode.TurkishCase.ToUpper (l), "u == ToLower (l) Must be the same for rune 0x{0:x}", (int)l);
+				Assert.AreEqual (l, Unicode.TurkishCase.ToLower (u), "l == ToUpper (u) Must be the same for rune 0x{0:x}", (int)l);
+				Assert.AreEqual (u, Unicode.TurkishCase.ToTitle (u), "u == ToTitle (u) Must be the same for rune 0x{0:x}", (int)l);
+				Assert.AreEqual (u, Unicode.TurkishCase.ToTitle (l), "u == ToTitle (l) Must be the same for rune 0x{0:x}", (int)l);
+			}
+		}
+
+		byte [][] simpleFoldTests = new byte [][] {
+			// SimpleFold(x) returns the next equivalent rune > x or wraps
+		        // around to smaller values.
+		        
+		        // Easy cases.
+			new byte []{ 0x41, 0x61 },
+			new byte []{ 0xce, 0xb4, 0xce, 0x94 },
+
+		        
+		        // ASCII special cases.
+			new byte []{ 0x4b, 0x6b, 0xe2, 0x84, 0xaa },
+			new byte []{ 0x53, 0x73, 0xc5, 0xbf },
+		        
+		        // Non-ASCII special cases.
+			new byte []{ 0xcf, 0x81, 0xcf, 0xb1, 0xce, 0xa1 },
+			new byte []{ 0xcd, 0x85, 0xce, 0x99, 0xce, 0xb9, 0xe1, 0xbe, 0xbe }
+		                        
+		        // Upper comes before lower (Cherokee).
+		        //"\u13b0\uab80",
+		};
+
+		// SimpleFold(x) returns the next equivalent rune > x or wraps
+		// around to smaller values.
+		[Test]
+		public void TestSimpleFold ()
+		{
+			foreach (byte [] test in simpleFoldTests) {
+				var tstr = ustring.Make (test);
+				var cycle = tstr.ToRunes ();
+				uint r = cycle [cycle.Length - 1];
+				for (int i = 0; i < cycle.Length; i++) {
+					var expected = cycle [i];
+					r = Unicode.SimpleFold (r);
+					Assert.AreEqual (r, expected, "SimpleFold error, for 0x{0:x} wanted 0x{1:x}", r, expected);
+					r = expected;
+				}
+			}
+			unchecked {
+				Assert.AreEqual ((uint)-42, Unicode.SimpleFold ((uint)-42));
 			}
 		}
 	}

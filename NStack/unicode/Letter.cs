@@ -362,7 +362,7 @@ namespace NStack
 			{
 				var result = to (Case.Upper, rune, Special);
 				if (result == rune)
-					result = ToUpper (rune);
+					result = Unicode.ToUpper (rune);
 				return result;
 			}
 
@@ -375,7 +375,7 @@ namespace NStack
 			{
 				var result = to (Case.Title, rune, Special);
 				if (result == rune)
-					result = ToTitle (rune);
+					result = Unicode.ToTitle (rune);
 				return result;
 			}
 
@@ -388,7 +388,7 @@ namespace NStack
 			{
 				var result = to (Case.Lower, rune, Special);
 				if (result == rune)
-					result = ToLower (rune);
+					result = Unicode.ToLower (rune);
 				return result;
 			}
 		}

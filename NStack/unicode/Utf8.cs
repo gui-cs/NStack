@@ -243,7 +243,7 @@ namespace NStack
 		/// <param name="str">ustring to decode.</param>
 		/// <param name="start">Starting offset to look into..</param>
 		/// <param n="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
-		public static (uint Rune, int size) DecodeRune (ustring str, int start, int n = -1)
+		public static (uint Rune, int size) DecodeRune (ustring str, int start = 0, int n = -1)
 		{
 			if (str == null)
 				throw new ArgumentNullException (nameof (str));
