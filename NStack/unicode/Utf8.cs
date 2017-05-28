@@ -12,6 +12,9 @@ namespace NStack
 	/// <summary>
 	/// UTF8 Helper methods and routines.
 	/// </summary>
+	/// <remarks>
+	/// The term "rune" is used to represent a Unicode code point merely because it is a shorter way of talking about it.
+	/// </remarks>
 	public class Utf8
 	{
 		/// <summary>

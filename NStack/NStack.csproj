@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,6 +9,18 @@
     <RootNamespace>NStack</RootNamespace>
     <AssemblyName>NStack</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <PackageId>NStack.Core</PackageId>
+    <PackageVersion>0.1</PackageVersion>
+    <Authors>Miguel de Icaza</Authors>
+    <PackageLicenseUrl>https://github.com/migueldeicaza/NStack/blob/master/LICENSE.md</PackageLicenseUrl>
+    <Owners>Miguel de Icaza</Owners>
+    <PackageProjectUrl>http://github.com/migueldeicaza/NStack</PackageProjectUrl>
+    <Summary>NStack.Core brings a set of updated APIs to .NET including a UTF8-string aware string.</Summary>
+    <PackageTags>unicode, c#</PackageTags>
+    <Title>NStack.Core</Title>
+    <Description>NStack.Core brings a set of updated APIs to .NET.  
+
+It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,4 +66,5 @@
     <Folder Include="unicode\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets')" />
 </Project>

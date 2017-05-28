@@ -273,9 +273,19 @@ namespace NStack {
 	/// is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
 	/// sequence many of the operations will continue to work.
 	/// 
+	/// The strings can be created either from byte arrays, a range within a byte array, or from a 
+	/// block of unmanaged memory.  The ustrings are created using the <see cref="Make"/> methods in the
+	/// class, not by invoking the new operator on the class.
+	/// 
 	/// The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
 	/// property describes the number of code points (or runes) that are reprenseted by the underlying 
 	/// utf8 encoded buffer.
+	/// 
+	/// The ustring supports slicing by calling the indexer with two arguments, the argument represent
+	/// indexes into the underlying byte buffer.  The starting index is inclusive, while the ending index
+	/// is exclusive.   Negative values can be used to index the string from the end.  See the documentation
+	/// for the indexer for more details.
+	/// 
 	/// </remarks>
 	public abstract class ustring : IComparable {
 		/// <summary>
@@ -301,7 +311,7 @@ namespace NStack {
 		/// <summary>
 		/// Initializes a new instance using the provided rune as the sole character in the string.
 		/// </summary>
-		/// <param name="rune">Rune.</param>
+		/// <param name="rune">Rune (short name for Unicode code point).</param>
 		public static ustring Make (uint rune)
 		{
 			return new sstring (rune);
@@ -399,9 +409,33 @@ namespace NStack {
 			return true;
 		}
 
-		public static implicit operator ustring (string s)
+		/// <summary>
+		/// Implicit conversion from a C# string into a ustring.
+		/// </summary>
+		/// <returns>The ustring with the same contents as the string.</returns>
+		/// <param name="str">The string to encode as a ustring.</param>
+		/// <remarks>
+		/// This will allocate a byte array and copy the contents of the 
+		/// string encoded as UTF8 into it.
+		/// </remarks>
+		public static implicit operator ustring (string str)
 		{
-			return new sstring (s);
+			return new sstring (str);
+		}
+
+		/// <summary>
+		/// Implicit conversion from a byte array into a ustring.
+		/// </summary>
+		/// <returns>The ustring wrapping the existing byte array.</returns>
+		/// <param name="buffer">The buffer containing the data.</param>
+		/// <remarks>
+		/// The returned string will keep a reference to the buffer, which 
+		/// means that changes done to the buffer will be reflected into the
+		/// ustring.
+		/// </remarks>
+		public static implicit operator ustring (byte [] buffer)
+		{
+			return new sstring (buffer);
 		}
 
 		public override int GetHashCode ()
@@ -467,6 +501,25 @@ namespace NStack {
 		/// </summary>
 		/// <param name="start">Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
 		/// <param name="end">End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.   If the value is zero, the end is computed as the last index of the string.</param>
+		/// <remarks>
+		/// Some examples given the string "1234567890":
+		/// 
+		/// The range [0, 4] produces "1234"
+		/// The range [8, 10] produces "90"
+		/// The range [8, 0] produces "90"
+		/// The range [-2, 0] produces "90"
+		/// The range [8, 9] produces "9"
+		/// The range [-4, -1] produces "789"
+		/// The range [-4, 0] produces "7890"
+		/// The range [-4, 0] produces "7890"
+		/// The range [-9, -3] produces "234567"
+		/// 
+		/// This indexer does not raise exceptions for invalid indexes, instead the value 
+		/// returned is the ustring.Empty value:
+		/// 
+		/// The range [100, 200] produces the ustring.Empty
+		/// The range [-100, 0] produces ustring.Empty
+		/// </remarks>
 		public ustring this [int start, int end] {
 			get {
 				int size = Length;
@@ -487,6 +540,11 @@ namespace NStack {
 			}
 		}
 
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="T:NStack.ustring"/> is empty.
+		/// </summary>
+		/// <value><c>true</c> if is empty (Lenght is zero); otherwise, <c>false</c>.</value>
+		public bool IsEmpty => Length == 0;
 
 		/// <summary>
 		/// Gets the rune count of the string.
@@ -503,8 +561,22 @@ namespace NStack {
 		/// <param name="count">Number of bytes to copy.</param>
 		public abstract void CopyTo (int offset, byte [] target, int targetOffset, int count);
 
+		/// <summary>
+		/// Returns a version of the ustring as a byte array, it might allocate or return the internal byte buffer, depending on the backing implementation.
+		/// </summary>
+		/// <returns>A byte array containing the contents of the ustring.</returns>
+		/// <remarks>
+		/// The byte array contains either a copy of the underlying data, in the cases where the ustring was created
+		/// from an unmanaged pointer or when the ustring was created by either slicing or from a range withing a byte
+		/// array.   Otherwise the returned array that is used by the ustring itself.
+		/// </remarks>
 		public abstract byte [] ToByteArray ();
 
+		/// <summary>
+		/// Concatenates the provided ustrings into a new ustring.
+		/// </summary>
+		/// <returns>A new ustring that contains the concatenation of all the ustrings.</returns>
+		/// <param name="args">One or more ustrings.</param>
 		public static ustring Concat (params ustring [] args)
 		{
 			if (args == null)
