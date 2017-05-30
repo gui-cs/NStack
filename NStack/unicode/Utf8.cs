@@ -18,7 +18,7 @@ namespace NStack
 	public class Utf8
 	{
 		/// <summary>
-		/// // the "error" Rune or "Unicode replacement character"
+		/// The "error" Rune or "Unicode replacement character"
 		/// </summary>
 		public static uint RuneError = 0xfffd;
 
@@ -408,8 +408,6 @@ namespace NStack
 		/// <param name="rune">Rune to probe.</param>
 		public static int RuneLen (uint rune)
 		{
-			if (rune < 0)
-				return -1;
 			if (rune <= rune1Max)
 				return 1;
 			if (rune <= rune2Max)

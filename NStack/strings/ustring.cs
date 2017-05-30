@@ -1242,8 +1242,160 @@ namespace NStack {
 			yield break;
 		}
 
-		// TODO: Map
+		// Map returns a copy of the string s with all its characters modified
+		// according to the mapping function. If mapping returns a negative value, the character is
+		// dropped from the string with no replacement.
+		static ustring Map (Func<uint, uint> mapping, ustring s, Action scanReset = null)
+		{
+			// In the worst case, the string can grow when mapped, making
+			// things unpleasant. But it's so rare we barge in assuming it's
+			// fine. It could also shrink but that falls out naturally.
+
+			// nbytes is the number of bytes needed to encode the string
+			int nbytes = 0;
+
+			bool modified = false;
+			int blen = s.Length;
+			for (int offset = 0; offset < blen;) {
+				(var rune, var size) = Utf8.DecodeRune (s, offset);
+				var mapped = mapping (rune);
+				if (mapped == rune) {
+					nbytes++;
+					continue;
+				}
+				modified = true;
+				var mappedLen = Utf8.RuneLen (mapped);
+				if (mappedLen == -1)
+					mappedLen = 3; // Errors are encoded with 3 bytes
+				nbytes += mappedLen;
+
+				if (rune == Utf8.RuneError) {
+					// RuneError is the result of either decoding
+					// an invalid sequence or '\uFFFD'. Determine
+					// the correct number of bytes we need to advance.
+					(_, size) = Utf8.DecodeRune (s [offset, 0]);
+
+				}
+				offset += size;
+			}
 
 
+			if (!modified)
+				return s;
+
+			scanReset?.Invoke ();
+
+			var result = new byte [nbytes];
+			int targetOffset = 0;
+			for (int offset = 0; offset < blen;) {
+				(var rune, var size) = Utf8.DecodeRune (s, offset);
+				offset += size;
+
+				var mapped = mapping (rune);
+
+				// common case
+				if (0 < mapped && mapped <= Utf8.RuneSelf){
+					result [targetOffset] = (byte)mapped;
+					targetOffset++;
+					continue;
+				}
+
+				targetOffset += Utf8.EncodeRune (mapped, dest: result, offset: targetOffset);
+			}
+			return new sstring (result);
+		}
+
+		/// <summary>
+		/// Returns a copy of the string s with all Unicode letters mapped to their upper case.
+		/// </summary>
+		/// <returns>The string to uppercase.</returns>
+		public ustring ToUpper ()
+		{
+			return Map (Unicode.ToUpper, this);
+		}
+
+		/// <summary>
+		/// Returns a copy of the string s with all Unicode letters mapped to their upper case giving priority to the special casing rules.
+		/// </summary>
+		/// <returns>The string to uppercase.</returns>
+		public ustring ToUpper (Unicode.SpecialCase specialCase)
+		{
+			return Map ((rune) => specialCase.ToUpper (rune), this);
+		}
+
+		/// <summary>
+		/// Returns a copy of the string s with all Unicode letters mapped to their lower case.
+		/// </summary>
+		/// <returns>The lowercased string.</returns>
+		public ustring ToLower ()
+		{
+			return Map (Unicode.ToLower, this);
+		}
+
+		/// <summary>
+		/// Returns a copy of the string s with all Unicode letters mapped to their lower case giving priority to the special casing rules.
+		/// </summary>
+		/// <returns>The string to uppercase.</returns>
+		public ustring ToLower (Unicode.SpecialCase specialCase)
+		{
+			return Map ((rune) => specialCase.ToLower (rune), this);
+		}
+		/// <summary>
+		/// Returns a copy of the string s with all Unicode letters mapped to their title case.
+		/// </summary>
+		/// <returns>The title-cased string.</returns>
+		public ustring ToTitle ()
+		{
+			return Map (Unicode.ToTitle, this);
+		}
+
+		/// <summary>
+		/// Returns a copy of the string s with all Unicode letters mapped to their title case giving priority to the special casing rules.
+		/// </summary>
+		/// <returns>The string to uppercase.</returns>
+		public ustring ToTitle (Unicode.SpecialCase specialCase)
+		{
+			return Map ((rune) => specialCase.ToTitle (rune), this);
+		}
+
+		/// <summary>
+		/// IsSeparator reports whether the rune could mark a word boundary.
+		/// </summary>
+		/// <returns><c>true</c>, if the rune can be considered a word boundary, <c>false</c> otherwise.</returns>
+		/// <param name="rune">The rune to test.</param>
+		public static bool IsSeparator (uint rune)
+		{
+			if (rune <= 0x7f) {
+				// ASCII alphanumerics and underscore are not separators
+				if ('0' <= rune && rune <= '9')
+					return false;
+				if ('a' <= rune && rune <= 'z')
+					return false;
+				if ('A' <= rune && rune <= 'Z')
+					return false;
+				if (rune == '_')
+					return false;
+				return true;
+			}
+			// Letters and digits are not separators
+			if (Unicode.IsLetter (rune) || Unicode.IsDigit (rune))
+				return false;
+			// Otherwise, all we can do for now is treat spaces as separators.
+			return Unicode.IsSpace (rune);
+		}
+
+		public ustring Title ()
+		{
+			uint prev = ' ';
+			return Map ((rune) => {
+				if (IsSeparator (prev)) {
+					prev = rune;
+					return Unicode.ToTitle (rune);
+				}
+				prev = rune;
+				return rune;
+			}, this, () => { prev = ' '; });
+
+		}
 	}
 }
