@@ -3,9 +3,7 @@
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Unicode extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>NStack</AssemblyName>
-    <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-    <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-    <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -23,9 +21,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -38,9 +34,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Adlam" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -56,9 +50,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ahom" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -74,9 +66,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Anatolian_Hieroglyphs" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -92,9 +82,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Arabic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -110,9 +98,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Armenian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -128,9 +114,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable ASCII_Hex_Digit" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -146,9 +130,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Avestan" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -164,9 +146,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Balinese" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -182,9 +162,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Bamum" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -200,9 +178,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Bassa_Vah" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -218,9 +194,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Batak" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -236,9 +210,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Bengali" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -254,9 +226,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Bhaiksuki" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -272,9 +242,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Bidi_Control" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -290,9 +258,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Bopomofo" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -308,9 +274,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Brahmi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -326,9 +290,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Braille" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -344,9 +306,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Buginese" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -362,9 +322,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Buhid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -380,9 +338,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable C" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -398,9 +354,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Canadian_Aboriginal" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -416,9 +370,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Carian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -434,9 +386,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Caucasian_Albanian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -452,9 +402,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cc" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -470,9 +418,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cf" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -488,9 +434,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Chakma" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -506,9 +450,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cham" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -524,9 +466,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cherokee" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -542,9 +482,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Co" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -560,9 +498,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Common" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -578,9 +514,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Coptic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -596,9 +530,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cs" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -614,9 +546,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cuneiform" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -632,9 +562,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cypriot" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -650,9 +578,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cyrillic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -668,9 +594,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Dash" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -686,9 +610,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Deprecated" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -704,9 +626,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Deseret" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -722,9 +642,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Devanagari" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -740,9 +658,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Diacritic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -758,9 +674,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Digit" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -776,9 +690,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Duployan" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -794,9 +706,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Egyptian_Hieroglyphs" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -812,9 +722,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Elbasan" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -830,9 +738,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ethiopic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -848,9 +754,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Extender" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -866,9 +770,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Georgian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -884,9 +786,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Glagolitic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -902,9 +802,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Gothic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -920,9 +818,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Grantha" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -938,9 +834,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static valuetype NStack.Unicode/RangeTable[] GraphicRanges" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable[]</ReturnType>
@@ -957,9 +851,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Greek" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -975,9 +867,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Gujarati" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -993,9 +883,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Gurmukhi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1011,9 +899,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Han" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1029,9 +915,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hangul" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1047,9 +931,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hanunoo" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1065,9 +947,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hatran" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1083,9 +963,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hebrew" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1101,9 +979,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hex_Digit" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1119,9 +995,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hiragana" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1137,9 +1011,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hyphen" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1155,9 +1027,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ideographic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1173,9 +1043,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable IDS_Binary_Operator" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1191,9 +1059,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable IDS_Trinary_Operator" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1209,9 +1075,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Imperial_Aramaic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1227,9 +1091,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Inherited" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1245,9 +1107,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Inscriptional_Pahlavi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1263,9 +1123,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Inscriptional_Parthian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1281,9 +1139,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsControl(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1308,9 +1164,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsDigit(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1333,9 +1187,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsGraphic(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1361,9 +1213,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsLetter(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1386,9 +1236,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsLower(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1411,9 +1259,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsMark(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1438,9 +1284,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsNumber(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1465,9 +1309,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsPrint(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1495,9 +1337,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsPunct(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1522,9 +1362,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsRuneInRanges(unsigned int32 rune, valuetype NStack.Unicode/RangeTable[] inRanges) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1555,9 +1393,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsSpace(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1584,9 +1420,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsSymbol(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1609,9 +1443,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsTitle(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1634,9 +1466,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsUpper(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1659,9 +1489,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Javanese" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1677,9 +1505,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Join_Control" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1695,9 +1521,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Kaithi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1713,9 +1537,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Kannada" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1731,9 +1553,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Katakana" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1749,9 +1569,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Kayah_Li" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1767,9 +1585,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Kharoshthi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1785,9 +1601,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Khmer" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1803,9 +1617,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Khojki" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1821,9 +1633,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Khudawadi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1839,9 +1649,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable L" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1857,9 +1665,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lao" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1875,9 +1681,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Latin" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1893,9 +1697,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lepcha" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1911,9 +1713,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Letter" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1929,9 +1729,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Limbu" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1947,9 +1745,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Linear_A" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1965,9 +1761,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Linear_B" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -1983,9 +1777,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lisu" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2001,9 +1793,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ll" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2019,9 +1809,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2037,9 +1825,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lo" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2055,9 +1841,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Logical_Order_Exception" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2073,9 +1857,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lower" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2091,9 +1873,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lt" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2109,9 +1889,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lu" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2127,9 +1905,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lycian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2145,9 +1921,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Lydian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2163,9 +1937,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable M" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2181,9 +1953,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Mahajani" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2199,9 +1969,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Malayalam" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2217,9 +1985,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Mandaic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2235,9 +2001,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Manichaean" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2253,9 +2017,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Marchen" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2271,9 +2033,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Mark" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2289,9 +2049,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static literal unsigned int32 MaxAscii = (127)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32</ReturnType>
@@ -2309,9 +2067,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static literal unsigned int32 MaxLatin1 = (255)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32</ReturnType>
@@ -2329,9 +2085,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static literal int32 MaxRune = (1114111)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -2349,9 +2103,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Mc" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2367,9 +2119,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Me" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2385,9 +2135,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Meetei_Mayek" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2403,9 +2151,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Mende_Kikakui" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2421,9 +2167,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Meroitic_Cursive" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2439,9 +2183,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Meroitic_Hieroglyphs" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2457,9 +2199,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Miao" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2475,9 +2215,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Mn" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2493,9 +2231,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Modi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2511,9 +2247,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Mongolian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2529,9 +2263,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Mro" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2547,9 +2279,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Multani" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2565,9 +2295,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Myanmar" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2583,9 +2311,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable N" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2601,9 +2327,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Nabataean" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2619,9 +2343,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Nd" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2637,9 +2359,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable New_Tai_Lue" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2655,9 +2375,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Newa" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2673,9 +2391,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Nko" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2691,9 +2407,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Nl" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2709,9 +2423,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable No" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2727,9 +2439,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Noncharacter_Code_Point" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2745,9 +2455,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Number" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2763,9 +2471,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ogham" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2781,9 +2487,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ol_Chiki" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2799,9 +2503,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_Hungarian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2817,9 +2519,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_Italic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2835,9 +2535,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_North_Arabian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2853,9 +2551,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_Permic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2871,9 +2567,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_Persian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2889,9 +2583,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_South_Arabian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2907,9 +2599,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_Turkic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2925,9 +2615,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Oriya" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2943,9 +2631,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Osage" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2961,9 +2647,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Osmanya" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2979,9 +2663,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -2997,9 +2679,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Alphabetic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3015,9 +2695,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Default_Ignorable_Code_Point" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3033,9 +2711,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Grapheme_Extend" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3051,9 +2727,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_ID_Continue" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3069,9 +2743,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_ID_Start" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3087,9 +2759,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Lowercase" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3105,9 +2775,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Math" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3123,9 +2791,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Uppercase" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3141,9 +2807,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable P" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3159,9 +2823,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pahawh_Hmong" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3177,9 +2839,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Palmyrene" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3195,9 +2855,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pattern_Syntax" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3213,9 +2871,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pattern_White_Space" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3231,9 +2887,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pau_Cin_Hau" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3249,9 +2903,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pc" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3267,9 +2919,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pd" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3285,9 +2935,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pe" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3303,9 +2951,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pf" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3321,9 +2967,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Phags_Pa" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3339,9 +2983,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Phoenician" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3357,9 +2999,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3375,9 +3015,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Po" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3393,9 +3031,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Prepended_Concatenation_Mark" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3411,9 +3047,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static valuetype NStack.Unicode/RangeTable[] PrintRanges" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable[]</ReturnType>
@@ -3430,9 +3064,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ps" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3448,9 +3080,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Psalter_Pahlavi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3466,9 +3096,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Punct" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3484,9 +3112,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Quotation_Mark" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3502,9 +3128,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Radical" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3520,9 +3144,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Rejang" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3538,9 +3160,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static literal unsigned int32 ReplacementChar = (65533)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32</ReturnType>
@@ -3558,9 +3178,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Runic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3576,9 +3194,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable S" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3594,9 +3210,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Samaritan" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3612,9 +3226,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Saurashtra" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3630,9 +3242,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sc" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3648,9 +3258,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sentence_Terminal" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3666,9 +3274,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sharada" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3684,9 +3290,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Shavian" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3702,9 +3306,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Siddham" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3720,9 +3322,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable SignWriting" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3738,9 +3338,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig unsigned int32 SimpleFold(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32</ReturnType>
@@ -3782,9 +3380,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sinhala" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3800,9 +3396,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sk" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3818,9 +3412,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3836,9 +3428,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable So" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3854,9 +3444,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Soft_Dotted" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3872,9 +3460,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sora_Sompeng" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3890,9 +3476,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance valuetype NStack.Unicode/RangeTable Space" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3908,9 +3492,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable STerm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3926,9 +3508,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sundanese" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3944,9 +3524,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Syloti_Nagri" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3962,9 +3540,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Symbol" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3980,9 +3556,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Syriac" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -3998,9 +3572,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tagalog" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4016,9 +3588,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tagbanwa" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4034,9 +3604,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tai_Le" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4052,9 +3620,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tai_Tham" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4070,9 +3636,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tai_Viet" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4088,9 +3652,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Takri" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4106,9 +3668,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tamil" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4124,9 +3684,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tangut" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4142,9 +3700,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Telugu" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4160,9 +3716,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Terminal_Punctuation" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4178,9 +3732,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Thaana" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4196,9 +3748,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Thai" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4214,9 +3764,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tibetan" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4232,9 +3780,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tifinagh" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4250,9 +3796,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tirhuta" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4268,9 +3812,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Title" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4286,9 +3828,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig unsigned int32 To(valuetype NStack.Unicode/Case toCase, unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32</ReturnType>
@@ -4312,9 +3852,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig unsigned int32 ToLower(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32</ReturnType>
@@ -4336,9 +3874,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig unsigned int32 ToTitle(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32</ReturnType>
@@ -4360,9 +3896,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig unsigned int32 ToUpper(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32</ReturnType>
@@ -4384,9 +3918,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static valuetype NStack.Unicode/SpecialCase TurkishCase" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+SpecialCase</ReturnType>
@@ -4403,9 +3935,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ugaritic" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4421,9 +3951,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Unified_Ideograph" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4439,9 +3967,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Upper" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4457,9 +3983,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Vai" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4475,9 +3999,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Variation_Selector" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4493,9 +4015,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static literal string Version" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -4512,9 +4032,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Warang_Citi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4530,9 +4048,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable White_Space" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4548,9 +4064,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Yi" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4566,9 +4080,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Z" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4584,9 +4096,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Zl" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4602,9 +4112,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Zp" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>
@@ -4620,9 +4128,7 @@
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Zs" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+RangeTable</ReturnType>

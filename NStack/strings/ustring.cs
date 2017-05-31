@@ -266,7 +266,7 @@ namespace NStack {
 	}
 
 	/// <summary>
-	/// ustrings provide a series of operations on a series of bytes that contain either valid or invalid UTF8 byte sequences.
+	/// ustrings are used to manipulate utf8 strings, either from byte arrays or blocks of memory.
 	/// </summary>
 	/// <remarks>
 	/// The ustring provides a series of string-like operations over an array of bytes.   The buffer

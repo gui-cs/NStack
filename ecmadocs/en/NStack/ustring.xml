@@ -3,9 +3,7 @@
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ustring extends System.Object implements class System.IComparable" />
   <AssemblyInfo>
     <AssemblyName>NStack</AssemblyName>
-    <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-    <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-    <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -17,7 +15,7 @@
   </Interfaces>
   <Docs>
     <summary>
-            ustrings provide a series of operations on a series of bytes that contain either valid or invalid UTF8 byte sequences.
+            ustrings are used to manipulate utf8 strings, either from byte arrays or blocks of memory.
             </summary>
     <remarks>
             The ustring provides a series of string-like operations over an array of bytes.   The buffer
@@ -45,9 +43,7 @@
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -60,9 +56,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 CompareTo(object value) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -84,9 +78,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Concat(class NStack.ustring[] args) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -114,9 +106,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool Contains(class NStack.ustring substr) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -138,9 +128,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool Contains(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -162,9 +150,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool ContainsAny(class NStack.ustring chars) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -186,9 +172,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool ContainsAny(unsigned int32[] runes) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -216,9 +200,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void CopyTo(int32 offset, unsigned int8[] target, int32 targetOffset, int32 count) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -245,9 +227,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 Count(class NStack.ustring substr) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -269,9 +249,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static class NStack.ustring Empty" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -288,9 +266,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool EndsWith(class NStack.ustring suffix) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -312,9 +288,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance bool Equals(object obj) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -338,9 +312,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring[] Explode(int32 limit) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring[]</ReturnType>
@@ -363,9 +335,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance int32 GetHashCode() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -384,9 +354,7 @@
       <MemberSignature Language="ILAsm" Value=".method familyorassemblyhidebysig newslot virtual instance class NStack.ustring GetRange(int32 start, int32 end) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -410,9 +378,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 IndexByte(unsigned int8 b) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -434,9 +400,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOf(class NStack.ustring/RunePredicate matchFunc) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -458,9 +422,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOf(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -482,9 +444,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOf(class NStack.ustring substr, int32 offset) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -508,9 +468,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOfAny(class NStack.ustring chars) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -532,9 +490,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOfAny(unsigned int32[] runes) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -562,9 +518,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance bool IsEmpty" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -583,9 +537,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsSeparator(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -608,9 +560,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance unsigned int8 Item(int32)" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Byte</ReturnType>
@@ -632,9 +582,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance class NStack.ustring Item(int32, int32)" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -676,9 +624,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Join(class NStack.ustring separator, class NStack.ustring[] values) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -708,9 +654,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 LastIndexByte(unsigned int8 b) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -732,9 +676,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 LastIndexOf(class NStack.ustring substr) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -756,9 +698,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 LastIndexOf(class NStack.ustring/RunePredicate matchFunc) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -780,9 +720,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 LastIndexOfAny(class NStack.ustring chars) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -804,9 +742,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance int32 Length" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -824,9 +760,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(unsigned int8[] buffer) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -859,9 +793,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(char[] chars) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -889,9 +821,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(string str) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -913,9 +843,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(unsigned int32 rune) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -937,9 +865,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(unsigned int8[] buffer, int32 start, int32 count) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -970,9 +896,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(native int block, int32 size, class System.Action`2&lt;class NStack.ustring, native int&gt; releaseFunc) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1004,9 +928,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname class NStack.ustring op_Addition(class NStack.ustring u1, class NStack.ustring u2) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1030,9 +952,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname bool op_Equality(class NStack.ustring a, class NStack.ustring b) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1057,9 +977,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname class NStack.ustring op_Implicit(unsigned int8[] buffer) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1085,9 +1003,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname class NStack.ustring op_Implicit(string str) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1112,9 +1028,7 @@
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname bool op_Inequality(class NStack.ustring a, class NStack.ustring b) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1139,9 +1053,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Collections.Generic.IEnumerable`1&lt;valuetype System.ValueTuple`2&lt;int32, unsigned int32&gt;&gt; Range() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute>
@@ -1173,9 +1085,7 @@
       <MemberSignature Language="ILAsm" Value=".property instance int32 RuneCount" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -1193,9 +1103,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool StartsWith(class NStack.ustring prefix) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1218,9 +1126,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring Title() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1239,9 +1145,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance unsigned int8[] ToByteArray() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Byte[]</ReturnType>
@@ -1264,9 +1168,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToLower() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1285,9 +1187,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToLower(valuetype NStack.Unicode/SpecialCase specialCase) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1309,9 +1209,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance unsigned int32[] ToRunes(int32 limit) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.UInt32[]</ReturnType>
@@ -1333,9 +1231,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToTitle() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1354,9 +1250,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToTitle(valuetype NStack.Unicode/SpecialCase specialCase) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1378,9 +1272,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToUpper() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1399,9 +1291,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToUpper(valuetype NStack.Unicode/SpecialCase specialCase) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1423,9 +1313,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring Trim(class NStack.ustring/RunePredicate predicate) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1447,9 +1335,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimEnd(class NStack.ustring cutset) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1471,9 +1357,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimEnd(class NStack.ustring/RunePredicate predicate) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1495,9 +1379,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimSpace() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1515,9 +1397,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimStart(class NStack.ustring cutset) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>
@@ -1539,9 +1419,7 @@
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimStart(class NStack.ustring/RunePredicate predicate) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.ustring</ReturnType>

@@ -3,9 +3,7 @@
   <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed Unicode/Case extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>NStack</AssemblyName>
-    <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-    <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-    <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Enum</BaseTypeName>
@@ -22,9 +20,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static literal valuetype NStack.Unicode/Case Lower = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+Case</ReturnType>
@@ -40,9 +36,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static literal valuetype NStack.Unicode/Case Title = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+Case</ReturnType>
@@ -60,9 +54,7 @@
       <MemberSignature Language="ILAsm" Value=".field public static literal valuetype NStack.Unicode/Case Upper = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
-        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NStack.Unicode+Case</ReturnType>

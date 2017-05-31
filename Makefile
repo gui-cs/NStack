@@ -1,3 +1,5 @@
+all: doc-update rebuild-docs
+
 rebuild-docs: docs/template
 	mdoc export-html --force-update -o docs --template=docs/template ecmadocs/en/
 
