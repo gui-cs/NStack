@@ -1395,7 +1395,143 @@ namespace NStack {
 				prev = rune;
 				return rune;
 			}, this, () => { prev = ' '; });
-
 		}
+
+		// IndexFunc returns the index into s of the first Unicode
+		// code point satisfying f(c), or -1 if none do.
+
+		/// <summary>
+		/// Rune predicate functions take a rune as input and return a boolean determining if the rune matches or not.
+		/// </summary>
+		public delegate bool RunePredicate (uint rune);
+
+		/// <summary>
+		/// IndexOf returns the index into s of the first Unicode rune satisfying matchFunc(rune), or -1 if none do.
+		/// </summary>
+		/// <returns>The index inside the string where the rune is found, or -1 on error.</returns>
+		/// <param name="matchFunc">Match func, it receives a rune as a parameter and should return true if it matches, false otherwise.</param>
+		public int IndexOf (RunePredicate matchFunc)
+		{
+			return FlexIndexOf (matchFunc, true);
+		}
+
+		/// <summary>
+		/// LastIndexOf returns the index into s of the last Unicode rune satisfying matchFunc(rune), or -1 if none do.
+		/// </summary>
+		/// <returns>The last index inside the string where the rune is found, or -1 on error.</returns>
+		/// <param name="matchFunc">Match func, it receives a rune as a parameter and should return true if it matches, false otherwise.</param>
+		public int LastIndexOf (RunePredicate matchFunc)
+		{
+			return FlexLastIndexOf (matchFunc, true);
+		}
+
+
+		/// <summary>
+		/// Returns a slice of the string with all leading runes matching the predicate removed.
+		/// </summary>
+		/// <returns>The current string if the predicate does not match anything, or a slice of the string starting in the first rune after the predicate matched.</returns>
+		/// <param name="predicate">Function that determines whether this character must be trimmed.</param>
+		public ustring TrimStart (RunePredicate predicate)
+		{
+			var i = IndexOf (predicate);
+			if (i == -1)
+				return this;
+			return this [i, 0];
+		}
+
+		RunePredicate MakeCutSet (ustring cutset)
+		{
+			if (cutset.Length == 1 && cutset [0] < Utf8.RuneSelf)
+				return (x) => x == (uint)cutset [0];
+			AsciiSet aset;
+			if (AsciiSet.MakeAsciiSet (ref aset, cutset)) {
+				return (x) => x < Utf8.RuneSelf && AsciiSet.Contains (ref aset, (byte)x);
+			}
+			return (x) => cutset.IndexOf (x) >= 0;
+		}
+
+		/// <summary>
+		/// TrimStarts returns a slice of the string with all leading characters in cutset removed.
+		/// </summary>
+		/// <returns>The slice of the string with all cutset characters removed.</returns>
+		/// <param name="cutset">Characters to remove.</param>
+		public ustring TrimStart (ustring cutset)
+		{
+			if (IsEmpty || cutset == null || cutset.IsEmpty)
+				return this;
+			return TrimStart (MakeCutSet (cutset));
+		}
+
+		/// <summary>
+		/// TrimEnd returns a slice of the string with all leading characters in cutset removed.
+		/// </summary>
+		/// <returns>The slice of the string with all cutset characters removed.</returns>
+		/// <param name="cutset">Characters to remove.</param>
+		public ustring TrimEnd (ustring cutset)
+		{
+			if (IsEmpty || cutset == null || cutset.IsEmpty)
+				return this;
+			return TrimEnd (MakeCutSet (cutset));
+		}
+
+		public ustring TrimSpace ()
+		{
+			return Trim (Unicode.IsSpace);
+		}
+
+		/// <summary>
+		/// Returns a slice of the string with all trailing runes matching the predicate removed.
+		/// </summary>
+		/// <returns>The current string if the predicate does not match anything, or a slice of the string starting in the first rune after the predicate matched.</returns>
+		/// <param name="predicate">Function that determines whether this character must be trimmed.</param>
+		public ustring TrimEnd (RunePredicate predicate)
+		{
+			var i = LastIndexOf (predicate);
+			if (i >= 0 && this [i] >= Utf8.RuneSelf) {
+				(var rune, var wid) = Utf8.DecodeRune (this [i, 0]);
+				i += wid;
+			} else
+				i++;
+			return this [0, i];
+		}
+
+		/// <summary>
+		/// Returns a slice of the string with all leading and trailing runes matching the predicate removed.
+		/// </summary>
+		/// <returns>The trim.</returns>
+		/// <param name="predicate">Predicate.</param>
+		public ustring Trim (RunePredicate predicate)
+		{
+			return TrimStart (predicate).TrimEnd (predicate);
+		}
+
+		// FlexIndexOf is a generalization of IndexOf that allows
+		// the desired result of the predicate to be specified.
+		int FlexIndexOf (RunePredicate matchFunc, bool expected)
+		{
+			int blen = Length;
+			for (int i = 0; i < blen;) {
+				(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
+				if (matchFunc (rune) == expected)
+					return i;
+				i += size;
+			}
+			return -1;
+		}
+
+		// FlexLastIndexOf is a generalization of IndexOf that allows
+		// the desired result of the predicate to be specified.
+		int FlexLastIndexOf (RunePredicate matchFunc, bool expected)
+		{
+			int blen = Length;
+			for (int i = blen; i > 0; ){
+				(var rune, var size) = Utf8.DecodeLastRune (this, i);
+				i -= size;
+				if (matchFunc (rune) == expected)
+					return i;
+			}
+			return -1;
+		}
+
 	}
 }
