@@ -2,6 +2,9 @@
 
 namespace NStack
 {
+	/// <summary>
+	/// Unicode class contains helper methods to support Unicode encoding.
+	/// </summary>
 	public partial class Unicode
 	{
 		/// <summary>
@@ -62,8 +65,12 @@ namespace NStack
 		// The two slices must be in sorted order and non-overlapping.
 		// Also, R32 should contain only values >= 0x10000 (1<<16).
 		public struct RangeTable {
-			Range16 []R16;
-			Range32 []R32;
+			readonly Range16 []R16;
+			readonly Range32 []R32;
+
+			/// <summary>
+			/// The number of entries in the short range table (R16) with with Hi <= MaxLatin1
+			/// </summary>
 			public readonly int LatinOffset;
 
 			internal RangeTable (Range16 [] r16 = null, Range32 [] r32 = null, int latinOffset = 0)
@@ -145,9 +152,25 @@ namespace NStack
 			}
 		}
 
+		/// <summary>
+		/// The types of cases supported.
+		/// </summary>
 		public enum Case {
+			/// <summary>
+			/// Upper case
+			/// </summary>
 			Upper = 0,
+
+			/// <summary>
+			/// Lower case
+			/// </summary>
 			Lower = 1,
+
+			/// <summary>
+			/// Titlecase capitalizes the first letter, and keeps the rest in lowercase.
+			/// Sometimes it is not as straight forward as the uppercase, some characters require special handling, like
+			/// certain ligatures and greek characters.
+			/// </summary>
 			Title = 2
 		};
 
@@ -290,6 +313,12 @@ namespace NStack
 		}
 
 		// To maps the rune to the specified case: Case.Upper, Case.Lower, or Case.Title
+		/// <summary>
+		/// To maps the rune to the specified case: Case.Upper, Case.Lower, or Case.Title
+		/// </summary>
+		/// <returns>The cased character.</returns>
+		/// <param name="toCase">The destination case.</param>
+		/// <param name="rune">Rune to convert.</param>
 		public static uint To (Case toCase, uint rune)
 		{
 			return to (toCase, rune, CaseRanges);

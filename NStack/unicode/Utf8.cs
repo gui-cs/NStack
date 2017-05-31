@@ -27,6 +27,9 @@ namespace NStack
 		/// </summary>
 		public const byte RuneSelf = 0x80;
 
+		/// <summary>
+		/// Maximum number of bytes required to encode every unicode code point.
+		/// </summary>
 		public const int Utf8Max = 4;
 
 		/// <summary>
@@ -176,7 +179,7 @@ namespace NStack
 
 		/// <summary>
 		/// DecodeRune unpacks the first UTF-8 encoding in p and returns the rune and
-		// its width in bytes. 
+		/// its width in bytes. 
 		/// </summary>
 		/// <returns>If p is empty it returns (RuneError, 0). Otherwise, if
 		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
@@ -184,7 +187,7 @@ namespace NStack
 		/// </returns>
 		/// <param name="buffer">Byte buffer containing the utf8 string.</param>
 		/// <param name="start">Starting offset to look into..</param>
-		/// <param n="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+		/// <param name="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
 		public static (uint Rune, int Size) DecodeRune (byte [] buffer, int start = 0, int n = -1)
 		{
 			if (buffer == null)
@@ -237,7 +240,7 @@ namespace NStack
 
 		/// <summary>
 		/// DecodeRune unpacks the first UTF-8 encoding in the ustring returns the rune and
-		// its width in bytes. 
+		/// its width in bytes. 
 		/// </summary>
 		/// <returns>If p is empty it returns (RuneError, 0). Otherwise, if
 		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
@@ -245,7 +248,7 @@ namespace NStack
 		/// </returns>
 		/// <param name="str">ustring to decode.</param>
 		/// <param name="start">Starting offset to look into..</param>
-		/// <param n="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+		/// <param name="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
 		public static (uint Rune, int size) DecodeRune (ustring str, int start = 0, int n = -1)
 		{
 			if (str == null)
@@ -600,8 +603,7 @@ namespace NStack
 		/// <summary>
 		/// Reports whether the ustring consists entirely of valid UTF-8-encoded runes.
 		/// </summary>
-		/// <param name="buffer">Byte buffer containing a utf8 string.</param>
-
+		/// <param name="str">String to validate.</param>
 		public static bool Valid (ustring str)
 		{
 			return InvalidIndex (str) == -1;

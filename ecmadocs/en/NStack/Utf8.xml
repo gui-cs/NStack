@@ -1,0 +1,543 @@
+<Type Name="Utf8" FullName="NStack.Utf8">
+  <TypeSignature Language="C#" Value="public class Utf8" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Utf8 extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>NStack</AssemblyName>
+    <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+    <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+    <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            UTF8 Helper methods and routines.
+            </summary>
+    <remarks>
+            The term "rune" is used to represent a Unicode code point merely because it is a shorter way of talking about it.
+            </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Utf8 ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DecodeLastRune">
+      <MemberSignature Language="C#" Value="public static ValueTuple&lt;uint,int&gt; DecodeLastRune (NStack.ustring str, int end = -1);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype System.ValueTuple`2&lt;unsigned int32, int32&gt; DecodeLastRune(class NStack.ustring str, int32 end) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.ValueTuple&lt;System.UInt32,System.Int32&gt;</ReturnType>
+        <Attributes>
+          <Attribute>
+            <AttributeName>System.Runtime.CompilerServices.TupleElementNames(Mono.Cecil.CustomAttributeArgument[])</AttributeName>
+          </Attribute>
+        </Attributes>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="NStack.ustring" />
+        <Parameter Name="end" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="str">String to decode rune from;   if it is empty,
+            it returns (RuneError, 0). Otherwise, if
+            the encoding is invalid, it returns (RuneError, 1). Both are impossible
+            results for correct, non-empty UTF-8.</param>
+        <param name="end">Scan up to that point, if the value is -1, it sets the value to the lenght of the buffer.</param>
+        <summary>
+            DecodeLastRune unpacks the last UTF-8 encoding in the ustring.
+            </summary>
+        <returns>The last rune and its width in bytes.</returns>
+        <remarks>
+            An encoding is invalid if it is incorrect UTF-8, encodes a rune that is
+            out of range, or is not the shortest possible UTF-8 encoding for the
+            value. No other validation is performed.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DecodeLastRune">
+      <MemberSignature Language="C#" Value="public static ValueTuple&lt;uint,int&gt; DecodeLastRune (byte[] buffer, int end = -1);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype System.ValueTuple`2&lt;unsigned int32, int32&gt; DecodeLastRune(unsigned int8[] buffer, int32 end) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.ValueTuple&lt;System.UInt32,System.Int32&gt;</ReturnType>
+        <Attributes>
+          <Attribute>
+            <AttributeName>System.Runtime.CompilerServices.TupleElementNames(Mono.Cecil.CustomAttributeArgument[])</AttributeName>
+          </Attribute>
+        </Attributes>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+        <Parameter Name="end" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">Buffer to decode rune from;   if it is empty,
+            it returns (RuneError, 0). Otherwise, if
+            the encoding is invalid, it returns (RuneError, 1). Both are impossible
+            results for correct, non-empty UTF-8.</param>
+        <param name="end">Scan up to that point, if the value is -1, it sets the value to the lenght of the buffer.</param>
+        <summary>
+            DecodeLastRune unpacks the last UTF-8 encoding in buffer
+            </summary>
+        <returns>The last rune and its width in bytes.</returns>
+        <remarks>
+            An encoding is invalid if it is incorrect UTF-8, encodes a rune that is
+            out of range, or is not the shortest possible UTF-8 encoding for the
+            value. No other validation is performed.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DecodeRune">
+      <MemberSignature Language="C#" Value="public static ValueTuple&lt;uint,int&gt; DecodeRune (NStack.ustring str, int start = 0, int n = -1);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype System.ValueTuple`2&lt;unsigned int32, int32&gt; DecodeRune(class NStack.ustring str, int32 start, int32 n) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.ValueTuple&lt;System.UInt32,System.Int32&gt;</ReturnType>
+        <Attributes>
+          <Attribute>
+            <AttributeName>System.Runtime.CompilerServices.TupleElementNames(Mono.Cecil.CustomAttributeArgument[])</AttributeName>
+          </Attribute>
+        </Attributes>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="NStack.ustring" />
+        <Parameter Name="start" Type="System.Int32" />
+        <Parameter Name="n" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="str">ustring to decode.</param>
+        <param name="start">Starting offset to look into..</param>
+        <param name="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+        <summary>
+            DecodeRune unpacks the first UTF-8 encoding in the ustring returns the rune and
+            its width in bytes. 
+            </summary>
+        <returns>If p is empty it returns (RuneError, 0). Otherwise, if
+            the encoding is invalid, it returns (RuneError, 1). Both are impossible
+            results for correct, non-empty UTF-8.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DecodeRune">
+      <MemberSignature Language="C#" Value="public static ValueTuple&lt;uint,int&gt; DecodeRune (byte[] buffer, int start = 0, int n = -1);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype System.ValueTuple`2&lt;unsigned int32, int32&gt; DecodeRune(unsigned int8[] buffer, int32 start, int32 n) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.ValueTuple&lt;System.UInt32,System.Int32&gt;</ReturnType>
+        <Attributes>
+          <Attribute>
+            <AttributeName>System.Runtime.CompilerServices.TupleElementNames(Mono.Cecil.CustomAttributeArgument[])</AttributeName>
+          </Attribute>
+        </Attributes>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+        <Parameter Name="start" Type="System.Int32" />
+        <Parameter Name="n" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">Byte buffer containing the utf8 string.</param>
+        <param name="start">Starting offset to look into..</param>
+        <param name="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+        <summary>
+            DecodeRune unpacks the first UTF-8 encoding in p and returns the rune and
+            its width in bytes. 
+            </summary>
+        <returns>If p is empty it returns (RuneError, 0). Otherwise, if
+            the encoding is invalid, it returns (RuneError, 1). Both are impossible
+            results for correct, non-empty UTF-8.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="EncodeRune">
+      <MemberSignature Language="C#" Value="public static int EncodeRune (uint rune, byte[] dest, int offset = 0);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 EncodeRune(unsigned int32 rune, unsigned int8[] dest, int32 offset) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rune" Type="System.UInt32" />
+        <Parameter Name="dest" Type="System.Byte[]" />
+        <Parameter Name="offset" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="rune">Rune to encode.</param>
+        <param name="dest">Destination buffer.</param>
+        <param name="offset">Offset into the destination buffer.</param>
+        <summary>
+            Writes into the destination buffer starting at offset the UTF8 encoded version of the rune
+            </summary>
+        <returns>The number of bytes written into the destination buffer.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FullRune">
+      <MemberSignature Language="C#" Value="public static bool FullRune (NStack.ustring str);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool FullRune(class NStack.ustring str) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="str">The string to check.</param>
+        <summary>
+            FullRune reports whether the ustring begins with a full UTF-8 encoding of a rune.
+            An invalid encoding is considered a full Rune since it will convert as a width-1 error rune.
+            </summary>
+        <returns>
+          <c>true</c>, if the bytes in p begin with a full UTF-8 encoding of a rune, <c>false</c> otherwise.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FullRune">
+      <MemberSignature Language="C#" Value="public static bool FullRune (byte[] p);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool FullRune(unsigned int8[] p) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="p" Type="System.Byte[]" />
+      </Parameters>
+      <Docs>
+        <param name="p">byte array.</param>
+        <summary>
+            FullRune reports whether the bytes in p begin with a full UTF-8 encoding of a rune.
+            An invalid encoding is considered a full Rune since it will convert as a width-1 error rune.
+            </summary>
+        <returns>
+          <c>true</c>, if the bytes in p begin with a full UTF-8 encoding of a rune, <c>false</c> otherwise.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InvalidIndex">
+      <MemberSignature Language="C#" Value="public static int InvalidIndex (NStack.ustring str);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 InvalidIndex(class NStack.ustring str) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="str">String containing the utf8 buffer.</param>
+        <summary>
+            Use to find the index of the first invalid utf8 byte sequence in a buffer
+            </summary>
+        <returns>The index of the first insvalid byte sequence or -1 if the entire buffer is valid.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InvalidIndex">
+      <MemberSignature Language="C#" Value="public static int InvalidIndex (byte[] buffer);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 InvalidIndex(unsigned int8[] buffer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">Buffer containing the utf8 buffer.</param>
+        <summary>
+            Use to find the index of the first invalid utf8 byte sequence in a buffer
+            </summary>
+        <returns>The index of the first insvalid byte sequence or -1 if the entire buffer is valid.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MaxRune">
+      <MemberSignature Language="C#" Value="public const uint MaxRune = 1114111;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal unsigned int32 MaxRune = (1114111)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.UInt32</ReturnType>
+      </ReturnValue>
+      <MemberValue>1114111</MemberValue>
+      <Docs>
+        <summary>
+            Maximum valid Unicode code point.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RuneCount">
+      <MemberSignature Language="C#" Value="public static int RuneCount (NStack.ustring str);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 RuneCount(class NStack.ustring str) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="str">utf8 string.</param>
+        <summary>
+            Returns the number of runes in a ustring.
+            </summary>
+        <returns>Numnber of runes.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RuneCount">
+      <MemberSignature Language="C#" Value="public static int RuneCount (byte[] buffer, int offset = 0, int count = -1);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 RuneCount(unsigned int8[] buffer, int32 offset, int32 count) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+        <Parameter Name="offset" Type="System.Int32" />
+        <Parameter Name="count" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">Byte buffer containing a utf8 string.</param>
+        <param name="offset">Starting offset in the buffer.</param>
+        <param name="count">Number of bytes to process in buffer, or -1 to process until the end of the buffer.</param>
+        <summary>
+            Returns the number of runes in a utf8 encoded buffer
+            </summary>
+        <returns>Numnber of runes.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RuneError">
+      <MemberSignature Language="C#" Value="public static uint RuneError;" />
+      <MemberSignature Language="ILAsm" Value=".field public static unsigned int32 RuneError" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.UInt32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The "error" Rune or "Unicode replacement character"
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RuneLen">
+      <MemberSignature Language="C#" Value="public static int RuneLen (uint rune);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 RuneLen(unsigned int32 rune) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rune" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="rune">Rune to probe.</param>
+        <summary>
+            number of bytes required to encode the rune.
+            </summary>
+        <returns>The length, or -1 if the rune is not a valid value to encode in UTF-8.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RuneSelf">
+      <MemberSignature Language="C#" Value="public const byte RuneSelf = 128;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal unsigned int8 RuneSelf = (128)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Byte</ReturnType>
+      </ReturnValue>
+      <MemberValue>128</MemberValue>
+      <Docs>
+        <summary>
+            Characters below RuneSelf are represented as themselves in a single byte
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Utf8Max">
+      <MemberSignature Language="C#" Value="public const int Utf8Max = 4;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 Utf8Max = (4)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>4</MemberValue>
+      <Docs>
+        <summary>
+            Maximum number of bytes required to encode every unicode code point.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Valid">
+      <MemberSignature Language="C#" Value="public static bool Valid (NStack.ustring str);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool Valid(class NStack.ustring str) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="str">String to validate.</param>
+        <summary>
+            Reports whether the ustring consists entirely of valid UTF-8-encoded runes.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Valid">
+      <MemberSignature Language="C#" Value="public static bool Valid (byte[] buffer);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool Valid(unsigned int8[] buffer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">Byte buffer containing a utf8 string.</param>
+        <summary>
+            Reports whether p consists entirely of valid UTF-8-encoded runes.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ValidRune">
+      <MemberSignature Language="C#" Value="public static bool ValidRune (uint rune);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool ValidRune(unsigned int32 rune) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rune" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="rune">The rune to test.</param>
+        <summary>
+             ValidRune reports whether a rune can be legally encoded as UTF-8.
+            </summary>
+        <returns>
+          <c>true</c>, if rune was valided, <c>false</c> otherwise.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

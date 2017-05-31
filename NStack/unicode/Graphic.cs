@@ -16,10 +16,16 @@ namespace NStack {
 			pLmask = pLo
 		}
 
+		/// <summary>
+		/// The range tables for graphics
+		/// </summary>
 		public static RangeTable [] GraphicRanges = new [] {
 			_L, _M, _N, _P, _S, _Zs
 		};
 
+		/// <summary>
+		/// The range tables for print
+		/// </summary>
 		public static RangeTable [] PrintRanges = new [] {
 			_L, _M, _N, _P, _S
 		};

@@ -1,0 +1,55 @@
+<Overview>
+  <Assemblies>
+    <Assembly Name="NStack" Version="1.0.6360.18206">
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Diagnostics.Debuggable(System.Diagnostics.DebuggableAttribute+DebuggingModes.Default | System.Diagnostics.DebuggableAttribute+DebuggingModes.DisableOptimizations | System.Diagnostics.DebuggableAttribute+DebuggingModes.IgnoreSymbolStoreSequencePoints | System.Diagnostics.DebuggableAttribute+DebuggingModes.EnableEditAndContinue)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCompany("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyConfiguration("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCopyright("${AuthorCopyright}")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyDescription("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyProduct("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTitle("NStack")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTrademark("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.CompilationRelaxations(8)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.Versioning.TargetFramework(".NETFramework,Version=v4.6.1", FrameworkDisplayName=".NET Framework 4.6.1")</AttributeName>
+        </Attribute>
+      </Attributes>
+    </Assembly>
+  </Assemblies>
+  <Remarks>APIs for .NET using new C# language capabilities and modern idioms.    Some of the main features include the new ustring data type, a string suitable to be used for manipulating UTF8 encoded strings and supports slicing.</Remarks>
+  <Copyright>To be added.</Copyright>
+  <Types>
+    <Namespace Name="NStack">
+      <Type Name="Unicode" Kind="Class" />
+      <Type Name="Unicode+Case" Kind="Enumeration" />
+      <Type Name="Unicode+RangeTable" Kind="Structure" />
+      <Type Name="Unicode+SpecialCase" Kind="Structure" />
+      <Type Name="ustring" Kind="Class" />
+      <Type Name="ustring+RunePredicate" Kind="Delegate" />
+      <Type Name="Utf8" Kind="Class" />
+    </Namespace>
+  </Types>
+  <Title>NStack</Title>
+</Overview>

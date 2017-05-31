@@ -72,7 +72,7 @@ namespace NStack {
 			}
 		}
 
-		protected override ustring GetRange (int start, int end)
+		protected internal override ustring GetRange (int start, int end)
 		{
 			unsafe {
 				return new ubstring ((IntPtr)((byte*)block + start), end - start, null);
@@ -184,7 +184,7 @@ namespace NStack {
 			return -1;
 		}
 
-		protected override ustring GetRange (int start, int end)
+		protected internal override ustring GetRange (int start, int end)
 		{
 			return new rstring (buffer, start, end-start);
 		}
@@ -252,7 +252,7 @@ namespace NStack {
 			return -1;
 		}
 
-		protected override ustring GetRange (int start, int end)
+		protected internal override ustring GetRange (int start, int end)
 		{
 			return new rstring (buffer, start + this.start, end - start);
 		}
@@ -438,6 +438,10 @@ namespace NStack {
 			return new sstring (buffer);
 		}
 
+		/// <summary>
+		/// Serves as a hash function for a <see cref="T:NStack.ustring"/> object.
+		/// </summary>
+		/// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a hash table.</returns>
 		public override int GetHashCode ()
 		{
 			return (int)HashStr ().hash;
@@ -494,7 +498,13 @@ namespace NStack {
 		/// <remarks>The index value shoudl be between 0 and Length-1.</remarks>
 		public abstract byte this [int index] { get; }
 
-		protected abstract ustring GetRange (int start, int end);
+		/// <summary>
+		/// For internal use, returns the range of bytes specified.
+		/// </summary>
+		/// <returns>The range.</returns>
+		/// <param name="start">Start.</param>
+		/// <param name="end">End.</param>
+		protected internal abstract ustring GetRange (int start, int end);
 
 		/// <summary>
 		/// Returns a slice of the ustring delimited by the [start, end) range.  If the range is invalid, the return is the Empty string.
@@ -774,6 +784,12 @@ namespace NStack {
 			return true;
 		}
 
+		/// <summary>
+		/// Reports the zero-based index of the first occurrence of a specified Unicode character or string within this instance. 
+		/// </summary>
+		/// <returns>The zero-based index position of value if that character is found, or -1 if it is not.</returns>
+		/// <param name="substr">The string to seek.</param>
+		/// <param name="offset">The search starting position.</param>
 		public int IndexOf (ustring substr, int offset = 0)
 		{
 			if (substr == null)
@@ -830,7 +846,7 @@ namespace NStack {
 		/// <summary>
 		/// Reports the zero-based index position of the last occurrence of a specified substring within this instance
 		/// </summary>
-		/// <returns>The zero-based index position of <paramref name="value" /> if that character is found, or -1 if it is not.</returns>
+		/// <returns>The zero-based index position of <paramref name="substr" /> if that character is found, or -1 if it is not.</returns>
 		/// <param name="substr">The ustring to seek.</param>
 		public int LastIndexOf (ustring substr)
 		{
@@ -1080,7 +1096,7 @@ namespace NStack {
 		/// <summary>
 		/// Determines whether the beginning of this string instance matches the specified string.
 		/// </summary>
-		/// <returns><c>true</c> if <paramref name="value" /> matches the beginning of this string; otherwise, <c>false</c>.</returns>
+		/// <returns><c>true</c> if <paramref name="prefix" /> matches the beginning of this string; otherwise, <c>false</c>.</returns>
 		/// <param name="prefix">Prefix.</param>
 		public bool StartsWith (ustring prefix)
 		{
@@ -1384,6 +1400,10 @@ namespace NStack {
 			return Unicode.IsSpace (rune);
 		}
 
+		/// <summary>
+		/// Converts the string to Title-case, that is every word (as determined by <see cref="IsSeparator"/> is Title cased.
+		/// </summary>
+		/// <returns>A title-cased string.</returns>
 		public ustring Title ()
 		{
 			uint prev = ' ';
@@ -1474,6 +1494,10 @@ namespace NStack {
 			return TrimEnd (MakeCutSet (cutset));
 		}
 
+		/// <summary>
+		/// Returns a slice of the string with all leading and trailing space characters removed (as determined by <see cref="M:NStack.Unicode.IsSpace()"/> 
+		/// </summary>
+		/// <returns>The space.</returns>
 		public ustring TrimSpace ()
 		{
 			return Trim (Unicode.IsSpace);

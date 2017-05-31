@@ -1,0 +1,27 @@
+<Type Name="ustring+RunePredicate" FullName="NStack.ustring+RunePredicate">
+  <TypeSignature Language="C#" Value="public delegate bool ustring.RunePredicate(uint rune);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed ustring/RunePredicate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>NStack</AssemblyName>
+    <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+    <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+    <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="rune" Type="System.UInt32" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Boolean</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="rune">To be added.</param>
+    <summary>
+            Rune predicate functions take a rune as input and return a boolean determining if the rune matches or not.
+            </summary>
+    <returns>To be added.</returns>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

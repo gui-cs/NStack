@@ -1,0 +1,1562 @@
+<Type Name="ustring" FullName="NStack.ustring">
+  <TypeSignature Language="C#" Value="public abstract class ustring : IComparable" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ustring extends System.Object implements class System.IComparable" />
+  <AssemblyInfo>
+    <AssemblyName>NStack</AssemblyName>
+    <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+    <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+    <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.IComparable</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+            ustrings provide a series of operations on a series of bytes that contain either valid or invalid UTF8 byte sequences.
+            </summary>
+    <remarks>
+            The ustring provides a series of string-like operations over an array of bytes.   The buffer
+            is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
+            sequence many of the operations will continue to work.
+            
+            The strings can be created either from byte arrays, a range within a byte array, or from a 
+            block of unmanaged memory.  The ustrings are created using the <see cref="M:NStack.ustring.Make(System.Byte[])" /> methods in the
+            class, not by invoking the new operator on the class.
+            
+            The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
+            property describes the number of code points (or runes) that are reprenseted by the underlying 
+            utf8 encoded buffer.
+            
+            The ustring supports slicing by calling the indexer with two arguments, the argument represent
+            indexes into the underlying byte buffer.  The starting index is inclusive, while the ending index
+            is exclusive.   Negative values can be used to index the string from the end.  See the documentation
+            for the indexer for more details.
+            
+            </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected ustring ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CompareTo">
+      <MemberSignature Language="C#" Value="public int CompareTo (object value);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 CompareTo(object value) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="value">Value.</param>
+        <summary>
+            Implements the IComparable.CompareTo method
+            </summary>
+        <returns>Less than zero if this instance is less than value, zero if they are the same, and higher than zero if the instance is greater.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Concat">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Concat (NStack.ustring[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Concat(class NStack.ustring[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="args" Type="NStack.ustring[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="args">One or more ustrings.</param>
+        <summary>
+            Concatenates the provided ustrings into a new ustring.
+            </summary>
+        <returns>A new ustring that contains the concatenation of all the ustrings.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Contains">
+      <MemberSignature Language="C#" Value="public bool Contains (NStack.ustring substr);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool Contains(class NStack.ustring substr) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="substr" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="substr">The string to seek.</param>
+        <summary>
+            Returns a value indicating whether a specified substring occurs within this string.
+            </summary>
+        <returns>true if the <paramref name="substr" /> parameter occurs within this string, or if <paramref name="substr" /> is the empty string (""); otherwise, false.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Contains">
+      <MemberSignature Language="C#" Value="public bool Contains (uint rune);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool Contains(unsigned int32 rune) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rune" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="rune">The rune to seek.</param>
+        <summary>
+            Returns a value indicating whether a specified rune occurs within this string.
+            </summary>
+        <returns>true if the <paramref name="rune" /> parameter occurs within this string; otherwise, false.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ContainsAny">
+      <MemberSignature Language="C#" Value="public bool ContainsAny (NStack.ustring chars);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool ContainsAny(class NStack.ustring chars) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="chars" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="chars">string contanining one or more characters.</param>
+        <summary>
+            Returns a value indicating whether any of the characters in the provided string occurs within this string.
+            </summary>
+        <returns>true if any of the characters in <paramref name="chars" /> parameter occurs within this string; otherwise, false.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ContainsAny">
+      <MemberSignature Language="C#" Value="public bool ContainsAny (uint[] runes);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool ContainsAny(unsigned int32[] runes) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="runes" Type="System.UInt32[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="runes">one or more runes.</param>
+        <summary>
+            Returns a value indicating whether any of the runes occurs within this string.
+            </summary>
+        <returns>true if any of the runes in <paramref name="runes" /> parameter occurs within this string; otherwise, false.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CopyTo">
+      <MemberSignature Language="C#" Value="public abstract void CopyTo (int offset, byte[] target, int targetOffset, int count);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void CopyTo(int32 offset, unsigned int8[] target, int32 targetOffset, int32 count) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="offset" Type="System.Int32" />
+        <Parameter Name="target" Type="System.Byte[]" />
+        <Parameter Name="targetOffset" Type="System.Int32" />
+        <Parameter Name="count" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="offset">Offset in the underlying ustring buffer to copy from.</param>
+        <param name="target">Target array where the buffer contents will be copied to.</param>
+        <param name="targetOffset">Offset into the target array where this will be copied to.</param>
+        <param name="count">Number of bytes to copy.</param>
+        <summary>
+            Copies the specified number of bytes from the the underlying ustring representation to the target array at the specified offset.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Count">
+      <MemberSignature Language="C#" Value="public int Count (NStack.ustring substr);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 Count(class NStack.ustring substr) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="substr" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="substr">Substr.</param>
+        <summary>
+            Count the number of non-overlapping instances of substr in the string.
+            </summary>
+        <returns>If substr is an empty string, Count returns 1 + the number of Unicode code points in the string, otherwise the count of non-overlapping instances in string.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Empty">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Empty;" />
+      <MemberSignature Language="ILAsm" Value=".field public static class NStack.ustring Empty" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The empty ustring.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="EndsWith">
+      <MemberSignature Language="C#" Value="public bool EndsWith (NStack.ustring suffix);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool EndsWith(class NStack.ustring suffix) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="suffix" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="suffix">The string to compare to the substring at the end of this instance.</param>
+        <summary>
+            Determines whether the end of this string instance matches the specified string.
+            </summary>
+        <returns>true if <paramref name="suffix" /> matches the end of this instance; otherwise, false.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public override bool Equals (object obj);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance bool Equals(object obj) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">The <see cref="T:System.Object" /> to compare with the current <see cref="T:NStack.ustring" />.</param>
+        <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:NStack.ustring" />.
+            </summary>
+        <returns>
+          <c>true</c> if the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:NStack.ustring" />;
+            otherwise, <c>false</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Explode">
+      <MemberSignature Language="C#" Value="public NStack.ustring[] Explode (int limit = -1);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring[] Explode(int32 limit) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="limit" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="limit">Maximum number of entries to return, or -1 for no limits.</param>
+        <summary>
+            Explode splits the string into a slice of UTF-8 strings
+            </summary>
+        <returns>, one string per unicode character, 
+            up to the specified limit.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetHashCode">
+      <MemberSignature Language="C#" Value="public override int GetHashCode ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance int32 GetHashCode() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Serves as a hash function for a <see cref="T:NStack.ustring" /> object.
+            </summary>
+        <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a hash table.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetRange">
+      <MemberSignature Language="C#" Value="protected abstract NStack.ustring GetRange (int start, int end);" />
+      <MemberSignature Language="ILAsm" Value=".method familyorassemblyhidebysig newslot virtual instance class NStack.ustring GetRange(int32 start, int32 end) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="start" Type="System.Int32" />
+        <Parameter Name="end" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="start">Start.</param>
+        <param name="end">End.</param>
+        <summary>
+            For internal use, returns the range of bytes specified.
+            </summary>
+        <returns>The range.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexByte">
+      <MemberSignature Language="C#" Value="public abstract int IndexByte (byte b);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 IndexByte(unsigned int8 b) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="b" Type="System.Byte" />
+      </Parameters>
+      <Docs>
+        <param name="b">The byte to seek.</param>
+        <summary>
+            Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.
+            </summary>
+        <returns>The zero-based index position of <paramref name="b" /> if that byte is found, or -1 if it is not.  </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOf">
+      <MemberSignature Language="C#" Value="public int IndexOf (NStack.ustring.RunePredicate matchFunc);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOf(class NStack.ustring/RunePredicate matchFunc) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="matchFunc" Type="NStack.ustring+RunePredicate" />
+      </Parameters>
+      <Docs>
+        <param name="matchFunc">Match func, it receives a rune as a parameter and should return true if it matches, false otherwise.</param>
+        <summary>
+            IndexOf returns the index into s of the first Unicode rune satisfying matchFunc(rune), or -1 if none do.
+            </summary>
+        <returns>The index inside the string where the rune is found, or -1 on error.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOf">
+      <MemberSignature Language="C#" Value="public int IndexOf (uint rune);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOf(unsigned int32 rune) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rune" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="rune">Rune.</param>
+        <summary>
+            Reports the zero-based index of the first occurrence of the specified Unicode rune in this string
+            </summary>
+        <returns>The zero-based index position of <paramref name="rune" /> if that character is found, or -1 if it is not.  If the rune is Utf8.RuneError, it returns the first instance of any invalid UTF-8 byte sequence.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOf">
+      <MemberSignature Language="C#" Value="public int IndexOf (NStack.ustring substr, int offset = 0);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOf(class NStack.ustring substr, int32 offset) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="substr" Type="NStack.ustring" />
+        <Parameter Name="offset" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="substr">The string to seek.</param>
+        <param name="offset">The search starting position.</param>
+        <summary>
+            Reports the zero-based index of the first occurrence of a specified Unicode character or string within this instance. 
+            </summary>
+        <returns>The zero-based index position of value if that character is found, or -1 if it is not.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOfAny">
+      <MemberSignature Language="C#" Value="public int IndexOfAny (NStack.ustring chars);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOfAny(class NStack.ustring chars) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="chars" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="chars">ustring containing characters to seek.</param>
+        <summary>
+            Reports the zero-based index of the first occurrence in this instance of any character in the provided string
+            </summary>
+        <returns>The zero-based index position of the first occurrence in this instance where any character in <paramref name="chars" /> was found; -1 if no character in <paramref name="chars" /> was found.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOfAny">
+      <MemberSignature Language="C#" Value="public int IndexOfAny (uint[] runes);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOfAny(unsigned int32[] runes) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="runes" Type="System.UInt32[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="runes">ustring containing runes.</param>
+        <summary>
+            Reports the zero-based index of the first occurrence in this instance of any runes in the provided string
+            </summary>
+        <returns>The zero-based index position of the first occurrence in this instance where any character in <paramref name="runes" /> was found; -1 if no character in <paramref name="runes" /> was found.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsEmpty">
+      <MemberSignature Language="C#" Value="public bool IsEmpty { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsEmpty" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets a value indicating whether this <see cref="T:NStack.ustring" /> is empty.
+            </summary>
+        <value>
+          <c>true</c> if is empty (Lenght is zero); otherwise, <c>false</c>.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsSeparator">
+      <MemberSignature Language="C#" Value="public static bool IsSeparator (uint rune);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsSeparator(unsigned int32 rune) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rune" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="rune">The rune to test.</param>
+        <summary>
+            IsSeparator reports whether the rune could mark a word boundary.
+            </summary>
+        <returns>
+          <c>true</c>, if the rune can be considered a word boundary, <c>false</c> otherwise.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Item">
+      <MemberSignature Language="C#" Value="public abstract byte this[int index] { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance unsigned int8 Item(int32)" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Byte</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="index" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="index">To be added.</param>
+        <summary>
+            Returns the byte at the specified position.
+            </summary>
+        <value>The byte encoded at the specified position.</value>
+        <remarks>The index value shoudl be between 0 and Length-1.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Item">
+      <MemberSignature Language="C#" Value="public NStack.ustring this[int start, int end] { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class NStack.ustring Item(int32, int32)" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="start" Type="System.Int32" />
+        <Parameter Name="end" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="start">Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
+        <param name="end">End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.   If the value is zero, the end is computed as the last index of the string.</param>
+        <summary>
+            Returns a slice of the ustring delimited by the [start, end) range.  If the range is invalid, the return is the Empty string.
+            </summary>
+        <value>To be added.</value>
+        <remarks>
+            Some examples given the string "1234567890":
+            
+            The range [0, 4] produces "1234"
+            The range [8, 10] produces "90"
+            The range [8, 0] produces "90"
+            The range [-2, 0] produces "90"
+            The range [8, 9] produces "9"
+            The range [-4, -1] produces "789"
+            The range [-4, 0] produces "7890"
+            The range [-4, 0] produces "7890"
+            The range [-9, -3] produces "234567"
+            
+            This indexer does not raise exceptions for invalid indexes, instead the value 
+            returned is the ustring.Empty value:
+            
+            The range [100, 200] produces the ustring.Empty
+            The range [-100, 0] produces ustring.Empty
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Join">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Join (NStack.ustring separator, NStack.ustring[] values);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Join(class NStack.ustring separator, class NStack.ustring[] values) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="separator" Type="NStack.ustring" />
+        <Parameter Name="values" Type="NStack.ustring[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="separator">Separator.</param>
+        <param name="values">Values.</param>
+        <summary>
+            Concatenates all the elements of a ustring array, using the specified separator between each element.
+            </summary>
+        <returns>A string that consists of the elements in <paramref name="values" /> delimited by the <paramref name="separator" /> string. If <paramref name="values" /> is an empty array, the method returns <see cref="F:System.ustring.Empty" />.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LastIndexByte">
+      <MemberSignature Language="C#" Value="public int LastIndexByte (byte b);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 LastIndexByte(unsigned int8 b) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="b" Type="System.Byte" />
+      </Parameters>
+      <Docs>
+        <param name="b">The byte to seek.</param>
+        <summary>
+            Reports the zero-based index position of the last occurrence of a specified byte on the underlying byte buffer.
+            </summary>
+        <returns>The zero-based index position of <paramref name="b" /> if that byte is found, or -1 if it is not.  </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LastIndexOf">
+      <MemberSignature Language="C#" Value="public int LastIndexOf (NStack.ustring substr);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 LastIndexOf(class NStack.ustring substr) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="substr" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="substr">The ustring to seek.</param>
+        <summary>
+            Reports the zero-based index position of the last occurrence of a specified substring within this instance
+            </summary>
+        <returns>The zero-based index position of <paramref name="substr" /> if that character is found, or -1 if it is not.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LastIndexOf">
+      <MemberSignature Language="C#" Value="public int LastIndexOf (NStack.ustring.RunePredicate matchFunc);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 LastIndexOf(class NStack.ustring/RunePredicate matchFunc) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="matchFunc" Type="NStack.ustring+RunePredicate" />
+      </Parameters>
+      <Docs>
+        <param name="matchFunc">Match func, it receives a rune as a parameter and should return true if it matches, false otherwise.</param>
+        <summary>
+            LastIndexOf returns the index into s of the last Unicode rune satisfying matchFunc(rune), or -1 if none do.
+            </summary>
+        <returns>The last index inside the string where the rune is found, or -1 on error.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LastIndexOfAny">
+      <MemberSignature Language="C#" Value="public int LastIndexOfAny (NStack.ustring chars);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 LastIndexOfAny(class NStack.ustring chars) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="chars" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="chars">The string containing characters to seek.</param>
+        <summary>
+            Reports the zero-based index position of the last occurrence in this instance of one or more characters specified in the uustring.
+            </summary>
+        <returns>The index position of the last occurrence in this instance where any character in <paramref name="chars" /> was found; -1 if no character in <paramref name="chars" /> was found.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Length">
+      <MemberSignature Language="C#" Value="public abstract int Length { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 Length" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets the length in bytes of the byte buffer.
+            </summary>
+        <value>The length in bytes of the encoded UTF8 string, does not represent the number of runes.</value>
+        <remarks>To obtain the number of runes in the string, use the <see cref="P:System.ustring.RuneCount" /> property.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Make">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Make (byte[] buffer);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(unsigned int8[] buffer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="buffer">Buffer containing the utf8 encoded string.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:NStack.ustring" /> class using the provided byte array for its storage.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+            No validation is performed on the contents of the byte buffer, so it
+            might contains invalid UTF-8 sequences.
+            
+            No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Make">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Make (char[] chars);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(char[] chars) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="chars" Type="System.Char[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="chars">Characters.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:NStack.ustring" /> class from an array of C# characters.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Make">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Make (string str);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(string str) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="str">C# String.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:NStack.ustring" /> class from a string.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Make">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Make (uint rune);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(unsigned int32 rune) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rune" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="rune">Rune (short name for Unicode code point).</param>
+        <summary>
+            Initializes a new instance using the provided rune as the sole character in the string.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Make">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Make (byte[] buffer, int start, int count);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(unsigned int8[] buffer, int32 start, int32 count) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+        <Parameter Name="start" Type="System.Int32" />
+        <Parameter Name="count" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">Buffer containing the utf8 encoded string.</param>
+        <param name="start">Starting offset into the buffer.</param>
+        <param name="count">Number of bytes to consume from the buffer.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:NStack.ustring" /> class from a byte array.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+            No validation is performed on the contents of the byte buffer, so it
+            might contains invalid UTF-8 sequences.
+            
+            This will make a copy of the buffer range.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Make">
+      <MemberSignature Language="C#" Value="public static NStack.ustring Make (IntPtr block, int size, Action&lt;NStack.ustring,IntPtr&gt; releaseFunc = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NStack.ustring Make(native int block, int32 size, class System.Action`2&lt;class NStack.ustring, native int&gt; releaseFunc) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="block" Type="System.IntPtr" />
+        <Parameter Name="size" Type="System.Int32" />
+        <Parameter Name="releaseFunc" Type="System.Action&lt;NStack.ustring,System.IntPtr&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="block">Pointer to a block of memory.</param>
+        <param name="size">Number of bytes in the block to treat as a string.</param>
+        <param name="releaseFunc">Optional method to invoke to release when this string is finalized to clear the associated resources, you can use this for example to release the unamanged resource to which the block belongs.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:NStack.ustring" /> class from a block of memory and a size.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+            This will return a ustring that represents the block of memory provided.
+            
+            The returned object will be a subclass of ustring that implements IDisposable, which you can use
+            to trigger the synchronous execution of the <paramref name="releaseFunc" />.   If you do not call
+            Dispose manually, the provided release function will be invoked from the finalizer thread.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static NStack.ustring op_Addition (NStack.ustring u1, NStack.ustring u2);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname class NStack.ustring op_Addition(class NStack.ustring u1, class NStack.ustring u2) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="u1" Type="NStack.ustring" />
+        <Parameter Name="u2" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="u1">The first <see cref="T:NStack.ustring" /> to add, can be null.</param>
+        <param name="u2">The second <see cref="T:NStack.ustring" /> to add, can be null.</param>
+        <summary>
+            Concatenates the contents of two <see cref="T:NStack.ustring" /> instances.
+            </summary>
+        <returns>The <see cref="T:NStack.ustring" /> that is the concatenation of the strings of <c>u1</c> and <c>u2</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Equality">
+      <MemberSignature Language="C#" Value="public static bool op_Equality (NStack.ustring a, NStack.ustring b);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname bool op_Equality(class NStack.ustring a, class NStack.ustring b) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="NStack.ustring" />
+        <Parameter Name="b" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="a">The first <see cref="T:NStack.ustring" /> to compare.</param>
+        <param name="b">The second <see cref="T:NStack.ustring" /> to compare.</param>
+        <summary>
+            Determines whether a specified instance of <see cref="T:NStack.ustring" /> is equal to another specified <see cref="T:NStack.ustring" />, this means that the contents of the string are identical
+            </summary>
+        <returns>
+          <c>true</c> if <c>a</c> and <c>b</c> are equal; otherwise, <c>false</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Implicit">
+      <MemberSignature Language="C#" Value="public static NStack.ustring op_Implicit (byte[] buffer);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname class NStack.ustring op_Implicit(unsigned int8[] buffer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">The buffer containing the data.</param>
+        <summary>
+            Implicit conversion from a byte array into a ustring.
+            </summary>
+        <returns>The ustring wrapping the existing byte array.</returns>
+        <remarks>
+            The returned string will keep a reference to the buffer, which 
+            means that changes done to the buffer will be reflected into the
+            ustring.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Implicit">
+      <MemberSignature Language="C#" Value="public static NStack.ustring op_Implicit (string str);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname class NStack.ustring op_Implicit(string str) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="str" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="str">The string to encode as a ustring.</param>
+        <summary>
+            Implicit conversion from a C# string into a ustring.
+            </summary>
+        <returns>The ustring with the same contents as the string.</returns>
+        <remarks>
+            This will allocate a byte array and copy the contents of the 
+            string encoded as UTF8 into it.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Inequality">
+      <MemberSignature Language="C#" Value="public static bool op_Inequality (NStack.ustring a, NStack.ustring b);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig specialname bool op_Inequality(class NStack.ustring a, class NStack.ustring b) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="NStack.ustring" />
+        <Parameter Name="b" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="a">The first <see cref="T:NStack.ustring" /> to compare.</param>
+        <param name="b">The second <see cref="T:NStack.ustring" /> to compare.</param>
+        <summary>
+            Determines whether a specified instance of <see cref="T:NStack.ustring" /> is not equal to another specified <see cref="T:NStack.ustring" />.
+            </summary>
+        <returns>
+          <c>true</c> if <c>a</c> and <c>b</c> are not equal; otherwise, <c>false</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Range">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerable&lt;ValueTuple&lt;int,uint&gt;&gt; Range ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Collections.Generic.IEnumerable`1&lt;valuetype System.ValueTuple`2&lt;int32, unsigned int32&gt;&gt; Range() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;Range&gt;d__54))</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.ValueTuple&lt;System.Int32,System.UInt32&gt;&gt;</ReturnType>
+        <Attributes>
+          <Attribute>
+            <AttributeName>System.Runtime.CompilerServices.TupleElementNames(Mono.Cecil.CustomAttributeArgument[])</AttributeName>
+          </Attribute>
+        </Attributes>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            An enumerator that returns the index within the string, and the rune found at that location
+            </summary>
+        <returns>Enumerable object that can be used to iterate and get the index of the values at the same time.</returns>
+        <remarks>
+            This is useful to iterate over the string and obtain both the index of the rune and the rune
+            in the same call.  
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RuneCount">
+      <MemberSignature Language="C#" Value="public int RuneCount { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 RuneCount" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets the rune count of the string.
+            </summary>
+        <value>The rune count.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="StartsWith">
+      <MemberSignature Language="C#" Value="public bool StartsWith (NStack.ustring prefix);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool StartsWith(class NStack.ustring prefix) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="prefix" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="prefix">Prefix.</param>
+        <summary>
+            Determines whether the beginning of this string instance matches the specified string.
+            </summary>
+        <returns>
+          <c>true</c> if <paramref name="prefix" /> matches the beginning of this string; otherwise, <c>false</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Title">
+      <MemberSignature Language="C#" Value="public NStack.ustring Title ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring Title() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Converts the string to Title-case, that is every word (as determined by <see cref="M:NStack.ustring.IsSeparator(System.UInt32)" /> is Title cased.
+            </summary>
+        <returns>A title-cased string.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToByteArray">
+      <MemberSignature Language="C#" Value="public abstract byte[] ToByteArray ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance unsigned int8[] ToByteArray() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Byte[]</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a version of the ustring as a byte array, it might allocate or return the internal byte buffer, depending on the backing implementation.
+            </summary>
+        <returns>A byte array containing the contents of the ustring.</returns>
+        <remarks>
+            The byte array contains either a copy of the underlying data, in the cases where the ustring was created
+            from an unmanaged pointer or when the ustring was created by either slicing or from a range withing a byte
+            array.   Otherwise the returned array that is used by the ustring itself.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToLower">
+      <MemberSignature Language="C#" Value="public NStack.ustring ToLower ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToLower() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a copy of the string s with all Unicode letters mapped to their lower case.
+            </summary>
+        <returns>The lowercased string.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToLower">
+      <MemberSignature Language="C#" Value="public NStack.ustring ToLower (NStack.Unicode.SpecialCase specialCase);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToLower(valuetype NStack.Unicode/SpecialCase specialCase) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="specialCase" Type="NStack.Unicode+SpecialCase" />
+      </Parameters>
+      <Docs>
+        <param name="specialCase">To be added.</param>
+        <summary>
+            Returns a copy of the string s with all Unicode letters mapped to their lower case giving priority to the special casing rules.
+            </summary>
+        <returns>The string to uppercase.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToRunes">
+      <MemberSignature Language="C#" Value="public uint[] ToRunes (int limit = -1);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance unsigned int32[] ToRunes(int32 limit) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.UInt32[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="limit" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="limit">Maximum number of entries to return, or -1 for no limits.</param>
+        <summary>
+            Converts a ustring into a rune array.
+            </summary>
+        <returns>An array containing the runes for the string up to the specified limit.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToTitle">
+      <MemberSignature Language="C#" Value="public NStack.ustring ToTitle ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToTitle() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a copy of the string s with all Unicode letters mapped to their title case.
+            </summary>
+        <returns>The title-cased string.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToTitle">
+      <MemberSignature Language="C#" Value="public NStack.ustring ToTitle (NStack.Unicode.SpecialCase specialCase);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToTitle(valuetype NStack.Unicode/SpecialCase specialCase) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="specialCase" Type="NStack.Unicode+SpecialCase" />
+      </Parameters>
+      <Docs>
+        <param name="specialCase">To be added.</param>
+        <summary>
+            Returns a copy of the string s with all Unicode letters mapped to their title case giving priority to the special casing rules.
+            </summary>
+        <returns>The string to uppercase.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToUpper">
+      <MemberSignature Language="C#" Value="public NStack.ustring ToUpper ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToUpper() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a copy of the string s with all Unicode letters mapped to their upper case.
+            </summary>
+        <returns>The string to uppercase.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToUpper">
+      <MemberSignature Language="C#" Value="public NStack.ustring ToUpper (NStack.Unicode.SpecialCase specialCase);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring ToUpper(valuetype NStack.Unicode/SpecialCase specialCase) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="specialCase" Type="NStack.Unicode+SpecialCase" />
+      </Parameters>
+      <Docs>
+        <param name="specialCase">To be added.</param>
+        <summary>
+            Returns a copy of the string s with all Unicode letters mapped to their upper case giving priority to the special casing rules.
+            </summary>
+        <returns>The string to uppercase.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Trim">
+      <MemberSignature Language="C#" Value="public NStack.ustring Trim (NStack.ustring.RunePredicate predicate);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring Trim(class NStack.ustring/RunePredicate predicate) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="predicate" Type="NStack.ustring+RunePredicate" />
+      </Parameters>
+      <Docs>
+        <param name="predicate">Predicate.</param>
+        <summary>
+            Returns a slice of the string with all leading and trailing runes matching the predicate removed.
+            </summary>
+        <returns>The trim.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TrimEnd">
+      <MemberSignature Language="C#" Value="public NStack.ustring TrimEnd (NStack.ustring cutset);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimEnd(class NStack.ustring cutset) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="cutset" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="cutset">Characters to remove.</param>
+        <summary>
+            TrimEnd returns a slice of the string with all leading characters in cutset removed.
+            </summary>
+        <returns>The slice of the string with all cutset characters removed.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TrimEnd">
+      <MemberSignature Language="C#" Value="public NStack.ustring TrimEnd (NStack.ustring.RunePredicate predicate);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimEnd(class NStack.ustring/RunePredicate predicate) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="predicate" Type="NStack.ustring+RunePredicate" />
+      </Parameters>
+      <Docs>
+        <param name="predicate">Function that determines whether this character must be trimmed.</param>
+        <summary>
+            Returns a slice of the string with all trailing runes matching the predicate removed.
+            </summary>
+        <returns>The current string if the predicate does not match anything, or a slice of the string starting in the first rune after the predicate matched.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TrimSpace">
+      <MemberSignature Language="C#" Value="public NStack.ustring TrimSpace ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimSpace() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a slice of the string with all leading and trailing space characters removed (as determined by <see cref="M:NStack.Unicode.IsSpace()" /></summary>
+        <returns>The space.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TrimStart">
+      <MemberSignature Language="C#" Value="public NStack.ustring TrimStart (NStack.ustring cutset);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimStart(class NStack.ustring cutset) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="cutset" Type="NStack.ustring" />
+      </Parameters>
+      <Docs>
+        <param name="cutset">Characters to remove.</param>
+        <summary>
+            TrimStarts returns a slice of the string with all leading characters in cutset removed.
+            </summary>
+        <returns>The slice of the string with all cutset characters removed.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TrimStart">
+      <MemberSignature Language="C#" Value="public NStack.ustring TrimStart (NStack.ustring.RunePredicate predicate);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NStack.ustring TrimStart(class NStack.ustring/RunePredicate predicate) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.6360.17759</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18195</AssemblyVersion>
+        <AssemblyVersion>1.0.6360.18206</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.ustring</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="predicate" Type="NStack.ustring+RunePredicate" />
+      </Parameters>
+      <Docs>
+        <param name="predicate">Function that determines whether this character must be trimmed.</param>
+        <summary>
+            Returns a slice of the string with all leading runes matching the predicate removed.
+            </summary>
+        <returns>The current string if the predicate does not match anything, or a slice of the string starting in the first rune after the predicate matched.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

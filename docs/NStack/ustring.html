@@ -1,0 +1,2702 @@
+<html>
+  <head>
+    <title>NStack.ustring</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      @media (min-width:1200px) {
+         body {
+	     max-width: 100ch;
+	     padding: 0 5%;
+	     margin-left: auto;
+	     margin-right: auto;         
+	 }
+      }
+      @media (min-width:1200px) {
+      }
+
+      body {
+         font-family: segoe-ui_normal,Segoe UI,Segoe,Segoe WP,Helvetica Neue,Helvetica,sans-serif;
+      }
+
+      a { text-decoration: none }
+
+      div.SideBar {
+        padding-left: 1em;
+        padding-right: 1em;
+        right: 0;
+        float: right;
+        border: thin solid black;
+        background-color: #f2f2f2;
+	visibility: hidden;
+      }
+
+      .CollectionTitle { font-weight: bold }
+      .PageTitle { 
+      	font-family: segoe-ui_light,Segoe UI Light,Segoe WP,Helvetica Neue,Helvetica,sans-serif;
+	font-size: 2.5rem;
+	margin-bottom: 0;
+	margin-top: 10px;
+	font-weight: 300;
+	font-style: normal;
+	line-height: 1.3;
+	text-rendering: optimizeLegibility;
+      }
+
+      .Summary { 
+        margin-top: 0;
+      }
+      .Signature { 
+         font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
+	 line-height: 1.25;
+	 -webkit-font-smoothing: auto;
+	 -moz-osx-font-smoothing: auto;
+      }
+      .Remarks { }
+      .Members { }
+      .Copyright { }
+      
+      .Section, h2 { 
+	color: #4c668b;
+	font-size: 1.875rem;
+	font-family: segoe-ui_semibold;
+	word-break: break-all;
+      }
+      p.Summary {
+        margin-left: 1em;
+      }
+      .SectionBox { 
+      }
+
+      .SectionBox b a {
+          font-size: .875rem;
+          font-weight: normal;
+      }
+      
+      a:hover {
+          text-decoration: underline;
+      }
+
+      .NamespaceName { font-size: 105%; font-weight: bold }
+      .NamespaceSumary { }
+      .MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+      .Subsection { 
+          margin-bottom: 2px;
+	  margin-top: 24px;
+      }
+      .SubsectionBox dl dt i { 
+          font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;      
+      }
+
+      .CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+      
+      .TypesListing {
+        border-collapse: collapse;
+      }
+
+      td {
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+
+      .TypesListing td { 
+        margin: 0px;  
+        padding: .25em;
+        border: solid gray 1px;
+      }
+
+      .TypesListing th { 
+        margin: 0px;  
+        padding: .25em;
+        background-color: #f2f2f2;
+        border: solid gray 1px;
+      }
+
+      div.Footer {
+        border-top: 1px solid gray;
+        margin-top: 1.5em;
+        padding-top: 0.6em;
+        text-align: center;
+        color: gray;
+      }
+
+      span.NotEntered /* Documentation for this section has not yet been entered */ {
+        font-style: italic;
+        color: lightgrey;
+      }
+
+      div.Header {
+        background: #B0C4DE;
+        border: double;
+        border-color: white;
+        border-width: 7px;
+        padding: 0.5em;
+      }
+
+      div.Header * {
+        font-size: smaller;
+      }
+
+      div.Note {
+      }
+
+      i.ParamRef {
+      }
+
+      i.subtitle {
+      }
+
+      ul.TypeMembersIndex {
+        text-align: left;
+        background: #F8F8F8;
+      }
+
+      ul.TypeMembersIndex li {
+        display: inline;
+        margin:  0.5em;
+      }
+
+      table.HeaderTable {
+      }
+
+      table.SignatureTable {
+      }
+
+      table.Documentation, table.Enumeration, table.TypeDocumentation {
+        border-collapse: collapse;
+        width: 100%;
+	font-size: 0.875rem;
+      }
+
+      table.Documentation tr th, table.TypeMembers tr th, table.Enumeration tr th, table.TypeDocumentation tr th {
+        background: whitesmoke;
+        padding: 0.8em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: bottom;
+      }
+
+      table.Documentation tr td, table.TypeMembers tr td, table.Enumeration tr td, table.TypeDocumentation tr td {
+        border-width: 1px 0 0;
+	border-style: solid;
+	border-color: #e0e0e0;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      table.Documentation tr td:nth-last-child(2), table.TypeMembers tr td:nth-last-child(2), table.Enumeration tr td:nth-last-child(2), table.TypeDocumentation tr td:nth-last-child(2) {
+         float: none;
+	 padding: 14px 28px 14px 0;
+//	 width: 30%;
+	 border-top-width: 1px;
+         font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
+      }
+
+      table.Documentation tr td:nth-last-child(1), table.TypeMembers tr td:nth-last-child(1), table.Enumeration tr td:nth-last-child(1), table.TypeDocumentation tr td:nth-last-child(1) {
+         float: none;
+	 padding: 14px 0;
+//	 width: 70%;
+	 border-top-width: 1px;
+      }
+
+      table.TypeMembers {
+        width: 100%;
+      }
+
+      table.TypeMembers tr td {
+      }
+
+      table.Documentation {
+      }
+
+      table.TypeMembers {
+      }
+
+      div.CodeExample {
+        width: 100%;
+        border: 1px solid #DDDDDD;
+        background-color: #F8F8F8;
+      }
+
+      div.CodeExample p {
+        margin: 0.5em;
+        border-bottom: 1px solid #DDDDDD;
+      }
+
+      div.CodeExample div {
+        margin: 0.5em;
+      }
+
+      h4 {
+        margin-bottom: 0;
+	font-weight: 500;
+      }
+
+      div.Signature {
+        border: 1px solid #C0C0C0;
+        background: #F2F2F2;
+        padding: 1em;
+      }
+    </style>
+    <script type="text/JavaScript">
+      function toggle_display (block) {
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") {
+          w.style.display = "block";
+          t.innerHTML = "⊟";
+        } else {
+          w.style.display = "none";
+          t.innerHTML = "⊞";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">NStack</a> : <a href="index.html">NStack Namespace</a></div>
+    <div class="SideBar">
+      <p>
+        <a href="#T:NStack.ustring">Overview</a>
+      </p>
+      <p>
+        <a href="#T:NStack.ustring:Signature">Signature</a>
+      </p>
+      <p>
+        <a href="#T:NStack.ustring:Docs">Remarks</a>
+      </p>
+      <p>
+        <a href="#Members">Members</a>
+      </p>
+      <p>
+        <a href="#T:NStack.ustring:Members">Member Details</a>
+      </p>
+    </div>
+    <h1 class="PageTitle" id="T:NStack.ustring">ustring  Class</h1>
+    <p class="Summary" id="T:NStack.ustring:Summary">
+            ustrings provide a series of operations on a series of bytes that contain either valid or invalid UTF8 byte sequences.
+            </p>
+    <div>
+      <h2>Syntax</h2>
+      <div class="Signature" id="T:NStack.ustring:Signature">public abstract class  <b>ustring</b> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IComparable">IComparable</a></div>
+    </div>
+    <div class="Remarks" id="T:NStack.ustring:Docs">
+      <h2 class="Section">Remarks</h2>
+      <div class="SectionBox" id="T:NStack.ustring:Docs:Remarks">
+            The ustring provides a series of string-like operations over an array of bytes.   The buffer
+            is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
+            sequence many of the operations will continue to work.
+            
+            The strings can be created either from byte arrays, a range within a byte array, or from a 
+            block of unmanaged memory.  The ustrings are created using the <a href="../NStack/ustring.html#M:NStack.ustring.Make(System.Byte[])">ustring.Make(Byte[])</a> methods in the
+            class, not by invoking the new operator on the class.
+            
+            The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
+            property describes the number of code points (or runes) that are reprenseted by the underlying 
+            utf8 encoded buffer.
+            
+            The ustring supports slicing by calling the indexer with two arguments, the argument represent
+            indexes into the underlying byte buffer.  The starting index is inclusive, while the ending index
+            is exclusive.   Negative values can be used to index the string from the end.  See the documentation
+            for the indexer for more details.
+            
+            </div>
+      <h2 class="Section">Requirements</h2>
+      <div class="SectionBox" id="T:NStack.ustring:Docs:Version Information">
+        <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+      <h2 class="Section" id="Members">Members</h2>
+      <div class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+							</p>
+        <h2 class="Section">Protected Constructors</h2>
+        <div class="SectionBox" id="Protected Constructors">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:NStack.ustring()">ustring</a>
+                    </b>()</div>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Fields</h2>
+        <div class="SectionBox" id="Public Fields">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:NStack.ustring.Empty">Empty</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="../NStack/ustring.html">ustring</a>
+                  </i>. 
+            The empty ustring.
+            </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Properties</h2>
+        <div class="SectionBox" id="Public Properties">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:NStack.ustring.IsEmpty">IsEmpty</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                  </i>. 
+            Gets a value indicating whether this <a href="../NStack/ustring.html">NStack.ustring</a> is empty.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div><i>default property</i></div><div>abstract </div></td>
+                <td>
+                  <b>
+                    <a href="#P:NStack.ustring.Item(System.Int32)">Item</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)</td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>
+                  </i>. 
+            Returns the byte at the specified position.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div><i>default property</i></div><div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:NStack.ustring.Item(System.Int32,System.Int32)">Item</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)</td>
+                <td>
+                  <i>
+                    <a href="../NStack/ustring.html">ustring</a>
+                  </i>. 
+            Returns a slice of the ustring delimited by the [start, end) range.  If the range is invalid, the return is the Empty string.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div>abstract </div></td>
+                <td>
+                  <b>
+                    <a href="#P:NStack.ustring.Length">Length</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                  </i>. 
+            Gets the length in bytes of the byte buffer.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:NStack.ustring.RuneCount">RuneCount</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                  </i>. 
+            Gets the rune count of the string.
+            </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Methods</h2>
+        <div class="SectionBox" id="Public Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.CompareTo(System.Object)">CompareTo</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Implements the IComparable.CompareTo method
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Concat(NStack.ustring[])">Concat</a>
+                  </b>(<b>params</b> <a href="../NStack/ustring.html">ustring</a>[])<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Concatenates the provided ustrings into a new ustring.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Contains(NStack.ustring)">Contains</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            Returns a value indicating whether a specified substring occurs within this string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Contains(System.UInt32)">Contains</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            Returns a value indicating whether a specified rune occurs within this string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ContainsAny(NStack.ustring)">ContainsAny</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            Returns a value indicating whether any of the characters in the provided string occurs within this string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ContainsAny(System.UInt32[])">ContainsAny</a>
+                  </b>(<b>params</b> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>[])<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            Returns a value indicating whether any of the runes occurs within this string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>abstract </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32)">CopyTo</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<blockquote>
+            Copies the specified number of bytes from the the underlying ustring representation to the target array at the specified offset.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Count(NStack.ustring)">Count</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Count the number of non-overlapping instances of substr in the string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.EndsWith(NStack.ustring)">EndsWith</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            Determines whether the end of this string instance matches the specified string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>override </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Equals(System.Object)">Equals</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            Determines whether the specified <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> is equal to the current <a href="../NStack/ustring.html">NStack.ustring</a>.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Explode(System.Int32)">Explode</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a>[]</nobr><blockquote>
+            Explode splits the string into a slice of UTF-8 strings
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>override </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.GetHashCode()">GetHashCode</a>
+                  </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Serves as a hash function for a <a href="../NStack/ustring.html">NStack.ustring</a> object.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>abstract </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.IndexByte(System.Byte)">IndexByte</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate)">IndexOf</a>
+                  </b>(<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            IndexOf returns the index into s of the first Unicode rune satisfying matchFunc(rune), or -1 if none do.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.IndexOf(System.UInt32)">IndexOf</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index of the first occurrence of the specified Unicode rune in this string
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.IndexOf(NStack.ustring,System.Int32)">IndexOf</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index of the first occurrence of a specified Unicode character or string within this instance. 
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.IndexOfAny(NStack.ustring)">IndexOfAny</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index of the first occurrence in this instance of any character in the provided string
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.IndexOfAny(System.UInt32[])">IndexOfAny</a>
+                  </b>(<b>params</b> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>[])<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index of the first occurrence in this instance of any runes in the provided string
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.IsSeparator(System.UInt32)">IsSeparator</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            IsSeparator reports whether the rune could mark a word boundary.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Join(NStack.ustring,NStack.ustring[])">Join</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>, <b>params</b> <a href="../NStack/ustring.html">ustring</a>[])<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Concatenates all the elements of a ustring array, using the specified separator between each element.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.LastIndexByte(System.Byte)">LastIndexByte</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index position of the last occurrence of a specified byte on the underlying byte buffer.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.LastIndexOf(NStack.ustring)">LastIndexOf</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index position of the last occurrence of a specified substring within this instance
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.LastIndexOf(NStack.ustring.RunePredicate)">LastIndexOf</a>
+                  </b>(<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            LastIndexOf returns the index into s of the last Unicode rune satisfying matchFunc(rune), or -1 if none do.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.LastIndexOfAny(NStack.ustring)">LastIndexOfAny</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index position of the last occurrence in this instance of one or more characters specified in the uustring.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Make(System.Byte[])">Make</a>
+                  </b>(<b>params</b> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[])<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class using the provided byte array for its storage.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Make(System.Char[])">Make</a>
+                  </b>(<b>params</b> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Char">char</a>[])<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class from an array of C# characters.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Make(System.String)">Make</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class from a string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Make(System.UInt32)">Make</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Initializes a new instance using the provided rune as the sole character in the string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32)">Make</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class from a byte array.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr})">Make</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Action`2">Action&lt;ustring, IntPtr&gt;</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class from a block of memory and a size.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Range()">Range</a>
+                  </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;ValueTuple&lt;int, uint&gt;&gt;</a></nobr><blockquote>
+            An enumerator that returns the index within the string, and the rune found at that location
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.StartsWith(NStack.ustring)">StartsWith</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
+            Determines whether the beginning of this string instance matches the specified string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Title()">Title</a>
+                  </b>()<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Converts the string to Title-case, that is every word (as determined by <a href="../NStack/ustring.html#M:NStack.ustring.IsSeparator(System.UInt32)">ustring.IsSeparator(uint)</a> is Title cased.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>abstract </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ToByteArray()">ToByteArray</a>
+                  </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[]</nobr><blockquote>
+            Returns a version of the ustring as a byte array, it might allocate or return the internal byte buffer, depending on the backing implementation.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ToLower()">ToLower</a>
+                  </b>()<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a copy of the string s with all Unicode letters mapped to their lower case.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ToLower(NStack.Unicode.SpecialCase)">ToLower</a>
+                  </b>(<a href="../NStack/Unicode+SpecialCase.html">Unicode.SpecialCase</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a copy of the string s with all Unicode letters mapped to their lower case giving priority to the special casing rules.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ToRunes(System.Int32)">ToRunes</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>[]</nobr><blockquote>
+            Converts a ustring into a rune array.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ToTitle()">ToTitle</a>
+                  </b>()<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a copy of the string s with all Unicode letters mapped to their title case.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ToTitle(NStack.Unicode.SpecialCase)">ToTitle</a>
+                  </b>(<a href="../NStack/Unicode+SpecialCase.html">Unicode.SpecialCase</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a copy of the string s with all Unicode letters mapped to their title case giving priority to the special casing rules.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ToUpper()">ToUpper</a>
+                  </b>()<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a copy of the string s with all Unicode letters mapped to their upper case.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.ToUpper(NStack.Unicode.SpecialCase)">ToUpper</a>
+                  </b>(<a href="../NStack/Unicode+SpecialCase.html">Unicode.SpecialCase</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a copy of the string s with all Unicode letters mapped to their upper case giving priority to the special casing rules.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Trim(NStack.ustring.RunePredicate)">Trim</a>
+                  </b>(<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a slice of the string with all leading and trailing runes matching the predicate removed.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.TrimEnd(NStack.ustring)">TrimEnd</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            TrimEnd returns a slice of the string with all leading characters in cutset removed.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.TrimEnd(NStack.ustring.RunePredicate)">TrimEnd</a>
+                  </b>(<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a slice of the string with all trailing runes matching the predicate removed.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.TrimSpace()">TrimSpace</a>
+                  </b>()<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a slice of the string with all leading and trailing space characters removed (as determined by <a href="../NStack/Unicode.html#M:NStack.Unicode.IsSpace()">Unicode.IsSpace()</a></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.TrimStart(NStack.ustring)">TrimStart</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            TrimStarts returns a slice of the string with all leading characters in cutset removed.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.TrimStart(NStack.ustring.RunePredicate)">TrimStart</a>
+                  </b>(<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            Returns a slice of the string with all leading runes matching the predicate removed.
+            </blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Protected Methods</h2>
+        <div class="SectionBox" id="Protected Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>abstract </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.GetRange(System.Int32,System.Int32)">GetRange</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            For internal use, returns the range of bytes specified.
+            </blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Operators</h2>
+        <div class="SectionBox" id="Public Operators">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#M:NStack.ustring.op_Addition(NStack.ustring,NStack.ustring)">Addition</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>, <a href="../NStack/ustring.html">ustring</a>)</td>
+                <td>
+            Concatenates the contents of two <a href="../NStack/ustring.html">NStack.ustring</a> instances.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#M:NStack.ustring.op_Equality(NStack.ustring,NStack.ustring)">Equality</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>, <a href="../NStack/ustring.html">ustring</a>)</td>
+                <td>
+            Determines whether a specified instance of <a href="../NStack/ustring.html">NStack.ustring</a> is equal to another specified <a href="../NStack/ustring.html">NStack.ustring</a>, this means that the contents of the string are identical
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#M:NStack.ustring.op_Inequality(NStack.ustring,NStack.ustring)">Inequality</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>, <a href="../NStack/ustring.html">ustring</a>)</td>
+                <td>
+            Determines whether a specified instance of <a href="../NStack/ustring.html">NStack.ustring</a> is not equal to another specified <a href="../NStack/ustring.html">NStack.ustring</a>.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#M:NStack.ustring.op_Implicit(System.Byte[])~NStack.ustring">Conversion to NStack.ustring</a>
+                  </b>(Implicit)</td>
+                <td>
+            Implicit conversion from a byte array into a ustring.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#M:NStack.ustring.op_Implicit(System.String)~NStack.ustring">Conversion to NStack.ustring</a>
+                  </b>(Implicit)</td>
+                <td>
+            Implicit conversion from a C# string into a ustring.
+            </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Members" id="T:NStack.ustring:Members">
+      <h2 class="Section" id="MemberDetails">Member Details</h2>
+      <div class="SectionBox" id="_MemberDetails">
+        <h3 id="C:NStack.ustring()">ustring Constructor</h3>
+        <blockquote id="C:NStack.ustring():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">protected  <b>ustring</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="C:NStack.ustring():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="C:NStack.ustring():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.CompareTo(System.Object)">CompareTo Method</h3>
+        <blockquote id="M:NStack.ustring.CompareTo(System.Object):member">
+          <div class="msummary">
+            Implements the IComparable.CompareTo method
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>CompareTo</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> value)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.CompareTo(System.Object):Parameters">
+            <dl>
+              <dt>
+                <i>value</i>
+              </dt>
+              <dd>Value.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.CompareTo(System.Object):Returns">Less than zero if this instance is less than value, zero if they are the same, and higher than zero if the instance is greater.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.CompareTo(System.Object):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.CompareTo(System.Object):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Concat(NStack.ustring[])">Concat Method</h3>
+        <blockquote id="M:NStack.ustring.Concat(NStack.ustring[]):member">
+          <div class="msummary">
+            Concatenates the provided ustrings into a new ustring.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Concat</b> (<b>params</b> <a href="../NStack/ustring.html">ustring</a>[] args)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Concat(NStack.ustring[]):Parameters">
+            <dl>
+              <dt>
+                <i>args</i>
+              </dt>
+              <dd>One or more ustrings.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Concat(NStack.ustring[]):Returns">A new ustring that contains the concatenation of all the ustrings.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Concat(NStack.ustring[]):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Concat(NStack.ustring[]):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Contains(NStack.ustring)">Contains Method</h3>
+        <blockquote id="M:NStack.ustring.Contains(NStack.ustring):member">
+          <div class="msummary">
+            Returns a value indicating whether a specified substring occurs within this string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Contains</b> (<a href="../NStack/ustring.html">ustring</a> substr)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Contains(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>substr</i>
+              </dt>
+              <dd>The string to seek.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Contains(NStack.ustring):Returns">true if the <i>substr</i> parameter occurs within this string, or if <i>substr</i> is the empty string (""); otherwise, false.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Contains(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Contains(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Contains(System.UInt32)">Contains Method</h3>
+        <blockquote id="M:NStack.ustring.Contains(System.UInt32):member">
+          <div class="msummary">
+            Returns a value indicating whether a specified rune occurs within this string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Contains</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> rune)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Contains(System.UInt32):Parameters">
+            <dl>
+              <dt>
+                <i>rune</i>
+              </dt>
+              <dd>The rune to seek.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Contains(System.UInt32):Returns">true if the <i>rune</i> parameter occurs within this string; otherwise, false.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Contains(System.UInt32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Contains(System.UInt32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ContainsAny(NStack.ustring)">ContainsAny Method</h3>
+        <blockquote id="M:NStack.ustring.ContainsAny(NStack.ustring):member">
+          <div class="msummary">
+            Returns a value indicating whether any of the characters in the provided string occurs within this string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>ContainsAny</b> (<a href="../NStack/ustring.html">ustring</a> chars)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ContainsAny(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>chars</i>
+              </dt>
+              <dd>string contanining one or more characters.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ContainsAny(NStack.ustring):Returns">true if any of the characters in <i>chars</i> parameter occurs within this string; otherwise, false.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ContainsAny(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ContainsAny(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ContainsAny(System.UInt32[])">ContainsAny Method</h3>
+        <blockquote id="M:NStack.ustring.ContainsAny(System.UInt32[]):member">
+          <div class="msummary">
+            Returns a value indicating whether any of the runes occurs within this string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>ContainsAny</b> (<b>params</b> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>[] runes)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ContainsAny(System.UInt32[]):Parameters">
+            <dl>
+              <dt>
+                <i>runes</i>
+              </dt>
+              <dd>one or more runes.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ContainsAny(System.UInt32[]):Returns">true if any of the runes in <i>runes</i> parameter occurs within this string; otherwise, false.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ContainsAny(System.UInt32[]):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ContainsAny(System.UInt32[]):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32)">CopyTo Method</h3>
+        <blockquote id="M:NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32):member">
+          <div class="msummary">
+            Copies the specified number of bytes from the the underlying ustring representation to the target array at the specified offset.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public abstract <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>CopyTo</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> offset, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] target, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> targetOffset, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> count)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>offset</i>
+              </dt>
+              <dd>Offset in the underlying ustring buffer to copy from.</dd>
+              <dt>
+                <i>target</i>
+              </dt>
+              <dd>Target array where the buffer contents will be copied to.</dd>
+              <dt>
+                <i>targetOffset</i>
+              </dt>
+              <dd>Offset into the target array where this will be copied to.</dd>
+              <dt>
+                <i>count</i>
+              </dt>
+              <dd>Number of bytes to copy.</dd>
+            </dl>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Count(NStack.ustring)">Count Method</h3>
+        <blockquote id="M:NStack.ustring.Count(NStack.ustring):member">
+          <div class="msummary">
+            Count the number of non-overlapping instances of substr in the string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>Count</b> (<a href="../NStack/ustring.html">ustring</a> substr)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Count(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>substr</i>
+              </dt>
+              <dd>Substr.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Count(NStack.ustring):Returns">If substr is an empty string, Count returns 1 + the number of Unicode code points in the string, otherwise the count of non-overlapping instances in string.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Count(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Count(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:NStack.ustring.Empty">Empty Field</h3>
+        <blockquote id="F:NStack.ustring.Empty:member">
+          <div class="msummary">
+            The empty ustring.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Empty</b> </div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="F:NStack.ustring.Empty:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="F:NStack.ustring.Empty:Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.EndsWith(NStack.ustring)">EndsWith Method</h3>
+        <blockquote id="M:NStack.ustring.EndsWith(NStack.ustring):member">
+          <div class="msummary">
+            Determines whether the end of this string instance matches the specified string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>EndsWith</b> (<a href="../NStack/ustring.html">ustring</a> suffix)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.EndsWith(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>suffix</i>
+              </dt>
+              <dd>The string to compare to the substring at the end of this instance.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.EndsWith(NStack.ustring):Returns">true if <i>suffix</i> matches the end of this instance; otherwise, false.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.EndsWith(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.EndsWith(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Equals(System.Object)">Equals Method</h3>
+        <blockquote id="M:NStack.ustring.Equals(System.Object):member">
+          <div class="msummary">
+            Determines whether the specified <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> is equal to the current <a href="../NStack/ustring.html">NStack.ustring</a>.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public override <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Equals</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> obj)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Equals(System.Object):Parameters">
+            <dl>
+              <dt>
+                <i>obj</i>
+              </dt>
+              <dd>The <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> to compare with the current <a href="../NStack/ustring.html">NStack.ustring</a>.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Equals(System.Object):Returns">
+            <tt>true</tt> if the specified <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> is equal to the current <a href="../NStack/ustring.html">NStack.ustring</a>;
+            otherwise, <tt>false</tt>.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Equals(System.Object):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Equals(System.Object):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Explode(System.Int32)">Explode Method</h3>
+        <blockquote id="M:NStack.ustring.Explode(System.Int32):member">
+          <div class="msummary">
+            Explode splits the string into a slice of UTF-8 strings
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a>[] <b>Explode</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> limit)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Explode(System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>limit</i>
+              </dt>
+              <dd>Maximum number of entries to return, or -1 for no limits.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Explode(System.Int32):Returns">, one string per unicode character, 
+            up to the specified limit.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Explode(System.Int32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Explode(System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.GetHashCode()">GetHashCode Method</h3>
+        <blockquote id="M:NStack.ustring.GetHashCode():member">
+          <div class="msummary">
+            Serves as a hash function for a <a href="../NStack/ustring.html">NStack.ustring</a> object.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public override <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>GetHashCode</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.GetHashCode():Returns">A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a hash table.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.GetHashCode():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.GetHashCode():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.GetRange(System.Int32,System.Int32)">GetRange Method</h3>
+        <blockquote id="M:NStack.ustring.GetRange(System.Int32,System.Int32):member">
+          <div class="msummary">
+            For internal use, returns the range of bytes specified.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">protected abstract <a href="../NStack/ustring.html">ustring</a> <b>GetRange</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> start, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> end)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.GetRange(System.Int32,System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>start</i>
+              </dt>
+              <dd>Start.</dd>
+              <dt>
+                <i>end</i>
+              </dt>
+              <dd>End.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.GetRange(System.Int32,System.Int32):Returns">The range.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.GetRange(System.Int32,System.Int32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.GetRange(System.Int32,System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IndexByte(System.Byte)">IndexByte Method</h3>
+        <blockquote id="M:NStack.ustring.IndexByte(System.Byte):member">
+          <div class="msummary">
+            Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public abstract <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexByte</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> b)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Parameters">
+            <dl>
+              <dt>
+                <i>b</i>
+              </dt>
+              <dd>The byte to seek.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Returns">The zero-based index position of <i>b</i> if that byte is found, or -1 if it is not.  </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate)">IndexOf Method</h3>
+        <blockquote id="M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate):member">
+          <div class="msummary">
+            IndexOf returns the index into s of the first Unicode rune satisfying matchFunc(rune), or -1 if none do.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexOf</b> (<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a> matchFunc)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate):Parameters">
+            <dl>
+              <dt>
+                <i>matchFunc</i>
+              </dt>
+              <dd>Match func, it receives a rune as a parameter and should return true if it matches, false otherwise.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate):Returns">The index inside the string where the rune is found, or -1 on error.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IndexOf(System.UInt32)">IndexOf Method</h3>
+        <blockquote id="M:NStack.ustring.IndexOf(System.UInt32):member">
+          <div class="msummary">
+            Reports the zero-based index of the first occurrence of the specified Unicode rune in this string
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexOf</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> rune)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Parameters">
+            <dl>
+              <dt>
+                <i>rune</i>
+              </dt>
+              <dd>Rune.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Returns">The zero-based index position of <i>rune</i> if that character is found, or -1 if it is not.  If the rune is Utf8.RuneError, it returns the first instance of any invalid UTF-8 byte sequence.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32)">IndexOf Method</h3>
+        <blockquote id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32):member">
+          <div class="msummary">
+            Reports the zero-based index of the first occurrence of a specified Unicode character or string within this instance. 
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexOf</b> (<a href="../NStack/ustring.html">ustring</a> substr, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> offset)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>substr</i>
+              </dt>
+              <dd>The string to seek.</dd>
+              <dt>
+                <i>offset</i>
+              </dt>
+              <dd>The search starting position.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32):Returns">The zero-based index position of value if that character is found, or -1 if it is not.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IndexOfAny(NStack.ustring)">IndexOfAny Method</h3>
+        <blockquote id="M:NStack.ustring.IndexOfAny(NStack.ustring):member">
+          <div class="msummary">
+            Reports the zero-based index of the first occurrence in this instance of any character in the provided string
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexOfAny</b> (<a href="../NStack/ustring.html">ustring</a> chars)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOfAny(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>chars</i>
+              </dt>
+              <dd>ustring containing characters to seek.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOfAny(NStack.ustring):Returns">The zero-based index position of the first occurrence in this instance where any character in <i>chars</i> was found; -1 if no character in <i>chars</i> was found.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOfAny(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOfAny(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IndexOfAny(System.UInt32[])">IndexOfAny Method</h3>
+        <blockquote id="M:NStack.ustring.IndexOfAny(System.UInt32[]):member">
+          <div class="msummary">
+            Reports the zero-based index of the first occurrence in this instance of any runes in the provided string
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexOfAny</b> (<b>params</b> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>[] runes)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOfAny(System.UInt32[]):Parameters">
+            <dl>
+              <dt>
+                <i>runes</i>
+              </dt>
+              <dd>ustring containing runes.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOfAny(System.UInt32[]):Returns">The zero-based index position of the first occurrence in this instance where any character in <i>runes</i> was found; -1 if no character in <i>runes</i> was found.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOfAny(System.UInt32[]):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOfAny(System.UInt32[]):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:NStack.ustring.IsEmpty">IsEmpty Property</h3>
+        <blockquote id="P:NStack.ustring.IsEmpty:member">
+          <div class="msummary">
+            Gets a value indicating whether this <a href="../NStack/ustring.html">NStack.ustring</a> is empty.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>IsEmpty</b>  { get; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:NStack.ustring.IsEmpty:Value">
+            <tt>true</tt> if is empty (Lenght is zero); otherwise, <tt>false</tt>.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:NStack.ustring.IsEmpty:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:NStack.ustring.IsEmpty:Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IsSeparator(System.UInt32)">IsSeparator Method</h3>
+        <blockquote id="M:NStack.ustring.IsSeparator(System.UInt32):member">
+          <div class="msummary">
+            IsSeparator reports whether the rune could mark a word boundary.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>IsSeparator</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> rune)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IsSeparator(System.UInt32):Parameters">
+            <dl>
+              <dt>
+                <i>rune</i>
+              </dt>
+              <dd>The rune to test.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IsSeparator(System.UInt32):Returns">
+            <tt>true</tt>, if the rune can be considered a word boundary, <tt>false</tt> otherwise.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IsSeparator(System.UInt32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IsSeparator(System.UInt32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:NStack.ustring.Item(System.Int32)">Item Property</h3>
+        <blockquote id="P:NStack.ustring.Item(System.Int32):member">
+          <div class="msummary">
+            Returns the byte at the specified position.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <p>
+              <i>This is the default property for this class.</i>
+            </p>public abstract <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> this [<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> index] { get; }</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="P:NStack.ustring.Item(System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>index</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:NStack.ustring.Item(System.Int32):Value">The byte encoded at the specified position.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:NStack.ustring.Item(System.Int32):Remarks">The index value shoudl be between 0 and Length-1.</div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:NStack.ustring.Item(System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:NStack.ustring.Item(System.Int32,System.Int32)">Item Property</h3>
+        <blockquote id="P:NStack.ustring.Item(System.Int32,System.Int32):member">
+          <div class="msummary">
+            Returns a slice of the ustring delimited by the [start, end) range.  If the range is invalid, the return is the Empty string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <p>
+              <i>This is the default property for this class.</i>
+            </p>public <a href="../NStack/ustring.html">ustring</a> this [<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> start, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> end] { get; }</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="P:NStack.ustring.Item(System.Int32,System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>start</i>
+              </dt>
+              <dd>Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</dd>
+              <dt>
+                <i>end</i>
+              </dt>
+              <dd>End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.   If the value is zero, the end is computed as the last index of the string.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:NStack.ustring.Item(System.Int32,System.Int32):Value">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:NStack.ustring.Item(System.Int32,System.Int32):Remarks">
+            Some examples given the string "1234567890":
+            
+            The range [0, 4] produces "1234"
+            The range [8, 10] produces "90"
+            The range [8, 0] produces "90"
+            The range [-2, 0] produces "90"
+            The range [8, 9] produces "9"
+            The range [-4, -1] produces "789"
+            The range [-4, 0] produces "7890"
+            The range [-4, 0] produces "7890"
+            The range [-9, -3] produces "234567"
+            
+            This indexer does not raise exceptions for invalid indexes, instead the value 
+            returned is the ustring.Empty value:
+            
+            The range [100, 200] produces the ustring.Empty
+            The range [-100, 0] produces ustring.Empty
+            </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:NStack.ustring.Item(System.Int32,System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Join(NStack.ustring,NStack.ustring[])">Join Method</h3>
+        <blockquote id="M:NStack.ustring.Join(NStack.ustring,NStack.ustring[]):member">
+          <div class="msummary">
+            Concatenates all the elements of a ustring array, using the specified separator between each element.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Join</b> (<a href="../NStack/ustring.html">ustring</a> separator, <b>params</b> <a href="../NStack/ustring.html">ustring</a>[] values)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Join(NStack.ustring,NStack.ustring[]):Parameters">
+            <dl>
+              <dt>
+                <i>separator</i>
+              </dt>
+              <dd>Separator.</dd>
+              <dt>
+                <i>values</i>
+              </dt>
+              <dd>Values.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Join(NStack.ustring,NStack.ustring[]):Returns">A string that consists of the elements in <i>values</i> delimited by the <i>separator</i> string. If <i>values</i> is an empty array, the method returns <a href="http://www.go-mono.com/docs/monodoc.ashx?link=F:System.ustring.Empty">ustring.Empty</a>.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Join(NStack.ustring,NStack.ustring[]):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Join(NStack.ustring,NStack.ustring[]):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.LastIndexByte(System.Byte)">LastIndexByte Method</h3>
+        <blockquote id="M:NStack.ustring.LastIndexByte(System.Byte):member">
+          <div class="msummary">
+            Reports the zero-based index position of the last occurrence of a specified byte on the underlying byte buffer.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>LastIndexByte</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> b)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.LastIndexByte(System.Byte):Parameters">
+            <dl>
+              <dt>
+                <i>b</i>
+              </dt>
+              <dd>The byte to seek.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.LastIndexByte(System.Byte):Returns">The zero-based index position of <i>b</i> if that byte is found, or -1 if it is not.  </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.LastIndexByte(System.Byte):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.LastIndexByte(System.Byte):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.LastIndexOf(NStack.ustring)">LastIndexOf Method</h3>
+        <blockquote id="M:NStack.ustring.LastIndexOf(NStack.ustring):member">
+          <div class="msummary">
+            Reports the zero-based index position of the last occurrence of a specified substring within this instance
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>LastIndexOf</b> (<a href="../NStack/ustring.html">ustring</a> substr)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.LastIndexOf(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>substr</i>
+              </dt>
+              <dd>The ustring to seek.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.LastIndexOf(NStack.ustring):Returns">The zero-based index position of <i>substr</i> if that character is found, or -1 if it is not.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.LastIndexOf(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.LastIndexOf(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.LastIndexOf(NStack.ustring.RunePredicate)">LastIndexOf Method</h3>
+        <blockquote id="M:NStack.ustring.LastIndexOf(NStack.ustring.RunePredicate):member">
+          <div class="msummary">
+            LastIndexOf returns the index into s of the last Unicode rune satisfying matchFunc(rune), or -1 if none do.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>LastIndexOf</b> (<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a> matchFunc)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.LastIndexOf(NStack.ustring.RunePredicate):Parameters">
+            <dl>
+              <dt>
+                <i>matchFunc</i>
+              </dt>
+              <dd>Match func, it receives a rune as a parameter and should return true if it matches, false otherwise.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.LastIndexOf(NStack.ustring.RunePredicate):Returns">The last index inside the string where the rune is found, or -1 on error.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.LastIndexOf(NStack.ustring.RunePredicate):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.LastIndexOf(NStack.ustring.RunePredicate):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.LastIndexOfAny(NStack.ustring)">LastIndexOfAny Method</h3>
+        <blockquote id="M:NStack.ustring.LastIndexOfAny(NStack.ustring):member">
+          <div class="msummary">
+            Reports the zero-based index position of the last occurrence in this instance of one or more characters specified in the uustring.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>LastIndexOfAny</b> (<a href="../NStack/ustring.html">ustring</a> chars)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.LastIndexOfAny(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>chars</i>
+              </dt>
+              <dd>The string containing characters to seek.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.LastIndexOfAny(NStack.ustring):Returns">The index position of the last occurrence in this instance where any character in <i>chars</i> was found; -1 if no character in <i>chars</i> was found.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.LastIndexOfAny(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.LastIndexOfAny(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:NStack.ustring.Length">Length Property</h3>
+        <blockquote id="P:NStack.ustring.Length:member">
+          <div class="msummary">
+            Gets the length in bytes of the byte buffer.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public abstract <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>Length</b>  { get; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:NStack.ustring.Length:Value">The length in bytes of the encoded UTF8 string, does not represent the number of runes.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:NStack.ustring.Length:Remarks">To obtain the number of runes in the string, use the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.ustring.RuneCount">ustring.RuneCount</a> property.</div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:NStack.ustring.Length:Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Make(System.Byte[])">Make Method</h3>
+        <blockquote id="M:NStack.ustring.Make(System.Byte[]):member">
+          <div class="msummary">
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class using the provided byte array for its storage.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Make</b> (<b>params</b> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] buffer)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.Byte[]):Parameters">
+            <dl>
+              <dt>
+                <i>buffer</i>
+              </dt>
+              <dd>Buffer containing the utf8 encoded string.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.Byte[]):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.Byte[]):Remarks">
+            No validation is performed on the contents of the byte buffer, so it
+            might contains invalid UTF-8 sequences.
+            
+            No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
+            </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.Byte[]):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Make(System.Char[])">Make Method</h3>
+        <blockquote id="M:NStack.ustring.Make(System.Char[]):member">
+          <div class="msummary">
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class from an array of C# characters.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Make</b> (<b>params</b> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Char">char</a>[] chars)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.Char[]):Parameters">
+            <dl>
+              <dt>
+                <i>chars</i>
+              </dt>
+              <dd>Characters.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.Char[]):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.Char[]):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.Char[]):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Make(System.String)">Make Method</h3>
+        <blockquote id="M:NStack.ustring.Make(System.String):member">
+          <div class="msummary">
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class from a string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Make</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> str)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.String):Parameters">
+            <dl>
+              <dt>
+                <i>str</i>
+              </dt>
+              <dd>C# String.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.String):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.String):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.String):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Make(System.UInt32)">Make Method</h3>
+        <blockquote id="M:NStack.ustring.Make(System.UInt32):member">
+          <div class="msummary">
+            Initializes a new instance using the provided rune as the sole character in the string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Make</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> rune)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.UInt32):Parameters">
+            <dl>
+              <dt>
+                <i>rune</i>
+              </dt>
+              <dd>Rune (short name for Unicode code point).</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.UInt32):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.UInt32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.UInt32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32)">Make Method</h3>
+        <blockquote id="M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32):member">
+          <div class="msummary">
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class from a byte array.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Make</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] buffer, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> start, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> count)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>buffer</i>
+              </dt>
+              <dd>Buffer containing the utf8 encoded string.</dd>
+              <dt>
+                <i>start</i>
+              </dt>
+              <dd>Starting offset into the buffer.</dd>
+              <dt>
+                <i>count</i>
+              </dt>
+              <dd>Number of bytes to consume from the buffer.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32):Remarks">
+            No validation is performed on the contents of the byte buffer, so it
+            might contains invalid UTF-8 sequences.
+            
+            This will make a copy of the buffer range.
+            </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr})">Make Method</h3>
+        <blockquote id="M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr}):member">
+          <div class="msummary">
+            Initializes a new instance of the <a href="../NStack/ustring.html">NStack.ustring</a> class from a block of memory and a size.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> <b>Make</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> block, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> size, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Action`2">Action&lt;ustring, IntPtr&gt;</a> releaseFunc)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr}):Parameters">
+            <dl>
+              <dt>
+                <i>block</i>
+              </dt>
+              <dd>Pointer to a block of memory.</dd>
+              <dt>
+                <i>size</i>
+              </dt>
+              <dd>Number of bytes in the block to treat as a string.</dd>
+              <dt>
+                <i>releaseFunc</i>
+              </dt>
+              <dd>Optional method to invoke to release when this string is finalized to clear the associated resources, you can use this for example to release the unamanged resource to which the block belongs.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr}):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr}):Remarks">
+            This will return a ustring that represents the block of memory provided.
+            
+            The returned object will be a subclass of ustring that implements IDisposable, which you can use
+            to trigger the synchronous execution of the <i>releaseFunc</i>.   If you do not call
+            Dispose manually, the provided release function will be invoked from the finalizer thread.
+            </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr}):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.op_Addition(NStack.ustring,NStack.ustring)">op_Addition Method</h3>
+        <blockquote id="M:NStack.ustring.op_Addition(NStack.ustring,NStack.ustring):member">
+          <div class="msummary">
+            Concatenates the contents of two <a href="../NStack/ustring.html">NStack.ustring</a> instances.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="../NStack/ustring.html">ustring</a> operator+ (<a href="../NStack/ustring.html">ustring</a> u1, <a href="../NStack/ustring.html">ustring</a> u2)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Addition(NStack.ustring,NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>u1</i>
+              </dt>
+              <dd>The first <a href="../NStack/ustring.html">NStack.ustring</a> to add, can be null.</dd>
+              <dt>
+                <i>u2</i>
+              </dt>
+              <dd>The second <a href="../NStack/ustring.html">NStack.ustring</a> to add, can be null.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Addition(NStack.ustring,NStack.ustring):Returns">The <a href="../NStack/ustring.html">NStack.ustring</a> that is the concatenation of the strings of <tt>u1</tt> and <tt>u2</tt>.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Addition(NStack.ustring,NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Addition(NStack.ustring,NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.op_Equality(NStack.ustring,NStack.ustring)">op_Equality Method</h3>
+        <blockquote id="M:NStack.ustring.op_Equality(NStack.ustring,NStack.ustring):member">
+          <div class="msummary">
+            Determines whether a specified instance of <a href="../NStack/ustring.html">NStack.ustring</a> is equal to another specified <a href="../NStack/ustring.html">NStack.ustring</a>, this means that the contents of the string are identical
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> operator== (<a href="../NStack/ustring.html">ustring</a> a, <a href="../NStack/ustring.html">ustring</a> b)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Equality(NStack.ustring,NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>a</i>
+              </dt>
+              <dd>The first <a href="../NStack/ustring.html">NStack.ustring</a> to compare.</dd>
+              <dt>
+                <i>b</i>
+              </dt>
+              <dd>The second <a href="../NStack/ustring.html">NStack.ustring</a> to compare.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Equality(NStack.ustring,NStack.ustring):Returns">
+            <tt>true</tt> if <tt>a</tt> and <tt>b</tt> are equal; otherwise, <tt>false</tt>.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Equality(NStack.ustring,NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Equality(NStack.ustring,NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.op_Implicit(System.Byte[])~NStack.ustring">Conversion Method</h3>
+        <blockquote id="M:NStack.ustring.op_Implicit(System.Byte[])~NStack.ustring:member">
+          <div class="msummary">
+            Implicit conversion from a byte array into a ustring.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static implicit operator <a href="../NStack/ustring.html">ustring</a> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] buffer)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Implicit(System.Byte[])~NStack.ustring:Parameters">
+            <dl>
+              <dt>
+                <i>buffer</i>
+              </dt>
+              <dd>The buffer containing the data.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Implicit(System.Byte[])~NStack.ustring:Returns">The ustring wrapping the existing byte array.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Implicit(System.Byte[])~NStack.ustring:Remarks">
+            The returned string will keep a reference to the buffer, which 
+            means that changes done to the buffer will be reflected into the
+            ustring.
+            </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Implicit(System.Byte[])~NStack.ustring:Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.op_Implicit(System.String)~NStack.ustring">Conversion Method</h3>
+        <blockquote id="M:NStack.ustring.op_Implicit(System.String)~NStack.ustring:member">
+          <div class="msummary">
+            Implicit conversion from a C# string into a ustring.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static implicit operator <a href="../NStack/ustring.html">ustring</a> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> str)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Implicit(System.String)~NStack.ustring:Parameters">
+            <dl>
+              <dt>
+                <i>str</i>
+              </dt>
+              <dd>The string to encode as a ustring.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Implicit(System.String)~NStack.ustring:Returns">The ustring with the same contents as the string.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Implicit(System.String)~NStack.ustring:Remarks">
+            This will allocate a byte array and copy the contents of the 
+            string encoded as UTF8 into it.
+            </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Implicit(System.String)~NStack.ustring:Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.op_Inequality(NStack.ustring,NStack.ustring)">op_Inequality Method</h3>
+        <blockquote id="M:NStack.ustring.op_Inequality(NStack.ustring,NStack.ustring):member">
+          <div class="msummary">
+            Determines whether a specified instance of <a href="../NStack/ustring.html">NStack.ustring</a> is not equal to another specified <a href="../NStack/ustring.html">NStack.ustring</a>.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> operator!= (<a href="../NStack/ustring.html">ustring</a> a, <a href="../NStack/ustring.html">ustring</a> b)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Inequality(NStack.ustring,NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>a</i>
+              </dt>
+              <dd>The first <a href="../NStack/ustring.html">NStack.ustring</a> to compare.</dd>
+              <dt>
+                <i>b</i>
+              </dt>
+              <dd>The second <a href="../NStack/ustring.html">NStack.ustring</a> to compare.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.op_Inequality(NStack.ustring,NStack.ustring):Returns">
+            <tt>true</tt> if <tt>a</tt> and <tt>b</tt> are not equal; otherwise, <tt>false</tt>.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Inequality(NStack.ustring,NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.op_Inequality(NStack.ustring,NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Range()">Range Method</h3>
+        <blockquote id="M:NStack.ustring.Range():member">
+          <div class="msummary">
+            An enumerator that returns the index within the string, and the rune found at that location
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;Range&gt;d__54))]<br />[return:System.Runtime.CompilerServices.TupleElementNames(Mono.Cecil.CustomAttributeArgument[])]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;ValueTuple&lt;int, uint&gt;&gt;</a> <b>Range</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Range():Returns">Enumerable object that can be used to iterate and get the index of the values at the same time.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Range():Remarks">
+            This is useful to iterate over the string and obtain both the index of the rune and the rune
+            in the same call.  
+            </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Range():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:NStack.ustring.RuneCount">RuneCount Property</h3>
+        <blockquote id="P:NStack.ustring.RuneCount:member">
+          <div class="msummary">
+            Gets the rune count of the string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>RuneCount</b>  { get; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:NStack.ustring.RuneCount:Value">The rune count.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:NStack.ustring.RuneCount:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:NStack.ustring.RuneCount:Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.StartsWith(NStack.ustring)">StartsWith Method</h3>
+        <blockquote id="M:NStack.ustring.StartsWith(NStack.ustring):member">
+          <div class="msummary">
+            Determines whether the beginning of this string instance matches the specified string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>StartsWith</b> (<a href="../NStack/ustring.html">ustring</a> prefix)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.StartsWith(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>prefix</i>
+              </dt>
+              <dd>Prefix.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.StartsWith(NStack.ustring):Returns">
+            <tt>true</tt> if <i>prefix</i> matches the beginning of this string; otherwise, <tt>false</tt>.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.StartsWith(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.StartsWith(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Title()">Title Method</h3>
+        <blockquote id="M:NStack.ustring.Title():member">
+          <div class="msummary">
+            Converts the string to Title-case, that is every word (as determined by <a href="../NStack/ustring.html#M:NStack.ustring.IsSeparator(System.UInt32)">ustring.IsSeparator(uint)</a> is Title cased.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>Title</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Title():Returns">A title-cased string.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Title():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Title():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ToByteArray()">ToByteArray Method</h3>
+        <blockquote id="M:NStack.ustring.ToByteArray():member">
+          <div class="msummary">
+            Returns a version of the ustring as a byte array, it might allocate or return the internal byte buffer, depending on the backing implementation.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public abstract <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] <b>ToByteArray</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToByteArray():Returns">A byte array containing the contents of the ustring.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToByteArray():Remarks">
+            The byte array contains either a copy of the underlying data, in the cases where the ustring was created
+            from an unmanaged pointer or when the ustring was created by either slicing or from a range withing a byte
+            array.   Otherwise the returned array that is used by the ustring itself.
+            </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToByteArray():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ToLower()">ToLower Method</h3>
+        <blockquote id="M:NStack.ustring.ToLower():member">
+          <div class="msummary">
+            Returns a copy of the string s with all Unicode letters mapped to their lower case.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>ToLower</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToLower():Returns">The lowercased string.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToLower():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToLower():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ToLower(NStack.Unicode.SpecialCase)">ToLower Method</h3>
+        <blockquote id="M:NStack.ustring.ToLower(NStack.Unicode.SpecialCase):member">
+          <div class="msummary">
+            Returns a copy of the string s with all Unicode letters mapped to their lower case giving priority to the special casing rules.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>ToLower</b> (<a href="../NStack/Unicode+SpecialCase.html">Unicode.SpecialCase</a> specialCase)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToLower(NStack.Unicode.SpecialCase):Parameters">
+            <dl>
+              <dt>
+                <i>specialCase</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToLower(NStack.Unicode.SpecialCase):Returns">The string to uppercase.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToLower(NStack.Unicode.SpecialCase):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToLower(NStack.Unicode.SpecialCase):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ToRunes(System.Int32)">ToRunes Method</h3>
+        <blockquote id="M:NStack.ustring.ToRunes(System.Int32):member">
+          <div class="msummary">
+            Converts a ustring into a rune array.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>[] <b>ToRunes</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> limit)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToRunes(System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>limit</i>
+              </dt>
+              <dd>Maximum number of entries to return, or -1 for no limits.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToRunes(System.Int32):Returns">An array containing the runes for the string up to the specified limit.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToRunes(System.Int32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToRunes(System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ToTitle()">ToTitle Method</h3>
+        <blockquote id="M:NStack.ustring.ToTitle():member">
+          <div class="msummary">
+            Returns a copy of the string s with all Unicode letters mapped to their title case.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>ToTitle</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToTitle():Returns">The title-cased string.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToTitle():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToTitle():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ToTitle(NStack.Unicode.SpecialCase)">ToTitle Method</h3>
+        <blockquote id="M:NStack.ustring.ToTitle(NStack.Unicode.SpecialCase):member">
+          <div class="msummary">
+            Returns a copy of the string s with all Unicode letters mapped to their title case giving priority to the special casing rules.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>ToTitle</b> (<a href="../NStack/Unicode+SpecialCase.html">Unicode.SpecialCase</a> specialCase)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToTitle(NStack.Unicode.SpecialCase):Parameters">
+            <dl>
+              <dt>
+                <i>specialCase</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToTitle(NStack.Unicode.SpecialCase):Returns">The string to uppercase.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToTitle(NStack.Unicode.SpecialCase):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToTitle(NStack.Unicode.SpecialCase):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ToUpper()">ToUpper Method</h3>
+        <blockquote id="M:NStack.ustring.ToUpper():member">
+          <div class="msummary">
+            Returns a copy of the string s with all Unicode letters mapped to their upper case.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>ToUpper</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToUpper():Returns">The string to uppercase.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToUpper():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToUpper():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.ToUpper(NStack.Unicode.SpecialCase)">ToUpper Method</h3>
+        <blockquote id="M:NStack.ustring.ToUpper(NStack.Unicode.SpecialCase):member">
+          <div class="msummary">
+            Returns a copy of the string s with all Unicode letters mapped to their upper case giving priority to the special casing rules.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>ToUpper</b> (<a href="../NStack/Unicode+SpecialCase.html">Unicode.SpecialCase</a> specialCase)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToUpper(NStack.Unicode.SpecialCase):Parameters">
+            <dl>
+              <dt>
+                <i>specialCase</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.ToUpper(NStack.Unicode.SpecialCase):Returns">The string to uppercase.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToUpper(NStack.Unicode.SpecialCase):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.ToUpper(NStack.Unicode.SpecialCase):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.Trim(NStack.ustring.RunePredicate)">Trim Method</h3>
+        <blockquote id="M:NStack.ustring.Trim(NStack.ustring.RunePredicate):member">
+          <div class="msummary">
+            Returns a slice of the string with all leading and trailing runes matching the predicate removed.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>Trim</b> (<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a> predicate)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Trim(NStack.ustring.RunePredicate):Parameters">
+            <dl>
+              <dt>
+                <i>predicate</i>
+              </dt>
+              <dd>Predicate.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Trim(NStack.ustring.RunePredicate):Returns">The trim.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Trim(NStack.ustring.RunePredicate):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Trim(NStack.ustring.RunePredicate):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.TrimEnd(NStack.ustring)">TrimEnd Method</h3>
+        <blockquote id="M:NStack.ustring.TrimEnd(NStack.ustring):member">
+          <div class="msummary">
+            TrimEnd returns a slice of the string with all leading characters in cutset removed.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>TrimEnd</b> (<a href="../NStack/ustring.html">ustring</a> cutset)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimEnd(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>cutset</i>
+              </dt>
+              <dd>Characters to remove.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimEnd(NStack.ustring):Returns">The slice of the string with all cutset characters removed.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimEnd(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimEnd(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.TrimEnd(NStack.ustring.RunePredicate)">TrimEnd Method</h3>
+        <blockquote id="M:NStack.ustring.TrimEnd(NStack.ustring.RunePredicate):member">
+          <div class="msummary">
+            Returns a slice of the string with all trailing runes matching the predicate removed.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>TrimEnd</b> (<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a> predicate)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimEnd(NStack.ustring.RunePredicate):Parameters">
+            <dl>
+              <dt>
+                <i>predicate</i>
+              </dt>
+              <dd>Function that determines whether this character must be trimmed.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimEnd(NStack.ustring.RunePredicate):Returns">The current string if the predicate does not match anything, or a slice of the string starting in the first rune after the predicate matched.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimEnd(NStack.ustring.RunePredicate):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimEnd(NStack.ustring.RunePredicate):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.TrimSpace()">TrimSpace Method</h3>
+        <blockquote id="M:NStack.ustring.TrimSpace():member">
+          <div class="msummary">
+            Returns a slice of the string with all leading and trailing space characters removed (as determined by <a href="../NStack/Unicode.html#M:NStack.Unicode.IsSpace()">Unicode.IsSpace()</a></div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>TrimSpace</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimSpace():Returns">The space.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimSpace():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimSpace():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.TrimStart(NStack.ustring)">TrimStart Method</h3>
+        <blockquote id="M:NStack.ustring.TrimStart(NStack.ustring):member">
+          <div class="msummary">
+            TrimStarts returns a slice of the string with all leading characters in cutset removed.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>TrimStart</b> (<a href="../NStack/ustring.html">ustring</a> cutset)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimStart(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>cutset</i>
+              </dt>
+              <dd>Characters to remove.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimStart(NStack.ustring):Returns">The slice of the string with all cutset characters removed.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimStart(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimStart(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.TrimStart(NStack.ustring.RunePredicate)">TrimStart Method</h3>
+        <blockquote id="M:NStack.ustring.TrimStart(NStack.ustring.RunePredicate):member">
+          <div class="msummary">
+            Returns a slice of the string with all leading runes matching the predicate removed.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>TrimStart</b> (<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a> predicate)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimStart(NStack.ustring.RunePredicate):Parameters">
+            <dl>
+              <dt>
+                <i>predicate</i>
+              </dt>
+              <dd>Function that determines whether this character must be trimmed.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.TrimStart(NStack.ustring.RunePredicate):Returns">The current string if the predicate does not match anything, or a slice of the string starting in the first rune after the predicate matched.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimStart(NStack.ustring.RunePredicate):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.TrimStart(NStack.ustring.RunePredicate):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.6360.17759, 1.0.6360.18195, 1.0.6360.18206</div>
+          <hr size="1" />
+        </blockquote>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

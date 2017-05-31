@@ -10,7 +10,10 @@ using System;
 using System.Collections.Generic;
 namespace NStack {
 public partial class Unicode {
-	// Version is the Unicode edition from which the tables are derived.
+	// 
+	/// <summary>
+	/// Version is the Unicode edition from which the tables are derived.
+	/// </summary>
 	public const string Version = "9.0.0";
 
 	// Categories is the set of Unicode category tables.
