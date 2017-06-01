@@ -279,7 +279,7 @@
             </p>
     <div>
       <h2>Syntax</h2>
-      <div class="Signature" id="T:NStack.ustring:Signature">public abstract class  <b>ustring</b> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IComparable">IComparable</a></div>
+      <div class="Signature" id="T:NStack.ustring:Signature">public abstract class  <b>ustring</b> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;uint&gt;</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.ICloneable">ICloneable</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IComparable">IComparable</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IConvertible">IConvertible</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IEquatable`1">IEquatable&lt;ustring&gt;</a></div>
     </div>
     <div class="Remarks" id="T:NStack.ustring:Docs">
       <h2 class="Section">Remarks</h2>
@@ -508,6 +508,19 @@
               </tr>
               <tr valign="top">
                 <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Copy()">Copy</a>
+                  </b>()<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
+            The Copy method makes a copy of the underlying data, it can be used to release the resources associated with an
+            unmanaged buffer, or a ranged string.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
                   <div>abstract </div>
                 </td>
                 <td colspan="2">
@@ -543,6 +556,16 @@
               </tr>
               <tr valign="top">
                 <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Equals(NStack.ustring)">Equals</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
                   <div>override </div>
                 </td>
                 <td colspan="2">
@@ -551,6 +574,15 @@
                   </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote>
             Determines whether the specified <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> is equal to the current <a href="../NStack/ustring.html">NStack.ustring</a>.
             </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.EqualsHelper(NStack.ustring,NStack.ustring)">EqualsHelper</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>, <a href="../NStack/ustring.html">ustring</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
               </tr>
               <tr valign="top">
                 <td>
@@ -593,6 +625,18 @@
                 </td>
                 <td colspan="2">
                   <b>
+                    <a href="#M:NStack.ustring.IndexByte(System.Byte,System.Int32)">IndexByte</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
                     <a href="#M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate)">IndexOf</a>
                   </b>(<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
             IndexOf returns the index into s of the first Unicode rune satisfying matchFunc(rune), or -1 if none do.
@@ -620,6 +664,18 @@
                     <a href="#M:NStack.ustring.IndexOf(NStack.ustring,System.Int32)">IndexOf</a>
                   </b>(<a href="../NStack/ustring.html">ustring</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
             Reports the zero-based index of the first occurrence of a specified Unicode character or string within this instance. 
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.IndexOf(System.UInt32,System.Int32)">IndexOf</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
+            Reports the zero-based index of the first occurrence of the specified Unicode rune in this string
             </blockquote></td>
               </tr>
               <tr valign="top">
@@ -793,6 +849,16 @@
                   </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;ValueTuple&lt;int, uint&gt;&gt;</a></nobr><blockquote>
             An enumerator that returns the index within the string, and the rune found at that location
             </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:NStack.ustring.Split(NStack.ustring,System.Int32)">Split</a>
+                  </b>(<a href="../NStack/ustring.html">ustring</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="../NStack/ustring.html">ustring</a>[]</nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
               </tr>
               <tr valign="top">
                 <td>
@@ -1072,6 +1138,293 @@
             </table>
           </div>
         </div>
+        <h2 class="Section">Explicitly Implemented Interface Members</h2>
+        <div class="SectionBox" id="Explicitly Implemented Interface Members">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#ICloneable#Clone()">
+                    <b>ICloneable.Clone</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#Collections#Generic#IEnumerable{System#UInt32}#GetEnumerator()">
+                    <b>IEnumerable&lt;uint&gt;.GetEnumerator</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#Collections#IEnumerable#GetEnumerator()">
+                    <b>IEnumerable.GetEnumerator</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#GetTypeCode()">
+                    <b>IConvertible.GetTypeCode</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToBoolean(System.IFormatProvider)">
+                    <b>IConvertible.ToBoolean</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToByte(System.IFormatProvider)">
+                    <b>IConvertible.ToByte</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToChar(System.IFormatProvider)">
+                    <b>IConvertible.ToChar</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToDateTime(System.IFormatProvider)">
+                    <b>IConvertible.ToDateTime</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToDecimal(System.IFormatProvider)">
+                    <b>IConvertible.ToDecimal</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToDouble(System.IFormatProvider)">
+                    <b>IConvertible.ToDouble</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToInt16(System.IFormatProvider)">
+                    <b>IConvertible.ToInt16</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToInt32(System.IFormatProvider)">
+                    <b>IConvertible.ToInt32</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToInt64(System.IFormatProvider)">
+                    <b>IConvertible.ToInt64</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToSByte(System.IFormatProvider)">
+                    <b>IConvertible.ToSByte</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToSingle(System.IFormatProvider)">
+                    <b>IConvertible.ToSingle</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToString(System.IFormatProvider)">
+                    <b>IConvertible.ToString</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToType(System.Type,System.IFormatProvider)">
+                    <b>IConvertible.ToType</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToUInt16(System.IFormatProvider)">
+                    <b>IConvertible.ToUInt16</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToUInt32(System.IFormatProvider)">
+                    <b>IConvertible.ToUInt32</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#M:NStack.ustring.System#IConvertible#ToUInt64(System.IFormatProvider)">
+                    <b>IConvertible.ToUInt64</b>
+                  </a>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <div class="Members" id="T:NStack.ustring:Members">
@@ -1255,6 +1608,25 @@
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
+        <h3 id="M:NStack.ustring.Copy()">Copy Method</h3>
+        <blockquote id="M:NStack.ustring.Copy():member">
+          <div class="msummary">
+            The Copy method makes a copy of the underlying data, it can be used to release the resources associated with an
+            unmanaged buffer, or a ranged string.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>Copy</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Copy():Returns">A copy of the underlying data.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Copy():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Copy():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
         <h3 id="M:NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32)">CopyTo Method</h3>
         <blockquote id="M:NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32):member">
           <div class="msummary">
@@ -1362,6 +1734,37 @@
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
+        <h3 id="M:NStack.ustring.Equals(NStack.ustring)">Equals Method</h3>
+        <blockquote id="M:NStack.ustring.Equals(NStack.ustring):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Equals</b> (<a href="../NStack/ustring.html">ustring</a> other)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Equals(NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>other</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Equals(NStack.ustring):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Equals(NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Equals(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
         <h3 id="M:NStack.ustring.Equals(System.Object)">Equals Method</h3>
         <blockquote id="M:NStack.ustring.Equals(System.Object):member">
           <div class="msummary">
@@ -1388,6 +1791,43 @@
           </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.Equals(System.Object):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.EqualsHelper(NStack.ustring,NStack.ustring)">EqualsHelper Method</h3>
+        <blockquote id="M:NStack.ustring.EqualsHelper(NStack.ustring,NStack.ustring):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>EqualsHelper</b> (<a href="../NStack/ustring.html">ustring</a> a, <a href="../NStack/ustring.html">ustring</a> b)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.EqualsHelper(NStack.ustring,NStack.ustring):Parameters">
+            <dl>
+              <dt>
+                <i>a</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+              <dt>
+                <i>b</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.EqualsHelper(NStack.ustring,NStack.ustring):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.EqualsHelper(NStack.ustring,NStack.ustring):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.EqualsHelper(NStack.ustring,NStack.ustring):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
@@ -1492,6 +1932,39 @@
           </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IndexByte(System.Byte,System.Int32)">IndexByte Method</h3>
+        <blockquote id="M:NStack.ustring.IndexByte(System.Byte,System.Int32):member">
+          <div class="msummary">
+            Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexByte</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> b, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> offset)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexByte(System.Byte,System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>b</i>
+              </dt>
+              <dd>The byte to seek.</dd>
+              <dt>
+                <i>offset</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexByte(System.Byte,System.Int32):Returns">The zero-based index position of <i>b</i> if that byte is found, or -1 if it is not.  </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexByte(System.Byte,System.Int32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexByte(System.Byte,System.Int32):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
@@ -1546,7 +2019,7 @@
           </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Version Information">
-            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)</div>
           <hr size="1" />
         </blockquote>
         <h3 id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32)">IndexOf Method</h3>
@@ -1577,6 +2050,37 @@
           </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.IndexOf(System.UInt32,System.Int32)">IndexOf Method</h3>
+        <blockquote id="M:NStack.ustring.IndexOf(System.UInt32,System.Int32):member">
+          <div class="msummary">
+            Reports the zero-based index of the first occurrence of the specified Unicode rune in this string
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexOf</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> rune, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> offset)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(System.UInt32,System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>rune</i>
+              </dt>
+              <dd>Rune.</dd>
+              <dt>
+                <i>offset</i>
+              </dt>
+              <dd>Starting offset to start the search from.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(System.UInt32,System.Int32):Returns">The zero-based index position of <i>rune</i> if that character is found, or -1 if it is not.  If the rune is Utf8.RuneError, it returns the first instance of any invalid UTF-8 byte sequence.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOf(System.UInt32,System.Int32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.IndexOf(System.UInt32,System.Int32):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
@@ -2276,7 +2780,7 @@
             An enumerator that returns the index within the string, and the rune found at that location
             </div>
           <h2>Syntax</h2>
-          <div class="Signature">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;Range&gt;d__54))]<br />[return:System.Runtime.CompilerServices.TupleElementNames(Mono.Cecil.CustomAttributeArgument[])]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;ValueTuple&lt;int, uint&gt;&gt;</a> <b>Range</b> ()</div>
+          <div class="Signature">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;Range&gt;d__64))]<br />[return:System.Runtime.CompilerServices.TupleElementNames(Mono.Cecil.CustomAttributeArgument[])]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">IEnumerable&lt;ValueTuple&lt;int, uint&gt;&gt;</a> <b>Range</b> ()</div>
           <h4 class="Subsection">Returns</h4>
           <blockquote class="SubsectionBox" id="M:NStack.ustring.Range():Returns">Enumerable object that can be used to iterate and get the index of the values at the same time.</blockquote>
           <h2 class="Section">Remarks</h2>
@@ -2307,6 +2811,43 @@
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
+        <h3 id="M:NStack.ustring.Split(NStack.ustring,System.Int32)">Split Method</h3>
+        <blockquote id="M:NStack.ustring.Split(NStack.ustring,System.Int32):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../NStack/ustring.html">ustring</a>[] <b>Split</b> (<a href="../NStack/ustring.html">ustring</a> separator, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> n)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Split(NStack.ustring,System.Int32):Parameters">
+            <dl>
+              <dt>
+                <i>separator</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+              <dt>
+                <i>n</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.Split(NStack.ustring,System.Int32):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Split(NStack.ustring,System.Int32):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.Split(NStack.ustring,System.Int32):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
         <h3 id="M:NStack.ustring.StartsWith(NStack.ustring)">StartsWith Method</h3>
         <blockquote id="M:NStack.ustring.StartsWith(NStack.ustring):member">
           <div class="msummary">
@@ -2332,6 +2873,606 @@
           </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.StartsWith(NStack.ustring):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#Collections#Generic#IEnumerable{System#UInt32}#GetEnumerator()">System.Collections.Generic.IEnumerable&lt;System.UInt32&gt;.GetEnumerator Method</h3>
+        <blockquote id="M:NStack.ustring.System#Collections#Generic#IEnumerable{System#UInt32}#GetEnumerator():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;System-Collections-Generic-IEnumerable&lt;System-UInt32&gt;-GetEnumerator&gt;d__103))]<br /><a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">IEnumerator&lt;uint&gt;</a> <b>System.Collections.Generic.IEnumerable&lt;System.UInt32&gt;.GetEnumerator</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#Collections#Generic#IEnumerable{System#UInt32}#GetEnumerator():Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#Collections#Generic#IEnumerable{System#UInt32}#GetEnumerator():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#Collections#Generic#IEnumerable{System#UInt32}#GetEnumerator():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#Collections#IEnumerable#GetEnumerator()">System.Collections.IEnumerable.GetEnumerator Method</h3>
+        <blockquote id="M:NStack.ustring.System#Collections#IEnumerable#GetEnumerator():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;System-Collections-IEnumerable-GetEnumerator&gt;d__104))]<br /><a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a> <b>System.Collections.IEnumerable.GetEnumerator</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#Collections#IEnumerable#GetEnumerator():Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#Collections#IEnumerable#GetEnumerator():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#Collections#IEnumerable#GetEnumerator():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#ICloneable#Clone()">System.ICloneable.Clone Method</h3>
+        <blockquote id="M:NStack.ustring.System#ICloneable#Clone():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> <b>System.ICloneable.Clone</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#ICloneable#Clone():Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#ICloneable#Clone():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#ICloneable#Clone():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#GetTypeCode()">System.IConvertible.GetTypeCode Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#GetTypeCode():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.TypeCode">TypeCode</a> <b>System.IConvertible.GetTypeCode</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#GetTypeCode():Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#GetTypeCode():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#GetTypeCode():Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToBoolean(System.IFormatProvider)">System.IConvertible.ToBoolean Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToBoolean(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>System.IConvertible.ToBoolean</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToBoolean(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToBoolean(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToBoolean(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToBoolean(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToByte(System.IFormatProvider)">System.IConvertible.ToByte Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToByte(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> <b>System.IConvertible.ToByte</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToByte(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToByte(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToByte(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToByte(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToChar(System.IFormatProvider)">System.IConvertible.ToChar Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToChar(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Char">char</a> <b>System.IConvertible.ToChar</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToChar(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToChar(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToChar(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToChar(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToDateTime(System.IFormatProvider)">System.IConvertible.ToDateTime Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToDateTime(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> <b>System.IConvertible.ToDateTime</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToDateTime(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToDateTime(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToDateTime(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToDateTime(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToDecimal(System.IFormatProvider)">System.IConvertible.ToDecimal Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToDecimal(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Decimal">decimal</a> <b>System.IConvertible.ToDecimal</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToDecimal(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToDecimal(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToDecimal(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToDecimal(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToDouble(System.IFormatProvider)">System.IConvertible.ToDouble Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToDouble(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Double">double</a> <b>System.IConvertible.ToDouble</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToDouble(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToDouble(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToDouble(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToDouble(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToInt16(System.IFormatProvider)">System.IConvertible.ToInt16 Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToInt16(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int16">short</a> <b>System.IConvertible.ToInt16</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToInt16(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToInt16(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToInt16(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToInt16(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToInt32(System.IFormatProvider)">System.IConvertible.ToInt32 Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToInt32(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>System.IConvertible.ToInt32</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToInt32(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToInt32(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToInt32(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToInt32(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToInt64(System.IFormatProvider)">System.IConvertible.ToInt64 Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToInt64(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a> <b>System.IConvertible.ToInt64</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToInt64(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToInt64(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToInt64(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToInt64(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToSByte(System.IFormatProvider)">System.IConvertible.ToSByte Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToSByte(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.SByte">sbyte</a> <b>System.IConvertible.ToSByte</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToSByte(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToSByte(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToSByte(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToSByte(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToSingle(System.IFormatProvider)">System.IConvertible.ToSingle Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToSingle(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Single">float</a> <b>System.IConvertible.ToSingle</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToSingle(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToSingle(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToSingle(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToSingle(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToString(System.IFormatProvider)">System.IConvertible.ToString Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToString(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>System.IConvertible.ToString</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToString(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToString(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToString(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToString(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToType(System.Type,System.IFormatProvider)">System.IConvertible.ToType Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToType(System.Type,System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> <b>System.IConvertible.ToType</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Type">Type</a> conversionType, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToType(System.Type,System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>conversionType</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToType(System.Type,System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToType(System.Type,System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToType(System.Type,System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToUInt16(System.IFormatProvider)">System.IConvertible.ToUInt16 Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToUInt16(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt16">ushort</a> <b>System.IConvertible.ToUInt16</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt16(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt16(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt16(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt16(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToUInt32(System.IFormatProvider)">System.IConvertible.ToUInt32 Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToUInt32(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> <b>System.IConvertible.ToUInt32</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt32(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt32(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt32(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt32(System.IFormatProvider):Version Information">
+            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:NStack.ustring.System#IConvertible#ToUInt64(System.IFormatProvider)">System.IConvertible.ToUInt64 Method</h3>
+        <blockquote id="M:NStack.ustring.System#IConvertible#ToUInt64(System.IFormatProvider):member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">
+            <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt64">ulong</a> <b>System.IConvertible.ToUInt64</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IFormatProvider">IFormatProvider</a> provider)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt64(System.IFormatProvider):Parameters">
+            <dl>
+              <dt>
+                <i>provider</i>
+              </dt>
+              <dd>
+                <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+              </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt64(System.IFormatProvider):Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt64(System.IFormatProvider):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:NStack.ustring.System#IConvertible#ToUInt64(System.IFormatProvider):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
