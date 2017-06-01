@@ -5,14 +5,11 @@
 // 
 // C# ification by Miguel de Icaza
 //
-// TODO:
-//   Clone()?
-//   Implement GetHashCode for the subclasses
-// 
 // genSplit
 // 
 // TODO from .NET API:
 // String.Split members (array of strings, StringSplitOptions)
+// 
 // 
 
 
@@ -20,250 +17,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Collections;
 
 namespace NStack {
-	class ubstring : ustring, IDisposable {
-		IntPtr block;
-		readonly int size;
-		Action<ustring, IntPtr> release;
-
-		public ubstring (IntPtr block, int size, Action<ustring,IntPtr> releaseFunc = null)
-		{
-			if (block == IntPtr.Zero)
-				throw new ArgumentException ("Null pointer passed", nameof (block));
-			if (size < 0)
-				throw new ArgumentException ("Invalid size passed", nameof (size));
-			this.size = size;
-			this.block = block;
-			this.release = releaseFunc;
-		}
-
-		public override int Length => size;
-		public override byte this [int index] {
-			get {
-				if (index < 0 || index > size)
-					throw new ArgumentException (nameof (index));
-				return Marshal.ReadByte (block, index);
-			}
-		}
-
-		public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
-		{
-			if (offset < 0 || offset >= size)
-				throw new ArgumentException (nameof (offset));
-			if (count < 0)
-				throw new ArgumentException (nameof (count));
-			if (offset + count > size)
-				throw new ArgumentException (nameof (count));
-			unsafe
-			{
-				byte* p = ((byte*)block) + offset;
-
-				for (int i = 0; i < count; i++, p++)
-					target [i] = *p;
-			}
-		}
-
-		public override string ToString ()
-		{
-			unsafe
-			{
-				return Encoding.UTF8.GetString ((byte*)block, size);
-			}
-		}
-
-		protected internal override ustring GetRange (int start, int end)
-		{
-			unsafe {
-				return new ubstring ((IntPtr)((byte*)block + start), end - start, null);
-			}
-		}
-
-		public override int IndexByte (byte b)
-		{
-			var t = size;
-			unsafe {
-				byte* p = (byte*)block;
-				for (int i = 0; i < t; i++){
-					if (p [i] == b)
-						return i;
-				}
-			}
-			return -1;
-		}
-
-		public override byte [] ToByteArray ()
-		{
-			var copy = new byte [size];
-			Marshal.Copy (block, copy, 0, size);
-			return copy;
-		}
-
-		#region IDisposable Support
-		protected virtual void Dispose (bool disposing)
-		{
-			if (block != IntPtr.Zero) {
-				if (release != null)
-					release (this, block);
-				release = null;
-				block = IntPtr.Zero;
-			}
-		}
-
-		~ubstring() {
-			Dispose(false);
-		}
-
-		// This code added to correctly implement the disposable pattern.
-		void IDisposable.Dispose ()
-		{
-			Dispose (true);
-			GC.SuppressFinalize(this);
-		}
-		#endregion
-	}
-
-	class sstring : ustring {
-		readonly byte [] buffer;
-
-		public sstring (byte [] buffer)
-		{
-			if (buffer == null)
-				throw new ArgumentNullException (nameof (buffer));
-			this.buffer = buffer;
-		}
-
-		public sstring (uint rune)
-		{
-			var len = Utf8.RuneLen (rune);
-			buffer = new byte [len];
-			Utf8.EncodeRune (rune, buffer, 0);
-		}
-
-		public sstring (string str)
-		{
-			if (str == null)
-				throw new ArgumentNullException (nameof (str));
-			buffer = Encoding.UTF8.GetBytes (str);
-		}
-
-		public sstring (params char [] chars)
-		{
-			if (chars == null)
-				throw new ArgumentNullException (nameof (chars));
-			buffer = Encoding.UTF8.GetBytes (chars);
-		}
-
-		public override int Length => buffer.Length;
-		public override byte this [int index] {
-			get {
-				return buffer [index];
-			}
-		}
-
-		public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
-		{
-			Array.Copy (buffer, offset, target, targetOffset, count);
-		}
-
-		public override string ToString ()
-		{
-			return Encoding.UTF8.GetString (buffer);
-		}
-
-		public override int IndexByte (byte b)
-		{
-			var t = Length;
-			unsafe	{
-				fixed (byte* p = &buffer [0]) {
-					for (int i = 0; i < t; i++)
-						if (p [i] == b)
-							return i;
-				}
-			}
-			return -1;
-		}
-
-		protected internal override ustring GetRange (int start, int end)
-		{
-			return new rstring (buffer, start, end-start);
-		}
-
-		public override byte [] ToByteArray ()
-		{
-			return buffer;
-		}
-	}
-
-	class rstring : ustring {
-		readonly byte [] buffer;
-		readonly int start, count;
-
-		public rstring (byte [] buffer, int start, int count)
-		{
-			if (buffer == null)
-				throw new ArgumentNullException (nameof (buffer));
-			if (start < 0)
-				throw new ArgumentException (nameof (start));
-			if (count < 0)
-				throw new ArgumentException (nameof (count));
-			if (start >= buffer.Length)
-				throw new ArgumentException (nameof (start));
-			if (buffer.Length - count < start)
-				throw new ArgumentException (nameof (count));
-			this.start = start;
-			this.count = count;
-			this.buffer = buffer;
-		}
-
-		public override int Length => count;
-		public override byte this [int index] {
-			get {
-				if (index < 0 || index >= count)
-					throw new ArgumentException (nameof (index));
-				return buffer [start + index];
-			}
-		}
-
-		public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
-		{
-			if (offset < 0)
-				throw new ArgumentException (nameof (offset));
-
-			Array.Copy (buffer, offset + start, target, targetOffset, count);
-		}
-
-		public override string ToString ()
-		{
-			return Encoding.UTF8.GetString (buffer, start, count);
-		}
-
-		public override int IndexByte (byte b)
-		{
-			var t = count;
-			unsafe
-			{
-				fixed (byte* p = &buffer [start]) {
-					for (int i = 0; i < t; i++)
-						if (p [i] == b)
-							return i;
-				}
-			}
-			return -1;
-		}
-
-		protected internal override ustring GetRange (int start, int end)
-		{
-			return new rstring (buffer, start + this.start, end - start);
-		}
-
-		public override byte [] ToByteArray ()
-		{
-			var copy = new byte [count];
-			Array.Copy (buffer, sourceIndex: start, destinationArray: copy, destinationIndex: 0, length: count);
-			return copy;
-		}
-	}
 
 	/// <summary>
 	/// ustrings are used to manipulate utf8 strings, either from byte arrays or blocks of memory.
@@ -287,11 +43,262 @@ namespace NStack {
 	/// for the indexer for more details.
 	/// 
 	/// </remarks>
-	public abstract class ustring : IComparable {
+	public abstract class ustring : IComparable, ICloneable, IConvertible, IEnumerable<uint>, IEquatable<ustring> {
+
+		// The ustring subclass that supports creating strings for an IntPtr+Size pair.
+		class IntPtrUString : ustring, IDisposable {
+			internal IntPtr block;
+			readonly int size;
+			Action<ustring, IntPtr> release;
+
+			public IntPtrUString (IntPtr block, int size, Action<ustring, IntPtr> releaseFunc = null)
+			{
+				if (block == IntPtr.Zero)
+					throw new ArgumentException ("Null pointer passed", nameof (block));
+				if (size < 0)
+					throw new ArgumentException ("Invalid size passed", nameof (size));
+				this.size = size;
+				this.block = block;
+				this.release = releaseFunc;
+			}
+
+			public override int Length => size;
+			public override byte this [int index] {
+				get {
+					if (index < 0 || index > size)
+						throw new ArgumentException (nameof (index));
+					return Marshal.ReadByte (block, index);
+				}
+			}
+
+			public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+			{
+				if (offset < 0 || offset >= size)
+					throw new ArgumentException (nameof (offset));
+				if (count < 0)
+					throw new ArgumentException (nameof (count));
+				if (offset + count > size)
+					throw new ArgumentException (nameof (count));
+				unsafe
+				{
+					byte* p = ((byte*)block) + offset;
+
+					for (int i = 0; i < count; i++, p++)
+						target [i] = *p;
+				}
+			}
+
+			public override string ToString ()
+			{
+				unsafe
+				{
+					return Encoding.UTF8.GetString ((byte*)block, size);
+				}
+			}
+
+			protected internal override ustring GetRange (int start, int end)
+			{
+				unsafe
+				{
+					return new IntPtrUString ((IntPtr)((byte*)block + start), end - start, null);
+				}
+			}
+
+			internal override int RealIndexByte (byte b, int offset)
+			{
+				var t = size;
+				unsafe
+				{
+					byte* p = (byte*)block + offset;
+					for (int i = 0; i < t; i++) {
+						if (p [i] == b)
+							return i + offset;
+					}
+				}
+				return -1;
+			}
+
+			public override byte [] ToByteArray ()
+			{
+				var copy = new byte [size];
+				Marshal.Copy (block, copy, 0, size);
+				return copy;
+			}
+
+			#region IDisposable Support
+			protected virtual void Dispose (bool disposing)
+			{
+				if (block != IntPtr.Zero) {
+					if (release != null)
+						release (this, block);
+					release = null;
+					block = IntPtr.Zero;
+				}
+			}
+
+			~IntPtrUString ()
+			{
+				Dispose (false);
+			}
+
+			// This code added to correctly implement the disposable pattern.
+			void IDisposable.Dispose ()
+			{
+				Dispose (true);
+				GC.SuppressFinalize (this);
+			}
+			#endregion
+		}
+
+		// The ustring implementation that is implemented on top of a byte buffer.
+		class ByteBufferUString : ustring {
+			internal readonly byte [] buffer;
+
+			public ByteBufferUString (byte [] buffer)
+			{
+				if (buffer == null)
+					throw new ArgumentNullException (nameof (buffer));
+				this.buffer = buffer;
+			}
+
+			public ByteBufferUString (uint rune)
+			{
+				var len = Utf8.RuneLen (rune);
+				buffer = new byte [len];
+				Utf8.EncodeRune (rune, buffer, 0);
+			}
+
+			public ByteBufferUString (string str)
+			{
+				if (str == null)
+					throw new ArgumentNullException (nameof (str));
+				buffer = Encoding.UTF8.GetBytes (str);
+			}
+
+			public ByteBufferUString (params char [] chars)
+			{
+				if (chars == null)
+					throw new ArgumentNullException (nameof (chars));
+				buffer = Encoding.UTF8.GetBytes (chars);
+			}
+
+			public override int Length => buffer.Length;
+			public override byte this [int index] {
+				get {
+					return buffer [index];
+				}
+			}
+
+			public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+			{
+				Array.Copy (buffer, offset, target, targetOffset, count);
+			}
+
+			public override string ToString ()
+			{
+				return Encoding.UTF8.GetString (buffer);
+			}
+
+			internal override int RealIndexByte (byte b, int offset)
+			{
+				var t = Length;
+				unsafe
+				{
+					fixed (byte* p = &buffer [offset]) {
+						for (int i = 0; i < t; i++)
+							if (p [i] == b)
+								return i + offset;
+					}
+				}
+				return -1;
+			}
+
+			protected internal override ustring GetRange (int start, int end)
+			{
+				return new ByteRangeUString (buffer, start, end - start);
+			}
+
+			public override byte [] ToByteArray ()
+			{
+				return buffer;
+			}
+		}
+
+		// The ustring implementation that presents a view on an existing byte buffer.
+		class ByteRangeUString : ustring {
+			readonly byte [] buffer;
+			readonly int start, count;
+
+			public ByteRangeUString (byte [] buffer, int start, int count)
+			{
+				if (buffer == null)
+					throw new ArgumentNullException (nameof (buffer));
+				if (start < 0)
+					throw new ArgumentException (nameof (start));
+				if (count < 0)
+					throw new ArgumentException (nameof (count));
+				if (start >= buffer.Length)
+					throw new ArgumentException (nameof (start));
+				if (buffer.Length - count < start)
+					throw new ArgumentException (nameof (count));
+				this.start = start;
+				this.count = count;
+				this.buffer = buffer;
+			}
+
+			public override int Length => count;
+			public override byte this [int index] {
+				get {
+					if (index < 0 || index >= count)
+						throw new ArgumentException (nameof (index));
+					return buffer [start + index];
+				}
+			}
+
+			public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+			{
+				if (offset < 0)
+					throw new ArgumentException (nameof (offset));
+
+				Array.Copy (buffer, offset + start, target, targetOffset, count);
+			}
+
+			public override string ToString ()
+			{
+				return Encoding.UTF8.GetString (buffer, start, count);
+			}
+
+			internal override int RealIndexByte (byte b, int offset)
+			{
+				var t = count;
+				unsafe
+				{
+					fixed (byte* p = &buffer [start + offset]) {
+						for (int i = 0; i < t; i++)
+							if (p [i] == b)
+								return i + offset;
+					}
+				}
+				return -1;
+			}
+
+			protected internal override ustring GetRange (int start, int end)
+			{
+				return new ByteRangeUString (buffer, start + this.start, end - start);
+			}
+
+			public override byte [] ToByteArray ()
+			{
+				var copy = new byte [count];
+				Array.Copy (buffer, sourceIndex: start, destinationArray: copy, destinationIndex: 0, length: count);
+				return copy;
+			}
+		}
+
 		/// <summary>
 		/// The empty ustring.
 		/// </summary>
-		public static ustring Empty = new sstring (Array.Empty<byte> ());
+		public static ustring Empty = new ByteBufferUString (Array.Empty<byte> ());
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class using the provided byte array for its storage.
@@ -305,7 +312,7 @@ namespace NStack {
 		/// </remarks>
 		public static ustring Make (params byte [] buffer)
 		{
-			return new sstring (buffer);
+			return new ByteBufferUString (buffer);
 		}
 
 		/// <summary>
@@ -314,7 +321,7 @@ namespace NStack {
 		/// <param name="rune">Rune (short name for Unicode code point).</param>
 		public static ustring Make (uint rune)
 		{
-			return new sstring (rune);
+			return new ByteBufferUString (rune);
 		}
 
 		/// <summary>
@@ -323,7 +330,7 @@ namespace NStack {
 		/// <param name="str">C# String.</param>
 		public static ustring Make (string str)
 		{
-			return new sstring (str);
+			return new ByteBufferUString (str);
 		}
 
 		/// <summary>
@@ -332,7 +339,7 @@ namespace NStack {
 		/// <param name="chars">Characters.</param>
 		public static ustring Make (params char [] chars)
 		{
-			return new sstring (chars);
+			return new ByteBufferUString (chars);
 		}
 
 		/// <summary>
@@ -350,7 +357,79 @@ namespace NStack {
 		/// </remarks>
 		public static ustring Make (IntPtr block, int size, Action<ustring, IntPtr> releaseFunc = null)
 		{
-			return new ubstring (block, size, releaseFunc);
+			return new IntPtrUString (block, size, releaseFunc);
+		}
+
+		// The low-level version
+		unsafe static bool EqualsHelper (byte *a, byte *b, int length)
+		{
+			// unroll the loop
+			// the mono jit will inline the 64-bit check and eliminate the irrelevant path
+			if (Environment.Is64BitProcess) {
+				// for AMD64 bit platform we unroll by 12 and
+				// check 3 qword at a time. This is less code
+				// than the 32 bit case and is shorter
+				// pathlength
+
+				while (length >= 12) {
+					if (*(long*)a != *(long*)b) return false;
+					if (*(long*)(a + 4) != *(long*)(b + 4)) return false;
+					if (*(long*)(a + 8) != *(long*)(b + 8)) return false;
+					a += 12; b += 12; length -= 12;
+				}
+			} else {
+				while (length >= 10) {
+					if (*(int*)a != *(int*)b) return false;
+					if (*(int*)(a + 2) != *(int*)(b + 2)) return false;
+					if (*(int*)(a + 4) != *(int*)(b + 4)) return false;
+					if (*(int*)(a + 6) != *(int*)(b + 6)) return false;
+					if (*(int*)(a + 8) != *(int*)(b + 8)) return false;
+					a += 10; b += 10; length -= 10;
+				}
+			}
+
+			while (length > 0) {
+				if (*a != *b)
+					return false;
+				a++;
+				b++;
+				length--;
+			}
+			return true;
+		}
+
+		// The high-level version parameters have been validated
+		public static bool EqualsHelper (ustring a, ustring b)
+		{
+			var alen = a.Length;
+			var blen = b.Length;
+			if (alen != blen)
+				return false;
+			if (alen == 0)
+				return true;
+			var abs = a as ByteBufferUString;
+			var bbs = b as ByteBufferUString;
+			if (abs != null && bbs != null) {
+				unsafe
+				{
+					fixed (byte* ap = &abs.buffer [0]) fixed (byte* bp = &bbs.buffer [0]) {
+						return EqualsHelper (ap, bp, alen);
+					}
+				}
+			}
+			var aip = b as IntPtrUString;
+			var bip = b as IntPtrUString;
+			if (aip != null && bip != null) {
+				unsafe
+				{
+					return EqualsHelper ((byte*)aip.block, (byte*)bip.block, alen);
+				}
+			}
+
+			for (int i = 0; i < alen; i++)
+				if (a [i] != b [i])
+					return false;
+			return true;
 		}
 
 		/// <summary>
@@ -371,14 +450,7 @@ namespace NStack {
 				return false;
 			}
 
-			var alen = a.Length;
-			var blen = b.Length;
-			if (alen != blen)
-				return false;
-			for (int i = 0; i < alen; i++)
-				if (a [i] != b [i])
-					return false;
-			return true;
+			return EqualsHelper (a, b);
 		}
 
 		/// <summary>
@@ -399,14 +471,7 @@ namespace NStack {
 				return true;
 			}
 
-			var alen = a.Length;
-			var blen = b.Length;
-			if (alen != blen)
-				return true;
-			for (int i = 0; i < alen; i++)
-				if (a [i] == b [i])
-					return false;
-			return true;
+			return !EqualsHelper (a, b);
 		}
 
 		/// <summary>
@@ -420,7 +485,7 @@ namespace NStack {
 		/// </remarks>
 		public static implicit operator ustring (string str)
 		{
-			return new sstring (str);
+			return new ByteBufferUString (str);
 		}
 
 		/// <summary>
@@ -435,7 +500,7 @@ namespace NStack {
 		/// </remarks>
 		public static implicit operator ustring (byte [] buffer)
 		{
-			return new sstring (buffer);
+			return new ByteBufferUString (buffer);
 		}
 
 		/// <summary>
@@ -464,7 +529,33 @@ namespace NStack {
 			if ((object)p == null)
 				return false;
 
-			return this == p;
+			return EqualsHelper (this, p);
+		}
+
+		public bool Equals (ustring other)
+		{
+			// If parameter is null return false.
+			if ((object)other == null)
+				return false;
+
+			return EqualsHelper (this, other);
+
+		}
+
+
+		/// <summary>
+		/// The Copy method makes a copy of the underlying data, it can be used to release the resources associated with an
+		/// unmanaged buffer, or a ranged string.
+		/// </summary>
+		/// <returns>A copy of the underlying data.</returns>
+		public ustring Copy ()
+		{
+			return new ByteBufferUString (this.ToByteArray ());
+		}
+
+		object ICloneable.Clone ()
+		{
+			return Copy ();
 		}
 
 		/// <summary>
@@ -481,7 +572,7 @@ namespace NStack {
 		/// </remarks>
 		public static ustring Make (byte [] buffer, int start, int count)
 		{
-			return new rstring (buffer, start, count);
+			return new ByteRangeUString (buffer, start, count);
 		}
 
 		/// <summary>
@@ -602,7 +693,7 @@ namespace NStack {
 				x.CopyTo (offset: 0, target: copy, targetOffset: p, count: n);
 				p += n;
 			}
-			return new sstring (copy);
+			return new ByteBufferUString (copy);
 		}
 
 		/// <summary>
@@ -621,12 +712,12 @@ namespace NStack {
 			for (int i = 0; i < limit - 1; i++) {
 				(var rune, var size) = Utf8.DecodeRune (this, offset);
 				if (rune == Utf8.RuneError)
-					result [i] = new sstring (Utf8.RuneError);
+					result [i] = new ByteBufferUString (Utf8.RuneError);
 				else {
 					var substr = new byte [size];
 
 					CopyTo (offset: offset, target: substr, targetOffset: 0, count: size);
-					result [i] = new sstring (substr);
+					result [i] = new ByteBufferUString (substr);
 				}
 				offset += size;
 			}
@@ -634,7 +725,7 @@ namespace NStack {
 				var r = new byte [Length - offset];
 
 				CopyTo (offset: offset, target: r, targetOffset: 0, count: Length - offset);
-				result [n - 1] = new sstring (r);
+				result [n - 1] = new ByteBufferUString (r);
 			}
 			return result;
 		}
@@ -709,19 +800,21 @@ namespace NStack {
 		/// <param name="substr">Substr.</param>
 		public int Count (ustring substr)
 		{
-			if (substr == null)
+			if ((object) substr == null)
 				throw new ArgumentNullException (nameof (substr));
 			int n = 0;
 			if (substr.Length == 0)
 				return Utf8.RuneCount (substr) + 1;
 			int offset = 0;
-			while (true) {
+			int len = Length;
+			while (offset < len) {
 				var i = IndexOf (substr, offset);
 				if (i == -1)
-					return n;
+					break;
 				n++;
-				offset += i + substr.Length;
+				offset = i + 1;
 			}
+			return n;
 		}
 
 		/// <summary>
@@ -731,7 +824,7 @@ namespace NStack {
 		/// <param name="substr">The string to seek.</param>
 		public bool Contains (ustring substr)
 		{
-			if (substr == null)
+			if ((object)substr == null)
 				throw new ArgumentNullException (nameof (substr));
 			return IndexOf (substr) >= 0;
 		}
@@ -753,7 +846,7 @@ namespace NStack {
 		/// <param name="chars">string contanining one or more characters.</param>
 		public bool ContainsAny (ustring chars)
 		{
-			if (chars == null)
+			if ((object)chars == null)
 				throw new ArgumentNullException (nameof (chars));
 			return IndexOfAny (chars) >= 0;
 		}
@@ -792,18 +885,17 @@ namespace NStack {
 		/// <param name="offset">The search starting position.</param>
 		public int IndexOf (ustring substr, int offset = 0)
 		{
-			if (substr == null)
+			if ((object)substr == null)
 				throw new ArgumentNullException (nameof (substr));
 			
 			var n = substr.Length;
 			if (n == 0)
 				return 0;
 			var blen = Length;
-			if (offset >= blen)
-				throw new ArgumentException ("The offset is larger than the ustring size");
-			
+			if (offset < 0 || offset >= blen)
+				throw new ArgumentException (nameof (offset));
 			if (n == 1)
-				return IndexByte (substr [offset]);
+				return RealIndexByte (substr [0], offset);
 			blen -= offset;
 			if (n == blen) {
 				// If the offset is zero, we can compare identity
@@ -850,7 +942,7 @@ namespace NStack {
 		/// <param name="substr">The ustring to seek.</param>
 		public int LastIndexOf (ustring substr)
 		{
-			if (substr == null)
+			if ((object)substr == null)
 				throw new ArgumentNullException (nameof (substr));
 			var n = substr.Length;
 			if (n == 0)
@@ -906,15 +998,16 @@ namespace NStack {
 		/// </summary>
 		/// <returns>The zero-based index position of <paramref name="rune" /> if that character is found, or -1 if it is not.  If the rune is Utf8.RuneError, it returns the first instance of any invalid UTF-8 byte sequence.</returns>
 		/// <param name="rune">Rune.</param>
-		public int IndexOf (uint rune)
+		/// <param name="offset">Starting offset to start the search from.</param>
+		public int IndexOf (uint rune, int offset = 0)
 		{
 			if (0 <= rune && rune < Utf8.RuneSelf)
-				return IndexByte ((byte)rune);
+				return IndexByte ((byte)rune, offset);
 			if (rune == Utf8.RuneError)
 				return Utf8.InvalidIndex (this);
 			if (!Utf8.ValidRune (rune))
 				return -1;
-			return IndexOf (new sstring (rune));
+			return IndexOf (new ByteBufferUString (rune));
 		}
 
 		/// <summary>
@@ -922,7 +1015,15 @@ namespace NStack {
 		/// </summary>
 		/// <returns>The zero-based index position of <paramref name="b" /> if that byte is found, or -1 if it is not.  </returns>
 		/// <param name="b">The byte to seek.</param>
-		public abstract int IndexByte (byte b);
+		/// <param name="start">Starting location.</param>
+		public int IndexByte (byte b, int offset)
+		{
+			if (offset < 0 || offset >= Length)
+				throw new ArgumentException (nameof (offset));
+			return RealIndexByte (b, offset);
+		}
+
+		internal abstract int RealIndexByte (byte b, int offset);
 
 		/// <summary>
 		/// Reports the zero-based index of the first occurrence in this instance of any character in the provided string
@@ -931,7 +1032,7 @@ namespace NStack {
 		/// <param name="chars">ustring containing characters to seek.</param>
 		public int IndexOfAny (ustring chars)
 		{
-			if (chars == null)
+			if ((object)chars == null)
 				throw new ArgumentNullException (nameof (chars));
 			if (chars.Length == 0)
 				return -1;
@@ -1001,7 +1102,7 @@ namespace NStack {
 		/// <param name="chars">The string containing characters to seek.</param>
 		public int LastIndexOfAny (ustring chars)
 		{
-			if (chars == null)
+			if ((object)chars == null)
 				throw new ArgumentNullException (nameof (chars));
 			if (chars.Length == 0)
 				return -1;
@@ -1076,21 +1177,30 @@ namespace NStack {
 				return Array.Empty<ustring> ();
 			if (sep == "")
 				return Explode (n);
-			if (n < 0)
-				n = Count (sep) + 1;
+			if (n < 0 || n == Int32.MaxValue)
+				n = Count (sep);
 			var result = new ustring [n];
 			n--;
 			int offset = 0, i = 0;
+			var sepLen = sep.Length;
 			while (i < n) {
-				var m = IndexOf (sep);
+				var m = IndexOf (sep, offset);
 				if (m < 0)
 					break;
 				result [i] = this [offset, m+sepSave];
-				offset += m + sep.Length;
+				offset = m + sepLen;
 				i++;
 			}
-			result [i] = this [offset, Length - offset];
+			result [i] = this [offset, 0];
 			return result;
+		}
+
+		public ustring [] Split (ustring separator, int n = -1)
+		{
+			if ((object)separator == null)
+				throw new ArgumentNullException (nameof (separator));
+
+			return GenSplit (separator, 0, n);
 		}
 
 		/// <summary>
@@ -1100,7 +1210,7 @@ namespace NStack {
 		/// <param name="prefix">Prefix.</param>
 		public bool StartsWith (ustring prefix)
 		{
-			if (prefix == null)
+			if ((object)prefix == null)
 				throw new ArgumentNullException (nameof (prefix));
 			if (Length < prefix.Length)
 				return false;
@@ -1114,7 +1224,7 @@ namespace NStack {
 		/// <param name="suffix">The string to compare to the substring at the end of this instance.</param>
 		public bool EndsWith (ustring suffix)
 		{
-			if (suffix == null)
+			if ((object)suffix == null)
 				throw new ArgumentNullException (nameof (suffix));
 			if (Length < suffix.Length)
 				return false;
@@ -1129,7 +1239,7 @@ namespace NStack {
 		/// <param name="values">Values.</param>
 		public static ustring Join (ustring separator, params ustring [] values)
 		{
-			if (separator == null)
+			if ((object)separator == null)
 				separator = Empty;
 			if (values == null)
 				throw new ArgumentNullException (nameof (values));
@@ -1137,7 +1247,7 @@ namespace NStack {
 				return Empty;
 			int size = 0, items = 0;
 			foreach (var t in values) {
-				if (t == null)
+				if ((object)t == null)
 					continue;
 				size += t.Length;
 				items++;
@@ -1152,7 +1262,7 @@ namespace NStack {
 			var result = new byte [size];
 			int offset = 0;
 			foreach (var t in values) {
-				if (t == null)
+				if ((object)t == null)
 					continue;
 				var tlen = t.Length;
 				t.CopyTo (offset: 0, target: result, targetOffset: offset, count: tlen);
@@ -1160,7 +1270,7 @@ namespace NStack {
 				separator.CopyTo (offset: 0, target: result, targetOffset: offset, count: slen);
 				offset += slen;
 			}
-			return new sstring (result);
+			return new ByteBufferUString (result);
 		}
 
 		// asciiSet is a 32-byte value, where each bit represents the presence of a
@@ -1229,14 +1339,14 @@ namespace NStack {
 		/// <returns>The <see cref="T:NStack.ustring"/> that is the concatenation of the strings of <c>u1</c> and <c>u2</c>.</returns>
 		public static ustring operator + (ustring u1, ustring u2)
 		{
-			var u1l = u1 == null ? 0 : u1.Length;
-			var u2l = u2 == null ? 0 : u2.Length;
+			var u1l = (object)u1 == null ? 0 : u1.Length;
+			var u2l = (object)u2 == null ? 0 : u2.Length;
 			var copy = new byte [u1l + u2l];
 			if (u1 != null)
 				u1.CopyTo (offset: 0, target: copy, targetOffset: 0, count: u1l);
 			if (u2 != null)
 				u2.CopyTo (offset: 0, target: copy, targetOffset: u1l, count: u2l);
-			return new sstring (copy);
+			return new ByteBufferUString (copy);
 		}
 
 		/// <summary>
@@ -1318,7 +1428,7 @@ namespace NStack {
 
 				targetOffset += Utf8.EncodeRune (mapped, dest: result, offset: targetOffset);
 			}
-			return new sstring (result);
+			return new ByteBufferUString (result);
 		}
 
 		/// <summary>
@@ -1453,7 +1563,7 @@ namespace NStack {
 		/// <param name="predicate">Function that determines whether this character must be trimmed.</param>
 		public ustring TrimStart (RunePredicate predicate)
 		{
-			var i = IndexOf (predicate);
+			var i = FlexIndexOf (predicate, false);
 			if (i == -1)
 				return this;
 			return this [i, 0];
@@ -1477,7 +1587,7 @@ namespace NStack {
 		/// <param name="cutset">Characters to remove.</param>
 		public ustring TrimStart (ustring cutset)
 		{
-			if (IsEmpty || cutset == null || cutset.IsEmpty)
+			if (IsEmpty || (object)cutset == null || cutset.IsEmpty)
 				return this;
 			return TrimStart (MakeCutSet (cutset));
 		}
@@ -1489,7 +1599,7 @@ namespace NStack {
 		/// <param name="cutset">Characters to remove.</param>
 		public ustring TrimEnd (ustring cutset)
 		{
-			if (IsEmpty || cutset == null || cutset.IsEmpty)
+			if (IsEmpty || (object)cutset == null || cutset.IsEmpty)
 				return this;
 			return TrimEnd (MakeCutSet (cutset));
 		}
@@ -1510,7 +1620,7 @@ namespace NStack {
 		/// <param name="predicate">Function that determines whether this character must be trimmed.</param>
 		public ustring TrimEnd (RunePredicate predicate)
 		{
-			var i = LastIndexOf (predicate);
+			var i = FlexLastIndexOf (predicate, false);
 			if (i >= 0 && this [i] >= Utf8.RuneSelf) {
 				(var rune, var wid) = Utf8.DecodeRune (this [i, 0]);
 				i += wid;
@@ -1557,5 +1667,111 @@ namespace NStack {
 			return -1;
 		}
 
+		TypeCode IConvertible.GetTypeCode ()
+		{
+			return TypeCode.Object;
+		}
+
+		bool IConvertible.ToBoolean (IFormatProvider provider)
+		{
+			return Convert.ToBoolean (ToString (), provider);
+		}
+
+		byte IConvertible.ToByte (IFormatProvider provider)
+		{
+			return Convert.ToByte (ToString (), provider);
+		}
+
+		char IConvertible.ToChar (IFormatProvider provider)
+		{
+			return Convert.ToChar (ToString (), provider);
+		}
+
+		DateTime IConvertible.ToDateTime (IFormatProvider provider)
+		{
+			return Convert.ToDateTime (ToString (), provider);
+		}
+
+		decimal IConvertible.ToDecimal (IFormatProvider provider)
+		{
+			return Convert.ToDecimal (ToString (), provider);
+		}
+
+		double IConvertible.ToDouble (IFormatProvider provider)
+		{
+			return Convert.ToDouble (ToString (), provider);
+		}
+
+		short IConvertible.ToInt16 (IFormatProvider provider)
+		{
+			return Convert.ToInt16 (ToString (), provider);
+		}
+
+		int IConvertible.ToInt32 (IFormatProvider provider)
+		{
+			return Convert.ToInt32 (ToString (), provider);
+		}
+
+		long IConvertible.ToInt64 (IFormatProvider provider)
+		{
+			return Convert.ToInt64 (ToString (), provider);
+		}
+
+		sbyte IConvertible.ToSByte (IFormatProvider provider)
+		{
+			return Convert.ToSByte (ToString (), provider);
+		}
+
+		float IConvertible.ToSingle (IFormatProvider provider)
+		{
+			return Convert.ToSingle (ToString (), provider);
+		}
+
+		string IConvertible.ToString (IFormatProvider provider)
+		{
+			return ToString ();
+		}
+
+		object IConvertible.ToType (Type conversionType, IFormatProvider provider)
+		{
+			if (conversionType == typeof (string))
+			    return ToString ();
+			return Convert.ChangeType (ToString (), conversionType);
+		}
+
+		ushort IConvertible.ToUInt16 (IFormatProvider provider)
+		{
+			return Convert.ToUInt16 (ToString (), provider);
+		}
+
+		uint IConvertible.ToUInt32 (IFormatProvider provider)
+		{
+			return Convert.ToUInt32 (ToString (), provider);
+		}
+
+		ulong IConvertible.ToUInt64 (IFormatProvider provider)
+		{
+			return Convert.ToUInt64 (ToString (), provider);
+		}
+
+		IEnumerator<uint> IEnumerable<uint>.GetEnumerator ()
+		{
+			int blen = Length;
+			for (int i = 0; i < blen;) {
+				(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
+				i += size;
+				yield return rune;
+			}
+		}
+
+		IEnumerator IEnumerable.GetEnumerator ()
+		{
+			int blen = Length;
+			for (int i = 0; i < blen;) {
+				(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
+				i += size;
+				yield return rune;
+			}
+		}
 	}
 }

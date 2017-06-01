@@ -7,6 +7,7 @@ using NUnit.Framework;
 using System;
 using NStack;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace NStackTests
 {
@@ -24,6 +25,7 @@ namespace NStackTests
 		ustring hello = ustring.Make ("hello, world");
 		ustring longhello = ustring.Make ("");
 		ustring kosme = ustring.Make (0xce, 0xba, 0xcf, 0x8c, 0xcf, 0x83, 0xce, 0xbc, 0xce, 0xb5);
+		ustring kosmex = ustring.Make (0xce, 0xba, 0xcf, 0x8c, 0xcf, 0x83, 0xce, 0xbc, 0xce, 0xb5, 0x41);
 
 		[Test]
 		public void IComparableTests ()
@@ -55,12 +57,68 @@ namespace NStackTests
 		public void Compare ()
 		{
 			Assert.AreEqual (a, seconda);
+			Assert.IsTrue (a != b);
+			Assert.IsFalse (a.Equals (b));
+			Assert.IsFalse (b.Equals (a));
 			Assert.AreNotEqual (a, b);
 			Assert.AreNotEqual (b, a);
 			Assert.AreNotEqual (a, aa);
 			Assert.AreNotEqual (aa, a);
 			Assert.AreEqual (empty, empty);
 			Assert.AreEqual (empty, secondempty);
+		}
+
+		[Test]
+		public void Equals ()
+		{
+			Assert.IsTrue (a == seconda);
+			Assert.IsFalse (a == b);
+
+			string aref = "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf$";
+			var ast = ustring.Make (aref);
+			var bst = ustring.Make (aref);
+			var cst = ustring.Make (aref.Replace ("$", "D"));
+			Assert.IsTrue (ast == bst);
+			Assert.IsTrue (ast != cst);
+
+			var abytes = Encoding.UTF8.GetBytes (aref);
+			var bbytes = Encoding.UTF8.GetBytes (aref);
+			var cbytes = Encoding.UTF8.GetBytes (aref.Replace ("$", "D"));
+
+			var len = abytes.Length;
+			var a1 = Marshal.AllocHGlobal (abytes.Length + 1);
+			Marshal.Copy (abytes, 0, a1, abytes.Length);
+			var b1 = Marshal.AllocHGlobal (bbytes.Length + 1);
+			Marshal.Copy (abytes, 0, b1, abytes.Length);
+			var c1 = Marshal.AllocHGlobal (cbytes.Length + 1);
+			Marshal.Copy (cbytes, 0, c1, abytes.Length);
+			var ap = ustring.Make (a1, len);
+			var bp = ustring.Make (b1, len);
+			var cp = ustring.Make (c1, len);
+
+			Assert.IsTrue (ap == bp);
+			Assert.IsTrue (ap == ap);
+			Assert.IsTrue (ap != cp);
+
+			// Now compare ones with others
+			Assert.IsTrue (ast == ap);
+			Assert.IsTrue (ast == bp);
+			Assert.IsTrue (ap  == bst);
+			Assert.IsTrue (ast == bp);
+			Assert.IsTrue (ast != cp);
+			Assert.IsTrue (cp  == cp);
+			Assert.IsTrue (cp  == cst);
+			Assert.IsTrue (cp  != bst);
+
+			// Slices
+			Assert.IsTrue (ast [1,5] == ap    [1,5]);
+			Assert.IsTrue (ast [1,5] == bp    [1,5]);
+			Assert.IsTrue (ap  [1,5] == bst   [1,5]);
+			Assert.IsTrue (ast [1,5] == bp    [1,5]);
+			Assert.IsTrue (ast [1,5] != cp    [1,5]);
+			Assert.IsTrue (cp  [1,5] == cp    [1,5]);
+			Assert.IsTrue (cp  [1,5] == cst   [1,5]);
+			Assert.IsTrue (cp  [1,5] != bst   [1,5]);
 
 		}
 
@@ -75,7 +133,10 @@ namespace NStackTests
 		[Test]
 		public void IndexOf ()
 		{
-
+			Assert.AreEqual (0, hello.IndexOf ('h'));
+			Assert.AreEqual (1, hello.IndexOf ('e'));
+	                Assert.AreEqual (2, hello.IndexOf ('l'));
+			Assert.AreEqual (10, kosmex.IndexOf (0x41));
 		}
 
 		[Test]
@@ -143,6 +204,35 @@ namespace NStackTests
 			var id = s as IDisposable;
 			id.Dispose ();
 			Assert.True (released);
+		}
+
+		[Test]
+		public void TestTrim ()
+		{
+			Assert.IsTrue (ustring.Make ("hello") == ustring.Make (" hello ").TrimSpace ());
+			Assert.IsTrue (ustring.Make ("hello") == ustring.Make ("\nhello\t").TrimSpace ());
+			Assert.IsTrue (ustring.Make ("hel \t\tlo") == ustring.Make ("    hel \t\tlo ").TrimSpace ());
+			Assert.IsTrue (ustring.Make ("  hello") == ustring.Make ("  hello").TrimEnd (ustring.Make (" ")));
+			Assert.IsTrue (ustring.Make ("hello  ") == ustring.Make ("hello  ").TrimStart (ustring.Make (" ")));
+			Assert.IsTrue (ustring.Make ("  hello") == ustring.Make ("  hello  ").TrimEnd (ustring.Make (" ")));
+			Assert.IsTrue (ustring.Make ("hello  ") == ustring.Make ("  hello  ").TrimStart (ustring.Make (" ")));
+
+			Assert.IsTrue (ustring.Make ("oot") == ustring.Make ("ffffffoot").TrimStart (x => x == 'f'));
+		}
+
+		[Test]
+		public void Split ()
+		{
+			var gecos = ustring.Make ("miguel:*:100:200:Miguel de Icaza:/home/miguel:/bin/bash");
+			var fields = gecos.Split (":");
+			Assert.AreEqual (7, fields.Length);
+			Assert.IsTrue (ustring.Make ("miguel") == fields [0]);
+			Assert.IsTrue (ustring.Make ("*") == fields [1]);
+			Assert.IsTrue (ustring.Make ("100") == fields [2]);
+			Assert.IsTrue (ustring.Make ("200") == fields [3]);
+			Assert.IsTrue (ustring.Make ("Miguel de Icaza") == fields [4]);
+			Assert.IsTrue (ustring.Make ("/home/miguel") == fields [5]);
+			Assert.IsTrue (ustring.Make ("/bin/bash") == fields [6]);
 		}
 	}
 }

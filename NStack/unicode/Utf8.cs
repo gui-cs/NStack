@@ -1,4 +1,4 @@
-﻿﻿// 
+﻿﻿﻿// 
 // ustring.cs: UTF8 String representation
 //
 // Based on the Go UTF8 code
@@ -154,7 +154,7 @@ namespace NStack
 		/// <param name="str">The string to check.</param>
 		public static bool FullRune (ustring str)
 		{
-			if (str == null)
+			if ((object)str == null)
 				throw new ArgumentNullException (nameof (str));
 			var n = str.Length;
 
@@ -251,7 +251,7 @@ namespace NStack
 		/// <param name="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
 		public static (uint Rune, int size) DecodeRune (ustring str, int start = 0, int n = -1)
 		{
-			if (str == null)
+			if ((object) str == null)
 				throw new ArgumentNullException (nameof (str));
 			if (start < 0)
 				throw new ArgumentException ("invalid offset", nameof (start));
@@ -369,7 +369,7 @@ namespace NStack
 		/// value. No other validation is performed.</remarks> 
 		public static (uint Rune, int size) DecodeLastRune (ustring str, int end = -1)
 		{
-			if (str == null)
+			if ((object)str == null)
 				throw new ArgumentNullException (nameof (str));
 			if (str.Length == 0)
 				return (RuneError, 0);
@@ -536,7 +536,7 @@ namespace NStack
 		/// <param name="str">utf8 string.</param>
 		public static int RuneCount (ustring str)
 		{
-			if (str == null)
+			if ((object) str == null)
 				throw new ArgumentNullException (nameof (str));
 			var count = str.Length;
 			int n = 0;
@@ -666,7 +666,7 @@ namespace NStack
 		/// <param name="str">String containing the utf8 buffer.</param>
 		public static int InvalidIndex (ustring str)
 		{
-			if (str == null)
+			if ((object) str == null)
 				throw new ArgumentNullException (nameof (str));
 			var n = str.Length;
 
