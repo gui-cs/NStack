@@ -10,53 +10,56 @@ using System;
 using System.Collections.Generic;
 namespace NStack {
 public partial class Unicode {
-	// 
-	/// <summary>
-	/// Version is the Unicode edition from which the tables are derived.
-	/// </summary>
+	// Version is the Unicode edition from which the tables are derived.
 	public const string Version = "9.0.0";
 
-	// Categories is the set of Unicode category tables.
-	static Dictionary<string,RangeTable> Categories = new Dictionary<string,RangeTable> () {
-		{ "C", C },
-		{ "Cc", Cc },
-		{ "Cf", Cf },
-		{ "Co", Co },
-		{ "Cs", Cs },
-		{ "L", L },
-		{ "Ll", Ll },
-		{ "Lm", Lm },
-		{ "Lo", Lo },
-		{ "Lt", Lt },
-		{ "Lu", Lu },
-		{ "M", M },
-		{ "Mc", Mc },
-		{ "Me", Me },
-		{ "Mn", Mn },
-		{ "N", N },
-		{ "Nd", Nd },
-		{ "Nl", Nl },
-		{ "No", No },
-		{ "P", P },
-		{ "Pc", Pc },
-		{ "Pd", Pd },
-		{ "Pe", Pe },
-		{ "Pf", Pf },
-		{ "Pi", Pi },
-		{ "Po", Po },
-		{ "Ps", Ps },
-		{ "S", S },
-		{ "Sc", Sc },
-		{ "Sk", Sk },
-		{ "Sm", Sm },
-		{ "So", So },
-		{ "Z", Z },
-		{ "Zl", Zl },
-		{ "Zp", Zp },
-		{ "Zs", Zs },
-	};
+	/// <summary>Static class containing the various Unicode category range tables</summary>
+	/// <remarks><para>There are static properties that can be used to fetch a specific category, or you can use the <see cref="M:NStack.Unicode.Category.Get"/> method this class to retrieve the RangeTable by its Unicode category table name</para></remarks>
+	public static class Category {
+		/// <summary>Retrieves the specified RangeTable from the Unicode category name</summary>
+		/// <param name="categoryName">The unicode character category name</param>
+		public static RangeTable Get (string categoryName) => Categories [categoryName];
+		// Categories is the set of Unicode category tables.
+		static Dictionary<string,RangeTable> Categories = new Dictionary<string,RangeTable> () {
+			{ "C", C },
+			{ "Cc", Cc },
+			{ "Cf", Cf },
+			{ "Co", Co },
+			{ "Cs", Cs },
+			{ "L", L },
+			{ "Ll", Ll },
+			{ "Lm", Lm },
+			{ "Lo", Lo },
+			{ "Lt", Lt },
+			{ "Lu", Lu },
+			{ "M", M },
+			{ "Mc", Mc },
+			{ "Me", Me },
+			{ "Mn", Mn },
+			{ "N", N },
+			{ "Nd", Nd },
+			{ "Nl", Nl },
+			{ "No", No },
+			{ "P", P },
+			{ "Pc", Pc },
+			{ "Pd", Pd },
+			{ "Pe", Pe },
+			{ "Pf", Pf },
+			{ "Pi", Pi },
+			{ "Po", Po },
+			{ "Ps", Ps },
+			{ "S", S },
+			{ "Sc", Sc },
+			{ "Sk", Sk },
+			{ "Sm", Sm },
+			{ "So", So },
+			{ "Z", Z },
+			{ "Zl", Zl },
+			{ "Zp", Zp },
+			{ "Zs", Zs },
+		};
 
-	static RangeTable _C = new RangeTable (
+	internal static RangeTable _C = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0000, 0x001f, 1),
 			new Range16 (0x007f, 0x009f, 1),
@@ -85,7 +88,7 @@ public partial class Unicode {
 		latinOffset: 2
 	);
 
-	static RangeTable _Cc = new RangeTable (
+	internal static RangeTable _Cc = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0000, 0x001f, 1),
 			new Range16 (0x007f, 0x009f, 1),
@@ -93,7 +96,7 @@ public partial class Unicode {
 		latinOffset: 2
 	);
 
-	static RangeTable _Cf = new RangeTable (
+	internal static RangeTable _Cf = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00ad, 0x0600, 1363),
 			new Range16 (0x0601, 0x0605, 1),
@@ -116,7 +119,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Co = new RangeTable (
+	internal static RangeTable _Co = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xe000, 0xf8ff, 1),
 		},
@@ -126,13 +129,13 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Cs = new RangeTable (
+	internal static RangeTable _Cs = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xd800, 0xdfff, 1),
 		}
 	);
 
-	static RangeTable _L = new RangeTable (
+	internal static RangeTable _L = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0041, 0x005a, 1),
 			new Range16 (0x0061, 0x007a, 1),
@@ -676,7 +679,7 @@ public partial class Unicode {
 		latinOffset: 6
 	);
 
-	static RangeTable _Ll = new RangeTable (
+	internal static RangeTable _Ll = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0061, 0x007a, 1),
 			new Range16 (0x00b5, 0x00df, 42),
@@ -834,7 +837,7 @@ public partial class Unicode {
 		latinOffset: 4
 	);
 
-	static RangeTable _Lm = new RangeTable (
+	internal static RangeTable _Lm = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x02b0, 0x02c1, 1),
 			new Range16 (0x02c6, 0x02d1, 1),
@@ -885,7 +888,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Lo = new RangeTable (
+	internal static RangeTable _Lo = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00aa, 0x00ba, 16),
 			new Range16 (0x01bb, 0x01c0, 5),
@@ -1313,7 +1316,7 @@ public partial class Unicode {
 		latinOffset: 1
 	);
 
-	static RangeTable _Lt = new RangeTable (
+	internal static RangeTable _Lt = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x01c5, 0x01cb, 3),
 			new Range16 (0x01f2, 0x1f88, 7574),
@@ -1325,7 +1328,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Lu = new RangeTable (
+	internal static RangeTable _Lu = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0041, 0x005a, 1),
 			new Range16 (0x00c0, 0x00d6, 1),
@@ -1471,7 +1474,7 @@ public partial class Unicode {
 		latinOffset: 3
 	);
 
-	static RangeTable _M = new RangeTable (
+	internal static RangeTable _M = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0300, 0x036f, 1),
 			new Range16 (0x0483, 0x0489, 1),
@@ -1720,7 +1723,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Mc = new RangeTable (
+	internal static RangeTable _Mc = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0903, 0x093b, 56),
 			new Range16 (0x093e, 0x0940, 1),
@@ -1863,7 +1866,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Me = new RangeTable (
+	internal static RangeTable _Me = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0488, 0x0489, 1),
 			new Range16 (0x1abe, 0x20dd, 1567),
@@ -1873,7 +1876,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Mn = new RangeTable (
+	internal static RangeTable _Mn = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0300, 0x036f, 1),
 			new Range16 (0x0483, 0x0487, 1),
@@ -2130,7 +2133,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _N = new RangeTable (
+	internal static RangeTable _N = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0030, 0x0039, 1),
 			new Range16 (0x00b2, 0x00b3, 1),
@@ -2251,7 +2254,7 @@ public partial class Unicode {
 		latinOffset: 4
 	);
 
-	static RangeTable _Nd = new RangeTable (
+	internal static RangeTable _Nd = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0030, 0x0039, 1),
 			new Range16 (0x0660, 0x0669, 1),
@@ -2313,7 +2316,7 @@ public partial class Unicode {
 		latinOffset: 1
 	);
 
-	static RangeTable _Nl = new RangeTable (
+	internal static RangeTable _Nl = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x16ee, 0x16f0, 1),
 			new Range16 (0x2160, 0x2182, 1),
@@ -2331,7 +2334,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _No = new RangeTable (
+	internal static RangeTable _No = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00b2, 0x00b3, 1),
 			new Range16 (0x00b9, 0x00bc, 3),
@@ -2398,7 +2401,7 @@ public partial class Unicode {
 		latinOffset: 3
 	);
 
-	static RangeTable _P = new RangeTable (
+	internal static RangeTable _P = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0021, 0x0023, 1),
 			new Range16 (0x0025, 0x002a, 1),
@@ -2553,7 +2556,7 @@ public partial class Unicode {
 		latinOffset: 11
 	);
 
-	static RangeTable _Pc = new RangeTable (
+	internal static RangeTable _Pc = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x005f, 0x203f, 8160),
 			new Range16 (0x2040, 0x2054, 20),
@@ -2563,7 +2566,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Pd = new RangeTable (
+	internal static RangeTable _Pd = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x002d, 0x058a, 1373),
 			new Range16 (0x05be, 0x1400, 3650),
@@ -2579,7 +2582,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Pe = new RangeTable (
+	internal static RangeTable _Pe = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0029, 0x005d, 52),
 			new Range16 (0x007d, 0x0f3b, 3774),
@@ -2607,7 +2610,7 @@ public partial class Unicode {
 		latinOffset: 1
 	);
 
-	static RangeTable _Pf = new RangeTable (
+	internal static RangeTable _Pf = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00bb, 0x2019, 8030),
 			new Range16 (0x201d, 0x203a, 29),
@@ -2617,7 +2620,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Pi = new RangeTable (
+	internal static RangeTable _Pi = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00ab, 0x2018, 8045),
 			new Range16 (0x201b, 0x201c, 1),
@@ -2628,7 +2631,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable _Po = new RangeTable (
+	internal static RangeTable _Po = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0021, 0x0023, 1),
 			new Range16 (0x0025, 0x0027, 1),
@@ -2781,7 +2784,7 @@ public partial class Unicode {
 		latinOffset: 8
 	);
 
-	static RangeTable _Ps = new RangeTable (
+	internal static RangeTable _Ps = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0028, 0x005b, 51),
 			new Range16 (0x007b, 0x0f3a, 3775),
@@ -2812,7 +2815,7 @@ public partial class Unicode {
 		latinOffset: 1
 	);
 
-	static RangeTable _S = new RangeTable (
+	internal static RangeTable _S = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0024, 0x002b, 7),
 			new Range16 (0x003c, 0x003e, 1),
@@ -3009,7 +3012,7 @@ public partial class Unicode {
 		latinOffset: 10
 	);
 
-	static RangeTable _Sc = new RangeTable (
+	internal static RangeTable _Sc = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0024, 0x00a2, 126),
 			new Range16 (0x00a3, 0x00a5, 1),
@@ -3027,7 +3030,7 @@ public partial class Unicode {
 		latinOffset: 2
 	);
 
-	static RangeTable _Sk = new RangeTable (
+	internal static RangeTable _Sk = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x005e, 0x0060, 2),
 			new Range16 (0x00a8, 0x00af, 7),
@@ -3060,7 +3063,7 @@ public partial class Unicode {
 		latinOffset: 3
 	);
 
-	static RangeTable _Sm = new RangeTable (
+	internal static RangeTable _Sm = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x002b, 0x003c, 17),
 			new Range16 (0x003d, 0x003e, 1),
@@ -3117,7 +3120,7 @@ public partial class Unicode {
 		latinOffset: 5
 	);
 
-	static RangeTable _So = new RangeTable (
+	internal static RangeTable _So = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00a6, 0x00a9, 3),
 			new Range16 (0x00ae, 0x00b0, 2),
@@ -3284,7 +3287,7 @@ public partial class Unicode {
 		latinOffset: 2
 	);
 
-	static RangeTable _Z = new RangeTable (
+	internal static RangeTable _Z = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0020, 0x00a0, 128),
 			new Range16 (0x1680, 0x2000, 2432),
@@ -3296,19 +3299,19 @@ public partial class Unicode {
 		latinOffset: 1
 	);
 
-	static RangeTable _Zl = new RangeTable (
+	internal static RangeTable _Zl = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2028, 0x2028, 1),
 		}
 	);
 
-	static RangeTable _Zp = new RangeTable (
+	internal static RangeTable _Zp = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2029, 0x2029, 1),
 		}
 	);
 
-	static RangeTable _Zs = new RangeTable (
+	internal static RangeTable _Zs = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0020, 0x00a0, 128),
 			new Range16 (0x1680, 0x2000, 2432),
@@ -3392,7 +3395,7 @@ public partial class Unicode {
 	/// <summary>So is the set of Unicode characters in category So.</summary>
 	public static RangeTable So => _So;
 	/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>
-	public RangeTable Space => _Z;
+	public static RangeTable Space => _Z;
 	/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>;
 	public static RangeTable Z => _Z;
 	/// <summary>Symbol/S is the set of Unicode symbol characters, category S.</summary>
@@ -3413,152 +3416,160 @@ public partial class Unicode {
 	public static RangeTable Zp => _Zp;
 	/// <summary>Zs is the set of Unicode characters in category Zs.</summary>
 	public static RangeTable Zs => _Zs;
+	}
+
 // Generated by running
 //	maketables --scripts=all --url=http://www.unicode.org/Public/9.0.0/ucd/
 // DO NOT EDIT
 
-	// Scripts is the set of Unicode script tables.
-	Dictionary<string,RangeTable> Scripts = new Dictionary<string,RangeTable> (){
-		{ "Adlam", Adlam },
-		{ "Ahom", Ahom },
-		{ "Anatolian_Hieroglyphs", Anatolian_Hieroglyphs },
-		{ "Arabic", Arabic },
-		{ "Armenian", Armenian },
-		{ "Avestan", Avestan },
-		{ "Balinese", Balinese },
-		{ "Bamum", Bamum },
-		{ "Bassa_Vah", Bassa_Vah },
-		{ "Batak", Batak },
-		{ "Bengali", Bengali },
-		{ "Bhaiksuki", Bhaiksuki },
-		{ "Bopomofo", Bopomofo },
-		{ "Brahmi", Brahmi },
-		{ "Braille", Braille },
-		{ "Buginese", Buginese },
-		{ "Buhid", Buhid },
-		{ "Canadian_Aboriginal", Canadian_Aboriginal },
-		{ "Carian", Carian },
-		{ "Caucasian_Albanian", Caucasian_Albanian },
-		{ "Chakma", Chakma },
-		{ "Cham", Cham },
-		{ "Cherokee", Cherokee },
-		{ "Common", Common },
-		{ "Coptic", Coptic },
-		{ "Cuneiform", Cuneiform },
-		{ "Cypriot", Cypriot },
-		{ "Cyrillic", Cyrillic },
-		{ "Deseret", Deseret },
-		{ "Devanagari", Devanagari },
-		{ "Duployan", Duployan },
-		{ "Egyptian_Hieroglyphs", Egyptian_Hieroglyphs },
-		{ "Elbasan", Elbasan },
-		{ "Ethiopic", Ethiopic },
-		{ "Georgian", Georgian },
-		{ "Glagolitic", Glagolitic },
-		{ "Gothic", Gothic },
-		{ "Grantha", Grantha },
-		{ "Greek", Greek },
-		{ "Gujarati", Gujarati },
-		{ "Gurmukhi", Gurmukhi },
-		{ "Han", Han },
-		{ "Hangul", Hangul },
-		{ "Hanunoo", Hanunoo },
-		{ "Hatran", Hatran },
-		{ "Hebrew", Hebrew },
-		{ "Hiragana", Hiragana },
-		{ "Imperial_Aramaic", Imperial_Aramaic },
-		{ "Inherited", Inherited },
-		{ "Inscriptional_Pahlavi", Inscriptional_Pahlavi },
-		{ "Inscriptional_Parthian", Inscriptional_Parthian },
-		{ "Javanese", Javanese },
-		{ "Kaithi", Kaithi },
-		{ "Kannada", Kannada },
-		{ "Katakana", Katakana },
-		{ "Kayah_Li", Kayah_Li },
-		{ "Kharoshthi", Kharoshthi },
-		{ "Khmer", Khmer },
-		{ "Khojki", Khojki },
-		{ "Khudawadi", Khudawadi },
-		{ "Lao", Lao },
-		{ "Latin", Latin },
-		{ "Lepcha", Lepcha },
-		{ "Limbu", Limbu },
-		{ "Linear_A", Linear_A },
-		{ "Linear_B", Linear_B },
-		{ "Lisu", Lisu },
-		{ "Lycian", Lycian },
-		{ "Lydian", Lydian },
-		{ "Mahajani", Mahajani },
-		{ "Malayalam", Malayalam },
-		{ "Mandaic", Mandaic },
-		{ "Manichaean", Manichaean },
-		{ "Marchen", Marchen },
-		{ "Meetei_Mayek", Meetei_Mayek },
-		{ "Mende_Kikakui", Mende_Kikakui },
-		{ "Meroitic_Cursive", Meroitic_Cursive },
-		{ "Meroitic_Hieroglyphs", Meroitic_Hieroglyphs },
-		{ "Miao", Miao },
-		{ "Modi", Modi },
-		{ "Mongolian", Mongolian },
-		{ "Mro", Mro },
-		{ "Multani", Multani },
-		{ "Myanmar", Myanmar },
-		{ "Nabataean", Nabataean },
-		{ "New_Tai_Lue", New_Tai_Lue },
-		{ "Newa", Newa },
-		{ "Nko", Nko },
-		{ "Ogham", Ogham },
-		{ "Ol_Chiki", Ol_Chiki },
-		{ "Old_Hungarian", Old_Hungarian },
-		{ "Old_Italic", Old_Italic },
-		{ "Old_North_Arabian", Old_North_Arabian },
-		{ "Old_Permic", Old_Permic },
-		{ "Old_Persian", Old_Persian },
-		{ "Old_South_Arabian", Old_South_Arabian },
-		{ "Old_Turkic", Old_Turkic },
-		{ "Oriya", Oriya },
-		{ "Osage", Osage },
-		{ "Osmanya", Osmanya },
-		{ "Pahawh_Hmong", Pahawh_Hmong },
-		{ "Palmyrene", Palmyrene },
-		{ "Pau_Cin_Hau", Pau_Cin_Hau },
-		{ "Phags_Pa", Phags_Pa },
-		{ "Phoenician", Phoenician },
-		{ "Psalter_Pahlavi", Psalter_Pahlavi },
-		{ "Rejang", Rejang },
-		{ "Runic", Runic },
-		{ "Samaritan", Samaritan },
-		{ "Saurashtra", Saurashtra },
-		{ "Sharada", Sharada },
-		{ "Shavian", Shavian },
-		{ "Siddham", Siddham },
-		{ "SignWriting", SignWriting },
-		{ "Sinhala", Sinhala },
-		{ "Sora_Sompeng", Sora_Sompeng },
-		{ "Sundanese", Sundanese },
-		{ "Syloti_Nagri", Syloti_Nagri },
-		{ "Syriac", Syriac },
-		{ "Tagalog", Tagalog },
-		{ "Tagbanwa", Tagbanwa },
-		{ "Tai_Le", Tai_Le },
-		{ "Tai_Tham", Tai_Tham },
-		{ "Tai_Viet", Tai_Viet },
-		{ "Takri", Takri },
-		{ "Tamil", Tamil },
-		{ "Tangut", Tangut },
-		{ "Telugu", Telugu },
-		{ "Thaana", Thaana },
-		{ "Thai", Thai },
-		{ "Tibetan", Tibetan },
-		{ "Tifinagh", Tifinagh },
-		{ "Tirhuta", Tirhuta },
-		{ "Ugaritic", Ugaritic },
-		{ "Vai", Vai },
-		{ "Warang_Citi", Warang_Citi },
-		{ "Yi", Yi },
-	};
+	/// <summary>Static class containing the Unicode script tables.</summary>
+	/// <remarks><para>There are static properties that can be used to fetch a specific category, or you can use the <see cref="T:NStack.Unicode.Script.Get"/> method in this class to retrieve the range table by its script name</para></remarks>
+	public static class Script {
+		/// <summary>Retrieves the specified RangeTable from the Unicode script name.</summary>
+		/// <param name="scriptName">The unicode script name</param>
+		public static RangeTable Get (string scriptName) => Scripts [scriptName];
+		// Scripts is the set of Unicode script tables.
+		static Dictionary<string,RangeTable> Scripts = new Dictionary<string,RangeTable> (){
+			{ "Adlam", Adlam },
+			{ "Ahom", Ahom },
+			{ "Anatolian_Hieroglyphs", Anatolian_Hieroglyphs },
+			{ "Arabic", Arabic },
+			{ "Armenian", Armenian },
+			{ "Avestan", Avestan },
+			{ "Balinese", Balinese },
+			{ "Bamum", Bamum },
+			{ "Bassa_Vah", Bassa_Vah },
+			{ "Batak", Batak },
+			{ "Bengali", Bengali },
+			{ "Bhaiksuki", Bhaiksuki },
+			{ "Bopomofo", Bopomofo },
+			{ "Brahmi", Brahmi },
+			{ "Braille", Braille },
+			{ "Buginese", Buginese },
+			{ "Buhid", Buhid },
+			{ "Canadian_Aboriginal", Canadian_Aboriginal },
+			{ "Carian", Carian },
+			{ "Caucasian_Albanian", Caucasian_Albanian },
+			{ "Chakma", Chakma },
+			{ "Cham", Cham },
+			{ "Cherokee", Cherokee },
+			{ "Common", Common },
+			{ "Coptic", Coptic },
+			{ "Cuneiform", Cuneiform },
+			{ "Cypriot", Cypriot },
+			{ "Cyrillic", Cyrillic },
+			{ "Deseret", Deseret },
+			{ "Devanagari", Devanagari },
+			{ "Duployan", Duployan },
+			{ "Egyptian_Hieroglyphs", Egyptian_Hieroglyphs },
+			{ "Elbasan", Elbasan },
+			{ "Ethiopic", Ethiopic },
+			{ "Georgian", Georgian },
+			{ "Glagolitic", Glagolitic },
+			{ "Gothic", Gothic },
+			{ "Grantha", Grantha },
+			{ "Greek", Greek },
+			{ "Gujarati", Gujarati },
+			{ "Gurmukhi", Gurmukhi },
+			{ "Han", Han },
+			{ "Hangul", Hangul },
+			{ "Hanunoo", Hanunoo },
+			{ "Hatran", Hatran },
+			{ "Hebrew", Hebrew },
+			{ "Hiragana", Hiragana },
+			{ "Imperial_Aramaic", Imperial_Aramaic },
+			{ "Inherited", Inherited },
+			{ "Inscriptional_Pahlavi", Inscriptional_Pahlavi },
+			{ "Inscriptional_Parthian", Inscriptional_Parthian },
+			{ "Javanese", Javanese },
+			{ "Kaithi", Kaithi },
+			{ "Kannada", Kannada },
+			{ "Katakana", Katakana },
+			{ "Kayah_Li", Kayah_Li },
+			{ "Kharoshthi", Kharoshthi },
+			{ "Khmer", Khmer },
+			{ "Khojki", Khojki },
+			{ "Khudawadi", Khudawadi },
+			{ "Lao", Lao },
+			{ "Latin", Latin },
+			{ "Lepcha", Lepcha },
+			{ "Limbu", Limbu },
+			{ "Linear_A", Linear_A },
+			{ "Linear_B", Linear_B },
+			{ "Lisu", Lisu },
+			{ "Lycian", Lycian },
+			{ "Lydian", Lydian },
+			{ "Mahajani", Mahajani },
+			{ "Malayalam", Malayalam },
+			{ "Mandaic", Mandaic },
+			{ "Manichaean", Manichaean },
+			{ "Marchen", Marchen },
+			{ "Meetei_Mayek", Meetei_Mayek },
+			{ "Mende_Kikakui", Mende_Kikakui },
+			{ "Meroitic_Cursive", Meroitic_Cursive },
+			{ "Meroitic_Hieroglyphs", Meroitic_Hieroglyphs },
+			{ "Miao", Miao },
+			{ "Modi", Modi },
+			{ "Mongolian", Mongolian },
+			{ "Mro", Mro },
+			{ "Multani", Multani },
+			{ "Myanmar", Myanmar },
+			{ "Nabataean", Nabataean },
+			{ "New_Tai_Lue", New_Tai_Lue },
+			{ "Newa", Newa },
+			{ "Nko", Nko },
+			{ "Ogham", Ogham },
+			{ "Ol_Chiki", Ol_Chiki },
+			{ "Old_Hungarian", Old_Hungarian },
+			{ "Old_Italic", Old_Italic },
+			{ "Old_North_Arabian", Old_North_Arabian },
+			{ "Old_Permic", Old_Permic },
+			{ "Old_Persian", Old_Persian },
+			{ "Old_South_Arabian", Old_South_Arabian },
+			{ "Old_Turkic", Old_Turkic },
+			{ "Oriya", Oriya },
+			{ "Osage", Osage },
+			{ "Osmanya", Osmanya },
+			{ "Pahawh_Hmong", Pahawh_Hmong },
+			{ "Palmyrene", Palmyrene },
+			{ "Pau_Cin_Hau", Pau_Cin_Hau },
+			{ "Phags_Pa", Phags_Pa },
+			{ "Phoenician", Phoenician },
+			{ "Psalter_Pahlavi", Psalter_Pahlavi },
+			{ "Rejang", Rejang },
+			{ "Runic", Runic },
+			{ "Samaritan", Samaritan },
+			{ "Saurashtra", Saurashtra },
+			{ "Sharada", Sharada },
+			{ "Shavian", Shavian },
+			{ "Siddham", Siddham },
+			{ "SignWriting", SignWriting },
+			{ "Sinhala", Sinhala },
+			{ "Sora_Sompeng", Sora_Sompeng },
+			{ "Sundanese", Sundanese },
+			{ "Syloti_Nagri", Syloti_Nagri },
+			{ "Syriac", Syriac },
+			{ "Tagalog", Tagalog },
+			{ "Tagbanwa", Tagbanwa },
+			{ "Tai_Le", Tai_Le },
+			{ "Tai_Tham", Tai_Tham },
+			{ "Tai_Viet", Tai_Viet },
+			{ "Takri", Takri },
+			{ "Tamil", Tamil },
+			{ "Tangut", Tangut },
+			{ "Telugu", Telugu },
+			{ "Thaana", Thaana },
+			{ "Thai", Thai },
+			{ "Tibetan", Tibetan },
+			{ "Tifinagh", Tifinagh },
+			{ "Tirhuta", Tirhuta },
+			{ "Ugaritic", Ugaritic },
+			{ "Vai", Vai },
+			{ "Warang_Citi", Warang_Citi },
+			{ "Yi", Yi },
+		};
 
-	static RangeTable _Adlam = new RangeTable (
+	internal static RangeTable _Adlam = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3568,7 +3579,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Ahom = new RangeTable (
+	internal static RangeTable _Ahom = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3578,7 +3589,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Anatolian_Hieroglyphs = new RangeTable (
+	internal static RangeTable _Anatolian_Hieroglyphs = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3586,7 +3597,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Arabic = new RangeTable (
+	internal static RangeTable _Arabic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0600, 0x0604, 1),
 			new Range16 (0x0606, 0x060b, 1),
@@ -3649,7 +3660,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Armenian = new RangeTable (
+	internal static RangeTable _Armenian = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0531, 0x0556, 1),
 			new Range16 (0x0559, 0x055f, 1),
@@ -3660,7 +3671,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Avestan = new RangeTable (
+	internal static RangeTable _Avestan = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3669,14 +3680,14 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Balinese = new RangeTable (
+	internal static RangeTable _Balinese = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1b00, 0x1b4b, 1),
 			new Range16 (0x1b50, 0x1b7c, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Bamum = new RangeTable (
+	internal static RangeTable _Bamum = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa6a0, 0xa6f7, 1),
 		},
@@ -3685,7 +3696,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Bassa_Vah = new RangeTable (
+	internal static RangeTable _Bassa_Vah = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3694,14 +3705,14 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Batak = new RangeTable (
+	internal static RangeTable _Batak = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1bc0, 0x1bf3, 1),
 			new Range16 (0x1bfc, 0x1bff, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Bengali = new RangeTable (
+	internal static RangeTable _Bengali = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0980, 0x0983, 1),
 			new Range16 (0x0985, 0x098c, 1),
@@ -3720,7 +3731,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Bhaiksuki = new RangeTable (
+	internal static RangeTable _Bhaiksuki = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3731,7 +3742,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Bopomofo = new RangeTable (
+	internal static RangeTable _Bopomofo = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x02ea, 0x02eb, 1),
 			new Range16 (0x3105, 0x312d, 1),
@@ -3739,7 +3750,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Brahmi = new RangeTable (
+	internal static RangeTable _Brahmi = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3749,33 +3760,33 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Braille = new RangeTable (
+	internal static RangeTable _Braille = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2800, 0x28ff, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Buginese = new RangeTable (
+	internal static RangeTable _Buginese = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1a00, 0x1a1b, 1),
 			new Range16 (0x1a1e, 0x1a1f, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Buhid = new RangeTable (
+	internal static RangeTable _Buhid = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1740, 0x1753, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Canadian_Aboriginal = new RangeTable (
+	internal static RangeTable _Canadian_Aboriginal = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1400, 0x167f, 1),
 			new Range16 (0x18b0, 0x18f5, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Carian = new RangeTable (
+	internal static RangeTable _Carian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3783,7 +3794,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Caucasian_Albanian = new RangeTable (
+	internal static RangeTable _Caucasian_Albanian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3792,7 +3803,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Chakma = new RangeTable (
+	internal static RangeTable _Chakma = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -3801,7 +3812,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Cham = new RangeTable (
+	internal static RangeTable _Cham = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xaa00, 0xaa36, 1),
 			new Range16 (0xaa40, 0xaa4d, 1),
@@ -3810,7 +3821,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Cherokee = new RangeTable (
+	internal static RangeTable _Cherokee = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x13a0, 0x13f5, 1),
 			new Range16 (0x13f8, 0x13fd, 1),
@@ -3818,7 +3829,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Common = new RangeTable (
+	internal static RangeTable _Common = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0000, 0x0040, 1),
 			new Range16 (0x005b, 0x0060, 1),
@@ -3991,7 +4002,7 @@ public partial class Unicode {
 		latinOffset: 7
 	); /* RangeTable */
 
-	static RangeTable _Coptic = new RangeTable (
+	internal static RangeTable _Coptic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x03e2, 0x03ef, 1),
 			new Range16 (0x2c80, 0x2cf3, 1),
@@ -3999,7 +4010,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Cuneiform = new RangeTable (
+	internal static RangeTable _Cuneiform = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4010,7 +4021,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Cypriot = new RangeTable (
+	internal static RangeTable _Cypriot = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4023,7 +4034,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Cyrillic = new RangeTable (
+	internal static RangeTable _Cyrillic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0400, 0x0484, 1),
 			new Range16 (0x0487, 0x052f, 1),
@@ -4036,7 +4047,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Deseret = new RangeTable (
+	internal static RangeTable _Deseret = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4044,7 +4055,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Devanagari = new RangeTable (
+	internal static RangeTable _Devanagari = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0900, 0x0950, 1),
 			new Range16 (0x0953, 0x0963, 1),
@@ -4053,7 +4064,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Duployan = new RangeTable (
+	internal static RangeTable _Duployan = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4065,7 +4076,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Egyptian_Hieroglyphs = new RangeTable (
+	internal static RangeTable _Egyptian_Hieroglyphs = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4073,7 +4084,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Elbasan = new RangeTable (
+	internal static RangeTable _Elbasan = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4081,7 +4092,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Ethiopic = new RangeTable (
+	internal static RangeTable _Ethiopic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1200, 0x1248, 1),
 			new Range16 (0x124a, 0x124d, 1),
@@ -4118,7 +4129,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Georgian = new RangeTable (
+	internal static RangeTable _Georgian = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x10a0, 0x10c5, 1),
 			new Range16 (0x10c7, 0x10c7, 1),
@@ -4131,7 +4142,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Glagolitic = new RangeTable (
+	internal static RangeTable _Glagolitic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2c00, 0x2c2e, 1),
 			new Range16 (0x2c30, 0x2c5e, 1),
@@ -4145,7 +4156,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Gothic = new RangeTable (
+	internal static RangeTable _Gothic = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4153,7 +4164,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Grantha = new RangeTable (
+	internal static RangeTable _Grantha = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4175,7 +4186,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Greek = new RangeTable (
+	internal static RangeTable _Greek = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0370, 0x0373, 1),
 			new Range16 (0x0375, 0x0377, 1),
@@ -4218,7 +4229,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Gujarati = new RangeTable (
+	internal static RangeTable _Gujarati = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0a81, 0x0a83, 1),
 			new Range16 (0x0a85, 0x0a8d, 1),
@@ -4237,7 +4248,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Gurmukhi = new RangeTable (
+	internal static RangeTable _Gurmukhi = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0a01, 0x0a03, 1),
 			new Range16 (0x0a05, 0x0a0a, 1),
@@ -4258,7 +4269,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Han = new RangeTable (
+	internal static RangeTable _Han = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2e80, 0x2e99, 1),
 			new Range16 (0x2e9b, 0x2ef3, 1),
@@ -4281,7 +4292,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Hangul = new RangeTable (
+	internal static RangeTable _Hangul = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1100, 0x11ff, 1),
 			new Range16 (0x302e, 0x302f, 1),
@@ -4300,13 +4311,13 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Hanunoo = new RangeTable (
+	internal static RangeTable _Hanunoo = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1720, 0x1734, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Hatran = new RangeTable (
+	internal static RangeTable _Hatran = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4316,7 +4327,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Hebrew = new RangeTable (
+	internal static RangeTable _Hebrew = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0591, 0x05c7, 1),
 			new Range16 (0x05d0, 0x05ea, 1),
@@ -4330,7 +4341,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Hiragana = new RangeTable (
+	internal static RangeTable _Hiragana = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x3041, 0x3096, 1),
 			new Range16 (0x309d, 0x309f, 1),
@@ -4341,7 +4352,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Imperial_Aramaic = new RangeTable (
+	internal static RangeTable _Imperial_Aramaic = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4350,7 +4361,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Inherited = new RangeTable (
+	internal static RangeTable _Inherited = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0300, 0x036f, 1),
 			new Range16 (0x0485, 0x0486, 1),
@@ -4384,7 +4395,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Inscriptional_Pahlavi = new RangeTable (
+	internal static RangeTable _Inscriptional_Pahlavi = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4393,7 +4404,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Inscriptional_Parthian = new RangeTable (
+	internal static RangeTable _Inscriptional_Parthian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4402,7 +4413,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Javanese = new RangeTable (
+	internal static RangeTable _Javanese = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa980, 0xa9cd, 1),
 			new Range16 (0xa9d0, 0xa9d9, 1),
@@ -4410,7 +4421,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Kaithi = new RangeTable (
+	internal static RangeTable _Kaithi = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4418,7 +4429,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Kannada = new RangeTable (
+	internal static RangeTable _Kannada = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0c80, 0x0c83, 1),
 			new Range16 (0x0c85, 0x0c8c, 1),
@@ -4437,7 +4448,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Katakana = new RangeTable (
+	internal static RangeTable _Katakana = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x30a1, 0x30fa, 1),
 			new Range16 (0x30fd, 0x30ff, 1),
@@ -4452,14 +4463,14 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Kayah_Li = new RangeTable (
+	internal static RangeTable _Kayah_Li = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa900, 0xa92d, 1),
 			new Range16 (0xa92f, 0xa92f, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Kharoshthi = new RangeTable (
+	internal static RangeTable _Kharoshthi = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4474,7 +4485,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Khmer = new RangeTable (
+	internal static RangeTable _Khmer = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1780, 0x17dd, 1),
 			new Range16 (0x17e0, 0x17e9, 1),
@@ -4483,7 +4494,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Khojki = new RangeTable (
+	internal static RangeTable _Khojki = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4492,7 +4503,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Khudawadi = new RangeTable (
+	internal static RangeTable _Khudawadi = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4501,7 +4512,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Lao = new RangeTable (
+	internal static RangeTable _Lao = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0e81, 0x0e82, 1),
 			new Range16 (0x0e84, 0x0e84, 1),
@@ -4524,7 +4535,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Latin = new RangeTable (
+	internal static RangeTable _Latin = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0041, 0x005a, 1),
 			new Range16 (0x0061, 0x007a, 1),
@@ -4561,7 +4572,7 @@ public partial class Unicode {
 		latinOffset: 6
 	); /* RangeTable */
 
-	static RangeTable _Lepcha = new RangeTable (
+	internal static RangeTable _Lepcha = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1c00, 0x1c37, 1),
 			new Range16 (0x1c3b, 0x1c49, 1),
@@ -4569,7 +4580,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Limbu = new RangeTable (
+	internal static RangeTable _Limbu = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1900, 0x191e, 1),
 			new Range16 (0x1920, 0x192b, 1),
@@ -4579,7 +4590,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Linear_A = new RangeTable (
+	internal static RangeTable _Linear_A = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4589,7 +4600,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Linear_B = new RangeTable (
+	internal static RangeTable _Linear_B = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4603,13 +4614,13 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Lisu = new RangeTable (
+	internal static RangeTable _Lisu = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa4d0, 0xa4ff, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Lycian = new RangeTable (
+	internal static RangeTable _Lycian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4617,7 +4628,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Lydian = new RangeTable (
+	internal static RangeTable _Lydian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4626,7 +4637,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Mahajani = new RangeTable (
+	internal static RangeTable _Mahajani = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4634,7 +4645,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Malayalam = new RangeTable (
+	internal static RangeTable _Malayalam = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0d01, 0x0d03, 1),
 			new Range16 (0x0d05, 0x0d0c, 1),
@@ -4648,14 +4659,14 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Mandaic = new RangeTable (
+	internal static RangeTable _Mandaic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0840, 0x085b, 1),
 			new Range16 (0x085e, 0x085e, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Manichaean = new RangeTable (
+	internal static RangeTable _Manichaean = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4664,7 +4675,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Marchen = new RangeTable (
+	internal static RangeTable _Marchen = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4674,7 +4685,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Meetei_Mayek = new RangeTable (
+	internal static RangeTable _Meetei_Mayek = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xaae0, 0xaaf6, 1),
 			new Range16 (0xabc0, 0xabed, 1),
@@ -4682,7 +4693,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Mende_Kikakui = new RangeTable (
+	internal static RangeTable _Mende_Kikakui = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4691,7 +4702,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Meroitic_Cursive = new RangeTable (
+	internal static RangeTable _Meroitic_Cursive = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4701,7 +4712,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Meroitic_Hieroglyphs = new RangeTable (
+	internal static RangeTable _Meroitic_Hieroglyphs = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4709,7 +4720,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Miao = new RangeTable (
+	internal static RangeTable _Miao = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4719,7 +4730,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Modi = new RangeTable (
+	internal static RangeTable _Modi = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4728,7 +4739,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Mongolian = new RangeTable (
+	internal static RangeTable _Mongolian = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1800, 0x1801, 1),
 			new Range16 (0x1804, 0x1804, 1),
@@ -4742,7 +4753,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Mro = new RangeTable (
+	internal static RangeTable _Mro = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4752,7 +4763,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Multani = new RangeTable (
+	internal static RangeTable _Multani = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4764,7 +4775,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Myanmar = new RangeTable (
+	internal static RangeTable _Myanmar = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1000, 0x109f, 1),
 			new Range16 (0xa9e0, 0xa9fe, 1),
@@ -4772,7 +4783,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Nabataean = new RangeTable (
+	internal static RangeTable _Nabataean = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4781,7 +4792,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _New_Tai_Lue = new RangeTable (
+	internal static RangeTable _New_Tai_Lue = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1980, 0x19ab, 1),
 			new Range16 (0x19b0, 0x19c9, 1),
@@ -4790,7 +4801,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Newa = new RangeTable (
+	internal static RangeTable _Newa = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4800,25 +4811,25 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Nko = new RangeTable (
+	internal static RangeTable _Nko = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x07c0, 0x07fa, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Ogham = new RangeTable (
+	internal static RangeTable _Ogham = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1680, 0x169c, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Ol_Chiki = new RangeTable (
+	internal static RangeTable _Ol_Chiki = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1c50, 0x1c7f, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Old_Hungarian = new RangeTable (
+	internal static RangeTable _Old_Hungarian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4828,7 +4839,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Old_Italic = new RangeTable (
+	internal static RangeTable _Old_Italic = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4836,7 +4847,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Old_North_Arabian = new RangeTable (
+	internal static RangeTable _Old_North_Arabian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4844,7 +4855,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Old_Permic = new RangeTable (
+	internal static RangeTable _Old_Permic = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4852,7 +4863,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Old_Persian = new RangeTable (
+	internal static RangeTable _Old_Persian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4861,7 +4872,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Old_South_Arabian = new RangeTable (
+	internal static RangeTable _Old_South_Arabian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4869,7 +4880,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Old_Turkic = new RangeTable (
+	internal static RangeTable _Old_Turkic = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4877,7 +4888,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Oriya = new RangeTable (
+	internal static RangeTable _Oriya = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0b01, 0x0b03, 1),
 			new Range16 (0x0b05, 0x0b0c, 1),
@@ -4896,7 +4907,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Osage = new RangeTable (
+	internal static RangeTable _Osage = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4905,7 +4916,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Osmanya = new RangeTable (
+	internal static RangeTable _Osmanya = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4914,7 +4925,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Pahawh_Hmong = new RangeTable (
+	internal static RangeTable _Pahawh_Hmong = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4926,7 +4937,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Palmyrene = new RangeTable (
+	internal static RangeTable _Palmyrene = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4934,7 +4945,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Pau_Cin_Hau = new RangeTable (
+	internal static RangeTable _Pau_Cin_Hau = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4942,13 +4953,13 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Phags_Pa = new RangeTable (
+	internal static RangeTable _Phags_Pa = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa840, 0xa877, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Phoenician = new RangeTable (
+	internal static RangeTable _Phoenician = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4957,7 +4968,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Psalter_Pahlavi = new RangeTable (
+	internal static RangeTable _Psalter_Pahlavi = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -4967,35 +4978,35 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Rejang = new RangeTable (
+	internal static RangeTable _Rejang = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa930, 0xa953, 1),
 			new Range16 (0xa95f, 0xa95f, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Runic = new RangeTable (
+	internal static RangeTable _Runic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x16a0, 0x16ea, 1),
 			new Range16 (0x16ee, 0x16f8, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Samaritan = new RangeTable (
+	internal static RangeTable _Samaritan = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0800, 0x082d, 1),
 			new Range16 (0x0830, 0x083e, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Saurashtra = new RangeTable (
+	internal static RangeTable _Saurashtra = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa880, 0xa8c5, 1),
 			new Range16 (0xa8ce, 0xa8d9, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Sharada = new RangeTable (
+	internal static RangeTable _Sharada = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5004,7 +5015,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Shavian = new RangeTable (
+	internal static RangeTable _Shavian = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5012,7 +5023,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Siddham = new RangeTable (
+	internal static RangeTable _Siddham = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5021,7 +5032,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _SignWriting = new RangeTable (
+	internal static RangeTable _SignWriting = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5031,7 +5042,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Sinhala = new RangeTable (
+	internal static RangeTable _Sinhala = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0d82, 0x0d83, 1),
 			new Range16 (0x0d85, 0x0d96, 1),
@@ -5051,7 +5062,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Sora_Sompeng = new RangeTable (
+	internal static RangeTable _Sora_Sompeng = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5060,20 +5071,20 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Sundanese = new RangeTable (
+	internal static RangeTable _Sundanese = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1b80, 0x1bbf, 1),
 			new Range16 (0x1cc0, 0x1cc7, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Syloti_Nagri = new RangeTable (
+	internal static RangeTable _Syloti_Nagri = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa800, 0xa82b, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Syriac = new RangeTable (
+	internal static RangeTable _Syriac = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0700, 0x070d, 1),
 			new Range16 (0x070f, 0x074a, 1),
@@ -5081,14 +5092,14 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tagalog = new RangeTable (
+	internal static RangeTable _Tagalog = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1700, 0x170c, 1),
 			new Range16 (0x170e, 0x1714, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tagbanwa = new RangeTable (
+	internal static RangeTable _Tagbanwa = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1760, 0x176c, 1),
 			new Range16 (0x176e, 0x1770, 1),
@@ -5096,14 +5107,14 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tai_Le = new RangeTable (
+	internal static RangeTable _Tai_Le = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1950, 0x196d, 1),
 			new Range16 (0x1970, 0x1974, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tai_Tham = new RangeTable (
+	internal static RangeTable _Tai_Tham = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1a20, 0x1a5e, 1),
 			new Range16 (0x1a60, 0x1a7c, 1),
@@ -5113,14 +5124,14 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tai_Viet = new RangeTable (
+	internal static RangeTable _Tai_Viet = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xaa80, 0xaac2, 1),
 			new Range16 (0xaadb, 0xaadf, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Takri = new RangeTable (
+	internal static RangeTable _Takri = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5129,7 +5140,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tamil = new RangeTable (
+	internal static RangeTable _Tamil = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0b82, 0x0b83, 1),
 			new Range16 (0x0b85, 0x0b8a, 1),
@@ -5150,7 +5161,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tangut = new RangeTable (
+	internal static RangeTable _Tangut = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5160,7 +5171,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Telugu = new RangeTable (
+	internal static RangeTable _Telugu = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0c00, 0x0c03, 1),
 			new Range16 (0x0c05, 0x0c0c, 1),
@@ -5178,20 +5189,20 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Thaana = new RangeTable (
+	internal static RangeTable _Thaana = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0780, 0x07b1, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Thai = new RangeTable (
+	internal static RangeTable _Thai = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0e01, 0x0e3a, 1),
 			new Range16 (0x0e40, 0x0e5b, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tibetan = new RangeTable (
+	internal static RangeTable _Tibetan = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0f00, 0x0f47, 1),
 			new Range16 (0x0f49, 0x0f6c, 1),
@@ -5203,7 +5214,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tifinagh = new RangeTable (
+	internal static RangeTable _Tifinagh = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2d30, 0x2d67, 1),
 			new Range16 (0x2d6f, 0x2d70, 1),
@@ -5211,7 +5222,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Tirhuta = new RangeTable (
+	internal static RangeTable _Tirhuta = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5220,7 +5231,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Ugaritic = new RangeTable (
+	internal static RangeTable _Ugaritic = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5229,13 +5240,13 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Vai = new RangeTable (
+	internal static RangeTable _Vai = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa500, 0xa62b, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Warang_Citi = new RangeTable (
+	internal static RangeTable _Warang_Citi = new RangeTable (
 		r16: new Range16 [] {
 		},
 		r32: new Range32 [] {
@@ -5244,7 +5255,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Yi = new RangeTable (
+	internal static RangeTable _Yi = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xa000, 0xa48c, 1),
 			new Range16 (0xa490, 0xa4c6, 1),
@@ -5525,49 +5536,57 @@ public partial class Unicode {
 	public static RangeTable Warang_Citi => _Warang_Citi;
 	/// <summary>Yi is the set of Unicode characters in script Yi.</summary>
 	public static RangeTable Yi => _Yi;
+	}
+
 // Generated by running
 //	maketables --props=all --url=http://www.unicode.org/Public/9.0.0/ucd/
 // DO NOT EDIT
 
-	// Properties is the set of Unicode property tables.
-	Dictionary<string,RangeTable> Properties = new Dictionary<string,RangeTable> (){
-		{ "ASCII_Hex_Digit", ASCII_Hex_Digit },
-		{ "Bidi_Control", Bidi_Control },
-		{ "Dash", Dash },
-		{ "Deprecated", Deprecated },
-		{ "Diacritic", Diacritic },
-		{ "Extender", Extender },
-		{ "Hex_Digit", Hex_Digit },
-		{ "Hyphen", Hyphen },
-		{ "IDS_Binary_Operator", IDS_Binary_Operator },
-		{ "IDS_Trinary_Operator", IDS_Trinary_Operator },
-		{ "Ideographic", Ideographic },
-		{ "Join_Control", Join_Control },
-		{ "Logical_Order_Exception", Logical_Order_Exception },
-		{ "Noncharacter_Code_Point", Noncharacter_Code_Point },
-		{ "Other_Alphabetic", Other_Alphabetic },
-		{ "Other_Default_Ignorable_Code_Point", Other_Default_Ignorable_Code_Point },
-		{ "Other_Grapheme_Extend", Other_Grapheme_Extend },
-		{ "Other_ID_Continue", Other_ID_Continue },
-		{ "Other_ID_Start", Other_ID_Start },
-		{ "Other_Lowercase", Other_Lowercase },
-		{ "Other_Math", Other_Math },
-		{ "Other_Uppercase", Other_Uppercase },
-		{ "Pattern_Syntax", Pattern_Syntax },
-		{ "Pattern_White_Space", Pattern_White_Space },
-		{ "Prepended_Concatenation_Mark", Prepended_Concatenation_Mark },
-		{ "Quotation_Mark", Quotation_Mark },
-		{ "Radical", Radical },
-		{ "Sentence_Terminal", Sentence_Terminal },
-		{ "STerm", Sentence_Terminal },
-		{ "Soft_Dotted", Soft_Dotted },
-		{ "Terminal_Punctuation", Terminal_Punctuation },
-		{ "Unified_Ideograph", Unified_Ideograph },
-		{ "Variation_Selector", Variation_Selector },
-		{ "White_Space", White_Space },
-	};
+	/// <summary>Static class containing the proeprty-based tables.</summary>
+	/// <remarks><para>There are static properties that can be used to fetch RangeTables that identify characters that have a specific property, or you can use the <see cref="T:NStack.Unicode.Property.Get"/> method in this class to retrieve the range table by the property name</para></remarks>
+	public static class Property {
+		/// <summary>Retrieves the specified RangeTable having that property.</summary>
+		/// <param name="propertyName">The property name.</param>
+		public static RangeTable Get (string propertyName) => Properties [propertyName];
+		// Properties is the set of Unicode property tables.
+		static Dictionary<string,RangeTable> Properties = new Dictionary<string,RangeTable> (){
+			{ "ASCII_Hex_Digit", ASCII_Hex_Digit },
+			{ "Bidi_Control", Bidi_Control },
+			{ "Dash", Dash },
+			{ "Deprecated", Deprecated },
+			{ "Diacritic", Diacritic },
+			{ "Extender", Extender },
+			{ "Hex_Digit", Hex_Digit },
+			{ "Hyphen", Hyphen },
+			{ "IDS_Binary_Operator", IDS_Binary_Operator },
+			{ "IDS_Trinary_Operator", IDS_Trinary_Operator },
+			{ "Ideographic", Ideographic },
+			{ "Join_Control", Join_Control },
+			{ "Logical_Order_Exception", Logical_Order_Exception },
+			{ "Noncharacter_Code_Point", Noncharacter_Code_Point },
+			{ "Other_Alphabetic", Other_Alphabetic },
+			{ "Other_Default_Ignorable_Code_Point", Other_Default_Ignorable_Code_Point },
+			{ "Other_Grapheme_Extend", Other_Grapheme_Extend },
+			{ "Other_ID_Continue", Other_ID_Continue },
+			{ "Other_ID_Start", Other_ID_Start },
+			{ "Other_Lowercase", Other_Lowercase },
+			{ "Other_Math", Other_Math },
+			{ "Other_Uppercase", Other_Uppercase },
+			{ "Pattern_Syntax", Pattern_Syntax },
+			{ "Pattern_White_Space", Pattern_White_Space },
+			{ "Prepended_Concatenation_Mark", Prepended_Concatenation_Mark },
+			{ "Quotation_Mark", Quotation_Mark },
+			{ "Radical", Radical },
+			{ "Sentence_Terminal", Sentence_Terminal },
+			{ "STerm", Sentence_Terminal },
+			{ "Soft_Dotted", Soft_Dotted },
+			{ "Terminal_Punctuation", Terminal_Punctuation },
+			{ "Unified_Ideograph", Unified_Ideograph },
+			{ "Variation_Selector", Variation_Selector },
+			{ "White_Space", White_Space },
+		};
 
-	static RangeTable _ASCII_Hex_Digit = new RangeTable (
+	internal static RangeTable _ASCII_Hex_Digit = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0030, 0x0039, 1),
 			new Range16 (0x0041, 0x0046, 1),
@@ -5576,7 +5595,7 @@ public partial class Unicode {
 		latinOffset: 3
 	); /* RangeTable */
 
-	static RangeTable _Bidi_Control = new RangeTable (
+	internal static RangeTable _Bidi_Control = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x061c, 0x061c, 1),
 			new Range16 (0x200e, 0x200f, 1),
@@ -5585,7 +5604,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Dash = new RangeTable (
+	internal static RangeTable _Dash = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x002d, 0x002d, 1),
 			new Range16 (0x058a, 0x058a, 1),
@@ -5612,7 +5631,7 @@ public partial class Unicode {
 		latinOffset: 1
 	); /* RangeTable */
 
-	static RangeTable _Deprecated = new RangeTable (
+	internal static RangeTable _Deprecated = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0149, 0x0149, 1),
 			new Range16 (0x0673, 0x0673, 1),
@@ -5627,7 +5646,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Diacritic = new RangeTable (
+	internal static RangeTable _Diacritic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x005e, 0x005e, 1),
 			new Range16 (0x0060, 0x0060, 1),
@@ -5787,7 +5806,7 @@ public partial class Unicode {
 		latinOffset: 6
 	); /* RangeTable */
 
-	static RangeTable _Extender = new RangeTable (
+	internal static RangeTable _Extender = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00b7, 0x00b7, 1),
 			new Range16 (0x02d0, 0x02d1, 1),
@@ -5823,7 +5842,7 @@ public partial class Unicode {
 		latinOffset: 1
 	); /* RangeTable */
 
-	static RangeTable _Hex_Digit = new RangeTable (
+	internal static RangeTable _Hex_Digit = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0030, 0x0039, 1),
 			new Range16 (0x0041, 0x0046, 1),
@@ -5835,7 +5854,7 @@ public partial class Unicode {
 		latinOffset: 3
 	); /* RangeTable */
 
-	static RangeTable _Hyphen = new RangeTable (
+	internal static RangeTable _Hyphen = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x002d, 0x002d, 1),
 			new Range16 (0x00ad, 0x00ad, 1),
@@ -5851,20 +5870,20 @@ public partial class Unicode {
 		latinOffset: 2
 	); /* RangeTable */
 
-	static RangeTable _IDS_Binary_Operator = new RangeTable (
+	internal static RangeTable _IDS_Binary_Operator = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2ff0, 0x2ff1, 1),
 			new Range16 (0x2ff4, 0x2ffb, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _IDS_Trinary_Operator = new RangeTable (
+	internal static RangeTable _IDS_Trinary_Operator = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2ff2, 0x2ff3, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Ideographic = new RangeTable (
+	internal static RangeTable _Ideographic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x3006, 0x3007, 1),
 			new Range16 (0x3021, 0x3029, 1),
@@ -5885,13 +5904,13 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Join_Control = new RangeTable (
+	internal static RangeTable _Join_Control = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x200c, 0x200d, 1),
 		}
 	); /* RangeTable */
 
-	static RangeTable _Logical_Order_Exception = new RangeTable (
+	internal static RangeTable _Logical_Order_Exception = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0e40, 0x0e44, 1),
 			new Range16 (0x0ec0, 0x0ec4, 1),
@@ -5903,7 +5922,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Noncharacter_Code_Point = new RangeTable (
+	internal static RangeTable _Noncharacter_Code_Point = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0xfdd0, 0xfdef, 1),
 			new Range16 (0xfffe, 0xffff, 1),
@@ -5928,7 +5947,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Other_Alphabetic = new RangeTable (
+	internal static RangeTable _Other_Alphabetic = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0345, 0x0345, 1),
 			new Range16 (0x05b0, 0x05bd, 1),
@@ -6129,7 +6148,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Other_Default_Ignorable_Code_Point = new RangeTable (
+	internal static RangeTable _Other_Default_Ignorable_Code_Point = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x034f, 0x034f, 1),
 			new Range16 (0x115f, 0x1160, 1),
@@ -6147,7 +6166,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Other_Grapheme_Extend = new RangeTable (
+	internal static RangeTable _Other_Grapheme_Extend = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x09be, 0x09be, 1),
 			new Range16 (0x09d7, 0x09d7, 1),
@@ -6177,7 +6196,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Other_ID_Continue = new RangeTable (
+	internal static RangeTable _Other_ID_Continue = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00b7, 0x00b7, 1),
 			new Range16 (0x0387, 0x0387, 1),
@@ -6187,7 +6206,7 @@ public partial class Unicode {
 		latinOffset: 1
 	); /* RangeTable */
 
-	static RangeTable _Other_ID_Start = new RangeTable (
+	internal static RangeTable _Other_ID_Start = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x1885, 0x1886, 1),
 			new Range16 (0x2118, 0x2118, 1),
@@ -6196,7 +6215,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Other_Lowercase = new RangeTable (
+	internal static RangeTable _Other_Lowercase = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00aa, 0x00aa, 1),
 			new Range16 (0x00ba, 0x00ba, 1),
@@ -6222,7 +6241,7 @@ public partial class Unicode {
 		latinOffset: 2
 	); /* RangeTable */
 
-	static RangeTable _Other_Math = new RangeTable (
+	internal static RangeTable _Other_Math = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x005e, 0x005e, 1),
 			new Range16 (0x03d0, 0x03d2, 1),
@@ -6364,7 +6383,7 @@ public partial class Unicode {
 		latinOffset: 1
 	); /* RangeTable */
 
-	static RangeTable _Other_Uppercase = new RangeTable (
+	internal static RangeTable _Other_Uppercase = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2160, 0x216f, 1),
 			new Range16 (0x24b6, 0x24cf, 1),
@@ -6376,7 +6395,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Pattern_Syntax = new RangeTable (
+	internal static RangeTable _Pattern_Syntax = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0021, 0x002f, 1),
 			new Range16 (0x003a, 0x0040, 1),
@@ -6410,7 +6429,7 @@ public partial class Unicode {
 		latinOffset: 15
 	); /* RangeTable */
 
-	static RangeTable _Pattern_White_Space = new RangeTable (
+	internal static RangeTable _Pattern_White_Space = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0009, 0x000d, 1),
 			new Range16 (0x0020, 0x0020, 1),
@@ -6421,7 +6440,7 @@ public partial class Unicode {
 		latinOffset: 3
 	); /* RangeTable */
 
-	static RangeTable _Prepended_Concatenation_Mark = new RangeTable (
+	internal static RangeTable _Prepended_Concatenation_Mark = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0600, 0x0605, 1),
 			new Range16 (0x06dd, 0x06dd, 1),
@@ -6433,7 +6452,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Quotation_Mark = new RangeTable (
+	internal static RangeTable _Quotation_Mark = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0022, 0x0022, 1),
 			new Range16 (0x0027, 0x0027, 1),
@@ -6452,7 +6471,7 @@ public partial class Unicode {
 		latinOffset: 4
 	); /* RangeTable */
 
-	static RangeTable _Radical = new RangeTable (
+	internal static RangeTable _Radical = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x2e80, 0x2e99, 1),
 			new Range16 (0x2e9b, 0x2ef3, 1),
@@ -6460,7 +6479,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Sentence_Terminal = new RangeTable (
+	internal static RangeTable _Sentence_Terminal = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0021, 0x0021, 1),
 			new Range16 (0x002e, 0x002e, 1),
@@ -6534,7 +6553,7 @@ public partial class Unicode {
 		latinOffset: 3
 	); /* RangeTable */
 
-	static RangeTable _Soft_Dotted = new RangeTable (
+	internal static RangeTable _Soft_Dotted = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0069, 0x006a, 1),
 			new Range16 (0x012f, 0x012f, 1),
@@ -6573,7 +6592,7 @@ public partial class Unicode {
 		latinOffset: 1
 	); /* RangeTable */
 
-	static RangeTable _Terminal_Punctuation = new RangeTable (
+	internal static RangeTable _Terminal_Punctuation = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0021, 0x0021, 1),
 			new Range16 (0x002c, 0x002c, 1),
@@ -6675,7 +6694,7 @@ public partial class Unicode {
 		latinOffset: 5
 	); /* RangeTable */
 
-	static RangeTable _Unified_Ideograph = new RangeTable (
+	internal static RangeTable _Unified_Ideograph = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x3400, 0x4db5, 1),
 			new Range16 (0x4e00, 0x9fd5, 1),
@@ -6695,7 +6714,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _Variation_Selector = new RangeTable (
+	internal static RangeTable _Variation_Selector = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x180b, 0x180d, 1),
 			new Range16 (0xfe00, 0xfe0f, 1),
@@ -6705,7 +6724,7 @@ public partial class Unicode {
 		}
 	); /* RangeTable */
 
-	static RangeTable _White_Space = new RangeTable (
+	internal static RangeTable _White_Space = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0009, 0x000d, 1),
 			new Range16 (0x0020, 0x0020, 1),
@@ -6789,6 +6808,8 @@ public partial class Unicode {
 	public static RangeTable Variation_Selector => _Variation_Selector;
 	/// <summary>White_Space is the set of Unicode characters with property White_Space.</summary>
 	public static RangeTable White_Space => _White_Space;
+	}
+
 	// Generated by running
 	//	maketables --data=http://www.unicode.org/Public/9.0.0/ucd/UnicodeData.txt --casefolding=http://www.unicode.org/Public/9.0.0/ucd/CaseFolding.txt
 	// DO NOT EDIT
@@ -7599,32 +7620,32 @@ public partial class Unicode {
 		 { "Mn", foldMn },
 	};
 
-	static RangeTable foldCommon = new RangeTable (
+	internal static RangeTable foldCommon = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x039c, 0x03bc, 32),
 		}
 	);
 
-	static RangeTable foldGreek = new RangeTable (
+	internal static RangeTable foldGreek = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x00b5, 0x0345, 656),
 		}
 	);
 
-	static RangeTable foldInherited = new RangeTable (
+	internal static RangeTable foldInherited = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0399, 0x03b9, 32),
 			new Range16 (0x1fbe, 0x1fbe, 1),
 		}
 	);
 
-	static RangeTable foldL = new RangeTable (
+	internal static RangeTable foldL = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0345, 0x0345, 1),
 		}
 	);
 
-	static RangeTable foldLl = new RangeTable (
+	internal static RangeTable foldLl = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0041, 0x005a, 1),
 			new Range16 (0x00c0, 0x00d6, 1),
@@ -7739,7 +7760,7 @@ public partial class Unicode {
 		latinOffset: 3
 	);
 
-	static RangeTable foldLt = new RangeTable (
+	internal static RangeTable foldLt = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x01c4, 0x01c6, 2),
 			new Range16 (0x01c7, 0x01c9, 2),
@@ -7753,7 +7774,7 @@ public partial class Unicode {
 		}
 	);
 
-	static RangeTable foldLu = new RangeTable (
+	internal static RangeTable foldLu = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0061, 0x007a, 1),
 			new Range16 (0x00b5, 0x00df, 42),
@@ -7868,14 +7889,14 @@ public partial class Unicode {
 		latinOffset: 4
 	);
 
-	static RangeTable foldM = new RangeTable (
+	internal static RangeTable foldM = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0399, 0x03b9, 32),
 			new Range16 (0x1fbe, 0x1fbe, 1),
 		}
 	);
 
-	static RangeTable foldMn = new RangeTable (
+	internal static RangeTable foldMn = new RangeTable (
 		r16: new Range16 [] {
 			new Range16 (0x0399, 0x03b9, 32),
 			new Range16 (0x1fbe, 0x1fbe, 1),

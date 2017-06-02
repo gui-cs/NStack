@@ -37,9 +37,53 @@
             </para>
       <para>
               The strings can be created either from byte arrays, a range within a byte array, or from a 
-              block of unmanaged memory.  The ustrings are created using the <see cref="M:NStack.ustring.Make(System.Byte[])" /> methods in the
+              block of unmanaged memory.  The ustrings are created using one of the Make methods in the
               class, not by invoking the new operator on the class.
             </para>
+      <para>
+        <list type="table">
+          <listheader>
+            <term>Method</term>
+            <term>Description</term>
+          </listheader>
+          <item>
+            <term>
+              <see cref="M:NStack.ustring.Make(string)" />
+            </term>
+            <description>Creates a ustring from a C# string.</description>
+          </item>
+          <item>
+            <term>
+              <see cref="M:NStack.ustring.Make(byte[])" />
+            </term>
+            <description>Creates a ustring from a byte array.</description>
+          </item>
+          <item>
+            <term>
+              <see cref="M:NStack.ustring.Make(byte[],int,int)" />
+            </term>
+            <description>Creates a ustring from a range in a byte array.</description>
+          </item>
+          <item>
+            <term>
+              <see cref="M:NStack.ustring.Make(uint)" />
+            </term>
+            <description>Creates a ustring from a single rune.</description>
+          </item>
+          <item>
+            <term>
+              <see cref="M:NStack.ustring.Make(System.IntPtr,int,System.Action{NStack.ustring, System.IntPtr})" />
+            </term>
+            <description>Creates a ustring from an unmanaged memory block, with an optional method to invoke to release the block when the ustring is garbage collected.</description>
+          </item>
+          <item>
+            <term>
+              <see cref="M:NStack.ustring.Make(char[])" />
+            </term>
+            <description>Creates a ustring from a character array.</description>
+          </item>
+        </list>
+      </para>
       <para>
               The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
               property describes the number of code points (or runes) that are reprenseted by the underlying 
@@ -452,25 +496,6 @@
       </Docs>
     </Member>
     <Member MemberName="IndexByte">
-      <MemberSignature Language="C#" Value="public abstract int IndexByte (byte b);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 IndexByte(unsigned int8 b) cil managed" />
-      <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int32</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="b" Type="System.Byte" />
-      </Parameters>
-      <Docs>
-        <param name="b">The byte to seek.</param>
-        <summary>
-            Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.
-            </summary>
-        <returns>The zero-based index position of <paramref name="b" /> if that byte is found, or -1 if it is not.  </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="IndexByte">
       <MemberSignature Language="C#" Value="public int IndexByte (byte b, int offset);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexByte(unsigned int8 b, int32 offset) cil managed" />
       <MemberType>Method</MemberType>
@@ -513,25 +538,6 @@
             IndexOf returns the index into s of the first Unicode rune satisfying matchFunc(rune), or -1 if none do.
             </summary>
         <returns>The index inside the string where the rune is found, or -1 on error.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="IndexOf">
-      <MemberSignature Language="C#" Value="public int IndexOf (uint rune);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance int32 IndexOf(unsigned int32 rune) cil managed" />
-      <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int32</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="rune" Type="System.UInt32" />
-      </Parameters>
-      <Docs>
-        <param name="rune">Rune.</param>
-        <summary>
-            Reports the zero-based index of the first occurrence of the specified Unicode rune in this string
-            </summary>
-        <returns>The zero-based index position of <paramref name="rune" /> if that character is found, or -1 if it is not.  If the rune is Utf8.RuneError, it returns the first instance of any invalid UTF-8 byte sequence.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1690,7 +1696,7 @@
       <Parameters />
       <Docs>
         <summary>
-            Converts the string to Title-case, that is every word (as determined by <see cref="M:NStack.ustring.IsSeparator(System.UInt32)" /> is Title cased.
+            Converts the string to Title-case, that is every word (as determined by <see cref="M:NStack.ustring.IsSeparator" /> is Title cased.
             </summary>
         <returns>A title-cased string.</returns>
         <remarks>To be added.</remarks>

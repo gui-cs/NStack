@@ -291,9 +291,52 @@
             </p>
         <p>
               The strings can be created either from byte arrays, a range within a byte array, or from a 
-              block of unmanaged memory.  The ustrings are created using the <a href="../NStack/ustring.html#M:NStack.ustring.Make(System.Byte[])">ustring.Make(Byte[])</a> methods in the
+              block of unmanaged memory.  The ustrings are created using one of the Make methods in the
               class, not by invoking the new operator on the class.
             </p>
+        <p>
+          <table class="Documentation">
+            <tr>
+              <th>MethodDescription</th>
+            </tr>
+            <tr valign="top">
+              <td>
+                <a href="../NStack/ustring.html#M:NStack.ustring.Make(string)">ustring.Make(string)</a>
+              </td>
+              <td>Creates a ustring from a C# string.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <a href="../NStack/ustring.html#M:NStack.ustring.Make(byte[])">ustring.Make(byte[])</a>
+              </td>
+              <td>Creates a ustring from a byte array.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <a href="../NStack/ustring.html#M:NStack.ustring.Make(byte[],int,int)">ustring.Make(byte[], int, int)</a>
+              </td>
+              <td>Creates a ustring from a range in a byte array.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <a href="../NStack/ustring.html#M:NStack.ustring.Make(uint)">ustring.Make(uint)</a>
+              </td>
+              <td>Creates a ustring from a single rune.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <a href="../NStack/ustring.html#M:NStack.ustring.Make(System.IntPtr,int,System.Action{NStack.ustring, System.IntPtr})">ustring.Make(IntPtr, int, Action&lt;ustring,  System.IntPtr&gt;)</a>
+              </td>
+              <td>Creates a ustring from an unmanaged memory block, with an optional method to invoke to release the block when the ustring is garbage collected.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <a href="../NStack/ustring.html#M:NStack.ustring.Make(char[])">ustring.Make(char[])</a>
+              </td>
+              <td>Creates a ustring from a character array.</td>
+            </tr>
+          </table>
+        </p>
         <p>
               The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
               property describes the number of code points (or runes) that are reprenseted by the underlying 
@@ -613,17 +656,6 @@
               </tr>
               <tr valign="top">
                 <td>
-                  <div>abstract </div>
-                </td>
-                <td colspan="2">
-                  <b>
-                    <a href="#M:NStack.ustring.IndexByte(System.Byte)">IndexByte</a>
-                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
-            Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.
-            </blockquote></td>
-              </tr>
-              <tr valign="top">
-                <td>
                   <div>
                   </div>
                 </td>
@@ -644,18 +676,6 @@
                     <a href="#M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate)">IndexOf</a>
                   </b>(<a href="../NStack/ustring+RunePredicate.html">ustring.RunePredicate</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
             IndexOf returns the index into s of the first Unicode rune satisfying matchFunc(rune), or -1 if none do.
-            </blockquote></td>
-              </tr>
-              <tr valign="top">
-                <td>
-                  <div>
-                  </div>
-                </td>
-                <td colspan="2">
-                  <b>
-                    <a href="#M:NStack.ustring.IndexOf(System.UInt32)">IndexOf</a>
-                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><blockquote>
-            Reports the zero-based index of the first occurrence of the specified Unicode rune in this string
             </blockquote></td>
               </tr>
               <tr valign="top">
@@ -885,7 +905,7 @@
                   <b>
                     <a href="#M:NStack.ustring.Title()">Title</a>
                   </b>()<nobr> : <a href="../NStack/ustring.html">ustring</a></nobr><blockquote>
-            Converts the string to Title-case, that is every word (as determined by <a href="../NStack/ustring.html#M:NStack.ustring.IsSeparator(System.UInt32)">ustring.IsSeparator(uint)</a> is Title cased.
+            Converts the string to Title-case, that is every word (as determined by <a href="../NStack/ustring.html#M:NStack.ustring.IsSeparator">ustring.IsSeparator</a> is Title cased.
             </blockquote></td>
               </tr>
               <tr valign="top">
@@ -1912,33 +1932,6 @@
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
-        <h3 id="M:NStack.ustring.IndexByte(System.Byte)">IndexByte Method</h3>
-        <blockquote id="M:NStack.ustring.IndexByte(System.Byte):member">
-          <div class="msummary">
-            Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.
-            </div>
-          <h2>Syntax</h2>
-          <div class="Signature">public abstract <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexByte</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> b)</div>
-          <h4 class="Subsection">Parameters</h4>
-          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Parameters">
-            <dl>
-              <dt>
-                <i>b</i>
-              </dt>
-              <dd>The byte to seek.</dd>
-            </dl>
-          </blockquote>
-          <h4 class="Subsection">Returns</h4>
-          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Returns">The zero-based index position of <i>b</i> if that byte is found, or -1 if it is not.  </blockquote>
-          <h2 class="Section">Remarks</h2>
-          <div class="SectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </div>
-          <h2 class="Section">Requirements</h2>
-          <div class="SectionBox" id="M:NStack.ustring.IndexByte(System.Byte):Version Information">
-            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)</div>
-          <hr size="1" />
-        </blockquote>
         <h3 id="M:NStack.ustring.IndexByte(System.Byte,System.Int32)">IndexByte Method</h3>
         <blockquote id="M:NStack.ustring.IndexByte(System.Byte,System.Int32):member">
           <div class="msummary">
@@ -1997,33 +1990,6 @@
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.IndexOf(NStack.ustring.RunePredicate):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
-          <hr size="1" />
-        </blockquote>
-        <h3 id="M:NStack.ustring.IndexOf(System.UInt32)">IndexOf Method</h3>
-        <blockquote id="M:NStack.ustring.IndexOf(System.UInt32):member">
-          <div class="msummary">
-            Reports the zero-based index of the first occurrence of the specified Unicode rune in this string
-            </div>
-          <h2>Syntax</h2>
-          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>IndexOf</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.UInt32">uint</a> rune)</div>
-          <h4 class="Subsection">Parameters</h4>
-          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Parameters">
-            <dl>
-              <dt>
-                <i>rune</i>
-              </dt>
-              <dd>Rune.</dd>
-            </dl>
-          </blockquote>
-          <h4 class="Subsection">Returns</h4>
-          <blockquote class="SubsectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Returns">The zero-based index position of <i>rune</i> if that character is found, or -1 if it is not.  If the rune is Utf8.RuneError, it returns the first instance of any invalid UTF-8 byte sequence.</blockquote>
-          <h2 class="Section">Remarks</h2>
-          <div class="SectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Remarks">
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </div>
-          <h2 class="Section">Requirements</h2>
-          <div class="SectionBox" id="M:NStack.ustring.IndexOf(System.UInt32):Version Information">
-            <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)</div>
           <hr size="1" />
         </blockquote>
         <h3 id="M:NStack.ustring.IndexOf(NStack.ustring,System.Int32)">IndexOf Method</h3>
@@ -3497,7 +3463,7 @@
         <h3 id="M:NStack.ustring.Title()">Title Method</h3>
         <blockquote id="M:NStack.ustring.Title():member">
           <div class="msummary">
-            Converts the string to Title-case, that is every word (as determined by <a href="../NStack/ustring.html#M:NStack.ustring.IsSeparator(System.UInt32)">ustring.IsSeparator(uint)</a> is Title cased.
+            Converts the string to Title-case, that is every word (as determined by <a href="../NStack/ustring.html#M:NStack.ustring.IsSeparator">ustring.IsSeparator</a> is Title cased.
             </div>
           <h2>Syntax</h2>
           <div class="Signature">public <a href="../NStack/ustring.html">ustring</a> <b>Title</b> ()</div>

@@ -115,10 +115,10 @@ namespace NStackTests
 			Assert.IsTrue (ast [1,5] == bp    [1,5]);
 			Assert.IsTrue (ap  [1,5] == bst   [1,5]);
 			Assert.IsTrue (ast [1,5] == bp    [1,5]);
-			Assert.IsTrue (ast [1,5] != cp    [1,5]);
+			Assert.IsTrue (ast [8,0] != cp    [8,0]);
 			Assert.IsTrue (cp  [1,5] == cp    [1,5]);
 			Assert.IsTrue (cp  [1,5] == cst   [1,5]);
-			Assert.IsTrue (cp  [1,5] != bst   [1,5]);
+			Assert.IsTrue (cp  [8,0] != bst   [8,0]);
 
 		}
 

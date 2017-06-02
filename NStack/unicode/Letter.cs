@@ -20,9 +20,9 @@ namespace NStack
 	/// </para>
 	/// <para>
 	///    This class surfaces various methods to classify case of a Rune, like
-	///    <see cref="M:IsUpper"/>, <see cref="M:IsLower"/>, <see cref="M:IsDigit"/>,
-	///    to convert runes from one case to another using the <see cref="M:ToUpper"/>,
-	///    <see cref="M:ToLower"/>, <see cref="M:ToTitle"/> as well as various constants
+	///    <see cref="M:NStack.Unicode.IsUpper"/>, <see cref="M:NStack.Unicode.IsLower"/>, <see cref="M:NStack.Unicode.IsDigit"/>,
+	///    <see cref="M:NStack.Unicode.IsGraphic"/> to convert runes from one case to another using the <see cref="M:NStack.Unicode.ToUpper"/>,
+	///    <see cref="M:NStack.Unicode.ToLower"/>, <see cref="M:NStack.Unicode.ToTitle"/> as well as various constants
 	///    that are useful when working with Unicode runes.
 	/// </para>  
 	/// <para>
@@ -272,7 +272,7 @@ namespace NStack
 		{
 			if (rune <= MaxLatin1)
 				return (properties [(byte)rune] & CharClass.pLmask) == CharClass.pLu;
-			return Upper.IsExcludingLatin (rune);
+			return Category.Upper.IsExcludingLatin (rune);
 		}
 
 		/// <summary>
@@ -284,7 +284,7 @@ namespace NStack
 		{
 			if (rune <= MaxLatin1)
 				return (properties [(byte)rune] & CharClass.pLmask) == CharClass.pLl;
-			return Lower.IsExcludingLatin (rune);
+			return Category.Lower.IsExcludingLatin (rune);
 		}
 
 		/// <summary>
@@ -296,7 +296,7 @@ namespace NStack
 		{
 			if (rune <= MaxLatin1)
 				return false;
-			return Title.IsExcludingLatin (rune);
+			return Category.Title.IsExcludingLatin (rune);
 		}
 
 		// to maps the rune using the specified case mapping.

@@ -44,7 +44,10 @@
     <Namespace Name="NStack">
       <Type Name="Unicode" Kind="Class" />
       <Type Name="Unicode+Case" Kind="Enumeration" />
+      <Type Name="Unicode+Category" Kind="Class" />
+      <Type Name="Unicode+Property" Kind="Class" />
       <Type Name="Unicode+RangeTable" Kind="Structure" />
+      <Type Name="Unicode+Script" Kind="Class" />
       <Type Name="Unicode+SpecialCase" Kind="Structure" />
       <Type Name="ustring" Kind="Class" />
       <Type Name="ustring+RunePredicate" Kind="Delegate" />

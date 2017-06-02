@@ -7,3 +7,7 @@ rebuild-docs: docs/template
 doc-update:
 	mdoc update -i NStack/bin/Debug/NStack.xml -o ecmadocs/en NStack/bin/Debug/NStack.dll 
 
+ecma2yaml: 
+	curl -O https://api.nuget.org/packages/microsoft.docascode.ecma2yaml.1.0.105.nupkg
+	unzip -d ecma2yaml microsoft.docascode.ecma2yaml.1.0.105.nupkg
+	(cd ecma2yaml; nuget restore; msbuild)

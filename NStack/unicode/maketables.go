@@ -487,13 +487,20 @@ func printCategories() {
 	println("\t// Version is the Unicode edition from which the tables are derived.")
 	printf("\tpublic const string Version = %q;\n\n", version())
 
+	println ("\t/// <summary>Static class containing the various Unicode category range tables</summary>")
+	println ("\t/// <remarks><para>There are static properties that can be used to fetch a specific category, or you can use the <see cref=\"M:NStack.Unicode.Category.Get\"/> method this class to retrieve the RangeTable by its Unicode category table name</para></remarks>")
+	println ("\tpublic static class Category {")
+	println ("\t\t/// <summary>Retrieves the specified RangeTable from the Unicode category name</summary>")
+	println ("\t\t/// <param name=\"categoryName\">The unicode character category name</param>")
+	println ("\t\tpublic static RangeTable Get (string categoryName) => Categories [categoryName];")
+
 	if *tablelist == "all" {
-		println("\t// Categories is the set of Unicode category tables.")
-		println("\tstatic Dictionary<string,RangeTable> Categories = new Dictionary<string,RangeTable> () {")
+		println("\t\t// Categories is the set of Unicode category tables.")
+		println("\t\tstatic Dictionary<string,RangeTable> Categories = new Dictionary<string,RangeTable> () {")
 		for _, k := range allCategories() {
-			printf("\t\t{ %q, %s },\n", k, k)
+			printf("\t\t\t{ %q, %s },\n", k, k)
 		}
-		print("\t};\n\n")
+		print("\t\t};\n\n")
 	}
 
 	decl := make(sort.StringSlice, len(list))
@@ -540,7 +547,7 @@ func printCategories() {
 			varDecl += "\tpublic static RangeTable S => _S;\n"
 		case "Z":
 		        varDecl = "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>\n";
-			varDecl += "\tpublic RangeTable Space => _Z;\n"
+			varDecl += "\tpublic static RangeTable Space => _Z;\n"
 		        varDecl += "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>;\n";
 			varDecl += "\tpublic static RangeTable Z => _Z;\n"
 		case "Nd":
@@ -564,20 +571,21 @@ func printCategories() {
 		decl[ndecl] = varDecl
 		ndecl++
 		if len(name) == 1 { // unified categories
-			decl := fmt.Sprintf("\tstatic RangeTable _%s = new RangeTable (\n", name)
+			decl := fmt.Sprintf("\tinternal static RangeTable _%s = new RangeTable (\n", name)
 			dumpRange(
 				decl,
 				func(code rune) bool { return categoryOp(code, name[0]) })
 			continue
 		}
 		dumpRange(
-			fmt.Sprintf("\tstatic RangeTable _%s = new RangeTable (\n", name),
+			fmt.Sprintf("\tinternal static RangeTable _%s = new RangeTable (\n", name),
 			func(code rune) bool { return chars[code].category == name })
 	}
 	decl.Sort()
 	for _, d := range decl {
 		print(d)
 	}
+	println ("\t}\n")
 }
 
 type Op func(code rune) bool
@@ -842,21 +850,36 @@ func printScriptOrProperty(doProps bool) {
 		flag,
 		flaglist,
 		*url)
+	if doProps {
+		println ("\t/// <summary>Static class containing the proeprty-based tables.</summary>")
+		println ("\t/// <remarks><para>There are static properties that can be used to fetch RangeTables that identify characters that have a specific property, or you can use the <see cref=\"T:NStack.Unicode.Property.Get\"/> method in this class to retrieve the range table by the property name</para></remarks>")
+		println ("\tpublic static class Property {")
+		println ("\t\t/// <summary>Retrieves the specified RangeTable having that property.</summary>")
+		println ("\t\t/// <param name=\"propertyName\">The property name.</param>")
+		println ("\t\tpublic static RangeTable Get (string propertyName) => Properties [propertyName];")
+	} else {
+		println ("\t/// <summary>Static class containing the Unicode script tables.</summary>")
+		println ("\t/// <remarks><para>There are static properties that can be used to fetch a specific category, or you can use the <see cref=\"T:NStack.Unicode.Script.Get\"/> method in this class to retrieve the range table by its script name</para></remarks>")
+		println ("\tpublic static class Script {")
+		println ("\t\t/// <summary>Retrieves the specified RangeTable from the Unicode script name.</summary>")
+		println ("\t\t/// <param name=\"scriptName\">The unicode script name</param>")
+		println ("\t\tpublic static RangeTable Get (string scriptName) => Scripts [scriptName];")
+	}
 	if flaglist == "all" {
 		if doProps {
-			println("\t// Properties is the set of Unicode property tables.")
-			println("\tDictionary<string,RangeTable> Properties = new Dictionary<string,RangeTable> (){")
+			println("\t\t// Properties is the set of Unicode property tables.")
+			println("\t\tstatic Dictionary<string,RangeTable> Properties = new Dictionary<string,RangeTable> (){")
 		} else {
-			println("\t// Scripts is the set of Unicode script tables.")
-			println("\tDictionary<string,RangeTable> Scripts = new Dictionary<string,RangeTable> (){")
+			println("\t\t// Scripts is the set of Unicode script tables.")
+			println("\t\tstatic Dictionary<string,RangeTable> Scripts = new Dictionary<string,RangeTable> (){")
 		}
 		for _, k := range all(table) {
-			printf("\t\t{ %q, %s },\n", k, k)
+			printf("\t\t\t{ %q, %s },\n", k, k)
 			if alias, ok := deprecatedAliases[k]; ok {
-				printf("\t\t{ %q, %s },\n", alias, k)
+				printf("\t\t\t{ %q, %s },\n", alias, k)
 			}
 		}
-		print("\t};\n\n")
+		print("\t\t};\n\n")
 	}
 
 	decl := make(sort.StringSlice, len(list)+len(deprecatedAliases))
@@ -878,7 +901,7 @@ func printScriptOrProperty(doProps bool) {
 				alias, name)
 			ndecl++
 		}
-		printf("\tstatic RangeTable _%s = new RangeTable (\n", name)
+		printf("\tinternal static RangeTable _%s = new RangeTable (\n", name)
 		ranges := foldAdjacent(table[name])
 		print("\t\tr16: new Range16 [] {\n")
 		size := 16
@@ -899,7 +922,7 @@ func printScriptOrProperty(doProps bool) {
 	for _, d := range decl {
 		print(d)
 	}
-
+	println ("\t}\n")
 }
 
 func findLatinOffset(ranges []unicode.Range32) int {
@@ -1438,7 +1461,7 @@ func printCatFold(name string, m map[string]map[rune]bool) {
 	for _, name := range allCatFold(m) {
 		class := m[name]
 		dumpRange(
-			fmt.Sprintf("\tstatic RangeTable fold%s = new RangeTable (\n", name),
+			fmt.Sprintf("\tinternal static RangeTable fold%s = new RangeTable (\n", name),
 			func(code rune) bool { return class[code] })
 	}
 }

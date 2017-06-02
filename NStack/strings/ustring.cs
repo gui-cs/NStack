@@ -32,8 +32,40 @@ namespace NStack {
 	/// </para>
 	/// <para>
 	///   The strings can be created either from byte arrays, a range within a byte array, or from a 
-	///   block of unmanaged memory.  The ustrings are created using the <see cref="Make"/> methods in the
+	///   block of unmanaged memory.  The ustrings are created using one of the Make methods in the
 	///   class, not by invoking the new operator on the class.
+	/// </para>
+	/// <para>
+	/// <list type="table">
+	///   <listheader>
+	///     <term>Method</term>
+	///     <term>Description</term>
+	///   </listheader>
+	///   <item>
+	///     <term><see cref="M:NStack.ustring.Make(string)"/></term>
+	///     <description>Creates a ustring from a C# string.</description>
+	///   </item>
+	///   <item>
+	///     <term><see cref="M:NStack.ustring.Make(byte[])"/></term>
+	///     <description>Creates a ustring from a byte array.</description>
+	///   </item>
+	///   <item>
+	///     <term><see cref="M:NStack.ustring.Make(byte[],int,int)"/></term>
+	///     <description>Creates a ustring from a range in a byte array.</description>
+	///   </item>
+	///   <item>
+	///     <term><see cref="M:NStack.ustring.Make(uint)"/></term>
+	///     <description>Creates a ustring from a single rune.</description>
+	///   </item>
+	///   <item>
+	///     <term><see cref="M:NStack.ustring.Make(System.IntPtr,int,System.Action{NStack.ustring, System.IntPtr})"/></term>
+	///     <description>Creates a ustring from an unmanaged memory block, with an optional method to invoke to release the block when the ustring is garbage collected.</description>
+	///   </item>
+	///   <item>
+	///     <term><see cref="M:NStack.ustring.Make(char[])"/></term>
+	///     <description>Creates a ustring from a character array.</description>
+	///   </item>
+	/// </list>
 	/// </para>
 	/// <para>
 	///   The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
@@ -419,7 +451,7 @@ namespace NStack {
 				return true;
 			var abs = a as ByteBufferUString;
 			var bbs = b as ByteBufferUString;
-			if (abs != null && bbs != null) {
+			if ((object)abs != null && (object)bbs != null) {
 				unsafe
 				{
 					fixed (byte* ap = &abs.buffer [0]) fixed (byte* bp = &bbs.buffer [0]) {
@@ -427,9 +459,9 @@ namespace NStack {
 					}
 				}
 			}
-			var aip = b as IntPtrUString;
+			var aip = a as IntPtrUString;
 			var bip = b as IntPtrUString;
-			if (aip != null && bip != null) {
+			if ((object)aip != null && (object)bip != null) {
 				unsafe
 				{
 					return EqualsHelper ((byte*)aip.block, (byte*)bip.block, alen);
@@ -1529,7 +1561,7 @@ namespace NStack {
 		}
 
 		/// <summary>
-		/// Converts the string to Title-case, that is every word (as determined by <see cref="IsSeparator"/> is Title cased.
+		/// Converts the string to Title-case, that is every word (as determined by <see cref="M:NStack.ustring.IsSeparator"/> is Title cased.
 		/// </summary>
 		/// <returns>A title-cased string.</returns>
 		public ustring Title ()

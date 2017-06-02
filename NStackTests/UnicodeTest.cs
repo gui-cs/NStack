@@ -112,23 +112,23 @@ namespace NStackTests {
 		public void TestLatinOptimizations ()
 		{
 			var isp = Unicode.IsLower (0x41);
-			var sss = Unicode.P.InRange (0x24);
+			var sss = Unicode.Category.P.InRange (0x24);
 
 			for (uint rune = 0; rune < Unicode.MaxLatin1; rune++) {
-				Assert.AreEqual (Unicode.Digit.InRange (rune), Unicode.IsDigit (rune), "Digit, the fast path and the slow path disagree for rune 0x{0:x}", rune);
+				Assert.AreEqual (Unicode.Category.Digit.InRange (rune), Unicode.IsDigit (rune), "Digit, the fast path and the slow path disagree for rune 0x{0:x}", rune);
 
 				// Control
 				var iscontrol = (rune <= 0x1f || (0x7f <= rune && rune <= 0x9f));
 				Assert.AreEqual (iscontrol, Unicode.IsControl (rune), "Control character, the fast and slow path disagree for rune 0x{0:x}", rune);
-				Assert.AreEqual (Unicode.L.InRange (rune), Unicode.IsLetter (rune), "Letter, The fast path and the slow path disagree for rune 0x{0:x}", rune);
-				Assert.AreEqual (Unicode.Upper.InRange (rune), Unicode.IsUpper (rune), "IsUpper, The fast path and the slow path disagree for rune 0x{0:x}", rune);
-				Assert.AreEqual (Unicode.Lower.InRange (rune), Unicode.IsLower (rune), "IsLower, The fast path and the slow path disagree for rune 0x{0:x}", rune);
-				Assert.AreEqual (Unicode.N.InRange (rune), Unicode.IsNumber (rune), "IsNumber, The fast path and the slow path disagree for rune 0x{0:x}", rune);
+				Assert.AreEqual (Unicode.Category.L.InRange (rune), Unicode.IsLetter (rune), "Letter, The fast path and the slow path disagree for rune 0x{0:x}", rune);
+				Assert.AreEqual (Unicode.Category.Upper.InRange (rune), Unicode.IsUpper (rune), "IsUpper, The fast path and the slow path disagree for rune 0x{0:x}", rune);
+				Assert.AreEqual (Unicode.Category.Lower.InRange (rune), Unicode.IsLower (rune), "IsLower, The fast path and the slow path disagree for rune 0x{0:x}", rune);
+				Assert.AreEqual (Unicode.Category.N.InRange (rune), Unicode.IsNumber (rune), "IsNumber, The fast path and the slow path disagree for rune 0x{0:x}", rune);
 				Assert.AreEqual (Unicode.IsRuneInRanges (rune, Unicode.PrintRanges) || rune == ' ', Unicode.IsPrint (rune), "IsPrint, The fast path and the slow path disagree for rune 0x{0:x}", rune);
 				Assert.AreEqual (Unicode.IsRuneInRanges (rune, Unicode.GraphicRanges), Unicode.IsGraphic (rune), "IsGraphic, The fast path and the slow path disagree for rune 0x{0:x}", rune);
-				Assert.AreEqual (Unicode.P.InRange (rune), Unicode.IsPunct (rune), "IsPunct, The fast path and the slow path disagree for rune 0x{0:x}", rune);
-				Assert.AreEqual (Unicode.White_Space.InRange (rune), Unicode.IsSpace (rune), "IsSpace, The fast path and the slow path disagree for rune 0x{0:x}", rune);
-				Assert.AreEqual (Unicode.S.InRange (rune), Unicode.IsSymbol (rune), "IsSymbol, The fast path and the slow path disagree for rune 0x{0:x}", rune);
+				Assert.AreEqual (Unicode.Category.P.InRange (rune), Unicode.IsPunct (rune), "IsPunct, The fast path and the slow path disagree for rune 0x{0:x}", rune);
+				Assert.AreEqual (Unicode.Property.White_Space.InRange (rune), Unicode.IsSpace (rune), "IsSpace, The fast path and the slow path disagree for rune 0x{0:x}", rune);
+				Assert.AreEqual (Unicode.Category.S.InRange (rune), Unicode.IsSymbol (rune), "IsSymbol, The fast path and the slow path disagree for rune 0x{0:x}", rune);
 
 			}
 		}

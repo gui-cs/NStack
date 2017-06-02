@@ -20,14 +20,14 @@ namespace NStack {
 		/// The range tables for graphics
 		/// </summary>
 		public static RangeTable [] GraphicRanges = new [] {
-			_L, _M, _N, _P, _S, _Zs
+			Category._L, Category._M, Category._N, Category._P, Category._S, Category._Zs
 		};
 
 		/// <summary>
 		/// The range tables for print
 		/// </summary>
 		public static RangeTable [] PrintRanges = new [] {
-			_L, _M, _N, _P, _S
+			Category._L, Category._M, Category._N, Category._P, Category._S
 		};
 
 		/// <summary>
@@ -105,7 +105,7 @@ namespace NStack {
 		{
 			if (rune < MaxLatin1)
 				return (properties [rune] & CharClass.pLmask) != 0;
-			return L.IsExcludingLatin (rune);
+			return Category.L.IsExcludingLatin (rune);
 		}
 
 		/// <summary>
@@ -119,7 +119,7 @@ namespace NStack {
 		public static bool IsMark (uint rune)
 		{
 			// There are no mark characters in Latin-1.
-			return M.IsExcludingLatin (rune);
+			return Category.M.IsExcludingLatin (rune);
 		}
 
 		/// <summary>
@@ -134,7 +134,7 @@ namespace NStack {
 		{
 			if (rune < MaxLatin1)
 				return (properties [rune] & CharClass.pN) != 0;
-			return N.IsExcludingLatin (rune);
+			return Category.N.IsExcludingLatin (rune);
 		}
 
 		/// <summary>
@@ -149,7 +149,7 @@ namespace NStack {
 		{
 			if (rune < MaxLatin1)
 				return (properties [rune] & CharClass.pP) != 0;
-			return P.IsExcludingLatin (rune);
+			return Category.P.IsExcludingLatin (rune);
 		}
 
 		/// <summary>
@@ -169,7 +169,7 @@ namespace NStack {
 					return true;
 				return false;
 			}
-			return White_Space.IsExcludingLatin (rune);
+			return Property.White_Space.IsExcludingLatin (rune);
 		}
 
 		/// <summary>
@@ -181,7 +181,7 @@ namespace NStack {
 		{
 			if (rune < MaxLatin1)
 				return (properties [rune] & CharClass.pS) != 0;
-			return S.IsExcludingLatin (rune);
+			return Category.S.IsExcludingLatin (rune);
 		}
 	}
 }

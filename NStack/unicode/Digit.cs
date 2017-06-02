@@ -10,7 +10,7 @@ namespace NStack {
 		{
 			if (rune < MaxLatin1)
 				return '0' <= rune && rune <= '9';
-			return Digit.IsExcludingLatin (rune);
+			return Category.Digit.IsExcludingLatin (rune);
 		}	
 	}
 }
