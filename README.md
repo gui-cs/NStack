@@ -16,6 +16,8 @@ can exist without them being valid UTF8 strings, but rather a collection of byte
 
 You can browse the [API documentation](https://migueldeicaza.github.io/NStack/api/NStack.html).
 
+Install the [NuGet package](https://www.nuget.org/packages/NStack.Core) by installing
+`NStack.Core`.
 
 [1] For example, older file systems can have filenames that made sense with
 a particular character set and are effectively not possible to map into strings.
