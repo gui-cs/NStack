@@ -14,5 +14,8 @@ can be decoded into UTF8 [1].
 To make things simple, this assumes that UTF8 strings (ustring in this code)
 can exist without them being valid UTF8 strings, but rather a collection of bytes.
 
+You can browse the [API documentation](https://migueldeicaza.github.io/NStack/api/NStack.html).
+
+
 [1] For example, older file systems can have filenames that made sense with
 a particular character set and are effectively not possible to map into strings.
