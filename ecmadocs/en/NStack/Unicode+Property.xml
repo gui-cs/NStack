@@ -1,0 +1,584 @@
+<Type Name="Unicode+Property" FullName="NStack.Unicode+Property">
+  <TypeSignature Language="C#" Value="public static class Unicode.Property" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi abstract sealed beforefieldinit Unicode/Property extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>NStack</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>Static class containing the proeprty-based tables.</summary>
+    <remarks>
+      <para>There are static properties that can be used to fetch RangeTables that identify characters that have a specific property, or you can use the <see cref="T:NStack.Unicode.Property.Get" /> method in this class to retrieve the range table by the property name</para>
+    </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="ASCII_Hex_Digit">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable ASCII_Hex_Digit { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable ASCII_Hex_Digit" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>ASCII_Hex_Digit is the set of Unicode characters with property ASCII_Hex_Digit.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Bidi_Control">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Bidi_Control { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Bidi_Control" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Bidi_Control is the set of Unicode characters with property Bidi_Control.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Dash">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Dash { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Dash" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Dash is the set of Unicode characters with property Dash.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Deprecated">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Deprecated { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Deprecated" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Deprecated is the set of Unicode characters with property Deprecated.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Diacritic">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Diacritic { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Diacritic" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Diacritic is the set of Unicode characters with property Diacritic.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Extender">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Extender { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Extender" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Extender is the set of Unicode characters with property Extender.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Get">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Get (string propertyName);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype NStack.Unicode/RangeTable Get(string propertyName) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="propertyName" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="propertyName">The property name.</param>
+        <summary>Retrieves the specified RangeTable having that property.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Hex_Digit">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Hex_Digit { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hex_Digit" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Hex_Digit is the set of Unicode characters with property Hex_Digit.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Hyphen">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Hyphen { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hyphen" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Hyphen is the set of Unicode characters with property Hyphen.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Ideographic">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Ideographic { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ideographic" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Ideographic is the set of Unicode characters with property Ideographic.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IDS_Binary_Operator">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable IDS_Binary_Operator { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable IDS_Binary_Operator" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>IDS_Binary_Operator is the set of Unicode characters with property IDS_Binary_Operator.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IDS_Trinary_Operator">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable IDS_Trinary_Operator { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable IDS_Trinary_Operator" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>IDS_Trinary_Operator is the set of Unicode characters with property IDS_Trinary_Operator.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Join_Control">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Join_Control { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Join_Control" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Join_Control is the set of Unicode characters with property Join_Control.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Logical_Order_Exception">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Logical_Order_Exception { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Logical_Order_Exception" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Logical_Order_Exception is the set of Unicode characters with property Logical_Order_Exception.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Noncharacter_Code_Point">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Noncharacter_Code_Point { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Noncharacter_Code_Point" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Noncharacter_Code_Point is the set of Unicode characters with property Noncharacter_Code_Point.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Other_Alphabetic">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Other_Alphabetic { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Alphabetic" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Other_Alphabetic is the set of Unicode characters with property Other_Alphabetic.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Other_Default_Ignorable_Code_Point">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Other_Default_Ignorable_Code_Point { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Default_Ignorable_Code_Point" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Other_Default_Ignorable_Code_Point is the set of Unicode characters with property Other_Default_Ignorable_Code_Point.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Other_Grapheme_Extend">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Other_Grapheme_Extend { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Grapheme_Extend" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Other_Grapheme_Extend is the set of Unicode characters with property Other_Grapheme_Extend.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Other_ID_Continue">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Other_ID_Continue { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_ID_Continue" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Other_ID_Continue is the set of Unicode characters with property Other_ID_Continue.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Other_ID_Start">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Other_ID_Start { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_ID_Start" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Other_ID_Start is the set of Unicode characters with property Other_ID_Start.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Other_Lowercase">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Other_Lowercase { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Lowercase" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Other_Lowercase is the set of Unicode characters with property Other_Lowercase.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Other_Math">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Other_Math { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Math" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Other_Math is the set of Unicode characters with property Other_Math.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Other_Uppercase">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Other_Uppercase { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Other_Uppercase" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Other_Uppercase is the set of Unicode characters with property Other_Uppercase.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Pattern_Syntax">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Pattern_Syntax { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pattern_Syntax" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Pattern_Syntax is the set of Unicode characters with property Pattern_Syntax.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Pattern_White_Space">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Pattern_White_Space { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Pattern_White_Space" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Pattern_White_Space is the set of Unicode characters with property Pattern_White_Space.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Prepended_Concatenation_Mark">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Prepended_Concatenation_Mark { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Prepended_Concatenation_Mark" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Prepended_Concatenation_Mark is the set of Unicode characters with property Prepended_Concatenation_Mark.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Quotation_Mark">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Quotation_Mark { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Quotation_Mark" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Quotation_Mark is the set of Unicode characters with property Quotation_Mark.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Radical">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Radical { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Radical" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Radical is the set of Unicode characters with property Radical.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sentence_Terminal">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Sentence_Terminal { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sentence_Terminal" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Sentence_Terminal is the set of Unicode characters with property Sentence_Terminal.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Soft_Dotted">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Soft_Dotted { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Soft_Dotted" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Soft_Dotted is the set of Unicode characters with property Soft_Dotted.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="STerm">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable STerm { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable STerm" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>STerm is an alias for Sentence_Terminal.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Terminal_Punctuation">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Terminal_Punctuation { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Terminal_Punctuation" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Terminal_Punctuation is the set of Unicode characters with property Terminal_Punctuation.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Unified_Ideograph">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Unified_Ideograph { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Unified_Ideograph" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Unified_Ideograph is the set of Unicode characters with property Unified_Ideograph.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Variation_Selector">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Variation_Selector { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Variation_Selector" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Variation_Selector is the set of Unicode characters with property Variation_Selector.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="White_Space">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable White_Space { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable White_Space" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>White_Space is the set of Unicode characters with property White_Space.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

@@ -1,13 +1,13 @@
 all: doc-update rebuild-docs
 
-rebuild-docs: docs/template
-	mdoc export-html --force-update -o docs --template=docs/template ecmadocs/en/
+rebuild-docs: odocs/template
+	mdoc export-html --force-update -o odocs --template=odocs/template ecmadocs/en/
 
 # Used to fetch XML doc updates from the C# compiler into the ECMA docs
 doc-update:
 	mdoc update -i NStack/bin/Debug/NStack.xml -o ecmadocs/en NStack/bin/Debug/NStack.dll 
 
-ecma2yaml: 
-	curl -O https://api.nuget.org/packages/microsoft.docascode.ecma2yaml.1.0.105.nupkg
-	unzip -d ecma2yaml microsoft.docascode.ecma2yaml.1.0.105.nupkg
-	(cd ecma2yaml; nuget restore; msbuild)
+yaml:
+	-rm /cvs/NStack/ecmadocs/en/ns-.xml
+	mono /cvs/ECMA2Yaml/ECMA2Yaml/ECMA2Yaml/bin/Debug/ECMA2Yaml.exe --source=/cvs/NStack/ecmadocs/en --output=/cvs/NStack/docfx/api
+	(cd docfx; mono ~/Downloads/docfx/docfx.exe build)

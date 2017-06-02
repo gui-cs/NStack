@@ -1,0 +1,13 @@
+{
+  "/cvs/NStack/ecmadocs/en/NStack/Unicode+Case.xml": "/cvs/NStack/docfx/api/NStack/NStack.Unicode.Case.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/Unicode.xml": "/cvs/NStack/docfx/api/NStack/NStack.Unicode.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/ustring+RunePredicate.xml": "/cvs/NStack/docfx/api/NStack/NStack.ustring.RunePredicate.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/Unicode+Script.xml": "/cvs/NStack/docfx/api/NStack/NStack.Unicode.Script.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/Utf8.xml": "/cvs/NStack/docfx/api/NStack/NStack.Utf8.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/Unicode+SpecialCase.xml": "/cvs/NStack/docfx/api/NStack/NStack.Unicode.SpecialCase.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/Unicode+RangeTable.xml": "/cvs/NStack/docfx/api/NStack/NStack.Unicode.RangeTable.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/Unicode+Property.xml": "/cvs/NStack/docfx/api/NStack/NStack.Unicode.Property.yml",
+  "/cvs/NStack/ecmadocs/en/ns-NStack.xml": "/cvs/NStack/docfx/api/NStack.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/ustring.xml": "/cvs/NStack/docfx/api/NStack/NStack.ustring.yml",
+  "/cvs/NStack/ecmadocs/en/NStack/Unicode+Category.xml": "/cvs/NStack/docfx/api/NStack/NStack.Unicode.Category.yml"
+}
