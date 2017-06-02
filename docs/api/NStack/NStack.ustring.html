@@ -1,0 +1,3764 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ustring
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ustring
+   ">
+    <meta name="generator" content="docfx 2.18.2.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NStack.ustring">
+  
+  
+  <h1 id="NStack_ustring" data-uid="NStack.ustring">Class ustring
+  </h1>
+  <div class="markdown level0 summary"><p>ustrings are used to manipulate utf8 strings, either from byte arrays or blocks of memory.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ustring</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="../NStack.html">NStack</a></h6>
+  <h6><strong>Assembly</strong>: NStack.dll</h6>
+  <h5 id="NStack_ustring_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ustring : ICloneable, IComparable, IConvertible, IEquatable&lt;NStack.ustring&gt;, System.Collections.Generic.IEnumerable&lt;uint&gt;</code></pre>
+  </div>
+  <h5 id="NStack_ustring_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>
+              The ustring provides a series of string-like operations over an array of bytes.   The buffer
+              is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
+              sequence many of the operations will continue to work.
+            </p>
+    <p>
+              The strings can be created either from byte arrays, a range within a byte array, or from a 
+              block of unmanaged memory.  The ustrings are created using one of the Make methods in the
+              class, not by invoking the new operator on the class.
+            </p>
+    <p>
+      <table><thead><tr><th>MethodDescription</th><th></th></tr></thead><tbody><tr><td>
+            <span class="xref">NStack.ustring.Make(string)</span>
+          </td><td>Creates a ustring from a C# string.</td></tr><tr><td>
+            <span class="xref">NStack.ustring.Make(byte[])</span>
+          </td><td>Creates a ustring from a byte array.</td></tr><tr><td>
+            <span class="xref">NStack.ustring.Make(byte[],int,int)</span>
+          </td><td>Creates a ustring from a range in a byte array.</td></tr><tr><td>
+            <span class="xref">NStack.ustring.Make(uint)</span>
+          </td><td>Creates a ustring from a single rune.</td></tr><tr><td>
+            <span class="xref">NStack.ustring.Make(System.IntPtr,int,System.Action{NStack.ustring, System.IntPtr})</span>
+          </td><td>Creates a ustring from an unmanaged memory block, with an optional method to invoke to release the block when the ustring is garbage collected.</td></tr><tr><td>
+            <span class="xref">NStack.ustring.Make(char[])</span>
+          </td><td>Creates a ustring from a character array.</td></tr></tbody></table>
+    </p>
+    <p>
+              The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
+              property describes the number of code points (or runes) that are reprenseted by the underlying 
+              utf8 encoded buffer.
+            </p>
+    <p>
+              The ustring supports slicing by calling the indexer with two arguments, the argument represent
+              indexes into the underlying byte buffer.  The starting index is inclusive, while the ending index
+              is exclusive.   Negative values can be used to index the string from the end.  See the documentation
+              for the indexer for more details.
+            </p></div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="NStack_ustring__ctor_" data-uid="NStack.ustring.#ctor*"></a>
+  <h4 id="NStack_ustring__ctor" data-uid="NStack.ustring.#ctor">ustring()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ustring ();</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="NStack_ustring_Empty" data-uid="NStack.ustring.Empty">Empty</h4>
+  <div class="markdown level1 summary"><p>The empty ustring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Empty;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="NStack_ustring_IsEmpty_" data-uid="NStack.ustring.IsEmpty*"></a>
+  <h4 id="NStack_ustring_IsEmpty" data-uid="NStack.ustring.IsEmpty">IsEmpty</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether this <a class="xref" href="NStack.ustring.html">ustring</a> is empty.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEmpty { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if is empty (Lenght is zero); otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Item_" data-uid="NStack.ustring.Item*"></a>
+  <h4 id="NStack_ustring_Item_System_Int32_" data-uid="NStack.ustring.Item(System.Int32)">Item(Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the byte at the specified position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract byte this[int index] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><p>The byte encoded at the specified position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_Item_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The index value shoudl be between 0 and Length-1.</p>
+</div>
+  
+  
+  <a id="NStack_ustring_Item_" data-uid="NStack.ustring.Item*"></a>
+  <h4 id="NStack_ustring_Item_System_Int32_System_Int32_" data-uid="NStack.ustring.Item(System.Int32,System.Int32)">Item(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns a slice of the ustring delimited by the [start, end) range.  If the range is invalid, the return is the Empty string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring this[int start, int end] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">end</span></td>
+        <td><p>End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.   If the value is zero, the end is computed as the last index of the string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_Item_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>
+            Some examples given the string &quot;1234567890&quot;:
+            </p>
+    <p>The range [0, 4] produces &quot;1234&quot;</p>
+    <p>The range [8, 10] produces &quot;90&quot;</p>
+    <p>The range [8, 0] produces &quot;90&quot;</p>
+    <p>The range [-2, 0] produces &quot;90&quot;</p>
+    <p>The range [8, 9] produces &quot;9&quot;</p>
+    <p>The range [-4, -1] produces &quot;789&quot;</p>
+    <p>The range [-4, 0] produces &quot;7890&quot;</p>
+    <p>The range [-4, 0] produces &quot;7890&quot;</p>
+    <p>The range [-9, -3] produces &quot;234567&quot;</p>
+    <p>
+              This indexer does not raise exceptions for invalid indexes, instead the value 
+              returned is the ustring.Empty value:
+            </p>
+    <p>
+              The range [100, 200] produces the ustring.Empty
+            </p>
+    <p>
+              The range [-100, 0] produces ustring.Empty
+            </p></div>
+  
+  
+  <a id="NStack_ustring_Length_" data-uid="NStack.ustring.Length*"></a>
+  <h4 id="NStack_ustring_Length" data-uid="NStack.ustring.Length">Length</h4>
+  <div class="markdown level1 summary"><p>Gets the length in bytes of the byte buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract int Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The length in bytes of the encoded UTF8 string, does not represent the number of runes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_Length_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>To obtain the number of runes in the string, use the <span class="xref">System.ustring.RuneCount</span> property.</p>
+</div>
+  
+  
+  <a id="NStack_ustring_RuneCount_" data-uid="NStack.ustring.RuneCount*"></a>
+  <h4 id="NStack_ustring_RuneCount" data-uid="NStack.ustring.RuneCount">RuneCount</h4>
+  <div class="markdown level1 summary"><p>Gets the rune count of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RuneCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The rune count.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="NStack_ustring_CompareTo_" data-uid="NStack.ustring.CompareTo*"></a>
+  <h4 id="NStack_ustring_CompareTo_System_Object_" data-uid="NStack.ustring.CompareTo(System.Object)">CompareTo(Object)</h4>
+  <div class="markdown level1 summary"><p>Implements the IComparable.CompareTo method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo (object value);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Less than zero if this instance is less than value, zero if they are the same, and higher than zero if the instance is greater.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Concat_" data-uid="NStack.ustring.Concat*"></a>
+  <h4 id="NStack_ustring_Concat_NStack_ustring___" data-uid="NStack.ustring.Concat(NStack.ustring[])">Concat(ustring[])</h4>
+  <div class="markdown level1 summary"><p>Concatenates the provided ustrings into a new ustring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Concat (NStack.ustring[] args);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>One or more ustrings.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>A new ustring that contains the concatenation of all the ustrings.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Contains_" data-uid="NStack.ustring.Contains*"></a>
+  <h4 id="NStack_ustring_Contains_NStack_ustring_" data-uid="NStack.ustring.Contains(NStack.ustring)">Contains(ustring)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether a specified substring occurs within this string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains (NStack.ustring substr);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">substr</span></td>
+        <td><p>The string to seek.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if the <code>substr</code> parameter occurs within this string, or if <code>substr</code> is the empty string (&quot;&quot;); otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Contains_" data-uid="NStack.ustring.Contains*"></a>
+  <h4 id="NStack_ustring_Contains_System_UInt32_" data-uid="NStack.ustring.Contains(System.UInt32)">Contains(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether a specified rune occurs within this string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains (uint rune);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">rune</span></td>
+        <td><p>The rune to seek.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if the <code>rune</code> parameter occurs within this string; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ContainsAny_" data-uid="NStack.ustring.ContainsAny*"></a>
+  <h4 id="NStack_ustring_ContainsAny_NStack_ustring_" data-uid="NStack.ustring.ContainsAny(NStack.ustring)">ContainsAny(ustring)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether any of the characters in the provided string occurs within this string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ContainsAny (NStack.ustring chars);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">chars</span></td>
+        <td><p>string contanining one or more characters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if any of the characters in <code>chars</code> parameter occurs within this string; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ContainsAny_" data-uid="NStack.ustring.ContainsAny*"></a>
+  <h4 id="NStack_ustring_ContainsAny_System_UInt32___" data-uid="NStack.ustring.ContainsAny(System.UInt32[])">ContainsAny(UInt32[])</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether any of the runes occurs within this string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ContainsAny (uint[] runes);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span>[]</td>
+        <td><span class="parametername">runes</span></td>
+        <td><p>one or more runes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if any of the runes in <code>runes</code> parameter occurs within this string; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Copy_" data-uid="NStack.ustring.Copy*"></a>
+  <h4 id="NStack_ustring_Copy" data-uid="NStack.ustring.Copy">Copy()</h4>
+  <div class="markdown level1 summary"><p>The Copy method makes a copy of the underlying data, it can be used to release the resources associated with an
+            unmanaged buffer, or a ranged string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring Copy ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>A copy of the underlying data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_CopyTo_" data-uid="NStack.ustring.CopyTo*"></a>
+  <h4 id="NStack_ustring_CopyTo_System_Int32_System_Byte___System_Int32_System_Int32_" data-uid="NStack.ustring.CopyTo(System.Int32,System.Byte[],System.Int32,System.Int32)">CopyTo(Int32, Byte[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Copies the specified number of bytes from the the underlying ustring representation to the target array at the specified offset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void CopyTo (int offset, byte[] target, int targetOffset, int count);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Offset in the underlying ustring buffer to copy from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target array where the buffer contents will be copied to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">targetOffset</span></td>
+        <td><p>Offset into the target array where this will be copied to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Number of bytes to copy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Count_" data-uid="NStack.ustring.Count*"></a>
+  <h4 id="NStack_ustring_Count_NStack_ustring_" data-uid="NStack.ustring.Count(NStack.ustring)">Count(ustring)</h4>
+  <div class="markdown level1 summary"><p>Count the number of non-overlapping instances of substr in the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count (NStack.ustring substr);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">substr</span></td>
+        <td><p>Substr.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>If substr is an empty string, Count returns 1 + the number of Unicode code points in the string, otherwise the count of non-overlapping instances in string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_EndsWith_" data-uid="NStack.ustring.EndsWith*"></a>
+  <h4 id="NStack_ustring_EndsWith_NStack_ustring_" data-uid="NStack.ustring.EndsWith(NStack.ustring)">EndsWith(ustring)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the end of this string instance matches the specified string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EndsWith (NStack.ustring suffix);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">suffix</span></td>
+        <td><p>The string to compare to the substring at the end of this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if <code>suffix</code> matches the end of this instance; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Equals_" data-uid="NStack.ustring.Equals*"></a>
+  <h4 id="NStack_ustring_Equals_NStack_ustring_" data-uid="NStack.ustring.Equals(NStack.ustring)">Equals(ustring)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals (NStack.ustring other);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Equals_" data-uid="NStack.ustring.Equals*"></a>
+  <h4 id="NStack_ustring_Equals_System_Object_" data-uid="NStack.ustring.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified <span class="xref">System.Object</span> is equal to the current <a class="xref" href="NStack.ustring.html">ustring</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals (object obj);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The <span class="xref">System.Object</span> to compare with the current <a class="xref" href="NStack.ustring.html">ustring</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the specified <span class="xref">System.Object</span> is equal to the current <a class="xref" href="NStack.ustring.html">ustring</a>;
+            otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_EqualsHelper_" data-uid="NStack.ustring.EqualsHelper*"></a>
+  <h4 id="NStack_ustring_EqualsHelper_NStack_ustring_NStack_ustring_" data-uid="NStack.ustring.EqualsHelper(NStack.ustring,NStack.ustring)">EqualsHelper(ustring, ustring)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool EqualsHelper (NStack.ustring a, NStack.ustring b);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Explode_" data-uid="NStack.ustring.Explode*"></a>
+  <h4 id="NStack_ustring_Explode_System_Int32_" data-uid="NStack.ustring.Explode(System.Int32)">Explode(Int32)</h4>
+  <div class="markdown level1 summary"><p>Explode splits the string into a slice of UTF-8 strings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring[] Explode (int limit = -1);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">limit</span></td>
+        <td><p>Maximum number of entries to return, or -1 for no limits.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a>[]</td>
+        <td><p>, one string per unicode character, 
+            up to the specified limit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_GetHashCode_" data-uid="NStack.ustring.GetHashCode*"></a>
+  <h4 id="NStack_ustring_GetHashCode" data-uid="NStack.ustring.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Serves as a hash function for a <a class="xref" href="NStack.ustring.html">ustring</a> object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a hash table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_GetRange_" data-uid="NStack.ustring.GetRange*"></a>
+  <h4 id="NStack_ustring_GetRange_System_Int32_System_Int32_" data-uid="NStack.ustring.GetRange(System.Int32,System.Int32)">GetRange(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>For internal use, returns the range of bytes specified.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract NStack.ustring GetRange (int start, int end);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">end</span></td>
+        <td><p>End.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_IndexByte_" data-uid="NStack.ustring.IndexByte*"></a>
+  <h4 id="NStack_ustring_IndexByte_System_Byte_System_Int32_" data-uid="NStack.ustring.IndexByte(System.Byte,System.Int32)">IndexByte(Byte, Int32)</h4>
+  <div class="markdown level1 summary"><p>Reports the zero-based index of the first occurrence of the specified byte in the underlying byte buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexByte (byte b, int offset);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>The byte to seek.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The zero-based index position of <code>b</code> if that byte is found, or -1 if it is not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_IndexOf_" data-uid="NStack.ustring.IndexOf*"></a>
+  <h4 id="NStack_ustring_IndexOf_System_UInt32_System_Int32_" data-uid="NStack.ustring.IndexOf(System.UInt32,System.Int32)">IndexOf(UInt32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Reports the zero-based index of the first occurrence of the specified Unicode rune in this string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOf (uint rune, int offset = 0);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">rune</span></td>
+        <td><p>Rune.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Starting offset to start the search from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The zero-based index position of <code>rune</code> if that character is found, or -1 if it is not.  If the rune is Utf8.RuneError, it returns the first instance of any invalid UTF-8 byte sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_IndexOf_" data-uid="NStack.ustring.IndexOf*"></a>
+  <h4 id="NStack_ustring_IndexOf_NStack_ustring_System_Int32_" data-uid="NStack.ustring.IndexOf(NStack.ustring,System.Int32)">IndexOf(ustring, Int32)</h4>
+  <div class="markdown level1 summary"><p>Reports the zero-based index of the first occurrence of a specified Unicode character or string within this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOf (NStack.ustring substr, int offset = 0);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">substr</span></td>
+        <td><p>The string to seek.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The search starting position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The zero-based index position of value if that character is found, or -1 if it is not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_IndexOf_" data-uid="NStack.ustring.IndexOf*"></a>
+  <h4 id="NStack_ustring_IndexOf_NStack_ustring_RunePredicate_" data-uid="NStack.ustring.IndexOf(NStack.ustring.RunePredicate)">IndexOf(ustring+RunePredicate)</h4>
+  <div class="markdown level1 summary"><p>IndexOf returns the index into s of the first Unicode rune satisfying matchFunc(rune), or -1 if none do.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOf (NStack.ustring.RunePredicate matchFunc);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><span class="parametername">matchFunc</span></td>
+        <td><p>Match func, it receives a rune as a parameter and should return true if it matches, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The index inside the string where the rune is found, or -1 on error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_IndexOfAny_" data-uid="NStack.ustring.IndexOfAny*"></a>
+  <h4 id="NStack_ustring_IndexOfAny_NStack_ustring_" data-uid="NStack.ustring.IndexOfAny(NStack.ustring)">IndexOfAny(ustring)</h4>
+  <div class="markdown level1 summary"><p>Reports the zero-based index of the first occurrence in this instance of any character in the provided string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOfAny (NStack.ustring chars);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">chars</span></td>
+        <td><p>ustring containing characters to seek.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The zero-based index position of the first occurrence in this instance where any character in <code>chars</code> was found; -1 if no character in <code>chars</code> was found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_IndexOfAny_" data-uid="NStack.ustring.IndexOfAny*"></a>
+  <h4 id="NStack_ustring_IndexOfAny_System_UInt32___" data-uid="NStack.ustring.IndexOfAny(System.UInt32[])">IndexOfAny(UInt32[])</h4>
+  <div class="markdown level1 summary"><p>Reports the zero-based index of the first occurrence in this instance of any runes in the provided string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOfAny (uint[] runes);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span>[]</td>
+        <td><span class="parametername">runes</span></td>
+        <td><p>ustring containing runes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The zero-based index position of the first occurrence in this instance where any character in <code>runes</code> was found; -1 if no character in <code>runes</code> was found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_IsSeparator_" data-uid="NStack.ustring.IsSeparator*"></a>
+  <h4 id="NStack_ustring_IsSeparator_System_UInt32_" data-uid="NStack.ustring.IsSeparator(System.UInt32)">IsSeparator(UInt32)</h4>
+  <div class="markdown level1 summary"><p>IsSeparator reports whether the rune could mark a word boundary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsSeparator (uint rune);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">rune</span></td>
+        <td><p>The rune to test.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code>, if the rune can be considered a word boundary, <code>false</code> otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Join_" data-uid="NStack.ustring.Join*"></a>
+  <h4 id="NStack_ustring_Join_NStack_ustring_NStack_ustring___" data-uid="NStack.ustring.Join(NStack.ustring,NStack.ustring[])">Join(ustring, ustring[])</h4>
+  <div class="markdown level1 summary"><p>Concatenates all the elements of a ustring array, using the specified separator between each element.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Join (NStack.ustring separator, NStack.ustring[] values);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>Separator.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>A string that consists of the elements in <code>values</code> delimited by the <code>separator</code> string. If <code>values</code> is an empty array, the method returns <span class="xref">System.ustring.Empty</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_LastIndexByte_" data-uid="NStack.ustring.LastIndexByte*"></a>
+  <h4 id="NStack_ustring_LastIndexByte_System_Byte_" data-uid="NStack.ustring.LastIndexByte(System.Byte)">LastIndexByte(Byte)</h4>
+  <div class="markdown level1 summary"><p>Reports the zero-based index position of the last occurrence of a specified byte on the underlying byte buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LastIndexByte (byte b);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>The byte to seek.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The zero-based index position of <code>b</code> if that byte is found, or -1 if it is not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_LastIndexOf_" data-uid="NStack.ustring.LastIndexOf*"></a>
+  <h4 id="NStack_ustring_LastIndexOf_NStack_ustring_RunePredicate_" data-uid="NStack.ustring.LastIndexOf(NStack.ustring.RunePredicate)">LastIndexOf(ustring+RunePredicate)</h4>
+  <div class="markdown level1 summary"><p>LastIndexOf returns the index into s of the last Unicode rune satisfying matchFunc(rune), or -1 if none do.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LastIndexOf (NStack.ustring.RunePredicate matchFunc);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><span class="parametername">matchFunc</span></td>
+        <td><p>Match func, it receives a rune as a parameter and should return true if it matches, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The last index inside the string where the rune is found, or -1 on error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_LastIndexOf_" data-uid="NStack.ustring.LastIndexOf*"></a>
+  <h4 id="NStack_ustring_LastIndexOf_NStack_ustring_" data-uid="NStack.ustring.LastIndexOf(NStack.ustring)">LastIndexOf(ustring)</h4>
+  <div class="markdown level1 summary"><p>Reports the zero-based index position of the last occurrence of a specified substring within this instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LastIndexOf (NStack.ustring substr);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">substr</span></td>
+        <td><p>The ustring to seek.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The zero-based index position of <code>substr</code> if that character is found, or -1 if it is not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_LastIndexOfAny_" data-uid="NStack.ustring.LastIndexOfAny*"></a>
+  <h4 id="NStack_ustring_LastIndexOfAny_NStack_ustring_" data-uid="NStack.ustring.LastIndexOfAny(NStack.ustring)">LastIndexOfAny(ustring)</h4>
+  <div class="markdown level1 summary"><p>Reports the zero-based index position of the last occurrence in this instance of one or more characters specified in the uustring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LastIndexOfAny (NStack.ustring chars);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">chars</span></td>
+        <td><p>The string containing characters to seek.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The index position of the last occurrence in this instance where any character in <code>chars</code> was found; -1 if no character in <code>chars</code> was found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Make_" data-uid="NStack.ustring.Make*"></a>
+  <h4 id="NStack_ustring_Make_System_Byte___" data-uid="NStack.ustring.Make(System.Byte[])">Make(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="NStack.ustring.html">ustring</a> class using the provided byte array for its storage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Make (byte[] buffer);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer containing the utf8 encoded string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_Make_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>
+              No validation is performed on the contents of the byte buffer, so it
+              might contains invalid UTF-8 sequences.
+            </p>
+    <p>
+              No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
+            </p></div>
+  
+  
+  <a id="NStack_ustring_Make_" data-uid="NStack.ustring.Make*"></a>
+  <h4 id="NStack_ustring_Make_System_Char___" data-uid="NStack.ustring.Make(System.Char[])">Make(Char[])</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="NStack.ustring.html">ustring</a> class from an array of C# characters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Make (char[] chars);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><span class="parametername">chars</span></td>
+        <td><p>Characters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Make_" data-uid="NStack.ustring.Make*"></a>
+  <h4 id="NStack_ustring_Make_System_String_" data-uid="NStack.ustring.Make(System.String)">Make(String)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="NStack.ustring.html">ustring</a> class from a string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Make (string str);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>C# String.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Make_" data-uid="NStack.ustring.Make*"></a>
+  <h4 id="NStack_ustring_Make_System_UInt32_" data-uid="NStack.ustring.Make(System.UInt32)">Make(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance using the provided rune as the sole character in the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Make (uint rune);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">rune</span></td>
+        <td><p>Rune (short name for Unicode code point).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Make_" data-uid="NStack.ustring.Make*"></a>
+  <h4 id="NStack_ustring_Make_System_Byte___System_Int32_System_Int32_" data-uid="NStack.ustring.Make(System.Byte[],System.Int32,System.Int32)">Make(Byte[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="NStack.ustring.html">ustring</a> class from a byte array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Make (byte[] buffer, int start, int count);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer containing the utf8 encoded string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Starting offset into the buffer.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Number of bytes to consume from the buffer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_Make_System_Byte___System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>
+            No validation is performed on the contents of the byte buffer, so it
+            might contains invalid UTF-8 sequences.
+            </p>
+    <p>
+            This will make a copy of the buffer range.
+            </p></div>
+  
+  
+  <a id="NStack_ustring_Make_" data-uid="NStack.ustring.Make*"></a>
+  <h4 id="NStack_ustring_Make_System_IntPtr_System_Int32_System_Action_NStack_ustring_System_IntPtr__" data-uid="NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr})">Make(IntPtr, Int32, Action&lt;ustring,IntPtr&gt;)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="NStack.ustring.html">ustring</a> class from a block of memory and a size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring Make (IntPtr block, int size, Action&lt;NStack.ustring,IntPtr&gt; releaseFunc = null);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">block</span></td>
+        <td><p>Pointer to a block of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>Number of bytes in the block to treat as a string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="NStack.ustring.html">ustring</a>,<span class="xref">System.IntPtr</span>&gt;</td>
+        <td><span class="parametername">releaseFunc</span></td>
+        <td><p>Optional method to invoke to release when this string is finalized to clear the associated resources, you can use this for example to release the unamanged resource to which the block belongs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_Make_System_IntPtr_System_Int32_System_Action_NStack_ustring_System_IntPtr___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>
+               This will return a ustring that represents the block of memory provided.
+            </p>
+    <p>
+              The returned object will be a subclass of ustring that implements IDisposable, which you can use
+              to trigger the synchronous execution of the <code>releaseFunc</code>.   If you do not call
+              Dispose manually, the provided release function will be invoked from the finalizer thread.
+            </p></div>
+  
+  
+  <a id="NStack_ustring_Range_" data-uid="NStack.ustring.Range*"></a>
+  <h4 id="NStack_ustring_Range" data-uid="NStack.ustring.Range">Range()</h4>
+  <div class="markdown level1 summary"><p>An enumerator that returns the index within the string, and the rune found at that location</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;Range&gt;d__64))]
+public System.Collections.Generic.IEnumerable&lt;ValueTuple&lt;int,uint&gt;&gt; Range ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>,<span class="xref">System.UInt32</span>&gt;&gt;</td>
+        <td><p>Enumerable object that can be used to iterate and get the index of the values at the same time.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_Range_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is useful to iterate over the string and obtain both the index of the rune and the rune
+            in the same call.</p>
+</div>
+  
+  
+  <a id="NStack_ustring_Split_" data-uid="NStack.ustring.Split*"></a>
+  <h4 id="NStack_ustring_Split_NStack_ustring_System_Int32_" data-uid="NStack.ustring.Split(NStack.ustring,System.Int32)">Split(ustring, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring[] Split (NStack.ustring separator, int n = -1);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">n</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a>[]</td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_StartsWith_" data-uid="NStack.ustring.StartsWith*"></a>
+  <h4 id="NStack_ustring_StartsWith_NStack_ustring_" data-uid="NStack.ustring.StartsWith(NStack.ustring)">StartsWith(ustring)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the beginning of this string instance matches the specified string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool StartsWith (NStack.ustring prefix);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">prefix</span></td>
+        <td><p>Prefix.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if <code>prefix</code> matches the beginning of this string; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Title_" data-uid="NStack.ustring.Title*"></a>
+  <h4 id="NStack_ustring_Title" data-uid="NStack.ustring.Title">Title()</h4>
+  <div class="markdown level1 summary"><p>Converts the string to Title-case, that is every word (as determined by <span class="xref">NStack.ustring.IsSeparator</span> is Title cased.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring Title ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>A title-cased string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ToByteArray_" data-uid="NStack.ustring.ToByteArray*"></a>
+  <h4 id="NStack_ustring_ToByteArray" data-uid="NStack.ustring.ToByteArray">ToByteArray()</h4>
+  <div class="markdown level1 summary"><p>Returns a version of the ustring as a byte array, it might allocate or return the internal byte buffer, depending on the backing implementation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract byte[] ToByteArray ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A byte array containing the contents of the ustring.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_ToByteArray_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The byte array contains either a copy of the underlying data, in the cases where the ustring was created
+            from an unmanaged pointer or when the ustring was created by either slicing or from a range withing a byte
+            array.   Otherwise the returned array that is used by the ustring itself.</p>
+</div>
+  
+  
+  <a id="NStack_ustring_ToLower_" data-uid="NStack.ustring.ToLower*"></a>
+  <h4 id="NStack_ustring_ToLower_NStack_Unicode_SpecialCase_" data-uid="NStack.ustring.ToLower(NStack.Unicode.SpecialCase)">ToLower(Unicode+SpecialCase)</h4>
+  <div class="markdown level1 summary"><p>Returns a copy of the string s with all Unicode letters mapped to their lower case giving priority to the special casing rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring ToLower (NStack.Unicode.SpecialCase specialCase);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><span class="parametername">specialCase</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The string to uppercase.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ToLower_" data-uid="NStack.ustring.ToLower*"></a>
+  <h4 id="NStack_ustring_ToLower" data-uid="NStack.ustring.ToLower">ToLower()</h4>
+  <div class="markdown level1 summary"><p>Returns a copy of the string s with all Unicode letters mapped to their lower case.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring ToLower ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The lowercased string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ToRunes_" data-uid="NStack.ustring.ToRunes*"></a>
+  <h4 id="NStack_ustring_ToRunes_System_Int32_" data-uid="NStack.ustring.ToRunes(System.Int32)">ToRunes(Int32)</h4>
+  <div class="markdown level1 summary"><p>Converts a ustring into a rune array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint[] ToRunes (int limit = -1);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">limit</span></td>
+        <td><p>Maximum number of entries to return, or -1 for no limits.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span>[]</td>
+        <td><p>An array containing the runes for the string up to the specified limit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ToTitle_" data-uid="NStack.ustring.ToTitle*"></a>
+  <h4 id="NStack_ustring_ToTitle_NStack_Unicode_SpecialCase_" data-uid="NStack.ustring.ToTitle(NStack.Unicode.SpecialCase)">ToTitle(Unicode+SpecialCase)</h4>
+  <div class="markdown level1 summary"><p>Returns a copy of the string s with all Unicode letters mapped to their title case giving priority to the special casing rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring ToTitle (NStack.Unicode.SpecialCase specialCase);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><span class="parametername">specialCase</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The string to uppercase.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ToTitle_" data-uid="NStack.ustring.ToTitle*"></a>
+  <h4 id="NStack_ustring_ToTitle" data-uid="NStack.ustring.ToTitle">ToTitle()</h4>
+  <div class="markdown level1 summary"><p>Returns a copy of the string s with all Unicode letters mapped to their title case.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring ToTitle ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The title-cased string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ToUpper_" data-uid="NStack.ustring.ToUpper*"></a>
+  <h4 id="NStack_ustring_ToUpper_NStack_Unicode_SpecialCase_" data-uid="NStack.ustring.ToUpper(NStack.Unicode.SpecialCase)">ToUpper(Unicode+SpecialCase)</h4>
+  <div class="markdown level1 summary"><p>Returns a copy of the string s with all Unicode letters mapped to their upper case giving priority to the special casing rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring ToUpper (NStack.Unicode.SpecialCase specialCase);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><span class="parametername">specialCase</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The string to uppercase.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_ToUpper_" data-uid="NStack.ustring.ToUpper*"></a>
+  <h4 id="NStack_ustring_ToUpper" data-uid="NStack.ustring.ToUpper">ToUpper()</h4>
+  <div class="markdown level1 summary"><p>Returns a copy of the string s with all Unicode letters mapped to their upper case.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring ToUpper ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The string to uppercase.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_Trim_" data-uid="NStack.ustring.Trim*"></a>
+  <h4 id="NStack_ustring_Trim_NStack_ustring_RunePredicate_" data-uid="NStack.ustring.Trim(NStack.ustring.RunePredicate)">Trim(ustring+RunePredicate)</h4>
+  <div class="markdown level1 summary"><p>Returns a slice of the string with all leading and trailing runes matching the predicate removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring Trim (NStack.ustring.RunePredicate predicate);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The trim.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_TrimEnd_" data-uid="NStack.ustring.TrimEnd*"></a>
+  <h4 id="NStack_ustring_TrimEnd_NStack_ustring_RunePredicate_" data-uid="NStack.ustring.TrimEnd(NStack.ustring.RunePredicate)">TrimEnd(ustring+RunePredicate)</h4>
+  <div class="markdown level1 summary"><p>Returns a slice of the string with all trailing runes matching the predicate removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring TrimEnd (NStack.ustring.RunePredicate predicate);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Function that determines whether this character must be trimmed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The current string if the predicate does not match anything, or a slice of the string starting in the first rune after the predicate matched.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_TrimEnd_" data-uid="NStack.ustring.TrimEnd*"></a>
+  <h4 id="NStack_ustring_TrimEnd_NStack_ustring_" data-uid="NStack.ustring.TrimEnd(NStack.ustring)">TrimEnd(ustring)</h4>
+  <div class="markdown level1 summary"><p>TrimEnd returns a slice of the string with all leading characters in cutset removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring TrimEnd (NStack.ustring cutset);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">cutset</span></td>
+        <td><p>Characters to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The slice of the string with all cutset characters removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_TrimSpace_" data-uid="NStack.ustring.TrimSpace*"></a>
+  <h4 id="NStack_ustring_TrimSpace" data-uid="NStack.ustring.TrimSpace">TrimSpace()</h4>
+  <div class="markdown level1 summary"><p>Returns a slice of the string with all leading and trailing space characters removed (as determined by <span class="xref">NStack.Unicode.IsSpace()</span></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring TrimSpace ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The space.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_TrimStart_" data-uid="NStack.ustring.TrimStart*"></a>
+  <h4 id="NStack_ustring_TrimStart_NStack_ustring_RunePredicate_" data-uid="NStack.ustring.TrimStart(NStack.ustring.RunePredicate)">TrimStart(ustring+RunePredicate)</h4>
+  <div class="markdown level1 summary"><p>Returns a slice of the string with all leading runes matching the predicate removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring TrimStart (NStack.ustring.RunePredicate predicate);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Function that determines whether this character must be trimmed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The current string if the predicate does not match anything, or a slice of the string starting in the first rune after the predicate matched.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_TrimStart_" data-uid="NStack.ustring.TrimStart*"></a>
+  <h4 id="NStack_ustring_TrimStart_NStack_ustring_" data-uid="NStack.ustring.TrimStart(NStack.ustring)">TrimStart(ustring)</h4>
+  <div class="markdown level1 summary"><p>TrimStarts returns a slice of the string with all leading characters in cutset removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NStack.ustring TrimStart (NStack.ustring cutset);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">cutset</span></td>
+        <td><p>Characters to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The slice of the string with all cutset characters removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  
+  
+  <a id="NStack_ustring_op_Addition_" data-uid="NStack.ustring.op_Addition*"></a>
+  <h4 id="NStack_ustring_op_Addition_NStack_ustring_NStack_ustring_" data-uid="NStack.ustring.op_Addition(NStack.ustring,NStack.ustring)">op_Addition(ustring, ustring)</h4>
+  <div class="markdown level1 summary"><p>Concatenates the contents of two <a class="xref" href="NStack.ustring.html">ustring</a> instances.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring op_Addition (NStack.ustring u1, NStack.ustring u2);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">u1</span></td>
+        <td><p>The first <a class="xref" href="NStack.ustring.html">ustring</a> to add, can be null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">u2</span></td>
+        <td><p>The second <a class="xref" href="NStack.ustring.html">ustring</a> to add, can be null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The <a class="xref" href="NStack.ustring.html">ustring</a> that is the concatenation of the strings of <code>u1</code> and <code>u2</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_op_Equality_" data-uid="NStack.ustring.op_Equality*"></a>
+  <h4 id="NStack_ustring_op_Equality_NStack_ustring_NStack_ustring_" data-uid="NStack.ustring.op_Equality(NStack.ustring,NStack.ustring)">op_Equality(ustring, ustring)</h4>
+  <div class="markdown level1 summary"><p>Determines whether a specified instance of <a class="xref" href="NStack.ustring.html">ustring</a> is equal to another specified <a class="xref" href="NStack.ustring.html">ustring</a>, this means that the contents of the string are identical</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool op_Equality (NStack.ustring a, NStack.ustring b);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>The first <a class="xref" href="NStack.ustring.html">ustring</a> to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>The second <a class="xref" href="NStack.ustring.html">ustring</a> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if <code>a</code> and <code>b</code> are equal; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_op_Implicit_" data-uid="NStack.ustring.op_Implicit*"></a>
+  <h4 id="NStack_ustring_op_Implicit_System_Byte___to_NStack_ustring_" data-uid="NStack.ustring.op_Implicit(System.Byte[] to NStack.ustring)">op_Implicit(Byte[] to ustring)</h4>
+  <div class="markdown level1 summary"><p>Implicit conversion from a byte array into a ustring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring op_Implicit (byte[] buffer);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The buffer containing the data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The ustring wrapping the existing byte array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_op_Implicit_System_Byte___to_NStack_ustring__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The returned string will keep a reference to the buffer, which 
+            means that changes done to the buffer will be reflected into the
+            ustring.</p>
+</div>
+  
+  
+  <a id="NStack_ustring_op_Implicit_" data-uid="NStack.ustring.op_Implicit*"></a>
+  <h4 id="NStack_ustring_op_Implicit_System_String_to_NStack_ustring_" data-uid="NStack.ustring.op_Implicit(System.String to NStack.ustring)">op_Implicit(String to ustring)</h4>
+  <div class="markdown level1 summary"><p>Implicit conversion from a C# string into a ustring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NStack.ustring op_Implicit (string str);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>The string to encode as a ustring.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><p>The ustring with the same contents as the string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="NStack_ustring_op_Implicit_System_String_to_NStack_ustring__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This will allocate a byte array and copy the contents of the 
+            string encoded as UTF8 into it.</p>
+</div>
+  
+  
+  <a id="NStack_ustring_op_Inequality_" data-uid="NStack.ustring.op_Inequality*"></a>
+  <h4 id="NStack_ustring_op_Inequality_NStack_ustring_NStack_ustring_" data-uid="NStack.ustring.op_Inequality(NStack.ustring,NStack.ustring)">op_Inequality(ustring, ustring)</h4>
+  <div class="markdown level1 summary"><p>Determines whether a specified instance of <a class="xref" href="NStack.ustring.html">ustring</a> is not equal to another specified <a class="xref" href="NStack.ustring.html">ustring</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool op_Inequality (NStack.ustring a, NStack.ustring b);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>The first <a class="xref" href="NStack.ustring.html">ustring</a> to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>The second <a class="xref" href="NStack.ustring.html">ustring</a> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if <code>a</code> and <code>b</code> are not equal; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  
+  
+  <a id="NStack_ustring_System_Collections_Generic_IEnumerable_System_UInt32__GetEnumerator_" data-uid="NStack.ustring.System#Collections#Generic#IEnumerable{System#UInt32}#GetEnumerator*"></a>
+  <h4 id="NStack_ustring_System_Collections_Generic_IEnumerable_System_UInt32__GetEnumerator" data-uid="NStack.ustring.System#Collections#Generic#IEnumerable{System#UInt32}#GetEnumerator">IEnumerable&lt;UInt32&gt;.GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;System-Collections-Generic-IEnumerable&lt;System-UInt32&gt;-GetEnumerator&gt;d__103))]
+System.Collections.Generic.IEnumerator&lt;uint&gt; IEnumerable&lt;uint&gt;.GetEnumerator ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerator</span>&lt;<span class="xref">System.UInt32</span>&gt;</td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_Collections_IEnumerable_GetEnumerator_" data-uid="NStack.ustring.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <h4 id="NStack_ustring_System_Collections_IEnumerable_GetEnumerator" data-uid="NStack.ustring.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[System.Runtime.CompilerServices.IteratorStateMachine(typeof(NStack.ustring/&lt;System-Collections-IEnumerable-GetEnumerator&gt;d__104))]
+System.Collections.IEnumerator IEnumerable.GetEnumerator ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_ICloneable_Clone_" data-uid="NStack.ustring.System#ICloneable#Clone*"></a>
+  <h4 id="NStack_ustring_System_ICloneable_Clone" data-uid="NStack.ustring.System#ICloneable#Clone">ICloneable.Clone()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object ICloneable.Clone ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_GetTypeCode_" data-uid="NStack.ustring.System#IConvertible#GetTypeCode*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_GetTypeCode" data-uid="NStack.ustring.System#IConvertible#GetTypeCode">IConvertible.GetTypeCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TypeCode IConvertible.GetTypeCode ();</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.TypeCode</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToBoolean_" data-uid="NStack.ustring.System#IConvertible#ToBoolean*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToBoolean_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToBoolean(System.IFormatProvider)">IConvertible.ToBoolean(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IConvertible.ToBoolean (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToByte_" data-uid="NStack.ustring.System#IConvertible#ToByte*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToByte_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToByte(System.IFormatProvider)">IConvertible.ToByte(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">byte IConvertible.ToByte (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToChar_" data-uid="NStack.ustring.System#IConvertible#ToChar*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToChar_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToChar(System.IFormatProvider)">IConvertible.ToChar(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">char IConvertible.ToChar (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToDateTime_" data-uid="NStack.ustring.System#IConvertible#ToDateTime*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToDateTime_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToDateTime(System.IFormatProvider)">IConvertible.ToDateTime(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTime IConvertible.ToDateTime (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToDecimal_" data-uid="NStack.ustring.System#IConvertible#ToDecimal*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToDecimal_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToDecimal(System.IFormatProvider)">IConvertible.ToDecimal(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">decimal IConvertible.ToDecimal (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Decimal</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToDouble_" data-uid="NStack.ustring.System#IConvertible#ToDouble*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToDouble_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToDouble(System.IFormatProvider)">IConvertible.ToDouble(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IConvertible.ToDouble (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToInt16_" data-uid="NStack.ustring.System#IConvertible#ToInt16*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToInt16_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToInt16(System.IFormatProvider)">IConvertible.ToInt16(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">short IConvertible.ToInt16 (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToInt32_" data-uid="NStack.ustring.System#IConvertible#ToInt32*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToInt32_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToInt32(System.IFormatProvider)">IConvertible.ToInt32(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int IConvertible.ToInt32 (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToInt64_" data-uid="NStack.ustring.System#IConvertible#ToInt64*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToInt64_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToInt64(System.IFormatProvider)">IConvertible.ToInt64(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long IConvertible.ToInt64 (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToSByte_" data-uid="NStack.ustring.System#IConvertible#ToSByte*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToSByte_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToSByte(System.IFormatProvider)">IConvertible.ToSByte(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">sbyte IConvertible.ToSByte (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.SByte</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToSingle_" data-uid="NStack.ustring.System#IConvertible#ToSingle*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToSingle_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToSingle(System.IFormatProvider)">IConvertible.ToSingle(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float IConvertible.ToSingle (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToString_" data-uid="NStack.ustring.System#IConvertible#ToString*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToString_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToString(System.IFormatProvider)">IConvertible.ToString(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string IConvertible.ToString (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToType_" data-uid="NStack.ustring.System#IConvertible#ToType*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToType_System_Type_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToType(System.Type,System.IFormatProvider)">IConvertible.ToType(Type, IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object IConvertible.ToType (Type conversionType, IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">conversionType</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToUInt16_" data-uid="NStack.ustring.System#IConvertible#ToUInt16*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToUInt16_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToUInt16(System.IFormatProvider)">IConvertible.ToUInt16(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ushort IConvertible.ToUInt16 (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToUInt32_" data-uid="NStack.ustring.System#IConvertible#ToUInt32*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToUInt32_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToUInt32(System.IFormatProvider)">IConvertible.ToUInt32(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">uint IConvertible.ToUInt32 (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="NStack_ustring_System_IConvertible_ToUInt64_" data-uid="NStack.ustring.System#IConvertible#ToUInt64*"></a>
+  <h4 id="NStack_ustring_System_IConvertible_ToUInt64_System_IFormatProvider_" data-uid="NStack.ustring.System#IConvertible#ToUInt64(System.IFormatProvider)">IConvertible.ToUInt64(IFormatProvider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ulong IConvertible.ToUInt64 (IFormatProvider provider);</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">provider</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><p>To be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
