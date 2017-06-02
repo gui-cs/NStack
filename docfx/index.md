@@ -6,7 +6,11 @@ NStack contains a new API for .NET based on modern C# and .NET idioms.
 You can start with the new [UTF8 ustring
 class](api/NStack/NStack.ustring.html), which is powered by an updated
 [Unicode library](api/NStack/NStack.Unicode.html) and modern support for
-[UTF8 parsing and decoding](api/NStack/NStack.Utf8.html)
+[UTF8 parsing and decoding](api/NStack/NStack.Utf8.html).
+
+# API Documentation
+
+Take a look at the [API documentation](api/NStack) for NStack.
 
 # Future
 
