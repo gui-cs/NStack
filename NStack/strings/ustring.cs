@@ -79,7 +79,11 @@ namespace NStack {
 	///   for the indexer for more details.
 	/// </para>
 	/// </remarks>
-	public abstract class ustring : IComparable, ICloneable, IConvertible, IEnumerable<uint>, IEquatable<ustring> {
+	public abstract class ustring : IComparable, IConvertible, IEnumerable<uint>, IEquatable<ustring>
+#if NETSTANDARD2_0
+	, ICloneable
+#endif
+	{
 
 		// The ustring subclass that supports creating strings for an IntPtr+Size pair.
 		class IntPtrUString : ustring, IDisposable {
@@ -403,11 +407,11 @@ namespace NStack {
 		}
 
 		// The low-level version
-		unsafe static bool EqualsHelper (byte *a, byte *b, int length)
+		unsafe static bool EqualsHelper (byte* a, byte* b, int length)
 		{
 			// unroll the loop
 			// the mono jit will inline the 64-bit check and eliminate the irrelevant path
-			if (Environment.Is64BitProcess) {
+			if (sizeof (IntPtr) == 64) {
 				// for AMD64 bit platform we unroll by 12 and
 				// check 3 qword at a time. This is less code
 				// than the 32 bit case and is shorter
@@ -441,7 +445,7 @@ namespace NStack {
 		}
 
 		// The high-level version parameters have been validated
-		public static bool EqualsHelper (ustring a, ustring b)
+		static bool EqualsHelper (ustring a, ustring b)
 		{
 			var alen = a.Length;
 			var blen = b.Length;
@@ -595,11 +599,12 @@ namespace NStack {
 			return new ByteBufferUString (this.ToByteArray ());
 		}
 
+#if NETSTANDARD2_0
 		object ICloneable.Clone ()
 		{
 			return Copy ();
 		}
-
+#endif
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a byte array.
 		/// </summary>
