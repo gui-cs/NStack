@@ -284,24 +284,28 @@
     <div class="Remarks" id="T:NStack.ustring:Docs">
       <h2 class="Section">Remarks</h2>
       <div class="SectionBox" id="T:NStack.ustring:Docs:Remarks">
-            The ustring provides a series of string-like operations over an array of bytes.   The buffer
-            is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
-            sequence many of the operations will continue to work.
-            
-            The strings can be created either from byte arrays, a range within a byte array, or from a 
-            block of unmanaged memory.  The ustrings are created using the <a href="../NStack/ustring.html#M:NStack.ustring.Make(System.Byte[])">ustring.Make(Byte[])</a> methods in the
-            class, not by invoking the new operator on the class.
-            
-            The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
-            property describes the number of code points (or runes) that are reprenseted by the underlying 
-            utf8 encoded buffer.
-            
-            The ustring supports slicing by calling the indexer with two arguments, the argument represent
-            indexes into the underlying byte buffer.  The starting index is inclusive, while the ending index
-            is exclusive.   Negative values can be used to index the string from the end.  See the documentation
-            for the indexer for more details.
-            
-            </div>
+        <p>
+              The ustring provides a series of string-like operations over an array of bytes.   The buffer
+              is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
+              sequence many of the operations will continue to work.
+            </p>
+        <p>
+              The strings can be created either from byte arrays, a range within a byte array, or from a 
+              block of unmanaged memory.  The ustrings are created using the <a href="../NStack/ustring.html#M:NStack.ustring.Make(System.Byte[])">ustring.Make(Byte[])</a> methods in the
+              class, not by invoking the new operator on the class.
+            </p>
+        <p>
+              The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
+              property describes the number of code points (or runes) that are reprenseted by the underlying 
+              utf8 encoded buffer.
+            </p>
+        <p>
+              The ustring supports slicing by calling the indexer with two arguments, the argument represent
+              indexes into the underlying byte buffer.  The starting index is inclusive, while the ending index
+              is exclusive.   Negative values can be used to index the string from the end.  See the documentation
+              for the indexer for more details.
+            </p>
+      </div>
       <h2 class="Section">Requirements</h2>
       <div class="SectionBox" id="T:NStack.ustring:Docs:Version Information">
         <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
@@ -2244,24 +2248,29 @@
           </blockquote>
           <h2 class="Section">Remarks</h2>
           <div class="SectionBox" id="P:NStack.ustring.Item(System.Int32,System.Int32):Remarks">
+            <p>
             Some examples given the string "1234567890":
-            
-            The range [0, 4] produces "1234"
-            The range [8, 10] produces "90"
-            The range [8, 0] produces "90"
-            The range [-2, 0] produces "90"
-            The range [8, 9] produces "9"
-            The range [-4, -1] produces "789"
-            The range [-4, 0] produces "7890"
-            The range [-4, 0] produces "7890"
-            The range [-9, -3] produces "234567"
-            
-            This indexer does not raise exceptions for invalid indexes, instead the value 
-            returned is the ustring.Empty value:
-            
-            The range [100, 200] produces the ustring.Empty
-            The range [-100, 0] produces ustring.Empty
-            </div>
+            </p>
+            <p>The range [0, 4] produces "1234"</p>
+            <p>The range [8, 10] produces "90"</p>
+            <p>The range [8, 0] produces "90"</p>
+            <p>The range [-2, 0] produces "90"</p>
+            <p>The range [8, 9] produces "9"</p>
+            <p>The range [-4, -1] produces "789"</p>
+            <p>The range [-4, 0] produces "7890"</p>
+            <p>The range [-4, 0] produces "7890"</p>
+            <p>The range [-9, -3] produces "234567"</p>
+            <p>
+              This indexer does not raise exceptions for invalid indexes, instead the value 
+              returned is the ustring.Empty value:
+            </p>
+            <p>
+              The range [100, 200] produces the ustring.Empty
+            </p>
+            <p>
+              The range [-100, 0] produces ustring.Empty
+            </p>
+          </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="P:NStack.ustring.Item(System.Int32,System.Int32):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
@@ -2444,11 +2453,14 @@
           </blockquote>
           <h2 class="Section">Remarks</h2>
           <div class="SectionBox" id="M:NStack.ustring.Make(System.Byte[]):Remarks">
-            No validation is performed on the contents of the byte buffer, so it
-            might contains invalid UTF-8 sequences.
-            
-            No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
-            </div>
+            <p>
+              No validation is performed on the contents of the byte buffer, so it
+              might contains invalid UTF-8 sequences.
+            </p>
+            <p>
+              No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
+            </p>
+          </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.Make(System.Byte[]):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
@@ -2571,11 +2583,14 @@
           </blockquote>
           <h2 class="Section">Remarks</h2>
           <div class="SectionBox" id="M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32):Remarks">
+            <p>
             No validation is performed on the contents of the byte buffer, so it
             might contains invalid UTF-8 sequences.
-            
+            </p>
+            <p>
             This will make a copy of the buffer range.
-            </div>
+            </p>
+          </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.Make(System.Byte[],System.Int32,System.Int32):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
@@ -2611,12 +2626,15 @@
           </blockquote>
           <h2 class="Section">Remarks</h2>
           <div class="SectionBox" id="M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr}):Remarks">
-            This will return a ustring that represents the block of memory provided.
-            
-            The returned object will be a subclass of ustring that implements IDisposable, which you can use
-            to trigger the synchronous execution of the <i>releaseFunc</i>.   If you do not call
-            Dispose manually, the provided release function will be invoked from the finalizer thread.
-            </div>
+            <p>
+               This will return a ustring that represents the block of memory provided.
+            </p>
+            <p>
+              The returned object will be a subclass of ustring that implements IDisposable, which you can use
+              to trigger the synchronous execution of the <i>releaseFunc</i>.   If you do not call
+              Dispose manually, the provided release function will be invoked from the finalizer thread.
+            </p>
+          </div>
           <h2 class="Section">Requirements</h2>
           <div class="SectionBox" id="M:NStack.ustring.Make(System.IntPtr,System.Int32,System.Action{NStack.ustring,System.IntPtr}):Version Information">
             <b>Namespace: </b>NStack<br /><b>Assembly: </b>NStack (in NStack.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>

@@ -13,7 +13,32 @@
     <summary>
             Unicode class contains helper methods to support Unicode encoding.
             </summary>
-    <remarks>To be added.</remarks>
+    <remarks>
+      <para>
+               Generally the Unicode class provided methods that can help you classify and
+               convert Unicode code points.  The word codepoint is considered a mouthful so in
+               this class, the word "rune" is used instead and is represented by the
+               uint value type.  
+            </para>
+      <para>
+               Unicode code points can be produced by combining independent characters,
+               so the rune for a character can be produced by combining one character and
+               other elements of it.  Runes on the other hand correspond to a specific
+               character.
+            </para>
+      <para>
+               This class surfaces various methods to classify case of a Rune, like
+               <see cref="M:IsUpper" />, <see cref="M:IsLower" />, <see cref="M:IsDigit" />,
+               to convert runes from one case to another using the <see cref="M:ToUpper" />,
+               <see cref="M:ToLower" />, <see cref="M:ToTitle" /> as well as various constants
+               that are useful when working with Unicode runes.
+            </para>
+      <para>
+               Unicode defines various character classes which are surfaced as RangeTables
+               as static properties in this class.   You can probe whether a rune belongs
+               to a specific range table
+            </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">

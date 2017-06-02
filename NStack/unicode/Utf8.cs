@@ -15,7 +15,7 @@ namespace NStack
 	/// <remarks>
 	/// The term "rune" is used to represent a Unicode code point merely because it is a shorter way of talking about it.
 	/// </remarks>
-	public class Utf8
+	public static class Utf8
 	{
 		/// <summary>
 		/// The "error" Rune or "Unicode replacement character"

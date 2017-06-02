@@ -25,23 +25,27 @@ namespace NStack {
 	/// ustrings are used to manipulate utf8 strings, either from byte arrays or blocks of memory.
 	/// </summary>
 	/// <remarks>
-	/// The ustring provides a series of string-like operations over an array of bytes.   The buffer
-	/// is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
-	/// sequence many of the operations will continue to work.
-	/// 
-	/// The strings can be created either from byte arrays, a range within a byte array, or from a 
-	/// block of unmanaged memory.  The ustrings are created using the <see cref="Make"/> methods in the
-	/// class, not by invoking the new operator on the class.
-	/// 
-	/// The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
-	/// property describes the number of code points (or runes) that are reprenseted by the underlying 
-	/// utf8 encoded buffer.
-	/// 
-	/// The ustring supports slicing by calling the indexer with two arguments, the argument represent
-	/// indexes into the underlying byte buffer.  The starting index is inclusive, while the ending index
-	/// is exclusive.   Negative values can be used to index the string from the end.  See the documentation
-	/// for the indexer for more details.
-	/// 
+	/// <para>
+	///   The ustring provides a series of string-like operations over an array of bytes.   The buffer
+	///   is expected to contain an UTF8 encoded string, but if the buffer contains an invalid utf8
+	///   sequence many of the operations will continue to work.
+	/// </para>
+	/// <para>
+	///   The strings can be created either from byte arrays, a range within a byte array, or from a 
+	///   block of unmanaged memory.  The ustrings are created using the <see cref="Make"/> methods in the
+	///   class, not by invoking the new operator on the class.
+	/// </para>
+	/// <para>
+	///   The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
+	///   property describes the number of code points (or runes) that are reprenseted by the underlying 
+	///   utf8 encoded buffer.
+	/// </para>
+	/// <para>
+	///   The ustring supports slicing by calling the indexer with two arguments, the argument represent
+	///   indexes into the underlying byte buffer.  The starting index is inclusive, while the ending index
+	///   is exclusive.   Negative values can be used to index the string from the end.  See the documentation
+	///   for the indexer for more details.
+	/// </para>
 	/// </remarks>
 	public abstract class ustring : IComparable, ICloneable, IConvertible, IEnumerable<uint>, IEquatable<ustring> {
 
@@ -305,10 +309,13 @@ namespace NStack {
 		/// </summary>
 		/// <param name="buffer">Buffer containing the utf8 encoded string.</param>
 		/// <remarks>
-		/// No validation is performed on the contents of the byte buffer, so it
-		/// might contains invalid UTF-8 sequences.
-		/// 
-		/// No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
+		/// <para>
+		///   No validation is performed on the contents of the byte buffer, so it
+		///   might contains invalid UTF-8 sequences.
+		/// </para>
+		/// <para>
+		///   No copy is made of the incoming byte buffer, so changes to it will be visible on the ustring.
+		/// </para>
 		/// </remarks>
 		public static ustring Make (params byte [] buffer)
 		{
@@ -349,11 +356,14 @@ namespace NStack {
 		/// <param name="size">Number of bytes in the block to treat as a string.</param>
 		/// <param name="releaseFunc">Optional method to invoke to release when this string is finalized to clear the associated resources, you can use this for example to release the unamanged resource to which the block belongs.</param>
 		/// <remarks>
-		/// This will return a ustring that represents the block of memory provided.
-		/// 
-		/// The returned object will be a subclass of ustring that implements IDisposable, which you can use
-		/// to trigger the synchronous execution of the <paramref name="releaseFunc"/>.   If you do not call
-		/// Dispose manually, the provided release function will be invoked from the finalizer thread.
+		/// <para>
+		///    This will return a ustring that represents the block of memory provided.
+		/// </para>
+		/// <para>
+		///   The returned object will be a subclass of ustring that implements IDisposable, which you can use
+		///   to trigger the synchronous execution of the <paramref name="releaseFunc"/>.   If you do not call
+		///   Dispose manually, the provided release function will be invoked from the finalizer thread.
+		/// </para>
 		/// </remarks>
 		public static ustring Make (IntPtr block, int size, Action<ustring, IntPtr> releaseFunc = null)
 		{
@@ -565,10 +575,13 @@ namespace NStack {
 		/// <param name="start">Starting offset into the buffer.</param>
 		/// <param name="count">Number of bytes to consume from the buffer.</param>
 		/// <remarks>
+		/// <para>
 		/// No validation is performed on the contents of the byte buffer, so it
 		/// might contains invalid UTF-8 sequences.
-		/// 
+		/// </para>
+		/// <para>
 		/// This will make a copy of the buffer range.
+		/// </para>
 		/// </remarks>
 		public static ustring Make (byte [] buffer, int start, int count)
 		{
@@ -603,23 +616,28 @@ namespace NStack {
 		/// <param name="start">Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
 		/// <param name="end">End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.   If the value is zero, the end is computed as the last index of the string.</param>
 		/// <remarks>
+		/// <para>
 		/// Some examples given the string "1234567890":
-		/// 
-		/// The range [0, 4] produces "1234"
-		/// The range [8, 10] produces "90"
-		/// The range [8, 0] produces "90"
-		/// The range [-2, 0] produces "90"
-		/// The range [8, 9] produces "9"
-		/// The range [-4, -1] produces "789"
-		/// The range [-4, 0] produces "7890"
-		/// The range [-4, 0] produces "7890"
-		/// The range [-9, -3] produces "234567"
-		/// 
-		/// This indexer does not raise exceptions for invalid indexes, instead the value 
-		/// returned is the ustring.Empty value:
-		/// 
-		/// The range [100, 200] produces the ustring.Empty
-		/// The range [-100, 0] produces ustring.Empty
+		/// </para>
+		/// <para>The range [0, 4] produces "1234"</para>
+		/// <para>The range [8, 10] produces "90"</para>
+		/// <para>The range [8, 0] produces "90"</para>
+		/// <para>The range [-2, 0] produces "90"</para>
+		/// <para>The range [8, 9] produces "9"</para>
+		/// <para>The range [-4, -1] produces "789"</para>
+		/// <para>The range [-4, 0] produces "7890"</para>
+		/// <para>The range [-4, 0] produces "7890"</para>
+		/// <para>The range [-9, -3] produces "234567"</para>
+		/// <para>
+		///   This indexer does not raise exceptions for invalid indexes, instead the value 
+		///   returned is the ustring.Empty value:
+		/// </para>
+		/// <para>
+		///   The range [100, 200] produces the ustring.Empty
+		/// </para>
+		/// <para>
+		///   The range [-100, 0] produces ustring.Empty
+		/// </para>
 		/// </remarks>
 		public ustring this [int start, int end] {
 			get {
