@@ -1,4 +1,7 @@
 
+These are the old docs generated from the old template, the new
+docs are being written in ../docfx 
+
 The files in this directory are generated from the master 
 documentation files in ../ecmadocs which are in the ECMA XML
 file format for .NET Projects.
