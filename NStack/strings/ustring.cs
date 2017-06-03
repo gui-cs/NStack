@@ -106,10 +106,9 @@ namespace NStack {
 
 		// The ustring subclass that supports creating strings for an IntPtr+Size pair.
 		class IntPtrUString : ustring, IDisposable {
-			internal IntPtr block;
+			internal SafeStringWrapper wrapper;
+			internal int start;
 			readonly int size;
-			bool copy;
-			Action<IntPtr> release;
 
 			unsafe static int MeasureString (IntPtr block)
 			{
@@ -118,6 +117,8 @@ namespace NStack {
 					p++;
 				return (int)(p - ((byte*)block));
 			}
+
+			static Action<IntPtr> copyFree = Marshal.FreeHGlobal;
 
 			public IntPtrUString (IntPtr block, bool copy, Action<IntPtr> releaseFunc = null) : this (block, MeasureString (block), copy, releaseFunc)
 			{
@@ -131,20 +132,29 @@ namespace NStack {
 					throw new ArgumentException ("Invalid size passed", nameof (size));
 				this.size = size;
 
-				this.copy = copy;
+				IntPtr memoryBlock = block;
 				if (copy) {
-					this.release = null;
 					if (size == 0)
 						size = 1;
-					this.block = Marshal.AllocHGlobal (size);
+					memoryBlock = Marshal.AllocHGlobal (size);
 					unsafe
 					{
-						Buffer.MemoryCopy ((void*)block, (void*)this.block, size, size);
+						Buffer.MemoryCopy ((void*)block, (void*)memoryBlock, size, size);
 					}
-				} else {
-					this.block = block;
-					this.release = releaseFunc;
+					releaseFunc = copyFree;
 				}
+				wrapper = new SafeStringWrapper (memoryBlock, releaseFunc);
+			}
+
+			IntPtrUString (SafeStringWrapper wrapper, int start, int size)
+			{
+				if (start < 0)
+					throw new ArgumentException ("Invalid offset passed", nameof (start));
+				if (size < 0)
+					throw new ArgumentException ("Invalid size passed", nameof (size));
+				this.wrapper = wrapper;
+				this.start = start;
+				this.size = size;
 			}
 
 			public override int Length => size;
@@ -152,7 +162,7 @@ namespace NStack {
 				get {
 					if (index < 0 || index > size)
 						throw new ArgumentException (nameof (index));
-					return Marshal.ReadByte (block, index);
+					return Marshal.ReadByte (wrapper.handle + start, index);
 				}
 			}
 
@@ -166,7 +176,7 @@ namespace NStack {
 					throw new ArgumentException (nameof (count));
 				unsafe
 				{
-					byte* p = ((byte*)block) + fromOffset;
+					byte* p = ((byte*)wrapper.handle + start) + fromOffset;
 
 					for (int i = 0; i < count; i++, p++)
 						target [i] = *p;
@@ -177,7 +187,7 @@ namespace NStack {
 			{
 				unsafe
 				{
-					return Encoding.UTF8.GetString ((byte*)block, size);
+					return Encoding.UTF8.GetString ((byte*)wrapper.handle + start, size);
 				}
 			}
 
@@ -185,7 +195,7 @@ namespace NStack {
 			{
 				unsafe
 				{
-					return new IntPtrUString ((IntPtr)((byte*)block + start), size: end - start, copy: false, releaseFunc: null);
+					return new IntPtrUString (wrapper, start, end - start);
 				}
 			}
 
@@ -194,7 +204,7 @@ namespace NStack {
 				var t = size - offset;
 				unsafe
 				{
-					byte* p = (byte*)block + offset;
+					byte* p = (byte*)wrapper.handle + start + offset;
 					for (int i = 0; i < t; i++) {
 						if (p [i] == b)
 							return i + offset;
@@ -206,33 +216,48 @@ namespace NStack {
 			public override byte [] ToByteArray ()
 			{
 				var copy = new byte [size];
-				Marshal.Copy (block, copy, 0, size);
+				Marshal.Copy (wrapper.handle, copy, start, size);
 				return copy;
 			}
 
 			#region IDisposable Support
-			protected virtual void Dispose (bool disposing)
-			{
-				if (block != IntPtr.Zero) {
-					if (copy) {
-						Marshal.FreeHGlobal (block);
-					} else if (release != null)
-						release (block);
-					release = null;
-					block = IntPtr.Zero;
-				}
-			}
-
-			~IntPtrUString ()
-			{
-				Dispose (false);
-			}
-
-			// This code added to correctly implement the disposable pattern.
 			void IDisposable.Dispose ()
 			{
-				Dispose (true);
-				GC.SuppressFinalize (this);
+				wrapper.Dispose ();
+			}
+
+			public class SafeStringWrapper : IDisposable {
+				internal IntPtr handle;
+				Action<IntPtr> releaseFunc;
+
+				public SafeStringWrapper (IntPtr handle, Action<IntPtr> releaseFunc)
+				{
+					this.handle = handle;
+					this.releaseFunc = releaseFunc;
+
+					if (releaseFunc == null)
+						GC.SuppressFinalize (this);
+				}
+
+				protected virtual void Dispose (bool disposing)
+				{
+					if (handle != IntPtr.Zero) {
+						releaseFunc?.Invoke (handle);
+						releaseFunc = null;
+						handle = IntPtr.Zero;
+					}
+				}
+
+				~SafeStringWrapper ()
+				{
+					Dispose (false);
+				}
+
+				public void Dispose ()
+				{
+					Dispose (true);
+					GC.SuppressFinalize (this);
+				}
 			}
 			#endregion
 		}
@@ -580,7 +605,7 @@ namespace NStack {
 			if ((object)aip != null && (object)bip != null) {
 				unsafe
 				{
-					return EqualsHelper ((byte*)aip.block, (byte*)bip.block, alen);
+					return EqualsHelper ((byte*)aip.wrapper.handle + aip.start, (byte*)bip.wrapper.handle + bip.start, alen);
 				}
 			}
 
