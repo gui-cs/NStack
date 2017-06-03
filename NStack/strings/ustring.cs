@@ -32,8 +32,8 @@ namespace NStack {
 	/// </para>
 	/// <para>
 	///   The strings can be created either from byte arrays, a range within a byte array, or from a 
-	///   block of unmanaged memory.  The ustrings are created using one of the Make methods in the
-	///   class, not by invoking the new operator on the class.
+	///   block of unmanaged memory.  The ustrings are created using one of the Make or MakeCopy methods 
+	///   in the class, not by invoking the new operator on the class.
 	/// </para>
 	/// <para>
 	/// <list type="table">
@@ -58,12 +58,29 @@ namespace NStack {
 	///     <description>Creates a ustring from a single rune.</description>
 	///   </item>
 	///   <item>
+	///     <term><see cref="M:NStack.ustring.Make(char[])"/></term>
+	///     <description>Creates a ustring from a character array.</description>
+	///   </item>
+	///   <item>
 	///     <term><see cref="M:NStack.ustring.Make(System.IntPtr,int,System.Action{NStack.ustring, System.IntPtr})"/></term>
 	///     <description>Creates a ustring from an unmanaged memory block, with an optional method to invoke to release the block when the ustring is garbage collected.</description>
 	///   </item>
 	///   <item>
-	///     <term><see cref="M:NStack.ustring.Make(char[])"/></term>
-	///     <description>Creates a ustring from a character array.</description>
+	///     <term><see cref="M:NStack.ustring.Make(System.IntPtr,System.Action{NStack.ustring, System.IntPtr})"/></term>
+	///     <description>
+	///       Creates a ustring from an unmanaged memory block that is null-terminated, suitable for interoperability with C APIs.   
+	///       It takes an optional method to invoke to release the block when the ustring is garbage collected.
+	///     </description>
+	///   </item>
+	///   <item>
+	///     <term><see cref="M:NStack.ustring.MakeCopy(System.IntPtr,int)"/></term>
+	///     <description>Creates a ustring by making a copy of the provided memory block.</description>
+	///   </item>
+	///   <item>
+	///     <term><see cref="M:NStack.ustring.MakeCopy(System.IntPtr)"/></term>
+	///     <description>
+	///       Creates a ustring by making a copy of the null-terminated memory block.   Suitable for interoperability with C APIs.   
+	///     </description>
 	///   </item>
 	/// </list>
 	/// </para>
@@ -89,17 +106,43 @@ namespace NStack {
 		class IntPtrUString : ustring, IDisposable {
 			internal IntPtr block;
 			readonly int size;
-			Action<ustring, IntPtr> release;
+			bool copy;
+			Action<IntPtr> release;
 
-			public IntPtrUString (IntPtr block, int size, Action<ustring, IntPtr> releaseFunc = null)
+			unsafe static int MeasureString (IntPtr block)
+			{
+				byte* p = (byte*)block;
+				while (*p != 0)
+					p++;
+				return (int)(p - ((byte*)block));
+			}
+
+			public IntPtrUString (IntPtr block, bool copy, Action<IntPtr> releaseFunc = null) : this (block, MeasureString (block), copy, releaseFunc)
+			{
+			}
+
+			public IntPtrUString (IntPtr block, int size, bool copy, Action<IntPtr> releaseFunc = null)
 			{
 				if (block == IntPtr.Zero)
 					throw new ArgumentException ("Null pointer passed", nameof (block));
 				if (size < 0)
 					throw new ArgumentException ("Invalid size passed", nameof (size));
 				this.size = size;
-				this.block = block;
-				this.release = releaseFunc;
+
+				this.copy = copy;
+				if (copy) {
+					this.release = null;
+					if (size == 0)
+						size = 1;
+					this.block = Marshal.AllocHGlobal (size);
+					unsafe
+					{
+						Buffer.MemoryCopy ((void*)block, (void*)this.block, size, size);
+					}
+				} else {
+					this.block = block;
+					this.release = releaseFunc;
+				}
 			}
 
 			public override int Length => size;
@@ -140,7 +183,7 @@ namespace NStack {
 			{
 				unsafe
 				{
-					return new IntPtrUString ((IntPtr)((byte*)block + start), end - start, null);
+					return new IntPtrUString ((IntPtr)((byte*)block + start), size: end - start, copy: false, releaseFunc: null);
 				}
 			}
 
@@ -169,8 +212,10 @@ namespace NStack {
 			protected virtual void Dispose (bool disposing)
 			{
 				if (block != IntPtr.Zero) {
-					if (release != null)
-						release (this, block);
+					if (copy) {
+						Marshal.FreeHGlobal (block);
+					} else if (release != null)
+						release (block);
 					release = null;
 					block = IntPtr.Zero;
 				}
@@ -400,10 +445,75 @@ namespace NStack {
 		///   to trigger the synchronous execution of the <paramref name="releaseFunc"/>.   If you do not call
 		///   Dispose manually, the provided release function will be invoked from the finalizer thread.
 		/// </para>
+		/// <para>
+		///   Alternatively, if the block of data is something that you do not own, and you would like
+		///   to make a copy of it, you might want to consider using the <see cref="T:NStack.ustring.MakeCopy(System.IntPtr,int)"/> method.
+		/// </para>
 		/// </remarks>
-		public static ustring Make (IntPtr block, int size, Action<ustring, IntPtr> releaseFunc = null)
+		public static ustring Make (IntPtr block, int size, Action<IntPtr> releaseFunc = null)
 		{
-			return new IntPtrUString (block, size, releaseFunc);
+			return new IntPtrUString (block, size, copy: false, releaseFunc: releaseFunc);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a null terminated block of memory.
+		/// </summary>
+		/// <param name="block">Pointer to a block of memory, it is expected to be terminated by a 0 byte.</param>
+		/// <param name="releaseFunc">Optional method to invoke to release when this string is finalized to clear the associated resources, you can use this for example to release the unamanged resource to which the block belongs.</param>
+		/// <remarks>
+		/// <para>
+		///    This will return a ustring that represents the block of memory provided.
+		/// </para>
+		/// <para>
+		///   The returned object will be a subclass of ustring that implements IDisposable, which you can use
+		///   to trigger the synchronous execution of the <paramref name="releaseFunc"/>.   If you do not call
+		///   Dispose manually, the provided release function will be invoked from the finalizer thread.
+		/// </para>
+		/// <para>
+		///   Alternatively, if the block of data is something that you do not own, and you would like
+		///   to make a copy of it, you might want to consider using the <see cref="T:NStack.ustring.MakeCopy(System.IntPtr)"/> method.
+		/// </para>
+		/// </remarks>
+		public static ustring Make (IntPtr block, Action<IntPtr> releaseFunc = null)
+		{
+			return new IntPtrUString (block, copy: false, releaseFunc: releaseFunc);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> by making a copy of the specified block.
+		/// </summary>
+		/// <param name="block">Pointer to a block of memory which will be copied into the string.</param>
+		/// <param name="size">Number of bytes in the block to treat as a string.</param>
+		/// <remarks>
+		/// <para>
+		///    This will return a ustring that contains a copy of the buffer pointed to by block.
+		/// </para>
+		/// <para>
+		///    This is useful when you do not control the lifecycle of the buffer pointed to and
+		///    desire the convenience of a method that makes a copy of the data for you.
+		/// </para>
+		/// </remarks>
+		public static ustring MakeCopy (IntPtr block, int size)
+		{
+			return new IntPtrUString (block, size, copy: true, releaseFunc: null);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> by making a copy of the null-terminated block of memory.
+		/// </summary>
+		/// <param name="block">Pointer to a block of memory, it is expected to be terminated by a 0 byte.</param>
+		/// <remarks>
+		/// <para>
+		///    This will return a ustring that contains a copy of the zero-terminated buffer pointed to by block.
+		/// </para>
+		/// <para>
+		///   This is useful to create a string returned from C on a region of memory whose lifecycle
+		///   you do not control, so this will make a private copy of the buffer.
+		/// </para>
+		/// </remarks>
+		public static ustring MakeCopy (IntPtr block)
+		{
+			return new IntPtrUString (block, copy: true, releaseFunc: null);
 		}
 
 		// The low-level version

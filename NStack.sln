@@ -47,5 +47,6 @@ Global
 		$2.SpacingAfterMethodDeclarationName = True
 		$2.SpaceAfterMethodCallName = True
 		$2.SpaceBeforeOpenSquareBracket = True
+		version = 0.3
 	EndGlobalSection
 EndGlobal

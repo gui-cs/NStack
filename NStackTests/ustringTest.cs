@@ -195,7 +195,7 @@ namespace NStackTests
 		public void TestBlockRelease ()
 		{
 			bool released = false;
-			Action<ustring, IntPtr> releaseFunc = (str, block) => {
+			Action<IntPtr> releaseFunc = (block) => {
 				released = true;
 			};
 			var ptr = Marshal.AllocHGlobal (10);
@@ -233,6 +233,29 @@ namespace NStackTests
 			Assert.IsTrue (ustring.Make ("Miguel de Icaza") == fields [4]);
 			Assert.IsTrue (ustring.Make ("/home/miguel") == fields [5]);
 			Assert.IsTrue (ustring.Make ("/bin/bash") == fields [6]);
+		}
+
+		[Test]
+		public void TestCopy ()
+		{
+			// Test the zero-terminator method
+			var j = Encoding.UTF8.GetBytes ("Hello");
+			var p = Marshal.AllocHGlobal (j.Length + 1);
+			Marshal.Copy (j, 0, p, j.Length);
+			Marshal.WriteByte (p, j.Length, 0);
+			var str = ustring.Make (p);
+			Assert.AreEqual (5, str.Length);
+
+
+			// Now test the copy
+			var str2 = ustring.MakeCopy (p);
+			Marshal.WriteByte (p, (byte) 'A');
+			Assert.AreEqual (str.ToString (), "Aello");
+			Assert.AreEqual (str2.ToString (), "Hello");
+			Assert.IsFalse (str == str2);
+
+			((IDisposable)str).Dispose ();
+			((IDisposable)str2).Dispose ();
 		}
 	}
 }
