@@ -85,7 +85,7 @@ namespace NStack {
 	/// </list>
 	/// </para>
 	/// <para>
-	///   The Length property describes the lenght in bytes of the underlying array, while the RuneCount 
+	///   The Length property describes the length in bytes of the underlying array, while the RuneCount 
 	///   property describes the number of code points (or runes) that are reprenseted by the underlying 
 	///   utf8 encoded buffer.
 	/// </para>
@@ -809,7 +809,7 @@ namespace NStack {
 		/// <summary>
 		/// Gets a value indicating whether this <see cref="T:NStack.ustring"/> is empty.
 		/// </summary>
-		/// <value><c>true</c> if is empty (Lenght is zero); otherwise, <c>false</c>.</value>
+		/// <value><c>true</c> if is empty (Length is zero); otherwise, <c>false</c>.</value>
 		public bool IsEmpty => Length == 0;
 
 		/// <summary>
