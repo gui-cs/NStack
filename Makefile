@@ -1,5 +1,6 @@
-all: doc-update rebuild-docs
+all: doc-update yaml
 
+# Target for using mdoc and my old doc template
 rebuild-docs: odocs/template
 	mdoc export-html --force-update -o odocs --template=odocs/template ecmadocs/en/
 
