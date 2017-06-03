@@ -234,7 +234,6 @@ namespace NStackTests {
 			Assert.IsTrue (ustring.Make ("/home/miguel") == fields [5]);
 			Assert.IsTrue (ustring.Make ("/bin/bash") == fields [6]);
 
-#if false
 			gecos = ustring.Make ("miguel<>*<>100<>200<>Miguel de Icaza<>/home/miguel<>/bin/bash");
 			fields = gecos.Split ("<>");
 			Assert.AreEqual (7, fields.Length);
@@ -245,7 +244,6 @@ namespace NStackTests {
 			Assert.IsTrue (ustring.Make ("Miguel de Icaza") == fields [4]);
 			Assert.IsTrue (ustring.Make ("/home/miguel") == fields [5]);
 			Assert.IsTrue (ustring.Make ("/bin/bash") == fields [6]);
-#endif
 		}
 
 		[Test]

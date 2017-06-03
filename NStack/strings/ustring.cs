@@ -934,7 +934,7 @@ namespace NStack {
 			for (int i = 0; i < count; i++)
 				hash = hash * primeRK + (uint)(this [i]);
 
-			uint pow = 0, sq = 1;
+			uint pow = 1, sq = primeRK;
 			for (int i = count; i > 0; i >>= 1) {
 				if ((i & 1) != 0)
 					pow *= sq;
@@ -1083,7 +1083,7 @@ namespace NStack {
 			if (n > blen)
 				return -1;
 			// Rabin-Karp search
-			(var hashss, var pow) = HashStr ();
+			(var hashss, var pow) = substr.HashStr ();
 			uint h = 0;
 
 			for (int i = 0; i < n; i++)
@@ -1100,7 +1100,7 @@ namespace NStack {
 
 				h -= pow * (uint)(this [reali - n]);
 				i++;
-
+				reali++;
 				if (h == hashss && CompareStringRange (this, reali - n, n, substr))
 					return reali - n;
 			}
