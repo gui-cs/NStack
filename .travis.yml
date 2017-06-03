@@ -1,6 +1,6 @@
 language: csharp
 solution: NStack.sln
-script
+script:
   - msbuild /t:restore $TRAVIS_BUILD_DIR/NStack.sln
   - cd $TRAVIS_BUILD_DIR
   - msbuild /p:Configuration=Release NStack.sln
