@@ -411,7 +411,7 @@ namespace NStack {
 		{
 			// unroll the loop
 			// the mono jit will inline the 64-bit check and eliminate the irrelevant path
-			if (sizeof (IntPtr) == 64) {
+			if (sizeof (IntPtr) == 8) {
 				// for AMD64 bit platform we unroll by 12 and
 				// check 3 qword at a time. This is less code
 				// than the 32 bit case and is shorter
