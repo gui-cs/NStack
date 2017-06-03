@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections;
+using Microsoft.Win32.SafeHandles;
 
 namespace NStack {
 
@@ -87,19 +88,29 @@ namespace NStack {
 
 		// The ustring subclass that supports creating strings for an IntPtr+Size pair.
 		class IntPtrUString : ustring, IDisposable {
-			internal IntPtr block;
+			internal SafeStringHandle handle;
+			internal int start;
 			readonly int size;
-			Action<ustring, IntPtr> release;
 
-			public IntPtrUString (IntPtr block, int size, Action<ustring, IntPtr> releaseFunc = null)
+			public IntPtrUString (IntPtr block, int size, Action<IntPtr> releaseFunc = null)
 			{
 				if (block == IntPtr.Zero)
 					throw new ArgumentException ("Null pointer passed", nameof (block));
 				if (size < 0)
 					throw new ArgumentException ("Invalid size passed", nameof (size));
 				this.size = size;
-				this.block = block;
-				this.release = releaseFunc;
+				handle = new SafeStringHandle (block, releaseFunc);
+			}
+
+			IntPtrUString (SafeStringHandle handle, int start, int size)
+			{
+				if (start < 0)
+					throw new ArgumentException ("Invalid offset passed", nameof (start));
+				if (size < 0)
+					throw new ArgumentException ("Invalid size passed", nameof (size));
+				this.handle = handle;
+				this.start = start;
+				this.size = size;
 			}
 
 			public override int Length => size;
@@ -107,7 +118,7 @@ namespace NStack {
 				get {
 					if (index < 0 || index > size)
 						throw new ArgumentException (nameof (index));
-					return Marshal.ReadByte (block, index);
+					return Marshal.ReadByte (handle.DangerousGetHandle () + start, index);
 				}
 			}
 
@@ -121,7 +132,7 @@ namespace NStack {
 					throw new ArgumentException (nameof (count));
 				unsafe
 				{
-					byte* p = ((byte*)block) + offset;
+					byte* p = ((byte*)handle.DangerousGetHandle () + start) + offset;
 
 					for (int i = 0; i < count; i++, p++)
 						target [i] = *p;
@@ -132,7 +143,7 @@ namespace NStack {
 			{
 				unsafe
 				{
-					return Encoding.UTF8.GetString ((byte*)block, size);
+					return Encoding.UTF8.GetString ((byte*)handle.DangerousGetHandle () + start, size);
 				}
 			}
 
@@ -140,7 +151,7 @@ namespace NStack {
 			{
 				unsafe
 				{
-					return new IntPtrUString ((IntPtr)((byte*)block + start), end - start, null);
+					return new IntPtrUString (handle, start, end - start);
 				}
 			}
 
@@ -149,7 +160,7 @@ namespace NStack {
 				var t = size;
 				unsafe
 				{
-					byte* p = (byte*)block + offset;
+					byte* p = (byte*)handle.DangerousGetHandle () + start + offset;
 					for (int i = 0; i < t; i++) {
 						if (p [i] == b)
 							return i + offset;
@@ -161,33 +172,36 @@ namespace NStack {
 			public override byte [] ToByteArray ()
 			{
 				var copy = new byte [size];
-				Marshal.Copy (block, copy, 0, size);
+				Marshal.Copy (handle.DangerousGetHandle (), copy, start, size);
 				return copy;
 			}
 
-			#region IDisposable Support
-			protected virtual void Dispose (bool disposing)
+			public void Dispose()
 			{
-				if (block != IntPtr.Zero) {
-					if (release != null)
-						release (this, block);
-					release = null;
-					block = IntPtr.Zero;
+				if (handle == null)
+					return;
+
+				handle.Dispose ();
+				handle = null;
+			}
+
+			public class SafeStringHandle : SafeHandle
+			{
+				Action<IntPtr> releaseFunc;
+				public SafeStringHandle (IntPtr handle, Action<IntPtr> releaseFunc) : base (IntPtr.Zero, releaseFunc != null)
+				{
+					SetHandle (handle);
+					this.releaseFunc = releaseFunc;
+				}
+
+				public override bool IsInvalid => handle == IntPtr.Zero;
+
+				protected override bool ReleaseHandle ()
+				{
+					releaseFunc?.Invoke (handle);
+					return true;
 				}
 			}
-
-			~IntPtrUString ()
-			{
-				Dispose (false);
-			}
-
-			// This code added to correctly implement the disposable pattern.
-			void IDisposable.Dispose ()
-			{
-				Dispose (true);
-				GC.SuppressFinalize (this);
-			}
-			#endregion
 		}
 
 		// The ustring implementation that is implemented on top of a byte buffer.
@@ -401,7 +415,7 @@ namespace NStack {
 		///   Dispose manually, the provided release function will be invoked from the finalizer thread.
 		/// </para>
 		/// </remarks>
-		public static ustring Make (IntPtr block, int size, Action<ustring, IntPtr> releaseFunc = null)
+		public static ustring Make (IntPtr block, int size, Action<IntPtr> releaseFunc = null)
 		{
 			return new IntPtrUString (block, size, releaseFunc);
 		}
@@ -468,7 +482,11 @@ namespace NStack {
 			if ((object)aip != null && (object)bip != null) {
 				unsafe
 				{
-					return EqualsHelper ((byte*)aip.block, (byte*)bip.block, alen);
+					return EqualsHelper (
+						(byte*)(aip.handle.DangerousGetHandle () + aip.start),
+						(byte*)(bip.handle.DangerousGetHandle () + bip.start),
+						alen
+					);
 				}
 			}
 

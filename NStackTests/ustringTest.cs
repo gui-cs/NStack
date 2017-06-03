@@ -195,7 +195,7 @@ namespace NStackTests
 		public void TestBlockRelease ()
 		{
 			bool released = false;
-			Action<ustring, IntPtr> releaseFunc = (str, block) => {
+			Action<IntPtr> releaseFunc = (block) => {
 				released = true;
 			};
 			var ptr = Marshal.AllocHGlobal (10);
