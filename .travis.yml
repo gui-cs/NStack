@@ -1,0 +1,9 @@
+language: csharp
+solution: NStack.sln
+script
+  - msbuild /t:restore $TRAVIS_BUILD_DIR/NStack.sln
+  - cd $TRAVIS_BUILD_DIR
+  - msbuild /p:Configuration=Release NStack.sln
+  - nunit-console4 ./NStackTests/bin/Debug/NStackTests.dll
+mono: "5.0.0"
+os: "osx"

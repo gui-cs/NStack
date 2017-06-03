@@ -9,11 +9,9 @@ using NStack;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace NStackTests
-{
+namespace NStackTests {
 	[TestFixture]
-	public class UstringTest
-	{
+	public class UstringTest {
 		ustring a = ustring.Make ("a");
 		ustring seconda = ustring.Make ("a");
 		ustring aa = ustring.Make ("aa");
@@ -96,29 +94,31 @@ namespace NStackTests
 			var bp = ustring.Make (b1, len);
 			var cp = ustring.Make (c1, len);
 
+			var apalias = ap;
 			Assert.IsTrue (ap == bp);
-			Assert.IsTrue (ap == ap);
+			Assert.IsTrue (ap == apalias);
 			Assert.IsTrue (ap != cp);
 
 			// Now compare ones with others
 			Assert.IsTrue (ast == ap);
 			Assert.IsTrue (ast == bp);
-			Assert.IsTrue (ap  == bst);
+			Assert.IsTrue (ap == bst);
 			Assert.IsTrue (ast == bp);
 			Assert.IsTrue (ast != cp);
-			Assert.IsTrue (cp  == cp);
-			Assert.IsTrue (cp  == cst);
-			Assert.IsTrue (cp  != bst);
+			var cpalias = cp;
+			Assert.IsTrue (cp == cpalias);
+			Assert.IsTrue (cp == cst);
+			Assert.IsTrue (cp != bst);
 
 			// Slices
-			Assert.IsTrue (ast [1,5] == ap    [1,5]);
-			Assert.IsTrue (ast [1,5] == bp    [1,5]);
-			Assert.IsTrue (ap  [1,5] == bst   [1,5]);
-			Assert.IsTrue (ast [1,5] == bp    [1,5]);
-			Assert.IsTrue (ast [8,0] != cp    [8,0]);
-			Assert.IsTrue (cp  [1,5] == cp    [1,5]);
-			Assert.IsTrue (cp  [1,5] == cst   [1,5]);
-			Assert.IsTrue (cp  [8,0] != bst   [8,0]);
+			Assert.IsTrue (ast [1, 5] == ap [1, 5]);
+			Assert.IsTrue (ast [1, 5] == bp [1, 5]);
+			Assert.IsTrue (ap [1, 5] == bst [1, 5]);
+			Assert.IsTrue (ast [1, 5] == bp [1, 5]);
+			Assert.IsTrue (ast [8, 0] != cp [8, 0]);
+			Assert.IsTrue (cp [1, 5] == cpalias [1, 5]);
+			Assert.IsTrue (cp [1, 5] == cst [1, 5]);
+			Assert.IsTrue (cp [8, 0] != bst [8, 0]);
 
 		}
 
@@ -135,7 +135,7 @@ namespace NStackTests
 		{
 			Assert.AreEqual (0, hello.IndexOf ('h'));
 			Assert.AreEqual (1, hello.IndexOf ('e'));
-	                Assert.AreEqual (2, hello.IndexOf ('l'));
+			Assert.AreEqual (2, hello.IndexOf ('l'));
 			Assert.AreEqual (10, kosmex.IndexOf (0x41));
 		}
 
@@ -173,7 +173,7 @@ namespace NStackTests
 			var asbyte = new byte [] { (byte)'y', (byte)'1', (byte)'2', (byte)'3', (byte)'4', (byte)'5', (byte)'6', (byte)'7', (byte)'8', (byte)'9', (byte)'0', (byte)'z' };
 
 			SliceTests (a);
-			SliceTests (ustring.Make ("x" + str + "x") [1,11]);
+			SliceTests (ustring.Make ("x" + str + "x") [1, 11]);
 
 			var f = ustring.Make (asbyte, 1, 10);
 			SliceTests (f);
@@ -233,6 +233,19 @@ namespace NStackTests
 			Assert.IsTrue (ustring.Make ("Miguel de Icaza") == fields [4]);
 			Assert.IsTrue (ustring.Make ("/home/miguel") == fields [5]);
 			Assert.IsTrue (ustring.Make ("/bin/bash") == fields [6]);
+
+#if false
+			gecos = ustring.Make ("miguel<>*<>100<>200<>Miguel de Icaza<>/home/miguel<>/bin/bash");
+			fields = gecos.Split ("<>");
+			Assert.AreEqual (7, fields.Length);
+			Assert.IsTrue (ustring.Make ("miguel") == fields [0]);
+			Assert.IsTrue (ustring.Make ("*") == fields [1]);
+			Assert.IsTrue (ustring.Make ("100") == fields [2]);
+			Assert.IsTrue (ustring.Make ("200") == fields [3]);
+			Assert.IsTrue (ustring.Make ("Miguel de Icaza") == fields [4]);
+			Assert.IsTrue (ustring.Make ("/home/miguel") == fields [5]);
+			Assert.IsTrue (ustring.Make ("/bin/bash") == fields [6]);
+#endif
 		}
 
 		[Test]

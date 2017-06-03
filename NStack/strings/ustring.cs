@@ -189,7 +189,7 @@ namespace NStack {
 
 			internal override int RealIndexByte (byte b, int offset)
 			{
-				var t = size;
+				var t = size - offset;
 				unsafe
 				{
 					byte* p = (byte*)block + offset;
@@ -286,7 +286,7 @@ namespace NStack {
 
 			internal override int RealIndexByte (byte b, int offset)
 			{
-				var t = Length;
+				var t = Length - offset;
 				unsafe
 				{
 					fixed (byte* p = &buffer [offset]) {
@@ -355,7 +355,7 @@ namespace NStack {
 
 			internal override int RealIndexByte (byte b, int offset)
 			{
-				var t = count;
+				var t = count - offset;
 				unsafe
 				{
 					fixed (byte* p = &buffer [start + offset]) {
@@ -688,6 +688,13 @@ namespace NStack {
 			return EqualsHelper (this, p);
 		}
 
+
+		/// <summary>
+		/// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:NStack.ustring"/>.
+		/// </summary>
+		/// <param name="other">The other string to compare with the current <see cref="T:NStack.ustring"/>.</param>
+		/// <returns><c>true</c> if the specified ustring is equal to the current ustring;
+		/// otherwise, <c>false</c>.</returns>
 		public bool Equals (ustring other)
 		{
 			// If parameter is null return false.
@@ -1180,7 +1187,7 @@ namespace NStack {
 		/// </summary>
 		/// <returns>The zero-based index position of <paramref name="b" /> if that byte is found, or -1 if it is not.  </returns>
 		/// <param name="b">The byte to seek.</param>
-		/// <param name="start">Starting location.</param>
+		/// <param name="offset">Starting location.</param>
 		public int IndexByte (byte b, int offset)
 		{
 			if (offset < 0 || offset >= Length)
@@ -1343,7 +1350,7 @@ namespace NStack {
 			if (sep == "")
 				return Explode (n);
 			if (n < 0 || n == Int32.MaxValue)
-				n = Count (sep);
+				n = Count (sep) + 1;
 			var result = new ustring [n];
 			n--;
 			int offset = 0, i = 0;
@@ -1360,6 +1367,12 @@ namespace NStack {
 			return result;
 		}
 
+		/// <summary>
+		/// Split the string using at every instance of a string separator
+		/// </summary>
+		/// <returns>An array containing the individual strings, excluding the separator string.</returns>
+		/// <param name="separator">Separator string.</param>
+		/// <param name="n">Optional maximum number of results to return, or -1 for an unlimited result</param>
 		public ustring [] Split (ustring separator, int n = -1)
 		{
 			if ((object)separator == null)
