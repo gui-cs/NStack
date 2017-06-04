@@ -1193,7 +1193,7 @@ namespace NStack {
 		/// <param name="other">Value.</param>
 		public int CompareTo (ustring other)
 		{
-			if (other == null)
+			if ((object)other == null)
 				return 1;
 			var blen = Length;
 			var olen = other.Length;
@@ -1226,7 +1226,7 @@ namespace NStack {
 			if (value == null)
 				return 1;
 			var other = value as ustring;
-			if (other == null)
+			if ((object)other == null)
 				throw new ArgumentException ("Argument must be a ustring");
 			return CompareTo (other);
 		}
