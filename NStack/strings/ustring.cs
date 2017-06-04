@@ -1133,9 +1133,15 @@ namespace NStack {
 			var blen = Length;
 			if (offset < 0 || offset > blen)
 				throw new ArgumentException (nameof (offset));
+			if (n > blen)
+				return -1;
 			if (n == 1)
 				return RealIndexByte (substr [0], offset);
-			
+			if (blen == n) {
+				if (this == substr)
+					return 0;
+				return -1;
+			}
 			blen -= offset;
 			if (n == blen) {
 				// If the offset is zero, we can compare identity
@@ -1291,7 +1297,7 @@ namespace NStack {
 			for (int i = 0; i < blen;) {
 				(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
 				for (int j = 0; j < clen; ) {
-					(var crune, var csize) = Utf8.DecodeRune (this, j, j - clen);
+					(var crune, var csize) = Utf8.DecodeRune (chars, j, j - clen);
 					if (crune == rune)
 						return i;
 					j += csize;

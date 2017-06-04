@@ -194,6 +194,31 @@ namespace NStackTests {
 			("xx0123456789ABCDEFx", "0123456789ABCDEFG", false), // 17-31, issue 15679
 		};
 
+		(string, string, bool) [] containsAnyTests = {
+			// string, substring, expected
+			("", "", false),
+			("", "a", false),
+			("", "abc", false),
+			("a", "", false),
+			("a", "a", true),
+			("aaa", "a", true),
+			("abc", "xyz", false),
+			("abc", "xcz", true),
+			("a☺b☻c☹d", "uvw☻xyz", true),
+			("aRegExp*", ".(|)*+?^$[]", true),
+			("1....2....3....41....2....3....41....2....3....4", " ", false),
+
+		};
+
+		[Test]
+		public void TestContainsAny ()
+		{
+			foreach ((var str, var substr, bool expected) in containsAnyTests) {
+				var ustr = ustring.Make (str);
+				Assert.AreEqual (expected, ustr.ContainsAny (substr), $"{str}.ContainsAny ({substr})");
+			}
+		}
+
 		[Test]
 		public void TestContains ()
 		{
@@ -201,11 +226,9 @@ namespace NStackTests {
 			Assert.IsFalse (aa.Contains (b));
 			Assert.IsTrue (bb.Contains (b));
 
-			ustring.Make ("").Contains ("a");
 			foreach ((string str, string sub, bool expected) in ContainTests) {
 				var ustr = ustring.Make (str);
 				var usub = ustring.Make (sub);
-				Console.WriteLine ($"For {str} and {sub}");
 				Assert.AreEqual (expected, ustr.Contains (usub), $"{ustr}.Contains({usub}) error");
 			}
 		}
