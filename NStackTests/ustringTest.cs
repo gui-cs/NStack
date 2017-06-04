@@ -233,6 +233,54 @@ namespace NStackTests {
 			}
 		}
 
+		(string, uint, bool) [] containsRuneTests = {
+			("", 'a', false),
+			("a", 'a', true),
+			("aaa", 'a', true),
+			("abc", 'y', false),
+			("abc", 'c', true),
+			("a☺b☻c☹d", 'x', false),
+			("a☺b☻c☹d", '☻', true),
+			("aRegExp*", '*', true),
+		};
+
+		[Test]
+		public void TestContainsRune ()
+		{
+			foreach ((var str, uint rune, bool expected) in containsRuneTests) {
+				var ustr = ustring.Make (str);
+					Assert.AreEqual (expected, ustr.Contains (rune), $"{ustr}.Contains({rune})");
+			}
+		}
+
+		(string, string, bool) [] equalFoldsTest = {
+			("abc", "abc", true),
+			("ABcd", "ABcd", true),
+			("123abc", "123ABC", true),
+			("αβδ", "ΑΒΔ", true),
+			("abc", "xyz", false),
+			("abc", "XYZ", false),
+			("abcdefghijk", "abcdefghijX", false),
+
+			// need byte array for these, as they are not 
+			("abcdefghijk", "abcdefghij\u212A", true),
+			("abcdefghijK", "abcdefghij\u212A", true),
+			("abcdefghijkz", "abcdefghij\u212Ay", false),
+			("abcdefghijKz", "abcdefghij\u212Ay", false),
+
+		};
+
+		[Test]
+		public void TestEqualFolds ()
+		{
+			var k = ustring.Make (0x212a);
+			Assert.AreEqual (true, k.EqualsFold ("k"));
+
+			foreach ((string s, string t, bool expected) in equalFoldsTest) {
+				Assert.AreEqual (expected, ustring.Make (s).EqualsFold (t), $"For {s} and {t}");
+				Assert.AreEqual (expected, ustring.Make (t).EqualsFold (s), $"For {s} and {t}");
+			}
+		}
 
 		[Test]
 		public void TestIndexOf ()

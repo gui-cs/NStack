@@ -719,26 +719,27 @@ namespace NStack {
 
 			int slen = Length;
 			int tlen = other.Length;
+
 			int soffset = 0, toffset = 0;
 			while (soffset < slen && toffset < tlen) {
 				// Extract first rune of each string
 				uint sr, tr;
 				int size;
 
-				var rune = this [0];
+				var rune = this [soffset];
 				if (rune < Utf8.RuneSelf) {
 					sr = rune;
 					soffset++;
 				} else {
-					(sr, size) = Utf8.DecodeRune (this);
+					(sr, size) = Utf8.DecodeRune (this, soffset);
 					soffset += size;
 				}
-				rune = other [0];
+				rune = other [toffset];
 				if (rune < Utf8.RuneSelf) {
 					tr = rune;
 					toffset++;
 				} else {
-					(tr, size) = Utf8.DecodeRune (other);
+					(tr, size) = Utf8.DecodeRune (other, toffset);
 					toffset += size;
 				}
 				// If they match, keep going; if not, return false.
@@ -768,8 +769,7 @@ namespace NStack {
 					continue;
 				return false;
 			}
-			// one string is empty, are both?
-			return this == other;
+			return (soffset == Length && toffset == other.Length);
 		}
 
 		/// <summary>
@@ -1264,8 +1264,10 @@ namespace NStack {
 		/// <param name="offset">Starting location.</param>
 		public int IndexByte (byte b, int offset)
 		{
-			if (offset < 0 || offset >= Length)
+			if (offset < 0 || offset > Length)
 				throw new ArgumentException (nameof (offset));
+			if (Length == 0)
+				return -1;
 			return RealIndexByte (b, offset);
 		}
 
