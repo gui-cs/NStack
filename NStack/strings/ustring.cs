@@ -1365,12 +1365,12 @@ namespace NStack {
 				}
 			}
 			var clen = chars.Length;
-			for (int i = blen - 1; i >= 0;) {
+			for (int i = blen; i > 0;) {
 				(var rune, var size) = Utf8.DecodeLastRune (this, i);
 				i -= size;
 
 				for (int j = 0; j < clen;) {
-					(var crune, var csize) = Utf8.DecodeRune (this, j, j - clen);
+					(var crune, var csize) = Utf8.DecodeRune (chars, j, j - clen);
 					if (crune == rune)
 						return i;
 					j += csize;

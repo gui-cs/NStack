@@ -604,15 +604,41 @@ namespace NStackTests {
 			// Need a byte initializer instead for Go [\xff][b] below
 			// ("012abcba210", "\xffb", 4),
 			//("012\x80bcb\x80210", "\xffb", 3)			
+		}, lastIndexAnyTests = {
+			("abc", "xyz", -1),
+			("a", "a", 0),
+			("", "", -1),
+			("", "a", -1),
+			("", "abc", -1),
+			("a", "", -1),
+			("aaa", "a", 2),
+			("abc", "ab", 1),
+			("ab☺c", "x☺yz", 2),
+			("a☺b☻c☹d", "cx", ustring.Make("a☺b☻").Length),
+			("a☺b☻c☹d", "uvw☻xyz", ustring.Make("a☺b").Length),
+			("a.RegExp*", ".(|)*+?^$[]", 8),
+			("1....2....3....41....2....3....41....2....3....4", " ", -1),
+			// Need a byte initializer instead for Go [\xff][b] below
+			//("012abcba210", "\xffb", 6),
+			//("012\x80bcb\x80210", "\xffb", 7)
+
 		};
 
 		[Test]
 		public void TestIndexAny ()
 		{
 			foreach ((string s, string sep, int pos) in indexAnyTests) {
-				Console.WriteLine ($"Got {s} {sep} and {pos}");
 				Assert.AreEqual (pos, ustring.Make (s).IndexOfAny (sep), $"{s}.IndexOfAny ({sep})");
 			}		
+		}
+
+		[Test]
+		public void TestLastIndexAny ()
+		{
+			foreach ((string s, string sep, int pos) in lastIndexAnyTests) {
+				Console.WriteLine ($"Got {s} {sep} and {pos}");
+				Assert.AreEqual (pos, ustring.Make (s).LastIndexOfAny (sep), $"{s}.LastIndexOfAny ({sep})");
+			}
 		}
 	}
 }
