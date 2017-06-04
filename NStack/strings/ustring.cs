@@ -1020,7 +1020,7 @@ namespace NStack {
 				hash = hash * primeRK + (uint)(this [i]);
 			}
 
-			uint pow = 0, sq = 1;
+			uint pow = 1, sq = primeRK;
 
 			for (int i = count; i > 0; i >>= 1) {
 				if ((i & 1) != 0) {

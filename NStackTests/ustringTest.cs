@@ -129,7 +129,6 @@ namespace NStackTests {
 			("abc", "", true),
 			("", "a", false),
 
-			// cases to cover code in runtime/asm_amd64.s:indexShortStr
 			// 2-byte needle
 			("xxxxxx", "01", false),
 			("01xxxx", "01", true),
@@ -279,6 +278,27 @@ namespace NStackTests {
 			foreach ((string s, string t, bool expected) in equalFoldsTest) {
 				Assert.AreEqual (expected, ustring.Make (s).EqualsFold (t), $"For {s} and {t}");
 				Assert.AreEqual (expected, ustring.Make (t).EqualsFold (s), $"For {s} and {t}");
+			}
+		}
+
+		(string, string, int) [] countTests = {
+			("", "", 1),
+			("", "notempty", 0),
+			("notempty", "", 9),
+			("smaller", "not smaller", 0),
+			("12345678987654321", "6", 2),
+			("611161116", "6", 3),
+			("notequal", "NotEqual", 0),
+			("equal", "equal", 1),
+			("abc1231231123q", "123", 3),
+			("11111", "11", 2)
+		};
+
+		[Test]
+		public void TestCount ()
+		{
+			foreach ((string src, string sub, int count) in countTests) {
+				Assert.AreEqual (count, ustring.Make (src).Count (sub), $"Count for ({src}, {sub})");
 			}
 		}
 
@@ -453,6 +473,146 @@ namespace NStackTests {
 				var result = sin.Replace (oldv, newv, n);
 				Assert.IsTrue (result == expected, $"For test on Replace (\"{input}\",\"{oldv}\",\"{newv}\",{n}) got {result}");
 			}
+		}
+
+		(string, string, int) [] indexTests = {
+			// string, substring, expected index return
+			("", "", 0),
+			("", "a", -1),
+			("", "foo", -1),
+			("fo", "foo", -1),
+			("foo", "foo", 0),
+			("oofofoofooo", "f", 2),
+			("oofofoofooo", "foo", 4),
+			("barfoobarfoo", "foo", 3),
+			("foo", "", 0),
+			("foo", "o", 1),
+			("abcABCabc", "A", 3),
+			// cases with one byte strings - test special case in Index()
+			("", "a", -1),
+			("x", "a", -1),
+			("x", "x", 0),
+			("abc", "a", 0),
+			("abc", "b", 1),
+			("abc", "c", 2),
+			("abc", "x", -1),
+			// test special cases in Index() for short strings
+			("", "ab", -1),
+			("bc", "ab", -1),
+			("ab", "ab", 0),
+			("xab", "ab", 1),
+			("", "abc", -1),
+			("xbc", "abc", -1),
+			("abc", "abc", 0),
+			("xabc", "abc", 1),
+			("xabxc", "abc", -1),
+			("", "abcd", -1),
+			("xbcd", "abcd", -1),
+			("abcd", "abcd", 0),
+			("xabcd", "abcd", 1),
+			("xbcqq", "abcqq", -1),
+			("abcqq", "abcqq", 0),
+			("xabcqq", "abcqq", 1),
+			("xabxcqq", "abcqq", -1),
+			("xabcqxq", "abcqq", -1),
+			("", "01234567", -1),
+			("32145678", "01234567", -1),
+			("01234567", "01234567", 0),
+			("x01234567", "01234567", 1),
+			("x0123456x01234567", "01234567", 9),
+			("", "0123456789", -1),
+			("3214567844", "0123456789", -1),
+			("0123456789", "0123456789", 0),
+			("x0123456789", "0123456789", 1),
+			("x012345678x0123456789", "0123456789", 11),
+			("x01234567x89", "0123456789", -1),
+			("", "0123456789012345", -1),
+			("3214567889012345", "0123456789012345", -1),
+			("0123456789012345", "0123456789012345", 0),
+			("x0123456789012345", "0123456789012345", 1),
+			("x012345678901234x0123456789012345", "0123456789012345", 17),
+			("", "01234567890123456789", -1),
+			("32145678890123456789", "01234567890123456789", -1),
+			("01234567890123456789", "01234567890123456789", 0),
+			("x01234567890123456789", "01234567890123456789", 1),
+			("x0123456789012345678x01234567890123456789", "01234567890123456789", 21),
+			("", "0123456789012345678901234567890", -1),
+			("321456788901234567890123456789012345678911", "0123456789012345678901234567890", -1),
+			("0123456789012345678901234567890", "0123456789012345678901234567890", 0),
+			("x0123456789012345678901234567890", "0123456789012345678901234567890", 1),
+			("x012345678901234567890123456789x0123456789012345678901234567890", "0123456789012345678901234567890", 32),
+			("", "01234567890123456789012345678901", -1),
+			("32145678890123456789012345678901234567890211", "01234567890123456789012345678901", -1),
+			("01234567890123456789012345678901", "01234567890123456789012345678901", 0),
+			("x01234567890123456789012345678901", "01234567890123456789012345678901", 1),
+			("x0123456789012345678901234567890x01234567890123456789012345678901", "01234567890123456789012345678901", 33),
+			("xxxxxx012345678901234567890123456789012345678901234567890123456789012", "012345678901234567890123456789012345678901234567890123456789012", 6),
+			("", "0123456789012345678901234567890123456789", -1),
+			("xx012345678901234567890123456789012345678901234567890123456789012", "0123456789012345678901234567890123456789", 2),
+			("xx012345678901234567890123456789012345678901234567890123456789012", "0123456789012345678901234567890123456xxx", -1),
+			("xx0123456789012345678901234567890123456789012345678901234567890120123456789012345678901234567890123456xxx", "0123456789012345678901234567890123456xxx", 65)
+		};
+
+		[Test]
+		public void TestIndex ()
+		{
+			foreach ((string s, string sep, int pos) in indexTests) {
+				Assert.AreEqual (pos, ustring.Make (s).IndexOf (sep), $"{s}.IndexOf ({sep})");
+			}
+		}
+
+		(string, string, int) [] lastIndexTests = {
+			("", "", 0),
+			("", "a", -1),
+			("", "foo", -1),
+			("fo", "foo", -1),
+			("foo", "foo", 0),
+			("foo", "f", 0),
+			("oofofoofooo", "f", 7),
+			("oofofoofooo", "foo", 7),
+			("barfoobarfoo", "foo", 9),
+			("foo", "", 3),
+			("foo", "o", 2),
+			("abcABCabc", "A", 3),
+			("abcABCabc", "a", 6),
+
+		};
+
+		[Test]
+		public void TestLastIndex ()
+		{
+			foreach ((string s, string sep, int pos) in lastIndexTests) {
+				Assert.AreEqual (pos, ustring.Make (s).LastIndexOf (sep), $"{s}.LastIndexOf ({sep}) = {ustring.Make(s).LastIndexOf (sep)}");
+			}
+		}
+
+		(string, string, int) [] indexAnyTests = {
+			("", "", -1),
+			("", "a", -1),
+			("", "abc", -1),
+			("a", "", -1),
+			("a", "a", 0),
+			("aaa", "a", 0),
+			("abc", "xyz", -1),
+			("abc", "xcz", 2),
+			("ab☺c", "x☺yz", 2),
+			("a☺b☻c☹d", "cx", ustring.Make ("a☺b☻").Length),
+			("a☺b☻c☹d", "uvw☻xyz", ustring.Make("a☺b").Length),
+			("aRegExp*", ".(|)*+?^$[]", 7),
+			("1....2....3....41....2....3....41....2....3....4", " ", -1),
+
+			// Need a byte initializer instead for Go [\xff][b] below
+			// ("012abcba210", "\xffb", 4),
+			//("012\x80bcb\x80210", "\xffb", 3)			
+		};
+
+		[Test]
+		public void TestIndexAny ()
+		{
+			foreach ((string s, string sep, int pos) in indexAnyTests) {
+				Console.WriteLine ($"Got {s} {sep} and {pos}");
+				Assert.AreEqual (pos, ustring.Make (s).IndexOfAny (sep), $"{s}.IndexOfAny ({sep})");
+			}		
 		}
 	}
 }
