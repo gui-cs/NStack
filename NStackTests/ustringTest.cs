@@ -122,16 +122,97 @@ namespace NStackTests {
 
 		}
 
+		// string, substring, expected
+		(string, string, bool) [] ContainTests = {
+			("abc", "bc", true),
+			("abc", "bcd", false),
+			("abc", "", true),
+			("", "a", false),
+
+			// cases to cover code in runtime/asm_amd64.s:indexShortStr
+			// 2-byte needle
+			("xxxxxx", "01", false),
+			("01xxxx", "01", true),
+			("xx01xx", "01", true),
+			("xxxx01", "01", true),
+			("1xxxxx", "01", false),
+			("xxxxx0", "01", false),
+			// 3-byte needle
+			("xxxxxxx", "012", false),
+			("012xxxx", "012", true),
+			("xx012xx", "012", true),
+			("xxxx012", "012", true),
+			("12xxxxx", "012", false),
+			("xxxxx01", "012", false),
+			// 4-byte needle
+			("xxxxxxxx", "0123", false),
+			("0123xxxx", "0123", true),
+			("xx0123xx", "0123", true),
+			("xxxx0123", "0123", true),
+			("123xxxxx", "0123", false),
+			("xxxxx012", "0123", false),
+			// 5-7-byte needle
+			("xxxxxxxxx", "01234", false),
+			("01234xxxx", "01234", true),
+			("xx01234xx", "01234", true),
+			("xxxx01234", "01234", true),
+			("1234xxxxx", "01234", false),
+			("xxxxx0123", "01234", false),
+			// 8-byte needle
+			("xxxxxxxxxxxx", "01234567", false),
+			("01234567xxxx", "01234567", true),
+			("xx01234567xx", "01234567", true),
+			("xxxx01234567", "01234567", true),
+			("1234567xxxxx", "01234567", false),
+			("xxxxx0123456", "01234567", false),
+			// 9-15-byte needle
+			("xxxxxxxxxxxxx", "012345678", false),
+			("012345678xxxx", "012345678", true),
+			("xx012345678xx", "012345678", true),
+			("xxxx012345678", "012345678", true),
+			("12345678xxxxx", "012345678", false),
+			("xxxxx01234567", "012345678", false),
+			// 16-byte needle
+			("xxxxxxxxxxxxxxxxxxxx", "0123456789ABCDEF", false),
+			("0123456789ABCDEFxxxx", "0123456789ABCDEF", true),
+			("xx0123456789ABCDEFxx", "0123456789ABCDEF", true),
+			("xxxx0123456789ABCDEF", "0123456789ABCDEF", true),
+			("123456789ABCDEFxxxxx", "0123456789ABCDEF", false),
+			("xxxxx0123456789ABCDE", "0123456789ABCDEF", false),
+			// 17-31-byte needle
+			("xxxxxxxxxxxxxxxxxxxxx", "0123456789ABCDEFG", false),
+			("0123456789ABCDEFGxxxx", "0123456789ABCDEFG", true),
+			("xx0123456789ABCDEFGxx", "0123456789ABCDEFG", true),
+			("xxxx0123456789ABCDEFG", "0123456789ABCDEFG", true),
+			("123456789ABCDEFGxxxxx", "0123456789ABCDEFG", false),
+			("xxxxx0123456789ABCDEF", "0123456789ABCDEFG", false),
+
+			// partial match cases
+			("xx01x", "012", false),                             // 3
+			("xx0123x", "01234", false),                         // 5-7
+			("xx01234567x", "012345678", false),                 // 9-15
+			("xx0123456789ABCDEFx", "0123456789ABCDEFG", false), // 17-31, issue 15679
+		};
+
 		[Test]
-		public void Contains ()
+		public void TestContains ()
 		{
 			Assert.IsTrue (aa.Contains (a));
 			Assert.IsFalse (aa.Contains (b));
 			Assert.IsTrue (bb.Contains (b));
+
+			ustring.Make ("").Contains ("a");
+			foreach ((string str, string sub, bool expected) in ContainTests) {
+				var ustr = ustring.Make (str);
+				var usub = ustring.Make (sub);
+				Console.WriteLine ($"For {str} and {sub}");
+				Assert.AreEqual (expected, ustr.Contains (usub), $"{ustr}.Contains({usub}) error");
+			}
 		}
 
+
 		[Test]
-		public void IndexOf ()
+		public void TestIndexOf ()
 		{
 			Assert.AreEqual (0, hello.IndexOf ('h'));
 			Assert.AreEqual (1, hello.IndexOf ('e'));
@@ -140,7 +221,7 @@ namespace NStackTests {
 		}
 
 		[Test]
-		public void Length ()
+		public void TestLength ()
 		{
 			Assert.AreEqual (12, hello.Length, "Byte length");
 			Assert.AreEqual (12, hello.RuneCount, "Rune Count");
@@ -267,6 +348,40 @@ namespace NStackTests {
 
 			((IDisposable)str).Dispose ();
 			((IDisposable)str2).Dispose ();
+		}
+
+		static (string, string, string, int, string) [] replaceTexts = {
+			// input, oldValue, newValue, n parameter, expected
+			("hello", "l", "L", 0, "hello"),
+			("hello", "l", "L", -1, "heLLo"),
+			("hello", "x", "X", -1, "hello"),
+			("", "x", "X", -1, ""),
+			("radar", "r", "<r>", -1, "<r>ada<r>"),
+			("", "", "<>", -1, "<>"),
+			("banana", "a", "<>", -1, "b<>n<>n<>"),
+			("banana", "a", "<>", 1, "b<>nana"),
+			("banana", "a", "<>", 1000, "b<>n<>n<>"),
+			("banana", "an", "<>", -1, "b<><>a"),
+			("banana", "ana", "<>", -1, "b<>na"),
+			("banana", "", "<>", -1, "<>b<>a<>n<>a<>n<>a<>"),
+			("banana", "", "<>", 10, "<>b<>a<>n<>a<>n<>a<>"),
+			("banana", "", "<>", 6, "<>b<>a<>n<>a<>n<>a"),
+			("banana", "", "<>", 5, "<>b<>a<>n<>a<>na"),
+			("banana", "", "<>", 1, "<>banana"),
+			("banana", "a", "a", -1, "banana"),
+			("banana", "a", "a", 1, "banana"),
+			("☺☻☹", "", "<>", -1, "<>☺<>☻<>☹<>")
+		};
+
+		[Test]
+		public void TestReplace ()
+		{
+			ustring.Make ("banana").Replace ("", "<>", -1);
+			foreach ((var input, var oldv, var newv, var n, var expected) in replaceTexts) {
+				var sin = ustring.Make (input);
+				var result = sin.Replace (oldv, newv, n);
+				Assert.IsTrue (result == expected, $"For test on Replace (\"{input}\",\"{oldv}\",\"{newv}\",{n}) got {result}");
+			}
 		}
 	}
 }

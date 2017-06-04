@@ -5,11 +5,13 @@
 // 
 // C# ification by Miguel de Icaza
 //
-// genSplit
+// TODO:
+//   Fields
 // 
 // TODO from .NET API:
 // String.Split members (array of strings, StringSplitOptions)
-// 
+// Replace, should it allow nulls?
+// Generally: what to do with null parameters, that we can avoid exceptions and produce a good result.
 // 
 
 
@@ -154,17 +156,17 @@ namespace NStack {
 				}
 			}
 
-			public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+			public override void CopyTo (int fromOffset, byte [] target, int targetOffset, int count)
 			{
-				if (offset < 0 || offset >= size)
-					throw new ArgumentException (nameof (offset));
+				if (fromOffset < 0 || fromOffset >= size)
+					throw new ArgumentException (nameof (fromOffset));
 				if (count < 0)
 					throw new ArgumentException (nameof (count));
-				if (offset + count > size)
+				if (fromOffset + count > size)
 					throw new ArgumentException (nameof (count));
 				unsafe
 				{
-					byte* p = ((byte*)block) + offset;
+					byte* p = ((byte*)block) + fromOffset;
 
 					for (int i = 0; i < count; i++, p++)
 						target [i] = *p;
@@ -274,9 +276,9 @@ namespace NStack {
 				}
 			}
 
-			public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+			public override void CopyTo (int fromOffset, byte [] target, int targetOffset, int count)
 			{
-				Array.Copy (buffer, offset, target, targetOffset, count);
+				Array.Copy (buffer, fromOffset, target, targetOffset, count);
 			}
 
 			public override string ToString ()
@@ -340,12 +342,12 @@ namespace NStack {
 				}
 			}
 
-			public override void CopyTo (int offset, byte [] target, int targetOffset, int count)
+			public override void CopyTo (int fromOffset, byte [] target, int targetOffset, int count)
 			{
-				if (offset < 0)
-					throw new ArgumentException (nameof (offset));
+				if (fromOffset < 0)
+					throw new ArgumentException (nameof (fromOffset));
 
-				Array.Copy (buffer, offset + start, target, targetOffset, count);
+				Array.Copy (buffer, fromOffset + start, target, targetOffset, count);
 			}
 
 			public override string ToString ()
@@ -705,6 +707,70 @@ namespace NStack {
 
 		}
 
+		/// <summary>
+		/// Reports whether this string and the provided string, when interpreted as UTF-8 strings, are equal under Unicode case-folding
+		/// </summary>
+		/// <returns><c>true</c>, if fold was equalsed, <c>false</c> otherwise.</returns>
+		/// <param name="other">Other.</param>
+		public bool EqualsFold (ustring other)
+		{
+			if ((object)other == null)
+				return false;
+
+			int slen = Length;
+			int tlen = other.Length;
+			int soffset = 0, toffset = 0;
+			while (soffset < slen && toffset < tlen) {
+				// Extract first rune of each string
+				uint sr, tr;
+				int size;
+
+				var rune = this [0];
+				if (rune < Utf8.RuneSelf) {
+					sr = rune;
+					soffset++;
+				} else {
+					(sr, size) = Utf8.DecodeRune (this);
+					soffset += size;
+				}
+				rune = other [0];
+				if (rune < Utf8.RuneSelf) {
+					tr = rune;
+					toffset++;
+				} else {
+					(tr, size) = Utf8.DecodeRune (other);
+					toffset += size;
+				}
+				// If they match, keep going; if not, return false.
+				// Easy case.
+				if (tr == sr)
+					continue;
+				// Make sr < tr to simplify what follows.
+				if (tr < sr) {
+					var x = tr;
+					tr = sr;
+					sr = x;
+				}
+				// Fast check for ascii
+				if (tr < Utf8.RuneSelf && 'A' <= sr && sr <= 'Z') {
+					// ASCII, and sr is upper case.  tr must be lower case.
+					if (tr == sr + 'a' - 'A')
+						continue;
+					return false;
+				}
+				// General case. SimpleFold(x) returns the next equivalent rune > x
+				// or wraps around to smaller values.
+				var r = Unicode.SimpleFold (sr);
+				while (r != sr && r < tr) {
+					r = Unicode.SimpleFold (r);
+				}
+				if (r == tr)
+					continue;
+				return false;
+			}
+			// one string is empty, are both?
+			return this == other;
+		}
 
 		/// <summary>
 		/// The Copy method makes a copy of the underlying data, it can be used to release the resources associated with an
@@ -828,11 +894,11 @@ namespace NStack {
 		/// <summary>
 		/// Copies the specified number of bytes from the the underlying ustring representation to the target array at the specified offset.
 		/// </summary>
-		/// <param name="offset">Offset in the underlying ustring buffer to copy from.</param>
+		/// <param name="fromOffset">Offset in the underlying ustring buffer to copy from.</param>
 		/// <param name="target">Target array where the buffer contents will be copied to.</param>
 		/// <param name="targetOffset">Offset into the target array where this will be copied to.</param>
 		/// <param name="count">Number of bytes to copy.</param>
-		public abstract void CopyTo (int offset, byte [] target, int targetOffset, int count);
+		public abstract void CopyTo (int fromOffset, byte [] target, int targetOffset, int count);
 
 		/// <summary>
 		/// Returns a version of the ustring as a byte array, it might allocate or return the internal byte buffer, depending on the backing implementation.
@@ -862,7 +928,7 @@ namespace NStack {
 
 			foreach (var x in args) {
 				var n = x.Length;
-				x.CopyTo (offset: 0, target: copy, targetOffset: p, count: n);
+				x.CopyTo (fromOffset: 0, target: copy, targetOffset: p, count: n);
 				p += n;
 			}
 			return new ByteBufferUString (copy);
@@ -888,7 +954,7 @@ namespace NStack {
 				else {
 					var substr = new byte [size];
 
-					CopyTo (offset: offset, target: substr, targetOffset: 0, count: size);
+					CopyTo (fromOffset: offset, target: substr, targetOffset: 0, count: size);
 					result [i] = new ByteBufferUString (substr);
 				}
 				offset += size;
@@ -896,7 +962,7 @@ namespace NStack {
 			if (n > 0) {
 				var r = new byte [Length - offset];
 
-				CopyTo (offset: offset, target: r, targetOffset: 0, count: Length - offset);
+				CopyTo (fromOffset: offset, target: r, targetOffset: 0, count: Length - offset);
 				result [n - 1] = new ByteBufferUString (r);
 			}
 			return result;
@@ -976,15 +1042,16 @@ namespace NStack {
 				throw new ArgumentNullException (nameof (substr));
 			int n = 0;
 			if (substr.Length == 0)
-				return Utf8.RuneCount (substr) + 1;
+				return Utf8.RuneCount (this) + 1;
 			int offset = 0;
 			int len = Length;
+			int slen = substr.Length;
 			while (offset < len) {
 				var i = IndexOf (substr, offset);
 				if (i == -1)
 					break;
 				n++;
-				offset = i + 1;
+				offset = i + slen;
 			}
 			return n;
 		}
@@ -1052,7 +1119,7 @@ namespace NStack {
 		/// <summary>
 		/// Reports the zero-based index of the first occurrence of a specified Unicode character or string within this instance. 
 		/// </summary>
-		/// <returns>The zero-based index position of value if that character is found, or -1 if it is not.</returns>
+		/// <returns>The zero-based index position of value if that character is found, or -1 if it is not.   The index position returned is relative to the start of the substring, not to the offset.</returns>
 		/// <param name="substr">The string to seek.</param>
 		/// <param name="offset">The search starting position.</param>
 		public int IndexOf (ustring substr, int offset = 0)
@@ -1062,22 +1129,23 @@ namespace NStack {
 			
 			var n = substr.Length;
 			if (n == 0)
-				return 0;
+				return offset;
 			var blen = Length;
-			if (offset < 0 || offset >= blen)
+			if (offset < 0 || offset > blen)
 				throw new ArgumentException (nameof (offset));
 			if (n == 1)
 				return RealIndexByte (substr [0], offset);
+			
 			blen -= offset;
 			if (n == blen) {
 				// If the offset is zero, we can compare identity
 				if (offset == 0) {
 					if (((object)substr == (object)this))
-						return 0;
+						return offset;
 				}
 
-				if (CompareStringRange (substr, offset, n, this))
-					return 0;
+				if (CompareStringRange (this, offset, n, substr))
+					return offset;
 				return -1;
 			}
 			if (n > blen)
@@ -1090,7 +1158,7 @@ namespace NStack {
 				h = h * primeRK + (uint)(this [i + offset]);
 
 			if (h == hashss && CompareStringRange (this, offset, n, substr))
-				return 0;
+				return offset;
 			
 			for (int i = n; i < blen;) {
 				var reali = offset + i;
@@ -1443,9 +1511,9 @@ namespace NStack {
 				if ((object)t == null)
 					continue;
 				var tlen = t.Length;
-				t.CopyTo (offset: 0, target: result, targetOffset: offset, count: tlen);
+				t.CopyTo (fromOffset: 0, target: result, targetOffset: offset, count: tlen);
 				offset += tlen;
-				separator.CopyTo (offset: 0, target: result, targetOffset: offset, count: slen);
+				separator.CopyTo (fromOffset: 0, target: result, targetOffset: offset, count: slen);
 				offset += slen;
 			}
 			return new ByteBufferUString (result);
@@ -1521,9 +1589,9 @@ namespace NStack {
 			var u2l = (object)u2 == null ? 0 : u2.Length;
 			var copy = new byte [u1l + u2l];
 			if (u1 != null)
-				u1.CopyTo (offset: 0, target: copy, targetOffset: 0, count: u1l);
+				u1.CopyTo (fromOffset: 0, target: copy, targetOffset: 0, count: u1l);
 			if (u2 != null)
-				u2.CopyTo (offset: 0, target: copy, targetOffset: u1l, count: u2l);
+				u2.CopyTo (fromOffset: 0, target: copy, targetOffset: u1l, count: u2l);
 			return new ByteBufferUString (copy);
 		}
 
@@ -1844,6 +1912,55 @@ namespace NStack {
 			}
 			return -1;
 		}
+
+		/// <summary>
+		/// Returns a new ustring with the non-overlapping instances of oldValue replaced with newValue.
+		/// </summary>
+		/// <returns>The replace.</returns>
+		/// <param name="oldValue">Old value;  if it is empty, the string matches at the beginning of the string and after each UTF-8 sequence, yielding up to k+1 replacements for a k-rune string.</param>
+		/// <param name="newValue">New value that will replace the oldValue.</param>
+		/// <param name="maxReplacements">Optional, the maximum number of replacements.   Negative values indicate that there should be no limit to the replacements.</param>
+		public ustring Replace (ustring oldValue, ustring newValue, int maxReplacements = -1)
+		{
+			if (oldValue == newValue || maxReplacements == 0)
+				return this;
+
+			// Compute number of replacements
+			var m = Count (oldValue);
+			if (m == 0)
+				return this;
+			if (maxReplacements < 0 || m < maxReplacements)
+				maxReplacements = m;
+
+			var oldLen = oldValue.Length;
+			var newLen = newValue.Length;
+
+			// Apply replcements to buffer
+			var result = new byte [Length + maxReplacements * (newValue.Length - oldValue.Length)];
+			int w = 0, start = 0;
+			for (int i = 0; i < maxReplacements; i++) {
+				var j = start;
+				if (oldLen == 0) {
+					if (i > 0) {
+						(_, var wid) = Utf8.DecodeRune (this, start);
+						j += wid;
+					}
+				} else 
+					j += IndexOf (oldValue, start)-start;
+				var copyCount = j - start;
+				if (copyCount > 0) {
+					CopyTo (fromOffset: start, target: result, targetOffset: w, count: copyCount);
+					w += copyCount;
+				}
+
+				newValue.CopyTo (fromOffset: 0, target: result, targetOffset: w, count: newLen);
+				w += newLen;
+				start = j + oldLen;
+			}
+			CopyTo (fromOffset: start, target: result, targetOffset: w, count: Length - start);
+			return new ByteBufferUString (result);
+		}
+
 
 		TypeCode IConvertible.GetTypeCode ()
 		{
