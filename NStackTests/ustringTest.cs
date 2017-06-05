@@ -248,7 +248,7 @@ namespace NStackTests {
 		{
 			foreach ((var str, uint rune, bool expected) in containsRuneTests) {
 				var ustr = ustring.Make (str);
-					Assert.AreEqual (expected, ustr.Contains (rune), $"{ustr}.Contains({rune})");
+				Assert.AreEqual (expected, ustr.Contains (rune), $"{ustr}.Contains({rune})");
 			}
 		}
 
@@ -432,7 +432,7 @@ namespace NStackTests {
 
 			// Now test the copy
 			var str2 = ustring.MakeCopy (p);
-			Marshal.WriteByte (p, (byte) 'A');
+			Marshal.WriteByte (p, (byte)'A');
 			Assert.AreEqual (str.ToString (), "Aello");
 			Assert.AreEqual (str2.ToString (), "Hello");
 			Assert.IsFalse (str == str2);
@@ -582,7 +582,7 @@ namespace NStackTests {
 		public void TestLastIndex ()
 		{
 			foreach ((string s, string sep, int pos) in lastIndexTests) {
-				Assert.AreEqual (pos, ustring.Make (s).LastIndexOf (sep), $"{s}.LastIndexOf ({sep}) = {ustring.Make(s).LastIndexOf (sep)}");
+				Assert.AreEqual (pos, ustring.Make (s).LastIndexOf (sep), $"{s}.LastIndexOf ({sep}) = {ustring.Make (s).LastIndexOf (sep)}");
 			}
 		}
 
@@ -621,7 +621,13 @@ namespace NStackTests {
 			// Need a byte initializer instead for Go [\xff][b] below
 			//("012abcba210", "\xffb", 6),
 			//("012\x80bcb\x80210", "\xffb", 7)
-
+		}, lastIndexByteTests = {
+			("abcdefabcdef", "a", ustring.Make("abcdef").Length),      // something in the middle
+			("", "q", -1),
+			("abcdef", "q", -1),
+			("abcdefabcdef", "f", ustring.Make("abcdefabcde").Length), // last byte
+			("zabcdefabcdef", "z", 0),                 // first byte
+			("a☺b☻c☹d", "b", ustring.Make("a☺").Length),               // non-ascii
 		};
 
 		[Test]
@@ -629,16 +635,58 @@ namespace NStackTests {
 		{
 			foreach ((string s, string sep, int pos) in indexAnyTests) {
 				Assert.AreEqual (pos, ustring.Make (s).IndexOfAny (sep), $"{s}.IndexOfAny ({sep})");
-			}		
+			}
 		}
 
 		[Test]
 		public void TestLastIndexAny ()
 		{
 			foreach ((string s, string sep, int pos) in lastIndexAnyTests) {
-				Console.WriteLine ($"Got {s} {sep} and {pos}");
 				Assert.AreEqual (pos, ustring.Make (s).LastIndexOfAny (sep), $"{s}.LastIndexOfAny ({sep})");
 			}
+		}
+
+		[Test]
+		public void TestLastIndexByte ()
+		{
+			foreach ((string s, string sep, int pos) in lastIndexByteTests) {
+				Assert.AreEqual (pos, ustring.Make (s).LastIndexByte ((byte)sep [0]), $"{s}.LastIndexByte ({sep})");
+			}
+		}
+
+		[Test]
+		public void TestIndexRune ()
+		{
+			(string, uint, int) [] testFirst = {
+				("", 'a', -1),
+				("", '☺', -1),
+				("foo", '☹', -1),
+				("foo", 'o', 1),
+				("foo☺bar", '☺', 3),
+				("foo☺☻☹bar", '☹', 9),
+				("a A x", 'A', 2),
+				("some_text=some_value", '=', 9),
+				("☺a", 'a', 3),
+				("a☻☺b", '☺', 4),
+			};
+			foreach ((string str, uint rune, int expected) in testFirst) {
+				var ustr = ustring.Make (str);
+				Assert.AreEqual (expected, ustr.IndexOf (rune));
+			}
+#if false
+			(ustring, uint, int) [] testSecond = {
+				(ustring.Make (0xef, 0xbf, 0xbd), 0xfffd, 0),
+				(ustring.Make (0xff), 0xfffd, 0),
+				(ustring.Make (0xe2, 0x98, 0xbb, 0x78, 0xef, 0xbf, 0xbd), 0xfffd, 0),
+				(ustring.Make (0xe2, 0x98, 0xbb, 0x78, 0xef, 0xbf, 0xbd), 0xfffd, 4),
+				(ustring.Make (0xe2, 0x98, 0xbb, 0x78, 0xe2, 0x98), 0xfffd, 4),
+				(ustring.Make (0xe2, 0x98, 0xbb, 0x78, 0xe2, 0x98, 0xef, 0xbf, 0xbd), 0xfffd, 4),
+				(ustring.Make (0xe2, 0x98, 0xbb, 0x78, 0xe2, 0x98, 0x78), 0xfffd, 4)
+			};
+			foreach ((ustring ustr, uint rune, int expected) in testSecond) {
+				Assert.AreEqual (expected, ustr.IndexOf (rune));
+			}
+#endif
 		}
 	}
 }
