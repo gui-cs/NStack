@@ -108,7 +108,6 @@ namespace NStack {
 		class IntPtrUString : ustring, IDisposable {
 			internal IntPtr block;
 			readonly int size;
-			bool copy;
 			Action<IntPtr> release;
 
 			unsafe static int MeasureString (IntPtr block)
@@ -131,9 +130,8 @@ namespace NStack {
 					throw new ArgumentException ("Invalid size passed", nameof (size));
 				this.size = size;
 
-				this.copy = copy;
 				if (copy) {
-					this.release = null;
+					this.release = Marshal.FreeHGlobal;
 					if (size == 0)
 						size = 1;
 					this.block = Marshal.AllocHGlobal (size);
@@ -214,9 +212,7 @@ namespace NStack {
 			protected virtual void Dispose (bool disposing)
 			{
 				if (block != IntPtr.Zero) {
-					if (copy) {
-						Marshal.FreeHGlobal (block);
-					} else if (release != null)
+					if (release != null)
 						release (block);
 					release = null;
 					block = IntPtr.Zero;
