@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- Disable built-in SDK Pack -->
+    <!-- For pre-15.3, you need to pass this via envvars or /p:NuGetBuildTasksPackTargets=NO-SDK -->
+    <NuGetBuildTasksPackTargets>NO-SDK-PACK</NuGetBuildTasksPackTargets>
+
+    <!-- Turn on pack on Release builds. Don't turn on if legacy pack is active, as it causes circular dependency failure. -->
+    <PackOnBuild Condition="'$(Configuration)' == 'Release' and '$(GenerateNuspecDependsOn)' == ''">true</PackOnBuild>
+  </PropertyGroup>
+
+  <Target Name="FailForLegacyPack" BeforeTargets="Pack" Condition="'$(GenerateNuspecDependsOn)' != ''">
+    <Error Text="You intended to use NuGetizer Pack, but ended up with the .NET SDK Pack. Please either use a 15.3+ version of Visual Studio/MSBuild or set NuGetBuildTasksPackTarget=NO-SDK-PACK via environment variables or /p: on the command line." />
+  </Target>
+</Project>

@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.5</TargetFramework>
+    <TargetFrameworks>netstandard1.5;net461</TargetFrameworks>
+
     <PackageId>NStack.Core</PackageId>
-    <PackageVersion>0.2</PackageVersion>
+    <PackageVersion>0.2.0</PackageVersion>
     <Authors>Miguel de Icaza</Authors>
     <PackageLicenseUrl>https://github.com/migueldeicaza/NStack/blob/master/LICENSE.md</PackageLicenseUrl>
     <Owners>Miguel de Icaza</Owners>
@@ -13,24 +11,49 @@
     <Summary>NStack.Core brings a set of updated APIs to .NET including a UTF8-string aware string.</Summary>
     <PackageTags>unicode, c#</PackageTags>
     <Title>NStack.Core</Title>
-    <Description>NStack.Core brings a set of updated APIs to .NET.  
+    <Description>
+      NStack.Core brings a set of updated APIs to .NET.
 
-It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
+      It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing
+    </Description>
+
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ReleaseVersion>0.3</ReleaseVersion>
   </PropertyGroup>
-    
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Debug\netstandard1.6\NStack.xml</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <!-- When everything is documented, this can be moved to the global property group as-is -->
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NStack.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System.ValueTuple">
-      <HintPath>..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.306" />
+    <PackageReference Include="System.ValueTuple" Version="4.3.1" />
   </ItemGroup>
-  <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets')" />
+
+  <ItemGroup>
+    <!-- Explicitly list dependencies for other TFMs to make packages.config users happy -->
+    <PackageFile Include="NETStandard.Library" Version="1.6.1" Kind="Dependency" TargetFramework="netstandard1.0" />
+    <PackageFile Include="System.ValueTuple" Version="4.3.1" Kind="Dependency" TargetFramework="netstandard1.0" />
+    <!-- Dummy ones to avoid showing the large nuget package dependencies installs -->
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="net" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="win" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="wp" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="wpa" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="MonoAndroid10" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="Xamarin.iOS10" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="Xamarin.Mac20" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="portable-net45+win+wpa81+wp80" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="uap" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="dotnet" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="xamarintvos" />
+    <PackageFile Include="_._" Version="1.0.0" Kind="Dependency" TargetFramework="xamarinwatchos" />
+  </ItemGroup>
+
+  <!-- Our project is cross-targeting just so the tests can run against net461. But for 
+		 Pack, we want to pack only netstandard.
+	-->
+  <Target Name="Pack">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Pack" Properties="TargetFramework=netstandard1.5" />
+  </Target>
 </Project>

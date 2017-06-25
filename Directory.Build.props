@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Temporary workaround for https://github.com/NuGet/Home/issues/5300 -->
+  <Import Project="$(VsInstallRoot)\Common7\IDE\Extensions\5y0bse3d.tbd\NuGet.targets"
+            Condition="'$(IsRestoreTargetsFileLoaded)' != 'true' and Exists('$(VsInstallRoot)\Common7\IDE\Extensions\5y0bse3d.tbd\NuGet.targets')" />
+</Project>
