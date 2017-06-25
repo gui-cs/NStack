@@ -1,6 +1,6 @@
 <Namespace Name="NStack">
   <Docs>
-    <summary>APIs for .NET using new C# language capabilities and modern idioms.</summary>
+    <summary>APIs for .NET using new C# language capabilities and modern idioms.   The most important entry point is the "ustring" class which provides a modern, UTF8-backed string implementation.</summary>
     <remarks></remarks>
   </Docs>
 </Namespace>

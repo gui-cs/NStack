@@ -111,6 +111,22 @@ namespace NStack {
 			bool copy;
 			Action<IntPtr> release;
 
+			class IntPtrSubUString : IntPtrUString {
+				IntPtrUString retain;
+
+				public IntPtrSubUString (IntPtrUString retain, IntPtr block, int size) : base (block, size, copy: false, releaseFunc: null)
+				{
+					this.retain = retain;
+				}
+
+				protected override void Dispose (bool disposing)
+				{
+					base.Dispose (disposing);
+					retain = null;
+				}
+
+			}
+
 			unsafe static int MeasureString (IntPtr block)
 			{
 				byte* p = (byte*)block;
@@ -185,7 +201,7 @@ namespace NStack {
 			{
 				unsafe
 				{
-					return new IntPtrUString ((IntPtr)((byte*)block + start), size: end - start, copy: false, releaseFunc: null);
+					return new IntPtrSubUString (this, (IntPtr)((byte*)block + start), size: end - start);
 				}
 			}
 
