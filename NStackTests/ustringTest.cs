@@ -673,7 +673,6 @@ namespace NStackTests {
 				var ustr = ustring.Make (str);
 				Assert.AreEqual (expected, ustr.IndexOf (rune));
 			}
-#if false
 			(ustring, uint, int) [] testSecond = {
 				(ustring.Make (0xef, 0xbf, 0xbd), 0xfffd, 0),
 				(ustring.Make (0xff), 0xfffd, 0),
@@ -683,10 +682,11 @@ namespace NStackTests {
 				(ustring.Make (0xe2, 0x98, 0xbb, 0x78, 0xe2, 0x98, 0xef, 0xbf, 0xbd), 0xfffd, 4),
 				(ustring.Make (0xe2, 0x98, 0xbb, 0x78, 0xe2, 0x98, 0x78), 0xfffd, 4)
 			};
+
+			var ret = Utf8.Valid (new byte [] { 0xef, 0xbf, 0xbd });
 			foreach ((ustring ustr, uint rune, int expected) in testSecond) {
 				Assert.AreEqual (expected, ustr.IndexOf (rune));
 			}
-#endif
 		}
 	}
 }
