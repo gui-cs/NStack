@@ -2,7 +2,7 @@
 namespace NStack {
 	public partial class Unicode {
 		[Flags]
-		enum CharClass : byte {
+		internal enum CharClass : byte {
 			pC = 1 << 0, // a control character.
 			pP = 1 << 1, // a punctuation character.
 			pN = 1 << 2, // a numeral.
@@ -183,5 +183,7 @@ namespace NStack {
 				return (properties [rune] & CharClass.pS) != 0;
 			return Category.S.IsExcludingLatin (rune);
 		}
+
+
 	}
 }
