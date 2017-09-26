@@ -1,9 +1,5 @@
 ﻿using System;
 
-// TODO: 
-//   Conversion operators
-//   Arithmetic comparision operators?
-
 namespace System {
 	/// <summary>
 	/// A Rune represents a Unicode CodePoint storing the contents in a 32-bit value
