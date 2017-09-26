@@ -729,6 +729,41 @@ namespace System {
 		/// <returns>Rune representing the C# character</returns>
 		/// <param name="value">32-bit unsigned integer.</param>
 		public static implicit operator Rune (uint value) => new Rune (value);
+
+		/// <summary>
+		/// Serves as a hash function for a <see cref="T:System.Rune"/> object.
+		/// </summary>
+		/// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a hash table.</returns>
+		public override int GetHashCode ()
+		{
+			return (int)value;
+		}
+
+		/// <summary>
+		/// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Rune"/>.
+		/// </summary>
+		/// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:System.Rune"/>.</returns>
+		public override string ToString ()
+		{
+			var buff = new byte [4];
+			EncodeRune (this, buff, 0);
+			return System.Text.Encoding.UTF8.GetString (buff);
+		}
+
+		/// <summary>
+		/// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:System.Rune"/>.
+		/// </summary>
+		/// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:System.Rune"/>.</param>
+		/// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="T:System.Rune"/>; otherwise, <c>false</c>.</returns>
+		public override bool Equals (Object obj)
+		{
+			// Check for null values and compare run-time types.
+			if (obj == null)
+				return false;
+
+			Rune p = (Rune)obj;
+			return p.value == value;
+		}
 	}
 
 }
