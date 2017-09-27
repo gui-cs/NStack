@@ -1265,7 +1265,7 @@ namespace NStack {
 		{
 			if (0 <= rune && rune < Utf8.RuneSelf)
 				return IndexByte ((byte)rune, offset);
-			if (rune == Utf8.RuneError)
+			if (rune == Utf8.RuneError) 
 				return Utf8.InvalidIndex (this);
 			if (!Utf8.ValidRune (rune))
 				return -1;
