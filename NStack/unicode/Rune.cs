@@ -295,18 +295,19 @@ namespace System {
 		/// number of bytes required to encode the rune.
 		/// </summary>
 		/// <returns>The length, or -1 if the rune is not a valid value to encode in UTF-8.</returns>
-		/// <param name="rune">Rune to probe.</param>
-		public static int RuneLen (uint rune)
+		/// <param name="rvalue">Rune to probe.</param>
+		public static int RuneLen (Rune rune)
 		{
-			if (rune <= rune1Max)
+			var rvalue = rune.value;
+			if (rvalue <= rune1Max)
 				return 1;
-			if (rune <= rune2Max)
+			if (rvalue <= rune2Max)
 				return 2;
-			if (surrogateMin <= rune && rune <= surrogateMax)
+			if (surrogateMin <= rvalue && rvalue <= surrogateMax)
 				return -1;
-			if (rune <= rune3Max)
+			if (rvalue <= rune3Max)
 				return 3;
-			if (rune <= MaxRune.value)
+			if (rvalue <= MaxRune.value)
 				return 4;
 			return -1;
 		}
@@ -569,7 +570,7 @@ namespace System {
 		/// <remarks>
 		/// Reports whether the rune is a mark character (category P).
 		/// </remarks>
-		public static bool IsPunct (Rune rune) => NStack.Unicode.IsPunct (rune.value);
+		public static bool IsPunctuation (Rune rune) => NStack.Unicode.IsPunct (rune.value);
 
 		/// <summary>
 		/// IsSpace reports whether the rune is a space character as defined by Unicode's White Space property.
@@ -660,21 +661,21 @@ namespace System {
 		/// </summary>
 		/// <returns>The upper cased rune if it can be.</returns>
 		/// <param name="rune">Rune.</param>
-		public static uint ToUpper (Rune rune) => NStack.Unicode.ToUpper (rune.value);
+		public static Rune ToUpper (Rune rune) => NStack.Unicode.ToUpper (rune.value);
 
 		/// <summary>
 		/// ToLower maps the rune to lower case.
 		/// </summary>
 		/// <returns>The lower cased rune if it can be.</returns>
 		/// <param name="rune">Rune.</param>
-		public static uint ToLower (Rune rune) => NStack.Unicode.ToLower (rune.value);
+		public static Rune ToLower (Rune rune) => NStack.Unicode.ToLower (rune.value);
 
 		/// <summary>
 		/// ToLower maps the rune to title case.
 		/// </summary>
 		/// <returns>The lower cased rune if it can be.</returns>
 		/// <param name="rune">Rune.</param>
-		public static uint ToTitle (Rune rune) => NStack.Unicode.ToTitle (rune.value);
+		public static Rune ToTitle (Rune rune) => NStack.Unicode.ToTitle (rune.value);
 
 		/// <summary>
 		/// SimpleFold iterates over Unicode code points equivalent under
@@ -703,7 +704,7 @@ namespace System {
 		///      SimpleFold(-2) = -2
 		/// </code>
 		/// </remarks>
-		public static uint SimpleFold (Rune rune) => NStack.Unicode.SimpleFold (rune.value);
+		public static Rune SimpleFold (Rune rune) => NStack.Unicode.SimpleFold (rune.value);
 
 		/// <summary>
 		/// Implicit operator conversion from a rune to an unsigned integer
