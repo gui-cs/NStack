@@ -98,7 +98,7 @@ namespace NStack {
 	///   for the indexer for more details.
 	/// </para>
 	/// </remarks>
-	public abstract class ustring : IComparable, IConvertible, IEnumerable<uint>, IEquatable<ustring>
+	public abstract class ustring : IComparable<ustring>, IComparable, IConvertible, IEnumerable<uint>, IEquatable<ustring>
 #if NETSTANDARD2_0
 	, ICloneable
 #endif
@@ -1396,17 +1396,14 @@ namespace NStack {
 		}
 
 		/// <summary>
-		/// Implements the IComparable.CompareTo method
+		/// Implements the IComparable<typeparamref name="T"/>.CompareTo method
 		/// </summary>
 		/// <returns>Less than zero if this instance is less than value, zero if they are the same, and higher than zero if the instance is greater.</returns>
-		/// <param name="value">Value.</param>
-		public int CompareTo (object value)
+		/// <param name="other">Value.</param>
+		public int CompareTo (ustring other)
 		{
-			if (value == null)
+			if ((object)other == null)
 				return 1;
-			var other = value as ustring;
-			if (other == null)
-				throw new ArgumentException ("Argument must be a ustring");
 			var blen = Length;
 			var olen = other.Length;
 			if (blen == 0) {
@@ -1431,6 +1428,16 @@ namespace NStack {
 			if (olen > blen)
 				return -1;
 			return 0;
+		}
+
+		int IComparable.CompareTo (object value)
+		{
+			if (value == null)
+				return 1;
+			var other = value as ustring;
+			if ((object)other == null)
+				throw new ArgumentException ("Argument must be a ustring");
+			return CompareTo (other);
 		}
 
 		// Generic split: splits after each instance of sep,
