@@ -543,6 +543,24 @@ namespace System {
 		public static bool IsLetter (Rune rune) => NStack.Unicode.IsLetter (rune.value);
 
 		/// <summary>
+		/// IsLetterOrDigit reports whether the rune is a letter (category L) or a digit.
+		/// </summary>
+		/// <returns><c>true</c>, if the rune is a letter or digit, <c>false</c> otherwise.</returns>
+		/// <param name="rune">The rune to test for.</param>
+		/// <remarks>
+		/// </remarks>
+		public static bool IsLetteOrDigit (Rune rune) => NStack.Unicode.IsLetter (rune.value) || NStack.Unicode.IsDigit (rune.value);
+
+		/// <summary>
+		/// IsLetterOrDigit reports whether the rune is a letter (category L) or a number (caetegory N).
+		/// </summary>
+		/// <returns><c>true</c>, if the rune is a letter or number, <c>false</c> otherwise.</returns>
+		/// <param name="rune">The rune to test for.</param>
+		/// <remarks>
+		/// </remarks>
+		public static bool IsLetteOrNumber (Rune rune) => NStack.Unicode.IsLetter (rune.value) || NStack.Unicode.IsNumber (rune.value);
+
+		/// <summary>
 		/// IsMark reports whether the rune is a letter (category M).
 		/// </summary>
 		/// <returns><c>true</c>, if the rune is a mark, <c>false</c> otherwise.</returns>
@@ -582,7 +600,7 @@ namespace System {
 		/// U+0085 (NEL), U+00A0 (NBSP).
 		/// Other definitions of spacing characters are set by category  Z and property Pattern_White_Space.
 		/// </remarks>
-		public static bool IsSpace (Rune rune) => NStack.Unicode.IsSpace (rune.value);
+		public static bool IsWhiteSpace (Rune rune) => NStack.Unicode.IsSpace (rune.value);
 
 		/// <summary>
 		/// IsSymbol reports whether the rune is a symbolic character.

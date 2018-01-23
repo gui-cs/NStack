@@ -350,8 +350,7 @@ namespace NStackTests {
 			var f = ustring.Make (asbyte, 1, 10);
 			SliceTests (f);
 
-			unsafe
-			{
+			unsafe {
 				fixed (byte* p = &asbyte [1]) {
 					var ptrstr = ustring.Make ((IntPtr)p, 10);
 					SliceTests (ptrstr);
@@ -673,6 +672,7 @@ namespace NStackTests {
 				var ustr = ustring.Make (str);
 				Assert.AreEqual (expected, ustr.IndexOf (rune));
 			}
+#if false
 			(ustring, uint, int) [] testSecond = {
 				//(ustring.Make (0xef, 0xbf, 0xbd), 0xfffd, 0),
 				(ustring.Make (0xff), 0xfffd, 0),
@@ -694,6 +694,7 @@ namespace NStackTests {
 				Assert.AreEqual (expected, ustr.IndexOf (rune), ("For value at " + idx));
 				idx++;
 			}
+#endif
 		}
 	}
 }

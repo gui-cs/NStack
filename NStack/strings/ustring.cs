@@ -425,9 +425,9 @@ namespace NStack {
 		/// Initializes a new instance using the provided rune as the sole character in the string.
 		/// </summary>
 		/// <param name="rune">Rune (short name for Unicode code point).</param>
-		public static ustring Make (uint rune)
+		public static ustring Make (Rune rune)
 		{
-			return new ByteBufferUString (rune);
+			return new ByteBufferUString ((uint) rune);
 		}
 
 		/// <summary>
@@ -878,7 +878,7 @@ namespace NStack {
 		public ustring this [int start, int end] {
 			get {
 				int size = Length;
-				if (end <= 0) {
+				if (end < 0) {
 					if (end == 0)
 						end = size;
 					else

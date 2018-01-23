@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>NStack.Core</id>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
     <title>NStack.Core</title>
     <authors>Miguel de Icaza</authors>
     <owners>Miguel de Icaza</owners>
@@ -13,7 +13,7 @@
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</description>
     <summary>NStack.Core brings a set of updated APIs to .NET including a UTF8-string aware string.</summary>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Introduces System.Rune</releaseNotes>
     <copyright></copyright>
     <language></language>
     <tags>unicode, c#</tags>
