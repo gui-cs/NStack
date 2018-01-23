@@ -549,7 +549,7 @@ namespace System {
 		/// <param name="rune">The rune to test for.</param>
 		/// <remarks>
 		/// </remarks>
-		public static bool IsLetteOrDigit (Rune rune) => NStack.Unicode.IsLetter (rune.value) || NStack.Unicode.IsDigit (rune.value);
+		public static bool IsLetterOrDigit (Rune rune) => NStack.Unicode.IsLetter (rune.value) || NStack.Unicode.IsDigit (rune.value);
 
 		/// <summary>
 		/// IsLetterOrDigit reports whether the rune is a letter (category L) or a number (caetegory N).
@@ -558,7 +558,7 @@ namespace System {
 		/// <param name="rune">The rune to test for.</param>
 		/// <remarks>
 		/// </remarks>
-		public static bool IsLetteOrNumber (Rune rune) => NStack.Unicode.IsLetter (rune.value) || NStack.Unicode.IsNumber (rune.value);
+		public static bool IsLetterOrNumber (Rune rune) => NStack.Unicode.IsLetter (rune.value) || NStack.Unicode.IsNumber (rune.value);
 
 		/// <summary>
 		/// IsMark reports whether the rune is a letter (category M).
