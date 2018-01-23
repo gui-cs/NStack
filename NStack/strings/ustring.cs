@@ -896,6 +896,20 @@ namespace NStack {
 		}
 
 		/// <summary>
+		/// Returns the substring starting at the given position.
+		/// </summary>
+		/// <returns>The substring starting at the specified offset.</returns>
+		/// <param name="start">Starting point, the value is .</param>
+		public ustring Substring (int start)
+		{
+			int len = Length;
+			if (start < 0)
+				start = 0;
+			return GetRange (start, len);
+		}
+
+
+		/// <summary>
 		/// Gets a value indicating whether this <see cref="T:NStack.ustring"/> is empty.
 		/// </summary>
 		/// <value><c>true</c> if is empty (Length is zero); otherwise, <c>false</c>.</value>
