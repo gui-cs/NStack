@@ -1548,6 +1548,142 @@ namespace NStack {
 			return GenSplit (separator, 0, n);
 		}
 
+
+		public ustring [] Split (Rune [] separator, int count, StringSplitOptions options)
+		{
+			if (count < 0)
+				throw new ArgumentOutOfRangeException (nameof (count));
+			bool omit = options == StringSplitOptions.RemoveEmptyEntries;
+			if ((count == 0) || (omit && Length == 0))
+				return Array.Empty<ustring> ();
+			var sepList = new int [Length];
+			int numReplaces = MakeSeparatorList (separator, ref sepList);
+
+            		// Handle the special case of no replaces and special count.
+            		if (0 == numReplaces || count == 1) 
+				return new ustring [1] { this };
+                	 
+            		if (omit) 
+                		return InternalSplitOmitEmptyEntries(sepList, null, numReplaces, count);
+			else
+                		return InternalSplitKeepEmptyEntries(sepList, null, numReplaces, count);
+		}
+
+        	// This function returns number of the places within baseString where 
+        	// instances of characters in Separator occur.         
+        	// separator, a string containing all of the split characters.
+        	// sepList, an array of ints for split char indicies.
+        	//--------------------------------------------------------------------    
+		int MakeSeparatorList (Rune [] separator, ref int[] sepList) 
+		{
+            		int foundCount = 0;
+
+			int top = Length;
+			if (separator == null || separator.Length == 0) {
+				// If they passed null or an empty string, look for whitespace.
+
+				for (int offset = 0; offset < top && foundCount < sepList.Length; offset++) {
+					(var rune, var size) = Utf8.DecodeRune (this, offset);
+					if (Rune.IsWhiteSpace (rune))
+						sepList [foundCount++] = offset;
+					offset += size;
+				}
+			} else {
+				int sepListCount = sepList.Length;
+				int sepCount = separator.Length;
+
+				// If they passed in a string of chars, actually look for those chars.
+				for (int offset = 0; offset < top && foundCount < sepListCount; offset++) {
+					(var rune, var size) = Utf8.DecodeRune (this, offset);
+
+					for (int j = 0; j < sepCount; j++) {
+						if (rune == separator [j]){
+							sepList [foundCount++] = offset;
+							break;
+						}
+					}
+					offset += size;
+				}
+			}
+			return foundCount;
+		}
+
+		// This function will not keep the Empty String 
+		ustring[] InternalSplitOmitEmptyEntries (int[] sepList, int[] lengthList, int numReplaces, int count) 
+		{
+			// Allocate array to hold items. This array may not be 
+			// filled completely in this function, we will create a 
+			// new array and copy string references to that new array.
+
+			int maxItems = (numReplaces < count) ? (numReplaces + 1) : count;
+			var splitStrings = new ustring [maxItems];
+
+			int currIndex = 0;
+			int arrIndex = 0;
+
+			for (int i = 0; i < numReplaces && currIndex < Length; i++) {
+				if (sepList [i] - currIndex > 0) {
+					splitStrings [arrIndex++] = this [currIndex, sepList [i]];
+				}
+				currIndex = sepList [i] + ((lengthList == null) ? 1 : lengthList [i]);
+				if (arrIndex == count - 1) {
+					// If all the remaining entries at the end are empty, skip them
+					while (i < numReplaces - 1 && currIndex == sepList [++i]) {
+						currIndex += ((lengthList == null) ? 1 : lengthList [i]);
+					}
+					break;
+				}
+			}
+
+			//Handle the last string at the end of the array if there is one.
+			if (currIndex < Length) 
+				splitStrings [arrIndex++] = Substring (currIndex);
+
+			var stringArray = splitStrings;
+			if (arrIndex != maxItems) {
+				stringArray = new ustring [arrIndex];
+				for (int j = 0; j < arrIndex; j++) 
+					stringArray [j] = splitStrings [j];
+				
+			}
+			return stringArray;
+		}
+
+
+        	// Note a few special case in this function:
+		//     If there is no separator in the string, a string array which only contains 
+		//     the original string will be returned regardless of the count. 
+		//
+		ustring [] InternalSplitKeepEmptyEntries (int [] sepList, int[] lengthList, int numReplaces, int count)
+		{
+			int currIndex = 0;
+			int arrIndex = 0;
+
+			count--;
+			int numActualReplaces = (numReplaces < count) ? numReplaces : count;
+
+			// Allocate space for the new array.
+			// +1 for the string from the end of the last replace to the end of the String.
+			var splitStrings = new ustring [numActualReplaces + 1];
+
+			for (int i = 0; i < numActualReplaces && currIndex < Length; i++) {
+				splitStrings [arrIndex++] = this [currIndex, sepList [i]];
+				currIndex = sepList [i] + ((lengthList == null) ? 1 : lengthList [i]);
+			}
+
+			//Handle the last string at the end of the array if there is one.
+			if (currIndex < Length && numActualReplaces >= 0) {
+				splitStrings [arrIndex] = Substring (currIndex);
+			} else if (arrIndex == numActualReplaces) {
+				//We had a separator character at the end of a string.  Rather than just allowing
+				//a null character, we'll replace the last element in the array with an empty string.
+				splitStrings [arrIndex] = ustring.Empty;
+
+			}
+
+			return splitStrings;
+		}
+
 		/// <summary>
 		/// Determines whether the beginning of this string instance matches the specified string.
 		/// </summary>
