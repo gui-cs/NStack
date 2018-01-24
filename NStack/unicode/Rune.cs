@@ -779,6 +779,7 @@ namespace System {
 			Rune p = (Rune)obj;
 			return p.value == value;
 		}
+
 	}
 
 }
