@@ -115,10 +115,10 @@ namespace NStackTests {
 			Assert.IsTrue (ast [1, 5] == bp [1, 5]);
 			Assert.IsTrue (ap [1, 5] == bst [1, 5]);
 			Assert.IsTrue (ast [1, 5] == bp [1, 5]);
-			Assert.IsTrue (ast [8, 0] != cp [8, 0]);
+			Assert.IsTrue (ast [8, null] != cp [8, null]);
 			Assert.IsTrue (cp [1, 5] == cpalias [1, 5]);
 			Assert.IsTrue (cp [1, 5] == cst [1, 5]);
-			Assert.IsTrue (cp [8, 0] != bst [8, 0]);
+			Assert.IsTrue (cp [8, null] != bst [8, null]);
 
 		}
 
@@ -324,15 +324,18 @@ namespace NStackTests {
 		{
 			Assert.AreEqual ("1234", a [0, 4].ToString ());
 			Assert.AreEqual ("90", a [8, 10].ToString ());
-			Assert.AreEqual ("90", a [8, 0].ToString ());
-			Assert.AreEqual ("90", a [-2, 0].ToString ());
+			Assert.AreEqual ("90", a [8, null].ToString ());
+			Assert.AreEqual ("90", a [-2, null].ToString ());
 			Assert.AreEqual ("9", a [8, 9].ToString ());
 			Assert.AreEqual ("789", a [-4, -1].ToString ());
-			Assert.AreEqual ("7890", a [-4, 0].ToString ());
-			Assert.AreEqual ("7890", a [-4, 0].ToString ());
+			Assert.AreEqual ("7890", a [-4, null].ToString ());
+			Assert.AreEqual ("7890", a [-4, null].ToString ());
 			Assert.AreEqual ("234567", a [-9, -3].ToString ());
 			Assert.AreEqual ("", a [100, 200].ToString ());
+			Assert.AreEqual ("", a [-100, null].ToString ());
+
 			Assert.AreEqual ("", a [-100, 0].ToString ());
+			Assert.AreEqual ("", a [0, 0].ToString ());
 		}
 
 		[Test]
@@ -396,6 +399,7 @@ namespace NStackTests {
 		{
 			var gecos = ustring.Make ("miguel:*:100:200:Miguel de Icaza:/home/miguel:/bin/bash");
 			var fields = gecos.Split (":");
+
 			Assert.AreEqual (7, fields.Length);
 			Assert.IsTrue (ustring.Make ("miguel") == fields [0]);
 			Assert.IsTrue (ustring.Make ("*") == fields [1]);

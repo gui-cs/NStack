@@ -203,7 +203,7 @@ namespace NStackTests
 				j++;
 				(var r1, var size1) = Utf8.DecodeRune (Subset (s.ToByteArray (), i, -1));
 				Assert.AreEqual (rune, r1, "DecodeRune 0x{0:x} = want 0x{1:x} with {2}", r1, rune, s);
-				(var r2, var size2) = Utf8.DecodeRune (s [i, 0]);
+				(var r2, var size2) = Utf8.DecodeRune (s [i, null]);
 				Assert.AreEqual (size1, size2);
 				si += size1;
 			}

@@ -850,19 +850,73 @@ namespace NStack {
 		/// Returns a slice of the ustring delimited by the [start, end) range.  If the range is invalid, the return is the Empty string.
 		/// </summary>
 		/// <param name="start">Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
-		/// <param name="end">End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.   If the value is zero, the end is computed as the last index of the string.</param>
+		/// <param name="iend">End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.</param>
 		/// <remarks>
 		/// <para>
 		/// Some examples given the string "1234567890":
 		/// </para>
 		/// <para>The range [0, 4] produces "1234"</para>
 		/// <para>The range [8, 10] produces "90"</para>
-		/// <para>The range [8, 0] produces "90"</para>
-		/// <para>The range [-2, 0] produces "90"</para>
+		/// <para>The range [8, null] produces "90"</para>
+		/// <para>The range [-2, null] produces "90"</para>
 		/// <para>The range [8, 9] produces "9"</para>
 		/// <para>The range [-4, -1] produces "789"</para>
-		/// <para>The range [-4, 0] produces "7890"</para>
-		/// <para>The range [-4, 0] produces "7890"</para>
+		/// <para>The range [-4, null] produces "7890"</para>
+		/// <para>The range [-4, null] produces "7890"</para>
+		/// <para>The range [-9, -3] produces "234567"</para>
+		/// <para>The range [0, 0] produces the empty string</para>
+		/// <para>
+		///   This indexer does not raise exceptions for invalid indexes, instead the value 
+		///   returned is the ustring.Empty value:
+		/// </para>
+		/// <para>
+		///   The range [100, 200] produces the ustring.Empty
+		/// </para>
+		/// <para>
+		///   The range [-100, 0] produces ustring.Empty
+		/// </para>
+		/// <para>
+		///   To simulate the optional end boundary, use the indexer that takes the
+		///   object parameter and pass a null to it.   For example, to fetch all
+		///   elements from the position five until the end, use [5, null]
+		/// </para>
+		/// </remarks>
+		public ustring this [int start, int end] {
+			get {
+				int size = Length;
+				if (end < 0)
+					end = size + end;
+				
+				if (start < 0)
+					start = size + start;
+
+				if (start < 0 || start >= size || start >= end)
+					return Empty;
+				if (end < 0 || end > size)
+					return Empty;
+				return GetRange (start, end);
+			}
+		}
+
+		/// <summary>
+		/// Returns a slice of the ustring delimited by the [start, last-element-of-the-string range.  If the range is invalid, the return is the Empty string.
+		/// </summary>
+		/// <param name="start">Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
+		/// <param name="end">This value is expected to be null to indicate that it should be the last element of the string.</param>
+		/// <remarks>
+		/// <para>
+		/// This is a companion indexer to the indexer that takes two integers, it only exists
+		/// to provide the optional end argument to mean "until the end", and to make the code
+		/// that uses indexer look familiar, without having to resort to another API.
+		/// 
+		/// Some examples given the string "1234567890":
+		/// </para>
+		/// <para>The range [8, null] produces "90"</para>
+		/// <para>The range [-2, null] produces "90"</para>
+		/// <para>The range [8, 9] produces "9"</para>
+		/// <para>The range [-4, -1] produces "789"</para>
+		/// <para>The range [-4, null] produces "7890"</para>
+		/// <para>The range [-4, null] produces "7890"</para>
 		/// <para>The range [-9, -3] produces "234567"</para>
 		/// <para>
 		///   This indexer does not raise exceptions for invalid indexes, instead the value 
@@ -874,24 +928,24 @@ namespace NStack {
 		/// <para>
 		///   The range [-100, 0] produces ustring.Empty
 		/// </para>
+		/// <para>
+		///   To simulate the optional end boundary, use the indexer that takes the
+		///   object parameter and pass a null to it.   For example, to fetch all
+		///   elements from the position five until the end, use [5, null]
+		/// </para>
 		/// </remarks>
-		public ustring this [int start, int end] {
+		public ustring this [int start, object end] {
 			get {
 				int size = Length;
-				if (end < 0) {
-					if (end == 0)
-						end = size;
-					else
-						end = size + end;
-				}
+				int iend = size;
 				if (start < 0)
 					start = size + start;
 
-				if (start < 0 || start >= size || start >= end)
+				if (start < 0 || start >= size || start >= iend)
 					return Empty;
-				if (end < 0 || end > size)
+				if (iend < 0 || iend > size)
 					return Empty;
-				return GetRange (start, end);
+				return GetRange (start, iend);
 			}
 		}
 
@@ -1476,7 +1530,7 @@ namespace NStack {
 				offset = m + sepLen;
 				i++;
 			}
-			result [i] = this [offset, 0];
+			result [i] = this [offset, null];
 			return result;
 		}
 
@@ -1857,7 +1911,7 @@ namespace NStack {
 			var i = FlexIndexOf (predicate, false);
 			if (i == -1)
 				return this;
-			return this [i, 0];
+			return this [i, null];
 		}
 
 		RunePredicate MakeCutSet (ustring cutset)
@@ -1913,7 +1967,7 @@ namespace NStack {
 		{
 			var i = FlexLastIndexOf (predicate, false);
 			if (i >= 0 && this [i] >= Utf8.RuneSelf) {
-				(var rune, var wid) = Utf8.DecodeRune (this [i, 0]);
+				(var rune, var wid) = Utf8.DecodeRune (this [i, null]);
 				i += wid;
 			} else
 				i++;
