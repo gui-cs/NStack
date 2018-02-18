@@ -97,6 +97,7 @@ namespace NStack {
 	///   is exclusive.   Negative values can be used to index the string from the end.  See the documentation
 	///   for the indexer for more details.
 	/// </para>
+	/// 
 	/// </remarks>
 	public abstract class ustring : IComparable<ustring>, IComparable, IConvertible, IEnumerable<uint>, IEquatable<ustring>
 #if NETSTANDARD2_0
@@ -1700,7 +1701,19 @@ namespace NStack {
 		/// <returns>Enumerable object that can be used to iterate and get the index of the values at the same time.</returns>
 		/// <remarks>
 		/// This is useful to iterate over the string and obtain both the index of the rune and the rune
-		/// in the same call.  
+		/// in the same call.  This version does allocate an object for the enumerator, if you want to avoid
+		/// the object allocation, you can use the following code to iterate over the contents of the string
+		/// <example>
+		/// <code lang="c#">
+		///   ustring mystr = "hello";
+		///   int byteLen = mystr.Length;
+		///   for (int i = 0; i &lt; byteLen;) {
+		///       (var rune, var size) = Utf8.DecodeRune(mystr, i, i - byteLen);
+		///       Console.WriteLine ("Rune is: " + rune);
+		///       i += size;
+		///   }
+		/// </code>
+		/// </example>
 		/// </remarks>
 		public IEnumerable<(int index, uint rune)> Range ()
 		{
