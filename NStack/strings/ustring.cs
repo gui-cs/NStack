@@ -450,6 +450,27 @@ namespace NStack {
 		}
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an array of Runes.
+		/// </summary>
+		/// <returns>The make.</returns>
+		/// <param name="runes">Runes.</param>
+		public static ustring Make (IList<Rune> runes)
+		{
+			if (runes == null)
+				throw new ArgumentNullException (nameof (runes));
+			int size = 0;
+			foreach (var rune in runes) {
+				size += Utf8.RuneLen (rune);
+			}
+			var encoded = new byte [size];
+			int offset = 0;
+			foreach (var rune in runes) {
+				offset += Utf8.EncodeRune (rune, encoded, offset);
+			}
+			return Make (encoded);
+		}
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a block of memory and a size.
 		/// </summary>
 		/// <param name="block">Pointer to a block of memory.</param>
