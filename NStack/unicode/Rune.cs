@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace System {
 	/// <summary>
@@ -7,6 +8,7 @@ namespace System {
 	/// <remarks>
 	/// 
 	/// </remarks>
+	[StructLayout(LayoutKind.Sequential)]
 	public partial struct Rune {
 		// Stores the rune
 		uint value;

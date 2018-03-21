@@ -2094,6 +2094,14 @@ namespace NStack {
 			return new ByteBufferUString (result);
 		}
 
+		public static bool IsNullOrEmpty (ustring value)
+		{
+			if (value == null)
+				return true;
+			if (value.Length == 0)
+				return true;
+			return false;
+		}
 
 		TypeCode IConvertible.GetTypeCode ()
 		{
