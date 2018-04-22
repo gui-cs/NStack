@@ -3,7 +3,7 @@
   <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard1.5</TargetFramework>
     <PackageId>NStack.Core</PackageId>
     <PackageVersion>0.10</PackageVersion>
     <Authors>Miguel de Icaza</Authors>
@@ -44,9 +44,6 @@ Added ustring.ColumnWidth to return number of columns that a ustring takes in a 
       <HintPath>..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
       <Private>False</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Memory" Version="4.5.0-preview1-26216-02" />
   </ItemGroup>
   <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets')" />
 </Project>
