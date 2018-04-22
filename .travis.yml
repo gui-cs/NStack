@@ -5,5 +5,5 @@ script:
   - cd $TRAVIS_BUILD_DIR
   - msbuild /p:Configuration=Release NStack.sln
   - nunit-console4 ./NStackTests/bin/Release/NStackTests.dll
-mono: "5.2.0"
+mono: "5.8.0"
 os: "osx"
