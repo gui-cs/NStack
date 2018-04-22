@@ -5,7 +5,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <PackageId>NStack.Core</PackageId>
-    <PackageVersion>0.8</PackageVersion>
+    <PackageVersion>0.9</PackageVersion>
     <Authors>Miguel de Icaza</Authors>
     <PackageLicenseUrl>https://github.com/migueldeicaza/NStack/blob/master/LICENSE.md</PackageLicenseUrl>
     <Owners>Miguel de Icaza</Owners>
@@ -17,7 +17,11 @@
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
     <ReleaseVersion>0.3</ReleaseVersion>
-    <PackageReleaseNotes>* Renamed some methods to match the equivalent methods in Char.
+    <PackageReleaseNotes>0.9:
+Added ustring.ColumnWidth to return number of columns that a ustring takes in a console.
+
+0.8:
+* Renamed some methods to match the equivalent methods in Char.
 * Introduced Substring (int start)
 * Introduced difference between this [int start, int end] and this [int start, object end] the latter used to mean "until the end", replacing '0' as the previous value for "until the end".
 * Introduced new method in Rune to measure the width in columns for console applications.</PackageReleaseNotes>

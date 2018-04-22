@@ -998,6 +998,22 @@ namespace NStack {
 		public int RuneCount => Utf8.RuneCount (this);
 
 		/// <summary>
+		/// Returns the number of columns used by the unicode string on console applications.  This is done by calling the Rune.ColumnWidth on each rune.
+		/// </summary>
+		public int ConsoleWidth {
+			get {
+				int total = 0;
+				int blen = Length;
+				for (int i = 0; i < blen;) {
+					(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
+					i += size;
+					total += Rune.ColumnWidth (rune);
+				}
+				return total;
+			}
+		}
+
+		/// <summary>
 		/// Copies the specified number of bytes from the the underlying ustring representation to the target array at the specified offset.
 		/// </summary>
 		/// <param name="fromOffset">Offset in the underlying ustring buffer to copy from.</param>
