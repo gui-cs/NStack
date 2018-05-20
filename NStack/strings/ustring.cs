@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Linq;
 
 namespace NStack {
 
@@ -468,6 +469,16 @@ namespace NStack {
 				offset += Utf8.EncodeRune (rune, encoded, offset);
 			}
 			return Make (encoded);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an IEnumerable of runes
+		/// </summary>
+		/// <returns>The make.</returns>
+		/// <param name="runes">Runes.</param>
+		public static ustring Make (IEnumerable<Rune> runes)
+		{
+			return Make (runes.ToList ());
 		}
 
 		/// <summary>
@@ -1108,6 +1119,21 @@ namespace NStack {
 				offset += size;
 			}
 			return result;
+		}
+
+		/// <summary>
+		/// Converts a ustring into a List of runes.
+		/// </summary>
+		/// <returns>A list containing the runes for the string, it is not bound by any limits.</returns>
+		public List<Rune> ToRuneList ()
+		{
+			var result = new List<Rune> ();
+			for (int offset = 0; offset < Length; ) {
+				(var rune, var size) = Utf8.DecodeRune (this, offset);
+				result.Add (rune);
+				offset += size;
+			}
+			return result;			
 		}
 
 		// primeRK is the prime base used in Rabin-Karp algorithm.
@@ -1761,6 +1787,16 @@ namespace NStack {
 				i += size;
 			}
 			yield break;
+		}
+
+		/// <summary>
+		/// Returns the Rune encoded at the specified byte <paramref name="index"/>.   
+		/// </summary>
+		/// <returns>The <see cref="T:System.Rune"/> which might be Rune.Error if the value at the specified index is not UTF8 compliant, for example because it is not a valid UTF8 encoding, or the buffer is too short.</returns>
+		/// <param name="index">Index.</param>
+		public Rune RuneAt (int index)
+		{
+			return Utf8.DecodeRune (this, index).Rune;
 		}
 
 		// Map returns a copy of the string s with all its characters modified
