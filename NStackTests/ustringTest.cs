@@ -26,6 +26,13 @@ namespace NStackTests {
 		ustring kosmex = ustring.Make (0xce, 0xba, 0xcf, 0x8c, 0xcf, 0x83, 0xce, 0xbc, 0xce, 0xb5, 0x41);
 
 		[Test]
+		public void ToLowerTest ()
+		{
+			var x = ustring.Make ("C-x");
+			var res = x.ToLower ();
+		}
+
+		[Test]
 		public void IComparableTests ()
 		{
 

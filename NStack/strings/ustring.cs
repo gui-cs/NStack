@@ -1818,6 +1818,7 @@ namespace NStack {
 				var mapped = mapping (rune);
 				if (mapped == rune) {
 					nbytes++;
+					offset += size;
 					continue;
 				}
 				modified = true;
