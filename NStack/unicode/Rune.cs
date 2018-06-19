@@ -62,10 +62,18 @@ namespace System {
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether this <see cref="T:System.Rune"/> contains a valid Unicode codepoint.
+		/// Gets a value indicating whether this <see cref="T:System.Rune"/> can be encoded as UTF-8
 		/// </summary>
 		/// <value><c>true</c> if is valid; otherwise, <c>false</c>.</value>
-		public bool IsValid => value <= MaxRune.value;
+		public bool IsValid {
+			get {
+				if (0 <= value && value <= surrogateMin)
+					return true;
+				if (surrogateMax < value && value < MaxRune)
+					return true;
+				return false;
+			}
+		}
 
 		// Code points in the surrogate range are not valid for UTF-8.
 		const uint surrogateMin = 0xd800;
