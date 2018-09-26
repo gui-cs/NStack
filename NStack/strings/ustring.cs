@@ -481,6 +481,26 @@ namespace NStack {
 			return Make (runes.ToList ());
 		}
 
+		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an array of uints, which contain CodePoints.
+		/// </summary>
+		/// <returns>The make.</returns>
+		/// <param name="runes">Runes.</param>
+		public static ustring Make (uint [] runes)
+		{
+			if (runes == null)
+				throw new ArgumentNullException (nameof (runes));
+			int size = 0;
+			foreach (var rune in runes) {
+				size += Utf8.RuneLen (rune);
+			}
+			var encoded = new byte [size];
+			int offset = 0;
+			foreach (var rune in runes) {
+				offset += Utf8.EncodeRune (rune, encoded, offset);
+			}
+			return Make (encoded);
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from a block of memory and a size.
 		/// </summary>
@@ -934,8 +954,8 @@ namespace NStack {
 		/// <summary>
 		/// Returns a slice of the ustring delimited by the [start, last-element-of-the-string range.  If the range is invalid, the return is the Empty string.
 		/// </summary>
-		/// <param name="start">Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
-		/// <param name="end">This value is expected to be null to indicate that it should be the last element of the string.</param>
+		/// <param name="start">Byte start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
+		/// <param name="end">Byte end index.  This value is expected to be null to indicate that it should be the last element of the string.</param>
 		/// <remarks>
 		/// <para>
 		/// This is a companion indexer to the indexer that takes two integers, it only exists
@@ -943,6 +963,9 @@ namespace NStack {
 		/// that uses indexer look familiar, without having to resort to another API.
 		/// 
 		/// Some examples given the string "1234567890":
+		/// </para>
+		/// <para>
+		///   The indexes are byte indexes, they are not rune indexes.
 		/// </para>
 		/// <para>The range [8, null] produces "90"</para>
 		/// <para>The range [-2, null] produces "90"</para>
@@ -983,18 +1006,25 @@ namespace NStack {
 		}
 
 		/// <summary>
-		/// Returns the substring starting at the given position.
+		/// Returns the substring starting at the given position in bytes from the origin of the Utf8 string.   
+		/// Use RuneSubstring to extract substrings based on the rune index, rather than the byte index inside the
+		/// Utf8 encoded string.
 		/// </summary>
 		/// <returns>The substring starting at the specified offset.</returns>
 		/// <param name="start">Starting point, the value is .</param>
-		public ustring Substring (int start)
+		public ustring Substring (int byteStart)
 		{
 			int len = Length;
-			if (start < 0)
-				start = 0;
-			return GetRange (start, len);
+			if (byteStart < 0)
+				byteStart = 0;
+			return GetRange (byteStart, len);
 		}
 
+
+		public ustring RuneSubstring (int runeStart)
+		{
+			throw new NotImplementedException ();
+		}
 
 		/// <summary>
 		/// Gets a value indicating whether this <see cref="T:NStack.ustring"/> is empty.
@@ -1128,12 +1158,31 @@ namespace NStack {
 		public List<Rune> ToRuneList ()
 		{
 			var result = new List<Rune> ();
-			for (int offset = 0; offset < Length; ) {
+			for (int offset = 0; offset < Length;) {
 				(var rune, var size) = Utf8.DecodeRune (this, offset);
 				result.Add (rune);
 				offset += size;
 			}
-			return result;			
+			return result;
+		}
+
+		/// Converts a ustring into a rune array.
+		/// </summary>
+		/// <returns>An array containing the runes for the string up to the specified limit.</returns>
+		/// <param name="limit">Maximum number of entries to return, or -1 for no limits.</param>
+		public List<Rune> ToRuneList (int limit)
+		{
+			var n = Utf8.RuneCount (this);
+			if (limit < 0 || n > limit)
+				limit = n;
+			var result = new List<Rune> ();
+			int offset = 0;
+			for (int i = 0; i < limit; i++) {
+				(var rune, var size) = Utf8.DecodeRune (this, offset);
+				result [i] = rune;
+				offset += size;
+			}
+			return result;
 		}
 
 		// primeRK is the prime base used in Rabin-Karp algorithm.

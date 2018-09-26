@@ -18,6 +18,7 @@
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
     <ReleaseVersion>0.3</ReleaseVersion>
     <PackageReleaseNotes>0.12: Rebuilt
+Rebuild with an older Roslyn, to prevent regressions on Xamarin.
 
 0.10:
 Merged some changes from upstream.
