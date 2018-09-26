@@ -94,7 +94,7 @@ namespace System
 			if (irune >= 0x7f && irune <= 0xa0)
 				return 0;
 			/* binary search in table of non-spacing characters */
-			if (bisearch (irune, combining, combining.GetLength (0)) != 0)
+			if (bisearch (irune, combining, combining.GetLength (0) - 1) != 0)
 				return 0;
 			/* if we arrive here, ucs is not a combining or C0/C1 control character */
 			return 1 +
