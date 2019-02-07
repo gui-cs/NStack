@@ -377,6 +377,16 @@ namespace NStackTests {
 		};
 
 		[Test]
+		public void TestColumnWidth ()
+		{
+			// unicode chars taken from https://github.com/migueldeicaza/gui.cs/issues/146
+			foreach (var c in new string[] { "\u2261", "\u2302", "\u2191", "\u2193", "\u2026"}) {
+				(var rune, var size) = Utf8.DecodeRune (c);
+				Assert.AreEqual (Rune.ColumnWidth (rune), 1);
+			}
+		}
+
+		[Test]
 		public void TestTo ()
 		{
 			Unicode.To (Unicode.Case.Upper, 0x133);

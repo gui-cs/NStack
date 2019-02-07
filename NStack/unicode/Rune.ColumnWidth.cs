@@ -59,10 +59,12 @@ namespace System
 			{ 0xE0100, 0xE01EF }
 		};
 
-		static int bisearch (uint rune, uint [,] table, int max)
+		static int bisearch (uint rune, uint [,] table)
 		{
 			int min = 0;
+			int max = table.GetLength (0) - 1;
 			int mid;
+
 
 			if (rune < table [0, 0] || rune > table [max, 1])
 				return 0;
@@ -82,8 +84,8 @@ namespace System
 	        /// <summary>
 	        /// Number of column positions of a wide-character code.   This is used to measure runes as displayed by text-based terminals.
 	        /// </summary>
-	        /// <returns>The width in columns, 0 if the argument is the null character, -1 if the value is not printable, otherwise the number of columsn that the rune occupies.</returns>
-	        /// <param name="r">The red component.</param>
+	        /// <returns>The width in columns, 0 if the argument is the null character, -1 if the value is not printable, otherwise the number of columns that the rune occupies.</returns>
+	        /// <param name="rune">The rune to measure</param>
 	        public static int ColumnWidth (Rune rune) 
 	        {
 			uint irune = (uint)rune;
@@ -94,7 +96,7 @@ namespace System
 			if (irune >= 0x7f && irune <= 0xa0)
 				return 0;
 			/* binary search in table of non-spacing characters */
-			if (bisearch (irune, combining, combining.GetLength (0)) != 0)
+			if (bisearch (irune, combining) != 0)
 				return 0;
 			/* if we arrive here, ucs is not a combining or C0/C1 control character */
 			return 1 +
