@@ -5,7 +5,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.5</TargetFramework>
     <PackageId>NStack.Core</PackageId>
-    <PackageVersion>0.12</PackageVersion>
+    <PackageVersion>0.13</PackageVersion>
     <Authors>Miguel de Icaza</Authors>
     <PackageLicenseUrl>https://github.com/migueldeicaza/NStack/blob/master/LICENSE.md</PackageLicenseUrl>
     <Owners>Miguel de Icaza</Owners>
@@ -17,7 +17,8 @@
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
     <ReleaseVersion>0.3</ReleaseVersion>
-    <PackageReleaseNotes>0.12: Rebuilt
+    <PackageReleaseNotes>0.13: Fixes ustring.Map() and Lower(); Extends Rune.IsValid to match Go; add Rune.ExpectedSizeFromFirstByte()  plus a bug fix;
+stack 0.12: Rebuilt
 Rebuild with an older Roslyn, to prevent regressions on Xamarin.
 
 0.10:
