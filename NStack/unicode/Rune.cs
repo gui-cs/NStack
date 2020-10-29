@@ -68,8 +68,8 @@ namespace System {
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:System.Rune"/> from a surrogate pair value.
 		/// </summary>
-		/// <param name="sgateMin"></param>
-		/// <param name="sgateMax"></param>
+		/// <param name="sgateMin">The high surrogate code points minimum value.</param>
+		/// <param name="sgateMax">The low surrogate code points maximum value.</param>
 		public Rune (uint sgateMin, uint sgateMax)
 		{
 			if (sgateMin < surrogateMin || sgateMax > surrogateMax)
