@@ -79,20 +79,18 @@ namespace System
 			return 0;
 		}
 
-	        /// <summary>
-	        /// Number of column positions of a wide-character code.   This is used to measure runes as displayed by text-based terminals.
-	        /// </summary>
-	        /// <returns>The width in columns, 0 if the argument is the null character, -1 if the value is not printable, otherwise the number of columsn that the rune occupies.</returns>
-	        /// <param name="r">The red component.</param>
-	        public static int ColumnWidth (Rune rune) 
+		/// <summary>
+		/// Number of column positions of a wide-character code.   This is used to measure runes as displayed by text-based terminals.
+		/// </summary>
+		/// <returns>The width in columns, 0 if the argument is the null character, -1 if the value is not printable, otherwise the number of columns that the rune occupies.</returns>
+		/// <param name="rune">The rune.</param>
+		public static int ColumnWidth (Rune rune)
 	        {
 			uint irune = (uint)rune;
-			if (irune < 32)
-				return 0;
+			if (irune < 32 || (irune >= 0x7f && irune <= 0xa0))
+				return -1;
 			if (irune < 127)
 				return 1;
-			if (irune >= 0x7f && irune <= 0xa0)
-				return 0;
 			/* binary search in table of non-spacing characters */
 			if (bisearch (irune, combining, combining.GetLength (0)-1) != 0)
 				return 0;

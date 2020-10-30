@@ -58,7 +58,35 @@ namespace System {
 		/// <param name="ch">C# characters.</param>
 		public Rune (char ch)
 		{
+			if (ch >= surrogateMin && ch <= surrogateMax)
+			{
+				throw new ArgumentException("Value in the surrogate range and isn't part of a surrogate pair!");
+			}
 			this.value = (uint)ch;
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:System.Rune"/> from a surrogate pair value.
+		/// </summary>
+		/// <param name="sgateMin">The high surrogate code points minimum value.</param>
+		/// <param name="sgateMax">The low surrogate code points maximum value.</param>
+		public Rune (uint sgateMin, uint sgateMax)
+		{
+			if (sgateMin < surrogateMin || sgateMax > surrogateMax)
+			{
+				throw new ArgumentOutOfRangeException($"Must be between {surrogateMin:x} and {surrogateMax:x} inclusive!");
+			}
+			this.value = DecodeSurrogatePair(sgateMin, sgateMax);
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="T:System.Rune"/> can be encoded as UTF-8 from a surrogate pair.
+		/// </summary>
+		/// <param name="sgateMin">The high surrogate code points minimum value.</param>
+		/// <param name="sgateMax">The low surrogate code points maximum value.</param>
+		public static uint DecodeSurrogatePair(uint sgateMin, uint sgateMax)
+		{
+			return 0x10000 + ((sgateMin - surrogateMin) * 0x0400) + (sgateMax - lowSurrogateMin);
 		}
 
 		/// <summary>
@@ -78,6 +106,9 @@ namespace System {
 		// Code points in the surrogate range are not valid for UTF-8.
 		const uint surrogateMin = 0xd800;
 		const uint surrogateMax = 0xdfff;
+
+		const uint highSurrogateMax = 0xdbff;
+		const uint lowSurrogateMin = 0xdc00;
 
 		const byte t1 = 0x00; // 0000 0000
 		const byte tx = 0x80; // 1000 0000
@@ -305,7 +336,7 @@ namespace System {
 		/// number of bytes required to encode the rune.
 		/// </summary>
 		/// <returns>The length, or -1 if the rune is not a valid value to encode in UTF-8.</returns>
-		/// <param name="rvalue">Rune to probe.</param>
+		/// <param name="rune">Rune to probe.</param>
 		public static int RuneLen (Rune rune)
 		{
 			var rvalue = rune.value;
@@ -771,8 +802,8 @@ namespace System {
 		public override string ToString ()
 		{
 			var buff = new byte [4];
-			EncodeRune (this, buff, 0);
-			return System.Text.Encoding.UTF8.GetString (buff);
+			var size = EncodeRune (this, buff, 0);
+			return System.Text.Encoding.UTF8.GetString(buff, 0, size);
 		}
 
 		/// <summary>
