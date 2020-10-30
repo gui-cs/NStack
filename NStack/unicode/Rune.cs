@@ -49,6 +49,10 @@ namespace System {
 		/// </remarks>
 		public Rune (uint rune)
 		{
+			if (rune > maxRune)
+			{
+				throw new ArgumentOutOfRangeException("Value is beyond the supplementary range!");
+			}
 			this.value = rune;
 		}
 
@@ -97,7 +101,7 @@ namespace System {
 			get {
 				if (0 <= value && value <= surrogateMin)
 					return true;
-				if (surrogateMax < value && value < MaxRune)
+				if (surrogateMax <= value && value <= MaxRune)
 					return true;
 				return false;
 			}
@@ -109,6 +113,7 @@ namespace System {
 
 		const uint highSurrogateMax = 0xdbff;
 		const uint lowSurrogateMin = 0xdc00;
+		const uint maxRune = 0x10ffff;
 
 		const byte t1 = 0x00; // 0000 0000
 		const byte tx = 0x80; // 1000 0000

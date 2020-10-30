@@ -43,6 +43,8 @@ namespace NStackTests {
 			Assert.Throws<ArgumentException>(() => new Rune('\ud801'));
 			Rune f = new Rune('\ud83c', '\udf39');
 			Assert.AreEqual("🌹", f.ToString());
+			Assert.DoesNotThrow(() => new Rune(0x10ffff));
+			Assert.Throws<ArgumentOutOfRangeException>(() => new Rune(0x12345678));
 		}
 	}
 }
