@@ -481,6 +481,7 @@ namespace NStack {
 			return Make (runes.ToList ());
 		}
 
+		/// <summary>
 		/// Initializes a new instance of the <see cref="T:NStack.ustring"/> class from an array of uints, which contain CodePoints.
 		/// </summary>
 		/// <returns>The make.</returns>
@@ -779,7 +780,7 @@ namespace NStack {
 		/// <summary>
 		/// Reports whether this string and the provided string, when interpreted as UTF-8 strings, are equal under Unicode case-folding
 		/// </summary>
-		/// <returns><c>true</c>, if fold was equalsed, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if fold was equaled, <c>false</c> otherwise.</returns>
 		/// <param name="other">Other.</param>
 		public bool EqualsFold (ustring other)
 		{
@@ -888,7 +889,7 @@ namespace NStack {
 		/// Returns the byte at the specified position.
 		/// </summary>
 		/// <value>The byte encoded at the specified position.</value>
-		/// <remarks>The index value shoudl be between 0 and Length-1.</remarks>
+		/// <remarks>The index value should be between 0 and Length-1.</remarks>
 		public abstract byte this [int index] { get; }
 
 		/// <summary>
@@ -903,7 +904,7 @@ namespace NStack {
 		/// Returns a slice of the ustring delimited by the [start, end) range.  If the range is invalid, the return is the Empty string.
 		/// </summary>
 		/// <param name="start">Start index, this value is inclusive.   If the value is negative, the value is added to the length, allowing this parameter to count to count from the end of the string.</param>
-		/// <param name="iend">End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.</param>
+		/// <param name="end">End index, this value is exclusive.   If the value is negative, the value is added to the length, plus one, allowing this parameter to count from the end of the string.</param>
 		/// <remarks>
 		/// <para>
 		/// Some examples given the string "1234567890":
@@ -1011,7 +1012,7 @@ namespace NStack {
 		/// Utf8 encoded string.
 		/// </summary>
 		/// <returns>The substring starting at the specified offset.</returns>
-		/// <param name="start">Starting point, the value is .</param>
+		/// <param name="byteStart">Starting point, the value is .</param>
 		public ustring Substring (int byteStart)
 		{
 			int len = Length;
@@ -1166,6 +1167,7 @@ namespace NStack {
 			return result;
 		}
 
+		/// <summary>
 		/// Converts a ustring into a rune array.
 		/// </summary>
 		/// <returns>An array containing the runes for the string up to the specified limit.</returns>
@@ -1541,7 +1543,7 @@ namespace NStack {
 		}
 
 		/// <summary>
-		/// Reports the zero-based index position of the last occurrence in this instance of one or more characters specified in the uustring.
+		/// Reports the zero-based index position of the last occurrence in this instance of one or more characters specified in the ustring.
 		/// </summary>
 		/// <returns>The index position of the last occurrence in this instance where any character in <paramref name="chars" /> was found; -1 if no character in <paramref name="chars" /> was found.</returns>
 		/// <param name="chars">The string containing characters to seek.</param>
@@ -2170,7 +2172,7 @@ namespace NStack {
 			var oldLen = oldValue.Length;
 			var newLen = newValue.Length;
 
-			// Apply replcements to buffer
+			// Apply replacements to buffer
 			var result = new byte [Length + maxReplacements * (newValue.Length - oldValue.Length)];
 			int w = 0, start = 0;
 			for (int i = 0; i < maxReplacements; i++) {
@@ -2196,6 +2198,11 @@ namespace NStack {
 			return new ByteBufferUString (result);
 		}
 
+		/// <summary>
+		/// Represent the null or empty value related to the ustring.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public static bool IsNullOrEmpty (ustring value)
 		{
 			if (value == null)

@@ -31,7 +31,7 @@ namespace System {
 		/// <summary>
 		/// Represents invalid code points.
 		/// </summary>
-		public static Rune ReplacementChar = new Rune (0xfffd); 
+		public static Rune ReplacementChar = new Rune (0xfffd);
 
 		/// <summary>
 		/// Maximum number of bytes required to encode every unicode code point.
@@ -44,7 +44,7 @@ namespace System {
 		/// <param name="rune">Unsigned integer.</param>
 		/// <remarks>
 		/// The value does not have to be a valid Unicode code point, this API
-		/// will create an instanceof Rune regardless of the whether it is in 
+		/// will create an instance of Rune regardless of the whether it is in 
 		/// range or not.
 		/// </remarks>
 		public Rune (uint rune)
@@ -76,21 +76,32 @@ namespace System {
 		/// <param name="sgateMax">The low surrogate code points maximum value.</param>
 		public Rune (uint sgateMin, uint sgateMax)
 		{
-			if (sgateMin < surrogateMin || sgateMax > surrogateMax)
+			var rune = DecodeSurrogatePair (sgateMin, sgateMax);
+			if (rune > 0)
+			{
+				this.value = rune;
+			}
+			else
 			{
 				throw new ArgumentOutOfRangeException($"Must be between {surrogateMin:x} and {surrogateMax:x} inclusive!");
 			}
-			this.value = DecodeSurrogatePair(sgateMin, sgateMax);
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether this <see cref="T:System.Rune"/> can be encoded as UTF-8 from a surrogate pair.
+		/// Gets a value indicating whether this <see cref="T:System.Rune"/> can be encoded as UTF-8 from a surrogate pair or zero otherwise.
 		/// </summary>
 		/// <param name="sgateMin">The high surrogate code points minimum value.</param>
 		/// <param name="sgateMax">The low surrogate code points maximum value.</param>
-		public static uint DecodeSurrogatePair(uint sgateMin, uint sgateMax)
+		public static uint DecodeSurrogatePair (uint sgateMin, uint sgateMax)
 		{
-			return 0x10000 + ((sgateMin - surrogateMin) * 0x0400) + (sgateMax - lowSurrogateMin);
+			if (sgateMin < surrogateMin || sgateMax > surrogateMax)
+			{
+				return 0;
+			}
+			else
+			{
+				return 0x10000 + ((sgateMin - surrogateMin) * 0x0400) + (sgateMax - lowSurrogateMin);
+			}
 		}
 
 		/// <summary>
@@ -229,7 +240,7 @@ namespace System {
 		/// </returns>
 		/// <param name="buffer">Byte buffer containing the utf8 string.</param>
 		/// <param name="start">Starting offset to look into..</param>
-		/// <param name="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+		/// <param name="n">Number of bytes valid in the buffer, or -1 to make it the length of the buffer.</param>
 		public static (Rune rune, int Size) DecodeRune (byte [] buffer, int start = 0, int n = -1)
 		{
 			if (buffer == null)
@@ -294,7 +305,7 @@ namespace System {
 		/// it returns (RuneError, 0). Otherwise, if
 		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
 		/// results for correct, non-empty UTF-8.</param>
-		/// <param name="end">Scan up to that point, if the value is -1, it sets the value to the lenght of the buffer.</param>
+		/// <param name="end">Scan up to that point, if the value is -1, it sets the value to the length of the buffer.</param>
 		/// <remarks>
 		/// An encoding is invalid if it is incorrect UTF-8, encodes a rune that is
 		/// out of range, or is not the shortest possible UTF-8 encoding for the
@@ -402,7 +413,7 @@ namespace System {
 		/// <summary>
 		/// Returns the number of runes in a utf8 encoded buffer
 		/// </summary>
-		/// <returns>Numnber of runes.</returns>
+		/// <returns>Number of runes.</returns>
 		/// <param name="buffer">Byte buffer containing a utf8 string.</param>
 		/// <param name="offset">Starting offset in the buffer.</param>
 		/// <param name="count">Number of bytes to process in buffer, or -1 to process until the end of the buffer.</param>
@@ -476,7 +487,7 @@ namespace System {
 		/// <summary>
 		/// Use to find the index of the first invalid utf8 byte sequence in a buffer
 		/// </summary>
-		/// <returns>The index of the first insvalid byte sequence or -1 if the entire buffer is valid.</returns>
+		/// <returns>The index of the first invalid byte sequence or -1 if the entire buffer is valid.</returns>
 		/// <param name="buffer">Buffer containing the utf8 buffer.</param>
 		public static int InvalidIndex (byte [] buffer)
 		{
@@ -526,7 +537,7 @@ namespace System {
 		/// <summary>
 		///  ValidRune reports whether a rune can be legally encoded as UTF-8.
 		/// </summary>
-		/// <returns><c>true</c>, if rune was valided, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if rune was validated, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test.</param>
 		public static bool ValidRune (Rune rune)
 		{
@@ -547,7 +558,7 @@ namespace System {
 		/// <summary>
 		/// IsGraphic reports whether the rune is defined as a Graphic by Unicode.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		/// <remarks>
 		/// Such characters include letters, marks, numbers, punctuation, symbols, and
@@ -558,7 +569,7 @@ namespace System {
 		/// <summary>
 		/// IsPrint reports whether the rune is defined as printable.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		/// <remarks>
 		/// Such characters include letters, marks, numbers, punctuation, symbols, and the
@@ -572,7 +583,7 @@ namespace System {
 		/// <summary>
 		/// IsControl reports whether the rune is a control character.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		/// <remarks>
 		/// The C (Other) Unicode category includes more code points such as surrogates; use C.InRange (r) to test for them.
@@ -598,7 +609,7 @@ namespace System {
 		public static bool IsLetterOrDigit (Rune rune) => NStack.Unicode.IsLetter (rune.value) || NStack.Unicode.IsDigit (rune.value);
 
 		/// <summary>
-		/// IsLetterOrDigit reports whether the rune is a letter (category L) or a number (caetegory N).
+		/// IsLetterOrDigit reports whether the rune is a letter (category L) or a number (category N).
 		/// </summary>
 		/// <returns><c>true</c>, if the rune is a letter or number, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
@@ -658,21 +669,21 @@ namespace System {
 		/// <summary>
 		/// Reports whether the rune is an upper case letter.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is an upper case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is an upper case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		public static bool IsUpper (Rune rune) => NStack.Unicode.IsUpper (rune.value);
 
 		/// <summary>
 		/// Reports whether the rune is a lower case letter.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		public static bool IsLower (Rune rune) => NStack.Unicode.IsLower (rune.value);
 
 		/// <summary>
 		/// Reports whether the rune is a title case letter.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		public static bool IsTitle (Rune rune) => NStack.Unicode.IsTitle (rune.value);
 
@@ -691,9 +702,9 @@ namespace System {
 			Lower = 1,
 
 			/// <summary>
-			/// Titlecase capitalizes the first letter, and keeps the rest in lowercase.
+			/// Title case capitalizes the first letter, and keeps the rest in lowercase.
 			/// Sometimes it is not as straight forward as the uppercase, some characters require special handling, like
-			/// certain ligatures and greek characters.
+			/// certain ligatures and Greek characters.
 			/// </summary>
 			Title = 2
 		};

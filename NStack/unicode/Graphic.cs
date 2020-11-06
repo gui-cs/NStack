@@ -33,7 +33,7 @@ namespace NStack {
 		/// <summary>
 		/// Determines if a rune is on a set of ranges.
 		/// </summary>
-		/// <returns><c>true</c>, if rune in ranges was ised, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if rune in ranges was used, <c>false</c> otherwise.</returns>
 		/// <param name="rune">Rune.</param>
 		/// <param name="inRanges">In ranges.</param>
 		public static bool IsRuneInRanges (uint rune, params RangeTable [] inRanges)
@@ -47,7 +47,7 @@ namespace NStack {
 		/// <summary>
 		/// IsGraphic reports whether the rune is defined as a Graphic by Unicode.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		/// <remarks>
 		/// Such characters include letters, marks, numbers, punctuation, symbols, and
@@ -63,7 +63,7 @@ namespace NStack {
 		/// <summary>
 		/// IsPrint reports whether the rune is defined as printable.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		/// <remarks>
 		/// Such characters include letters, marks, numbers, punctuation, symbols, and the
@@ -81,7 +81,7 @@ namespace NStack {
 		/// <summary>
 		/// IsControl reports whether the rune is a control character.
 		/// </summary>
-		/// <returns><c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test for.</param>
 		/// <remarks>
 		/// The C (Other) Unicode category includes more code points such as surrogates; use C.InRange (r) to test for them.

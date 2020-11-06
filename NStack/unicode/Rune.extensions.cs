@@ -46,7 +46,7 @@ namespace System {
 		/// </returns>
 		/// <param name="str">ustring to decode.</param>
 		/// <param name="start">Starting offset to look into..</param>
-		/// <param name="n">Number of bytes valid in the buffer, or -1 to make it the lenght of the buffer.</param>
+		/// <param name="n">Number of bytes valid in the buffer, or -1 to make it the length of the buffer.</param>
 		public static (Rune rune, int size) DecodeRune (ustring str, int start = 0, int n = -1)
 		{
 			if ((object)str == null)
@@ -106,7 +106,7 @@ namespace System {
 		/// it returns (RuneError, 0). Otherwise, if
 		/// the encoding is invalid, it returns (RuneError, 1). Both are impossible
 		/// results for correct, non-empty UTF-8.</param>
-		/// <param name="end">Scan up to that point, if the value is -1, it sets the value to the lenght of the buffer.</param>
+		/// <param name="end">Scan up to that point, if the value is -1, it sets the value to the length of the buffer.</param>
 		/// <remarks>
 		/// An encoding is invalid if it is incorrect UTF-8, encodes a rune that is
 		/// out of range, or is not the shortest possible UTF-8 encoding for the
@@ -153,7 +153,7 @@ namespace System {
 		/// <summary>
 		/// Returns the number of runes in a ustring.
 		/// </summary>
-		/// <returns>Numnber of runes.</returns>
+		/// <returns>Number of runes.</returns>
 		/// <param name="str">utf8 string.</param>
 		public static int RuneCount (ustring str)
 		{
@@ -216,7 +216,7 @@ namespace System {
 		/// <summary>
 		/// Use to find the index of the first invalid utf8 byte sequence in a buffer
 		/// </summary>
-		/// <returns>The index of the first insvalid byte sequence or -1 if the entire buffer is valid.</returns>
+		/// <returns>The index of the first invalid byte sequence or -1 if the entire buffer is valid.</returns>
 		/// <param name="str">String containing the utf8 buffer.</param>
 		public static int InvalidIndex (ustring str)
 		{
