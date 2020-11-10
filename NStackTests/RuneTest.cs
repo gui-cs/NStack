@@ -19,6 +19,10 @@ namespace NStackTests
 		Rune j = '\u20D0';
 		Rune k = '\u25a0';
 		Rune l = '\u25a1';
+		Rune m = '\uf61e';
+		byte[] n = new byte[4] { 0xf0, 0x9f, 0x8d, 0x95 }; // UTF-8 Encoding
+		Rune o = new Rune('\ud83c', '\udf55'); // UTF-16 Encoding;
+		string p = "\U0001F355"; // UTF-32 Encoding
 
 		[Test]
 		public void TestColumnWidth()
@@ -117,6 +121,24 @@ namespace NStackTests
 			Assert.AreEqual("□", l.ToString());
 			Assert.AreEqual(1, l.ToString().Length);
 			Assert.AreEqual(3, Rune.RuneLen(l));
+			Assert.AreEqual(1, Rune.ColumnWidth(m));
+			Assert.AreEqual("", m.ToString());
+			Assert.AreEqual(1, m.ToString().Length);
+			Assert.AreEqual(3, Rune.RuneLen(m));
+			var rn = Rune.DecodeRune(ustring.Make(n)).rune;
+			Assert.AreEqual(1, Rune.ColumnWidth(rn));
+			Assert.AreEqual("🍕", rn.ToString());
+			Assert.AreEqual(2, rn.ToString().Length);
+			Assert.AreEqual(4, Rune.RuneLen(rn));
+			Assert.AreEqual(1, Rune.ColumnWidth(o));
+			Assert.AreEqual("🍕", o.ToString());
+			Assert.AreEqual(2, o.ToString().Length);
+			Assert.AreEqual(4, Rune.RuneLen(o));
+			var rp = Rune.DecodeRune(ustring.Make(p)).rune;
+			Assert.AreEqual(1, Rune.ColumnWidth(rp));
+			Assert.AreEqual("🍕", p);
+			Assert.AreEqual(2, p.Length);
+			Assert.AreEqual(4, Rune.RuneLen(rp));
 		}
 
 		[Test]
@@ -331,10 +353,14 @@ namespace NStackTests
 			var buff1 = new byte[4];
 			Assert.AreEqual(4, Rune.EncodeRune(rune1, buff1));
 			Assert.IsTrue(Rune.Valid(buff1));
+			Assert.AreEqual(2, rune1.ToString().Length);
+			Assert.AreEqual(4, Rune.RuneLen(rune1));
 			var rune2 = (uint)'\ud801'; // To avoid throwing an exception set as uint instead a Rune instance.
 			var buff2 = new byte[4];
 			Assert.AreEqual(3, Rune.EncodeRune(rune2, buff2));
 			Assert.IsFalse(Rune.Valid(buff2)); // To avoid throwing an exception pass as uint parameter instead Rune.
+			Assert.AreEqual(5, rune2.ToString().Length); // Invalid string. It returns the decimal 55297 representation of the 0xd801 hexadecimal.
+			Assert.AreEqual(-1, Rune.RuneLen(rune2));
 			Assert.Throws<ArgumentException>(() => Rune.EncodeRune(new Rune('\ud801'), buff2));
 		}
 	}
