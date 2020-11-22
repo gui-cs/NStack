@@ -23,6 +23,9 @@ namespace NStackTests
 		byte[] n = new byte[4] { 0xf0, 0x9f, 0x8d, 0x95 }; // UTF-8 Encoding
 		Rune o = new Rune('\ud83c', '\udf55'); // UTF-16 Encoding;
 		string p = "\U0001F355"; // UTF-32 Encoding
+		Rune q = '\u2103';
+		Rune r = '\u1100';
+		Rune s = '\u2501';
 
 		[Test]
 		public void TestColumnWidth()
@@ -57,7 +60,7 @@ namespace NStackTests
 			Assert.AreEqual(1, Rune.RuneLen(g));
 			var uh = ustring.Make(h);
 			(var runeh, var sizeh) = Rune.DecodeRune(uh);
-			Assert.AreEqual(1, Rune.ColumnWidth(runeh));
+			Assert.AreEqual(2, Rune.ColumnWidth(runeh));
 			Assert.AreEqual("🨁", h);
 			Assert.AreEqual(2, runeh.ToString().Length);
 			Assert.AreEqual(4, Rune.RuneLen(runeh));
@@ -72,7 +75,7 @@ namespace NStackTests
 			Assert.AreEqual(1, Rune.RuneCount(uh));
 			(var runelh, var sizelh) = Rune.DecodeLastRune(uh);
 
-			Assert.AreEqual(1, Rune.ColumnWidth(runelh));
+			Assert.AreEqual(2, Rune.ColumnWidth(runelh));
 			Assert.AreEqual(2, runelh.ToString().Length);
 			Assert.AreEqual(4, Rune.RuneLen(runelh));
 			Assert.AreEqual(sizelh, Rune.RuneLen(runelh));
@@ -99,7 +102,7 @@ namespace NStackTests
 			Assert.AreEqual(sizeli, Rune.RuneLen(runeli));
 			Assert.IsTrue(Rune.ValidRune(runeli));
 
-			Assert.AreEqual(Rune.ColumnWidth(runeh), Rune.ColumnWidth(runei));
+			Assert.AreNotEqual(Rune.ColumnWidth(runeh), Rune.ColumnWidth(runei));
 			Assert.AreNotEqual(h, i);
 			Assert.AreEqual(runeh.ToString().Length, runei.ToString().Length);
 			Assert.AreEqual(Rune.RuneLen(runeh), Rune.RuneLen(runei));
@@ -109,6 +112,8 @@ namespace NStackTests
 			Assert.AreEqual(0, Rune.ColumnWidth(j));
 			Assert.AreEqual(0, Rune.ColumnWidth(uj.RuneAt (0)));
 			Assert.AreEqual(j, uj.RuneAt(0));
+			Assert.AreEqual("⃐", j.ToString());
+			Assert.AreEqual("⃐", uj.ToString());
 			Assert.AreEqual(1, j.ToString().Length);
 			Assert.AreEqual(1, runej.ToString().Length);
 			Assert.AreEqual(3, Rune.RuneLen(j));
@@ -139,6 +144,28 @@ namespace NStackTests
 			Assert.AreEqual("🍕", p);
 			Assert.AreEqual(2, p.Length);
 			Assert.AreEqual(4, Rune.RuneLen(rp));
+			Assert.AreEqual(1, Rune.ColumnWidth(q));
+			Assert.AreEqual("℃", q.ToString());
+			Assert.AreEqual(1, q.ToString().Length);
+			Assert.AreEqual(3, Rune.RuneLen(q));
+			var rq = Rune.DecodeRune(ustring.Make(q)).rune;
+			Assert.AreEqual(1, Rune.ColumnWidth(rq));
+			Assert.AreEqual("℃", rq.ToString());
+			Assert.AreEqual(1, rq.ToString().Length);
+			Assert.AreEqual(3, Rune.RuneLen(rq));
+			Assert.AreEqual(2, Rune.ColumnWidth(r));
+			Assert.AreEqual("ᄀ", r.ToString());
+			Assert.AreEqual(1, r.ToString().Length);
+			Assert.AreEqual(3, Rune.RuneLen(r));
+			Assert.AreEqual(1, Rune.ColumnWidth(s));
+			Assert.AreEqual("━", s.ToString());
+			Assert.AreEqual(1, s.ToString().Length);
+			Assert.AreEqual(3, Rune.RuneLen(s));
+			var buff = new byte[4];
+			var sb = Rune.EncodeRune('\u2503', buff);
+			var scb = char.ConvertToUtf32("℃", 0);
+			var scr = '℃'.ToString().Length;
+
 		}
 
 		[Test]
@@ -217,11 +244,10 @@ namespace NStackTests
 			Assert.AreEqual(2, Rune.ColumnWidth(q));
 			Assert.AreEqual(1, q.ToString().Length);
 			Assert.AreEqual("〉", q.ToString());
-			//var r = new Rune('\U0001fa00');
-			//Assert.AreEqual(2, Rune.ColumnWidth(r));
-			//Assert.AreEqual(1, r.ToString().Length);
-			//Assert.AreEqual("〈", r.ToString());
-
+			var r = Rune.DecodeRune(ustring.Make("\U0000232a")).rune;
+			Assert.AreEqual(2, Rune.ColumnWidth(r));
+			Assert.AreEqual(1, r.ToString().Length);
+			Assert.AreEqual("〉", r.ToString());
 
 			PrintTextElementCount(ustring.Make('\u00e1'), "á", 1, 1, 1, 1);
 			PrintTextElementCount(ustring.Make('\u0061', '\u0301'), "á", 1, 2, 2, 1);
