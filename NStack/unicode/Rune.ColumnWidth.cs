@@ -98,7 +98,7 @@ namespace System
 			return 1 +
 				((irune >= 0x1100 &&
 				 (irune <= 0x115f ||                    /* Hangul Jamo init. consonants */
-				 irune == 0x2329 || irune == 0x232a ||   /* Miscellaneous Technical */
+				 irune == 0x2329 || irune == 0x232a ||  /* Miscellaneous Technical */
 				(irune >= 0x2e80 && irune <= 0xa4cf &&
 				irune != 0x303f) ||						/* CJK ... Yi */
 				(irune >= 0xac00 && irune <= 0xd7a3) || /* Hangul Syllables */

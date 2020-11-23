@@ -165,7 +165,6 @@ namespace NStackTests
 			var sb = Rune.EncodeRune('\u2503', buff);
 			var scb = char.ConvertToUtf32("℃", 0);
 			var scr = '℃'.ToString().Length;
-
 		}
 
 		[Test]
