@@ -98,15 +98,16 @@ namespace System
 			return 1 +
 				((irune >= 0x1100 &&
 				 (irune <= 0x115f ||                    /* Hangul Jamo init. consonants */
-				irune == 0x2329 || irune == 0x232a ||
+				 irune == 0x2329 || irune == 0x232a ||  /* Miscellaneous Technical */
 				(irune >= 0x2e80 && irune <= 0xa4cf &&
-				irune != 0x303f) ||                  /* CJK ... Yi */
+				irune != 0x303f) ||						/* CJK ... Yi */
 				(irune >= 0xac00 && irune <= 0xd7a3) || /* Hangul Syllables */
 				(irune >= 0xf900 && irune <= 0xfaff) || /* CJK Compatibility Ideographs */
 				(irune >= 0xfe10 && irune <= 0xfe19) || /* Vertical forms */
 				(irune >= 0xfe30 && irune <= 0xfe6f) || /* CJK Compatibility Forms */
 				(irune >= 0xff00 && irune <= 0xff60) || /* Fullwidth Forms */
-				(irune >= 0xffe0 && irune <= 0xffe6) ||
+				(irune >= 0xffe0 && irune <= 0xffe6) ||	/* Alphabetic Presentation Forms*/
+				(irune >= 0x1fa00 && irune <= 0x1facf) || /* Chess Symbols*/
 				(irune >= 0x20000 && irune <= 0x2fffd) ||
 				  (irune >= 0x30000 && irune <= 0x3fffd))) ? 1 : 0);
 	        }
