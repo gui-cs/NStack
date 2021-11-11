@@ -48,7 +48,7 @@ namespace NStackTests
 			Assert.AreEqual("ᅐ", d.ToString());
 			Assert.AreEqual(1, d.ToString().Length);
 			Assert.AreEqual(3, Rune.RuneLen(d));
-			Assert.AreEqual(0, Rune.ColumnWidth(e));
+			Assert.AreEqual(1, Rune.ColumnWidth(e));
 			Assert.AreEqual("ᅡ", e.ToString());
 			Assert.AreEqual(1, e.ToString().Length);
 			Assert.AreEqual(3, Rune.RuneLen(e));
@@ -109,8 +109,8 @@ namespace NStackTests
 			Assert.AreEqual(Rune.RuneLen(runeh), Rune.RuneLen(runei));
 			var uj = ustring.Make(j);
 			(var runej, var sizej) = Rune.DecodeRune(uj);
-			Assert.AreEqual(0, Rune.ColumnWidth(j));
-			Assert.AreEqual(0, Rune.ColumnWidth(uj.RuneAt (0)));
+			Assert.AreEqual(1, Rune.ColumnWidth(j));
+			Assert.AreEqual(1, Rune.ColumnWidth(uj.RuneAt (0)));
 			Assert.AreEqual(j, uj.RuneAt(0));
 			Assert.AreEqual("⃐", j.ToString());
 			Assert.AreEqual("⃐", uj.ToString());
@@ -388,5 +388,23 @@ namespace NStackTests
 			Assert.AreEqual(-1, Rune.RuneLen(rune2));
 			Assert.Throws<ArgumentException>(() => Rune.EncodeRune(new Rune('\ud801'), buff2));
 		}
+
+		[Test]
+		public void Test_IsNonSpacingChar()
+        {
+			Assert.True(Rune.IsNonSpacingChar(0x302a));
+			Assert.AreEqual(2, Rune.ColumnWidth(0x302a));
+			Assert.AreEqual(0, ustring.Make(0x302a).ConsoleWidth);
+			Assert.False(Rune.IsNonSpacingChar(0x0370));
+        }
+
+		[Test]
+		public void Test_IsWideChar()
+		{
+			Assert.True(Rune.IsWideChar(0x115e));
+			Assert.AreEqual(2, Rune.ColumnWidth(0x115e));
+			Assert.False(Rune.IsWideChar(0x116f));
+		}
+
 	}
 }
