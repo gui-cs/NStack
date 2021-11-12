@@ -81,9 +81,13 @@ namespace System {
 			{
 				this.value = rune;
 			}
-			else
+			else if (sgateMin < surrogateMin || sgateMax > surrogateMax)
 			{
 				throw new ArgumentOutOfRangeException($"Must be between {surrogateMin:x} and {surrogateMax:x} inclusive!");
+			}
+			else
+			{
+				throw new ArgumentOutOfRangeException($"Resulted rune must be less or equal to {(uint)MaxRune:x}!");
 			}
 		}
 
@@ -100,7 +104,15 @@ namespace System {
 			}
 			else
 			{
-				return 0x10000 + ((sgateMin - surrogateMin) * 0x0400) + (sgateMax - lowSurrogateMin);
+				var rune = 0x10000 + ((sgateMin - surrogateMin) * 0x0400) + (sgateMax - lowSurrogateMin);
+				if (rune <= MaxRune)
+				{
+					return rune;
+				}
+				else
+				{
+					return 0;
+				}
 			}
 		}
 

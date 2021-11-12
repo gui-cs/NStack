@@ -707,5 +707,20 @@ namespace NStackTests {
 			}
 #endif
 		}
+
+		[Test]
+		public void TestConsoleWidth()
+		{
+			var sc = new Rune(0xd83d);
+			var r = new Rune(0xdd2e);
+			Assert.AreEqual(1, Rune.ColumnWidth(sc));
+			Assert.False(Rune.IsNonSpacingChar(r));
+			Assert.AreEqual(1, Rune.ColumnWidth(r));
+			var fr = new Rune(sc, r);
+			Assert.False(Rune.IsNonSpacingChar(fr));
+			Assert.AreEqual(1, Rune.ColumnWidth(fr));
+			var us = ustring.Make(fr);
+			Assert.AreEqual(1, us.ConsoleWidth);
+		}
 	}
 }

@@ -127,7 +127,7 @@ namespace System
 		/// <summary>
 		/// Check if the rune is a non-spacing character.
 		/// </summary>
-		/// <param name="rune">The rune.<param>
+		/// <param name="rune">The rune.</param>
 		/// <returns>True if is a non-spacing character, false otherwise.</returns>
 		public static bool IsNonSpacingChar(uint rune)
         {

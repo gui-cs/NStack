@@ -406,5 +406,11 @@ namespace NStackTests
 			Assert.False(Rune.IsWideChar(0x116f));
 		}
 
+		[Test]
+		public void Test_MaxRune()
+		{
+			Assert.Throws<ArgumentOutOfRangeException>(() => new Rune(500000000), "Value is beyond the supplementary range!");
+			Assert.Throws<ArgumentOutOfRangeException>(() => new Rune(0xf801, 0xdfff), "Resulted rune must be less or equal to 0x10ffff!");
+		}
 	}
 }
