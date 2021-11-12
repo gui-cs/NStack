@@ -163,8 +163,21 @@ namespace NStackTests
 			Assert.AreEqual(3, Rune.RuneLen(s));
 			var buff = new byte[4];
 			var sb = Rune.EncodeRune('\u2503', buff);
+			Assert.AreEqual(1, Rune.ColumnWidth('\u2503'));
+			(var rune, var size) = Rune.DecodeRune(ustring.Make('\u2503'));
+			Assert.AreEqual(sb, size);
+			Assert.AreEqual('\u2503', (uint)rune);
 			var scb = char.ConvertToUtf32("℃", 0);
 			var scr = '℃'.ToString().Length;
+			Assert.AreEqual(scr, Rune.ColumnWidth((uint)scb));
+			buff = new byte [4];
+			sb = Rune.EncodeRune('\u1100', buff);
+			Assert.AreEqual(2, Rune.ColumnWidth('\u1100'));
+			Assert.AreEqual(2, ustring.Make('\u1100').ConsoleWidth);
+			Assert.AreEqual(1, '\u1100'.ToString().Length); // Length as string returns 1 but in reality it occupies 2 columns.
+			(rune, size) = Rune.DecodeRune(ustring.Make('\u1100'));
+			Assert.AreEqual(sb, size);
+			Assert.AreEqual('\u1100', (uint)rune);
 		}
 
 		[Test]
