@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace NStackTests
 {
@@ -211,10 +212,15 @@ namespace NStackTests
 			Assert.AreEqual(2, f.ToString().Length);
 			Assert.AreEqual("🌹", f.ToString());
 			Assert.DoesNotThrow(() => new Rune(0x10ffff));
-			var g = new Rune(0x10ffff);
+			Rune g = new Rune(0x10ffff);
+			string s = "\U0010ffff";
 			Assert.AreEqual(1, Rune.ColumnWidth(g));
+			Assert.AreEqual(1, ustring.Make(s).ConsoleWidth);
 			Assert.AreEqual(2, g.ToString().Length);
-			Assert.AreEqual("􏿿", g.ToString());
+			Assert.AreEqual(2, s.Length);
+			Assert.AreEqual("􏿿", g.ToString ());
+			Assert.AreEqual("􏿿", s);
+			Assert.AreEqual(g.ToString(), s);
 			Assert.Throws<ArgumentOutOfRangeException>(() => new Rune(0x12345678));
 			var h = new Rune('\u1150');
 			Assert.AreEqual(2, Rune.ColumnWidth(h));
@@ -426,6 +432,7 @@ namespace NStackTests
 			Assert.AreEqual("ô", f);
 			Assert.AreEqual(f, s);
 			Assert.AreEqual(1, f.ConsoleWidth);
+			Assert.AreEqual(2, s.Sum(c => Rune.ColumnWidth(c)));
 			Assert.AreEqual(2, s.Length);
 			(var rune, var size) = Rune.DecodeRune(f);
 			Assert.AreEqual(rune, l);
@@ -443,6 +450,25 @@ namespace NStackTests
 			Assert.AreEqual("A̅", f);
 			Assert.AreEqual(f, s);
 			Assert.AreEqual(1, f.ConsoleWidth);
+			Assert.AreEqual(2, s.Sum(c => Rune.ColumnWidth(c)));
+			Assert.AreEqual(2, s.Length);
+			(rune, size) = Rune.DecodeRune(f);
+			Assert.AreEqual(rune, l);
+			Assert.AreEqual(1, size);
+			l = '\u0061';
+			ns = '\u0308';
+			s = "\u0061\u0308";
+			Assert.AreEqual(1, Rune.ColumnWidth(l));
+			Assert.AreEqual(1, Rune.ColumnWidth(ns));
+			ul = ustring.Make(l);
+			Assert.AreEqual("a", ul);
+			uns = ustring.Make(ns);
+			Assert.AreEqual("̈", uns);
+			f = ustring.Make($"{l}{ns}");
+			Assert.AreEqual("ä", f);
+			Assert.AreEqual(f, s);
+			Assert.AreEqual(1, f.ConsoleWidth);
+			Assert.AreEqual(2, s.Sum(c => Rune.ColumnWidth(c)));
 			Assert.AreEqual(2, s.Length);
 			(rune, size) = Rune.DecodeRune(f);
 			Assert.AreEqual(rune, l);
@@ -450,7 +476,6 @@ namespace NStackTests
 			l = '\u4f00';
 			ns = '\u302a';
 			s = "\u4f00\u302a";
-			//var s = "\u4f00\u302a\ud800\udc00\u4f01";
 			Assert.AreEqual(2, Rune.ColumnWidth(l));
 			Assert.AreEqual(2, Rune.ColumnWidth(ns));
 			ul = ustring.Make(l);
@@ -461,6 +486,7 @@ namespace NStackTests
 			Assert.AreEqual("伀〪", f); // Occupies 4 columns.
 			Assert.AreEqual(f, s);
 			Assert.AreEqual(4, f.ConsoleWidth);
+			Assert.AreEqual(4, s.Sum(c => Rune.ColumnWidth(c)));
 			Assert.AreEqual(2, s.Length);
 			(rune, size) = Rune.DecodeRune(f);
 			Assert.AreEqual(rune, l);
