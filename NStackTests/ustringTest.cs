@@ -714,10 +714,10 @@ namespace NStackTests {
 			var sc = new Rune(0xd83d);
 			var r = new Rune(0xdd2e);
 			Assert.AreEqual(1, Rune.ColumnWidth(sc));
-			Assert.False(Rune.IsNonSpacingChar(r));
+			Assert.False(Rune.IsNonSpacingChar(r, out _));
 			Assert.AreEqual(1, Rune.ColumnWidth(r));
 			var fr = new Rune(sc, r);
-			Assert.False(Rune.IsNonSpacingChar(fr));
+			Assert.False(Rune.IsNonSpacingChar(fr, out _));
 			Assert.AreEqual(1, Rune.ColumnWidth(fr));
 			var us = ustring.Make(fr);
 			Assert.AreEqual(1, us.ConsoleWidth);

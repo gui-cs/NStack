@@ -128,10 +128,11 @@ namespace System
 		/// Check if the rune is a non-spacing character.
 		/// </summary>
 		/// <param name="rune">The rune.</param>
+		/// <param name="width">The width.</param>
 		/// <returns>True if is a non-spacing character, false otherwise.</returns>
-		public static bool IsNonSpacingChar(uint rune)
+		public static bool IsNonSpacingChar(uint rune, out int width)
         {
-			return bisearch(rune, combining, out _);
+			return bisearch(rune, combining, out width);
         }
 
 		/// <summary>

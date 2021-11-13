@@ -405,11 +405,67 @@ namespace NStackTests
 		[Test]
 		public void Test_IsNonSpacingChar()
         {
-			Assert.True(Rune.IsNonSpacingChar(0x302a));
-			Assert.AreEqual(2, Rune.ColumnWidth(0x302a));
-			Assert.AreEqual(0, ustring.Make(0x302a).ConsoleWidth);
-			Assert.False(Rune.IsNonSpacingChar(0x0370));
-        }
+			Rune l = '\u0370';
+			Assert.False(Rune.IsNonSpacingChar(l, out _));
+			Assert.AreEqual(1, Rune.ColumnWidth(l));
+			Assert.AreEqual(1, ustring.Make(l).ConsoleWidth);
+			Rune ns = '\u302a';
+			Assert.True(Rune.IsNonSpacingChar(ns, out _));
+			Assert.AreEqual(2, Rune.ColumnWidth(ns));
+			Assert.AreEqual(2, ustring.Make(ns).ConsoleWidth);
+			l = '\u006f';
+			ns = '\u0302';
+			var s = "\u006f\u0302";
+			Assert.AreEqual(1, Rune.ColumnWidth(l));
+			Assert.AreEqual(1, Rune.ColumnWidth(ns));
+			var ul = ustring.Make(l);
+			Assert.AreEqual("o", ul);
+			var uns = ustring.Make(ns);
+			Assert.AreEqual("̂", uns);
+			var f = ustring.Make($"{l}{ns}");
+			Assert.AreEqual("ô", f);
+			Assert.AreEqual(f, s);
+			Assert.AreEqual(1, f.ConsoleWidth);
+			Assert.AreEqual(2, s.Length);
+			(var rune, var size) = Rune.DecodeRune(f);
+			Assert.AreEqual(rune, l);
+			Assert.AreEqual(1, size);
+			l = '\u0041';
+			ns = '\u0305';
+			s = "\u0041\u0305";
+			Assert.AreEqual(1, Rune.ColumnWidth(l));
+			Assert.AreEqual(1, Rune.ColumnWidth(ns));
+			ul = ustring.Make(l);
+			Assert.AreEqual("A", ul);
+			uns = ustring.Make(ns);
+			Assert.AreEqual("̅", uns);
+			f = ustring.Make($"{l}{ns}");
+			Assert.AreEqual("A̅", f);
+			Assert.AreEqual(f, s);
+			Assert.AreEqual(1, f.ConsoleWidth);
+			Assert.AreEqual(2, s.Length);
+			(rune, size) = Rune.DecodeRune(f);
+			Assert.AreEqual(rune, l);
+			Assert.AreEqual(1, size);
+			l = '\u4f00';
+			ns = '\u302a';
+			s = "\u4f00\u302a";
+			//var s = "\u4f00\u302a\ud800\udc00\u4f01";
+			Assert.AreEqual(2, Rune.ColumnWidth(l));
+			Assert.AreEqual(2, Rune.ColumnWidth(ns));
+			ul = ustring.Make(l);
+			Assert.AreEqual("伀", ul);
+			uns = ustring.Make(ns);
+			Assert.AreEqual("〪", uns);
+			f = ustring.Make($"{l}{ns}");
+			Assert.AreEqual("伀〪", f); // Occupies 4 columns.
+			Assert.AreEqual(f, s);
+			Assert.AreEqual(4, f.ConsoleWidth);
+			Assert.AreEqual(2, s.Length);
+			(rune, size) = Rune.DecodeRune(f);
+			Assert.AreEqual(rune, l);
+			Assert.AreEqual(3, size);
+		}
 
 		[Test]
 		public void Test_IsWideChar()
