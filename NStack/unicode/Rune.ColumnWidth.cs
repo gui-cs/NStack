@@ -153,7 +153,7 @@ namespace System
 		public static int ColumnWidth(Rune rune)
 		{
 			uint irune = (uint)rune;
-			if (irune < 32 || (irune >= 0x7f && irune <= 0xa0))
+			if (irune < 32 || (irune >= 0x7f && irune < 0xa0))
 				return -1;
 			if (irune < 127)
 				return 1;
