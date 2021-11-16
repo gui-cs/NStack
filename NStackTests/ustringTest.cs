@@ -722,5 +722,21 @@ namespace NStackTests {
 			var us = ustring.Make(fr);
 			Assert.AreEqual(1, us.ConsoleWidth);
 		}
+
+		[Test]
+		public void Test_Substring()
+		{
+			ustring us = "This a test to return a substring";
+			Assert.AreEqual("test to return a substring", us.Substring(7));
+			Assert.AreEqual("test to return", us.Substring(7, 14));
+		}
+
+		[Test]
+		public void Test_RuneSubstring()
+		{
+			ustring us = "This a test to return a substring";
+			Assert.AreEqual("test to return a substring", us.RuneSubstring(7));
+			Assert.AreEqual("test to return", us.RuneSubstring(7, 14));
+		}
 	}
 }

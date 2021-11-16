@@ -1012,19 +1012,37 @@ namespace NStack {
 		/// Utf8 encoded string.
 		/// </summary>
 		/// <returns>The substring starting at the specified offset.</returns>
-		/// <param name="byteStart">Starting point, the value is .</param>
-		public ustring Substring (int byteStart)
+		/// <param name="byteStart">Starting point, default value is 0.</param>
+		/// <param name="length">The substring length.</param>
+		public ustring Substring (int byteStart, int length = 0)
 		{
-			int len = Length;
+			if (length <= 0)
+				length = Length - byteStart;
 			if (byteStart < 0)
 				byteStart = 0;
-			return GetRange (byteStart, len);
+			return GetRange (byteStart, byteStart + length);
 		}
 
-
-		public ustring RuneSubstring (int runeStart)
+		/// <summary>
+		/// Returns the substring starting at the given position in rune index from the origin of the Utf8 string.
+		/// </summary>
+		/// <returns>The substring starting at the specified offset.</returns>
+		/// <param name="runeStart">Starting point, default value is 0.</param>
+		/// <param name="length">The substring length.</param>
+		public ustring RuneSubstring (int runeStart, int length = 0)
 		{
-			throw new NotImplementedException ();
+			if (length <= 0)
+				length = Length - runeStart;
+			if (runeStart < 0)
+				runeStart = 0;
+
+			var runes = this.ToRunes();
+			ustring usRange = "";
+			for (int i = runeStart; i < runeStart + length; i++)
+			{
+				usRange += ustring.Make(runes [i]);
+			}
+			return usRange;
 		}
 
 		/// <summary>
@@ -1049,17 +1067,7 @@ namespace NStack {
 				for (int i = 0; i < blen;) {
 					(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
 					i += size;
-					if (Rune.IsNonSpacingChar(rune, out int width))
-					{
-						if (width > 1)
-						{
-							total += width;
-						}
-					}
-					else
-					{
-						total += Rune.ColumnWidth(rune);
-					}
+					total += Rune.IsNonSpacingChar(rune, out int width) ? width : Rune.ColumnWidth(rune);
 				}
 				return total;
 			}
@@ -1456,9 +1464,9 @@ namespace NStack {
 		/// <param name="offset">Starting offset to start the search from.</param>
 		public int IndexOf (uint rune, int offset = 0)
 		{
-			if (0 <= rune && rune < Utf8.RuneSelf)
+			if (rune < Utf8.RuneSelf)
 				return IndexByte ((byte)rune, offset);
-			if (rune == Utf8.RuneError) 
+			if (rune == Utf8.RuneError)
 				return Utf8.InvalidIndex (this);
 			if (!Utf8.ValidRune (rune))
 				return -1;
