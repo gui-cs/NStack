@@ -415,7 +415,8 @@ namespace NStack
 				return 1;
 			if (rune <= rune2Max)
 				return 2;
-			if (surrogateMin <= rune && rune <= surrogateMax)
+			if (rune > MaxRune || (surrogateMin <= rune && rune <= surrogateMax))
+				// error
 				return -1;
 			if (rune <= rune3Max)
 				return 3;
@@ -585,10 +586,12 @@ namespace NStack
 					i++;
 					continue;
 				}
+				(Rune rune, _) = Utf8.DecodeRune(str, i, size);
+				if (Rune.IsValidSurrogatePair(rune.ToString(), out char [] chars))
+					n++;
 				i += size;
-
 			}
-			return n;			
+			return n;
 		}
 
 		/// <summary>
@@ -712,11 +715,11 @@ namespace NStack
 		/// <summary>
 		///  ValidRune reports whether a rune can be legally encoded as UTF-8.
 		/// </summary>
-		/// <returns><c>true</c>, if rune was valided, <c>false</c> otherwise.</returns>
+		/// <returns><c>true</c>, if rune is valid, <c>false</c> otherwise.</returns>
 		/// <param name="rune">The rune to test.</param>
 		public static bool ValidRune (uint rune)
 		{
-			if (0 <= rune && rune < surrogateMin)
+			if (rune < surrogateMin)
 				return true;
 			if (surrogateMax < rune && rune <= MaxRune)
 				return true;
