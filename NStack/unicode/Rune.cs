@@ -102,7 +102,7 @@ namespace System {
 			else
 			{
 				var rune = 0x10000 + ((sgateMin - surrogateMin) * 0x0400) + (sgateMax - lowSurrogateMin);
-				if (rune <= MaxRune)
+				if (rune >= 0x10000 && rune <= MaxRune)
 				{
 					return rune;
 				}
@@ -122,7 +122,13 @@ namespace System {
 		/// <summary>
 		/// Gets a value indicating whether this <see cref="T:System.Rune"/> is a valid surrogate pair.
 		/// </summary>
-		public bool IsSurrogatePair => IsValidSurrogatePair(((Rune)value).ToString(), out _);
+		public bool IsSurrogatePair => IsValidSurrogatePair(value, out _);
+
+		/// <summary>
+		/// Check if the rune is a non-spacing character.
+		/// </summary>
+		/// <returns>True if is a non-spacing character, false otherwise.</returns>
+		public bool IsNonSpacing => IsNonSpacingChar(value, out _);
 
 		// Code points in the surrogate range are not valid for UTF-8.
 		const uint surrogateMin = 0xd800;
@@ -557,7 +563,29 @@ namespace System {
 		}
 
 		/// <summary>
-		/// Reports whether a rune is a valid surrogate pair.
+		///Reports whether a rune is a valid surrogate pair.
+		/// </summary>
+		/// <param name="rune">The rune</param>
+		/// <param name="chars">The chars if is valid. Empty otherwise.</param>
+		/// <returns><c>true</c>If is a valid surrogate pair, <c>false</c>otherwise.</returns>
+		public static bool IsValidSurrogatePair(uint rune, out char [] chars)
+		{
+			uint s = rune - 0x10000;
+			uint h = surrogateMin + (s >> 10);
+			uint l = lowSurrogateMin + (s & 0x3FF);
+			uint dsp;
+
+			if ((dsp = DecodeSurrogatePair (h, l)) > 0 && dsp == rune)
+			{
+				chars = new char [] { (char)h, (char)l };
+				return true;
+			}
+			chars = null;
+			return false;
+		}
+
+		/// <summary>
+		/// Reports whether a string is a valid surrogate pair.
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <param name="chars">The chars if is valid. Empty otherwise.</param>
