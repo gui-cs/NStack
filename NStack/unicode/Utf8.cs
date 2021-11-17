@@ -587,7 +587,7 @@ namespace NStack
 					continue;
 				}
 				(Rune rune, _) = Utf8.DecodeRune(str, i, size);
-				if (Rune.IsValidSurrogatePair(rune.ToString(), out char [] chars))
+				if (rune.IsSurrogatePair)
 					n++;
 				i += size;
 			}
