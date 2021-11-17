@@ -1597,7 +1597,7 @@ namespace NStack {
 		}
 
 		/// <summary>
-		/// Implements the IComparable<typeparamref name="T"/>.CompareTo method
+		/// Implements the IComparable<paramtype name="ustring"/>.CompareTo method
 		/// </summary>
 		/// <returns>Less than zero if this instance is less than value, zero if they are the same, and higher than zero if the instance is greater.</returns>
 		/// <param name="other">Value.</param>
