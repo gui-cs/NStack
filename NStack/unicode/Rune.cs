@@ -872,13 +872,6 @@ namespace System {
 		public static implicit operator Rune (uint value) => new Rune (value);
 
 		/// <summary>
-		/// Implicit operator conversion from a rune into a integer.
-		/// </summary>
-		/// <returns>The integer representation.</returns>
-		/// <param name="rune">Rune.</param>
-		public static implicit operator int (Rune rune) => (int)rune.value;
-
-		/// <summary>
 		/// Serves as a hash function for a <see cref="T:System.Rune"/> object.
 		/// </summary>
 		/// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a hash table.</returns>
