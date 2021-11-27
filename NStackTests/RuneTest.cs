@@ -73,7 +73,7 @@ namespace NStackTests
 			Assert.AreEqual(sizeh, Rune.RuneLen(runeh));
 			for (int x = 0; x < uh.Length - 1; x++)
 			{
-				Assert.False(Rune.EncodeSurrogatePair(uh [x], uh [x + 1]) > 0);
+				Assert.False(Rune.EncodeSurrogatePair(uh [x], uh [x + 1], out _));
 			}
 			Assert.IsTrue(Rune.ValidRune(runeh));
 			Assert.True(Rune.Valid(uh.ToByteArray()));
@@ -96,7 +96,7 @@ namespace NStackTests
 			Assert.AreEqual(sizei, Rune.RuneLen(runei));
 			for (int x = 0; x < ui.Length - 1; x++)
 			{
-				Assert.False(Rune.EncodeSurrogatePair(ui [x], ui [x + 1]) > 0);
+				Assert.False(Rune.EncodeSurrogatePair(ui [x], ui [x + 1], out _));
 			}
 			Assert.IsTrue(Rune.ValidRune(runei));
 			Assert.True(Rune.Valid(ui.ToByteArray()));
@@ -184,6 +184,42 @@ namespace NStackTests
 			(rune, size) = Rune.DecodeRune(ustring.Make('\u1100'));
 			Assert.AreEqual(sb, size);
 			Assert.AreEqual('\u1100', (uint)rune);
+			string str = "\u2615";
+			Assert.AreEqual("☕", str);
+			Assert.AreEqual(1, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(1, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(1, Rune.RuneCount(str));
+			Assert.AreEqual(1, str.Length);
+			str = "\u2615\ufe0f"; // Identical but \ufe0f forces it to be rendered as a colorful image as compared to a monochrome text variant.
+			Assert.AreEqual("☕️", str);
+			Assert.AreEqual(1, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(1, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(2, Rune.RuneCount(str));
+			Assert.AreEqual(2, str.Length);
+			str = "\u231a";
+			Assert.AreEqual("⌚", str);
+			Assert.AreEqual(2, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(2, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(1, Rune.RuneCount(str));
+			Assert.AreEqual(1, str.Length);
+			str = "\u231b";
+			Assert.AreEqual("⌛", str);
+			Assert.AreEqual(2, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(2, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(1, Rune.RuneCount(str));
+			Assert.AreEqual(1, str.Length);
+			str = "\u231c";
+			Assert.AreEqual("⌜", str);
+			Assert.AreEqual(1, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(1, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(1, Rune.RuneCount(str));
+			Assert.AreEqual(1, str.Length);
+			str = "\u1dc0";
+			Assert.AreEqual("᷀", str);
+			Assert.AreEqual(0, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(0, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(1, Rune.RuneCount(str));
+			Assert.AreEqual(1, str.Length);
 		}
 
 		[Test]
@@ -205,7 +241,7 @@ namespace NStackTests
 			Assert.AreEqual(1, Rune.ColumnWidth(d));
 			Assert.AreEqual(2, d.ToString().Length);
 			Assert.AreEqual("𐐡", d.ToString());
-			Assert.False(Rune.EncodeSurrogatePair('\ud799', '\udc21') > 0);
+			Assert.False(Rune.EncodeSurrogatePair('\ud799', '\udc21', out _));
 			Assert.Throws<ArgumentOutOfRangeException>(() => new Rune('\ud799', '\udc21'));
 			Rune e = new Rune('\ud801', '\udc21');
 			Assert.AreEqual(1, Rune.ColumnWidth(e));
@@ -260,20 +296,21 @@ namespace NStackTests
 			Assert.AreEqual(2, o.ToString().Length);
 			Assert.AreEqual("🔮", o.ToString());
 			var p = new Rune('\u2329');
-			Assert.AreEqual(2, Rune.ColumnWidth(p));
+			Assert.AreEqual(1, Rune.ColumnWidth(p));
 			Assert.AreEqual(1, p.ToString().Length);
 			Assert.AreEqual("〈", p.ToString());
 			var q = new Rune('\u232a');
-			Assert.AreEqual(2, Rune.ColumnWidth(q));
+			Assert.AreEqual(1, Rune.ColumnWidth(q));
 			Assert.AreEqual(1, q.ToString().Length);
 			Assert.AreEqual("〉", q.ToString());
 			var r = Rune.DecodeRune(ustring.Make("\U0000232a")).rune;
-			Assert.AreEqual(2, Rune.ColumnWidth(r));
+			Assert.AreEqual(1, Rune.ColumnWidth(r));
 			Assert.AreEqual(1, r.ToString().Length);
 			Assert.AreEqual("〉", r.ToString());
 
 			PrintTextElementCount(ustring.Make('\u00e1'), "á", 1, 1, 1, 1);
 			PrintTextElementCount(ustring.Make('\u0061', '\u0301'), "á", 1, 2, 2, 1);
+			PrintTextElementCount(ustring.Make('\u0065', '\u0301'), "é", 1, 2, 2, 1);
 			PrintTextElementCount(ustring.Make(new Rune [] { new Rune(0x1f469), new Rune(0x1f3fd), new Rune('\u200d'), new Rune(0x1f692) }),
 				"👩🏽‍🚒", 3, 7, 7, 4);
 			PrintTextElementCount(ustring.Make(new Rune [] { new Rune(0x1f469), new Rune(0x1f3fd), new Rune('\u200d'), new Rune(0x1f692) }),
@@ -284,8 +321,8 @@ namespace NStackTests
 
 		void PrintTextElementCount(ustring us, string s, int consoleWidth, int runeCount, int stringCount, int txtElementCount)
 		{
+			Assert.AreNotEqual(us.Length, s.Length);
 			Assert.AreEqual(us.ToString(), s);
-			Assert.AreEqual(s, us.ToString());
 			Assert.AreEqual(consoleWidth, us.ConsoleWidth);
 			Assert.AreEqual(runeCount, us.RuneCount);
 			Assert.AreEqual(stringCount, s.Length);
@@ -343,14 +380,15 @@ namespace NStackTests
 					var buff = new byte [4];
 					Rune.EncodeRune(s [i], buff);
 					Assert.AreEqual((int)(s [i]), buff [0]);
-					Assert.AreEqual(s [i], (char)r);
+					Assert.AreEqual(s [i], r.Value);
 					Assert.True(r.IsValid);
 					Assert.False(r.IsSurrogatePair);
 				}
 				else if (i + 1 < s.Length && char.IsSurrogatePair(s [i], s [i + 1]))
 				{
 					int codePoint = char.ConvertToUtf32(s [i], s [i + 1]);
-					Assert.AreEqual(codePoint, Rune.EncodeSurrogatePair(s [i], s [i + 1]));
+					Rune.EncodeSurrogatePair(s[i], s[i + 1], out Rune rune);
+					Assert.AreEqual(codePoint, rune.Value);
 					string sp = new string(new char [] { s [i], s [i + 1] });
 					r = (uint)codePoint;
 					Assert.AreEqual(sp, r.ToString());
@@ -384,7 +422,7 @@ namespace NStackTests
 					Assert.AreEqual((uint)s [i], (uint)rune);
 					Assert.False(rune.IsSurrogatePair);
 				}
-				else if (i + 1 < s.Length && (codePoint = Rune.EncodeSurrogatePair(s [i], s [i + 1])) > 0)
+				else if (i + 1 < s.Length && (Rune.EncodeSurrogatePair(s [i], s [i + 1], out codePoint)))
 				{
 					Assert.IsFalse(Rune.ValidRune(rune));
 					rune = codePoint;
@@ -658,20 +696,46 @@ namespace NStackTests
 		[Test]
 		public void Test_EncodeSurrogatePair()
 		{
-			Assert.AreEqual(0, Rune.EncodeSurrogatePair(0x40D7C0, 0xDC20));
-			Assert.AreEqual(0x1F356, Rune.EncodeSurrogatePair('\ud83c', '\udf56'));
-			Assert.AreEqual("🍖", ((Rune)0x1F356).ToString());
+			Assert.IsFalse(Rune.EncodeSurrogatePair(0x40D7C0, 0xDC20, out _));
+			Assert.IsFalse(Rune.EncodeSurrogatePair(0x0065, 0x0301, out _));
+			Assert.IsTrue(Rune.EncodeSurrogatePair('\ud83c', '\udf56', out Rune rune));
+			Assert.AreEqual(0x1F356, rune.Value);
+			Assert.AreEqual("🍖", rune.ToString());
 		}
 
 		[Test]
 		public void Test_DecodeSurrogatePair()
 		{
-			Assert.False(Rune.DecodeSurrogatePair('\uea85', out _));
-			Assert.True(Rune.DecodeSurrogatePair(0x1F356, out char[] chars));
+			Assert.False(Rune.DecodeSurrogatePair('\uea85', out char[] chars));
+			Assert.IsNull(chars);
+			Assert.True(Rune.DecodeSurrogatePair(0x1F356, out chars));
 			Assert.AreEqual(2, chars.Length);
 			Assert.AreEqual('\ud83c', chars [0]);
 			Assert.AreEqual('\udf56', chars [1]);
 			Assert.AreEqual("🍖", new Rune(chars [0], chars [1]).ToString());
+		}
+
+		[Test]
+		public void Test_Surrogate_Pairs_Range()
+		{
+			for (uint h = 0xd800; h <= 0xdbff; h++)
+			{
+				for (uint l = 0xdc00; l <= 0xdfff; l++)
+				{
+					Rune r = new Rune(h, l);
+					ustring us = ustring.Make(r);
+					string hex = ((uint)r).ToString("x6");
+					int v = int.Parse(hex, System.Globalization.NumberStyles.HexNumber);
+					string s = char.ConvertFromUtf32(v);
+
+					Assert.True(v >= 0x10000 && v <= Rune.MaxRune);
+					Assert.AreEqual(r.ToString(), us.ToString());
+					Assert.AreEqual(us.ToString(), s);
+					Assert.AreEqual(Rune.ColumnWidth(r), us.ConsoleWidth);
+					Assert.AreEqual(s.Sum(c => Rune.ColumnWidth(c)), us.ConsoleWidth);
+					Assert.AreEqual(us.RuneCount, s.Length);
+				}
+			}
 		}
 	}
 }

@@ -14,6 +14,11 @@ namespace System {
 		uint value;
 
 		/// <summary>
+		/// Gets the rune unsigned integer value.
+		/// </summary>
+		public uint Value => value;
+
+		/// <summary>
 		/// The "error" Rune or "Unicode replacement character"
 		/// </summary>
 		public static Rune Error = new Rune (0xfffd);
@@ -72,8 +77,7 @@ namespace System {
 		/// <param name="lowSurrogate">The low surrogate code point.</param>
 		public Rune (uint highSurrogate, uint lowSurrogate)
 		{
-			var rune = EncodeSurrogatePair (highSurrogate, lowSurrogate);
-			if (rune > 0)
+			if (EncodeSurrogatePair(highSurrogate, lowSurrogate, out Rune rune))
 			{
 				this.value = rune;
 			}
@@ -558,15 +562,18 @@ namespace System {
 		/// </summary>
 		/// <param name="highsurrogate">The high surrogate code point.</param>
 		/// <param name="lowSurrogate">The low surrogate code point.</param>
-		public static uint EncodeSurrogatePair(uint highsurrogate, uint lowSurrogate)
+		/// <param name="rune">The returning rune.</param>
+		/// <returns><c>True</c>if the returning rune is greater than 0 <c>False</c>otherwise.</returns>
+		public static bool EncodeSurrogatePair(uint highsurrogate, uint lowSurrogate, out Rune rune)
 		{
+			rune = 0;
 			if (highsurrogate >= highSurrogateMin && highsurrogate <= highSurrogateMax &&
 				lowSurrogate >= lowSurrogateMin && lowSurrogate <= lowSurrogateMax)
 			{
 				//return 0x10000 + ((highsurrogate - highSurrogateMin) * 0x0400) + (lowSurrogate - lowSurrogateMin);
-				return 0x10000 + ((highsurrogate - highSurrogateMin) << 10) + (lowSurrogate - lowSurrogateMin);
+				return (rune = 0x10000 + ((highsurrogate - highSurrogateMin) << 10) + (lowSurrogate - lowSurrogateMin)) > 0;
 			}
-			return 0;
+			return false;
 		}
 
 		/// <summary>
@@ -580,9 +587,8 @@ namespace System {
 			uint s = rune - 0x10000;
 			uint h = highSurrogateMin + (s >> 10);
 			uint l = lowSurrogateMin + (s & 0x3FF);
-			uint dsp;
 
-			if ((dsp = EncodeSurrogatePair (h, l)) > 0 && dsp == rune)
+			if (EncodeSurrogatePair (h, l, out Rune dsp) && dsp == rune)
 			{
 				chars = new char [] { (char)h, (char)l };
 				return true;
@@ -602,7 +608,10 @@ namespace System {
 			if (str.Length == 2)
 			{
 				chars = str.ToCharArray();
-				return EncodeSurrogatePair(chars [0], chars [1]) > 0;
+				if (EncodeSurrogatePair(chars[0], chars[1], out _))
+				{
+					return true;
+				}
 			}
 			chars = null;
 			return false;
@@ -861,6 +870,13 @@ namespace System {
 		/// <returns>Rune representing the C# character</returns>
 		/// <param name="value">32-bit unsigned integer.</param>
 		public static implicit operator Rune (uint value) => new Rune (value);
+
+		/// <summary>
+		/// Implicit operator conversion from a rune into a integer.
+		/// </summary>
+		/// <returns>The integer representation.</returns>
+		/// <param name="rune">Rune.</param>
+		public static implicit operator int (Rune rune) => (int)rune.value;
 
 		/// <summary>
 		/// Serves as a hash function for a <see cref="T:System.Rune"/> object.
