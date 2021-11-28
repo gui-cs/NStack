@@ -220,6 +220,18 @@ namespace NStackTests
 			Assert.AreEqual(0, ((ustring)str).ConsoleWidth);
 			Assert.AreEqual(1, Rune.RuneCount(str));
 			Assert.AreEqual(1, str.Length);
+			str = "\ud83e\udd16";
+			Assert.AreEqual("🤖", str);
+			Assert.AreEqual(2, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(2, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(1, Rune.RuneCount(str)); // Here returns 1 because is a valid surrogate pair resulting in only rune >=U+10000..U+10FFFF
+			Assert.AreEqual(2, str.Length); // String always preserves the originals values of each surrogate pair
+			str = "\U0001f9e0";
+			Assert.AreEqual("🧠", str);
+			Assert.AreEqual(2, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(2, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(1, Rune.RuneCount(str));
+			Assert.AreEqual(2, str.Length);
 		}
 
 		[Test]
