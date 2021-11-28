@@ -159,59 +159,9 @@ namespace System {
 		{
 			if ((object)str == null)
 				throw new ArgumentNullException (nameof (str));
-			var count = str.Length;
-			int n = 0;
-			for (int i = 0; i < count;) {
-				n++;
-				var c = str [i];
 
-				if (c < RuneSelf) {
-					// ASCII fast path
-					i++;
-					continue;
-				}
-				var x = first [c];
-				if (x == xx) {
-					i++; // invalid.
-					continue;
-				}
-
-				var size = (int)(x & 7);
-
-				if (i + size > count) {
-					i++; // Short or invalid.
-					continue;
-				}
-				var accept = AcceptRanges [x >> 4];
-				c = str [i + 1];
-				if (c < accept.Lo || accept.Hi < c) {
-					i++;
-					continue;
-				}
-				if (size == 2) {
-					i += 2;
-					continue;
-				}
-				c = str [i + 2];
-				if (c < locb || hicb < c) {
-					i++;
-					continue;
-				}
-				if (size == 3) {
-					i += 3;
-					continue;
-				}
-				c = str [i + 3];
-				if (c < locb || hicb < c) {
-					i++;
-					continue;
-				}
-				i += size;
-
-			}
-			return n;
+			return RuneCount(str.ToByteArray());
 		}
-
 
 		/// <summary>
 		/// Use to find the index of the first invalid utf8 byte sequence in a buffer

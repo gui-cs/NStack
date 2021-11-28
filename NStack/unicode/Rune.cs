@@ -14,6 +14,11 @@ namespace System {
 		uint value;
 
 		/// <summary>
+		/// Gets the rune unsigned integer value.
+		/// </summary>
+		public uint Value => value;
+
+		/// <summary>
 		/// The "error" Rune or "Unicode replacement character"
 		/// </summary>
 		public static Rune Error = new Rune (0xfffd);
@@ -62,45 +67,27 @@ namespace System {
 		/// <param name="ch">C# characters.</param>
 		public Rune (char ch)
 		{
-			if (ch >= surrogateMin && ch <= surrogateMax)
-			{
-				throw new ArgumentException("Value in the surrogate range and isn't part of a surrogate pair!");
-			}
 			this.value = (uint)ch;
 		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:System.Rune"/> from a surrogate pair value.
 		/// </summary>
-		/// <param name="sgateMin">The high surrogate code points minimum value.</param>
-		/// <param name="sgateMax">The low surrogate code points maximum value.</param>
-		public Rune (uint sgateMin, uint sgateMax)
+		/// <param name="highSurrogate">The high surrogate code point.</param>
+		/// <param name="lowSurrogate">The low surrogate code point.</param>
+		public Rune (uint highSurrogate, uint lowSurrogate)
 		{
-			var rune = DecodeSurrogatePair (sgateMin, sgateMax);
-			if (rune > 0)
+			if (EncodeSurrogatePair(highSurrogate, lowSurrogate, out Rune rune))
 			{
 				this.value = rune;
 			}
-			else
+			else if (highSurrogate < highSurrogateMin || lowSurrogate > lowSurrogateMax)
 			{
-				throw new ArgumentOutOfRangeException($"Must be between {surrogateMin:x} and {surrogateMax:x} inclusive!");
-			}
-		}
-
-		/// <summary>
-		/// Gets a value indicating whether this <see cref="T:System.Rune"/> can be encoded as UTF-8 from a surrogate pair or zero otherwise.
-		/// </summary>
-		/// <param name="sgateMin">The high surrogate code points minimum value.</param>
-		/// <param name="sgateMax">The low surrogate code points maximum value.</param>
-		public static uint DecodeSurrogatePair (uint sgateMin, uint sgateMax)
-		{
-			if (sgateMin < surrogateMin || sgateMax > surrogateMax)
-			{
-				return 0;
+				throw new ArgumentOutOfRangeException($"Must be between {highSurrogateMin:x} and {lowSurrogateMax:x} inclusive!");
 			}
 			else
 			{
-				return 0x10000 + ((sgateMin - surrogateMin) * 0x0400) + (sgateMax - lowSurrogateMin);
+				throw new ArgumentOutOfRangeException($"Resulted rune must be less or equal to {(uint)MaxRune:x}!");
 			}
 		}
 
@@ -108,22 +95,32 @@ namespace System {
 		/// Gets a value indicating whether this <see cref="T:System.Rune"/> can be encoded as UTF-8
 		/// </summary>
 		/// <value><c>true</c> if is valid; otherwise, <c>false</c>.</value>
-		public bool IsValid {
-			get {
-				if (0 <= value && value <= surrogateMin)
-					return true;
-				if (surrogateMax <= value && value <= MaxRune)
-					return true;
-				return false;
-			}
-		}
+		public bool IsValid => ValidRune(value);
+
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="T:System.Rune"/> is a surrogate code point.
+		/// </summary>
+		/// <returns><c>true</c>If is a surrogate code point, <c>false</c>otherwise.</returns>
+		public bool IsSurrogate => IsSurrogateRune(value);
+
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="T:System.Rune"/> is a valid surrogate pair.
+		/// </summary>
+		/// <returns><c>true</c>If is a valid surrogate pair, <c>false</c>otherwise.</returns>
+		public bool IsSurrogatePair => DecodeSurrogatePair(value, out _);
+
+		/// <summary>
+		/// Check if the rune is a non-spacing character.
+		/// </summary>
+		/// <returns>True if is a non-spacing character, false otherwise.</returns>
+		public bool IsNonSpacing => IsNonSpacingChar(value, out _);
 
 		// Code points in the surrogate range are not valid for UTF-8.
-		const uint surrogateMin = 0xd800;
-		const uint surrogateMax = 0xdfff;
-
+		const uint highSurrogateMin = 0xd800;
 		const uint highSurrogateMax = 0xdbff;
 		const uint lowSurrogateMin = 0xdc00;
+		const uint lowSurrogateMax = 0xdfff;
+
 		const uint maxRune = 0x10ffff;
 
 		const byte t1 = 0x00; // 0000 0000
@@ -163,7 +160,7 @@ namespace System {
 		static byte [] first = new byte [256]{
 			//   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
 			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x00-0x0F
-			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1,a1, a1, a1, a1, a1, // 0x10-0x1F
+			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x10-0x1F
 			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x20-0x2F
 			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x30-0x3F
 			a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, a1, // 0x40-0x4F
@@ -360,7 +357,7 @@ namespace System {
 				return 1;
 			if (rvalue <= rune2Max)
 				return 2;
-			if (surrogateMin <= rvalue && rvalue <= surrogateMax)
+			if (highSurrogateMin <= rvalue && rvalue <= lowSurrogateMax)
 				return -1;
 			if (rvalue <= rune3Max)
 				return 3;
@@ -390,7 +387,7 @@ namespace System {
 				dest [offset] = (byte)(tx | (byte)(runeValue & maskx));
 				return 2;
 			}
-			if ((runeValue > MaxRune.value) || (surrogateMin <= runeValue && runeValue <= surrogateMax)) {
+			if ((runeValue > MaxRune.value) || (highSurrogateMin <= runeValue && runeValue <= lowSurrogateMax)) {
 				// error
 				dest [offset++] = 0xef;
 				dest [offset++] = 0x3f;
@@ -541,10 +538,82 @@ namespace System {
 		/// <param name="rune">The rune to test.</param>
 		public static bool ValidRune (Rune rune)
 		{
-			if (0 <= rune.value && rune.value < surrogateMin)
+			if ((0 <= (int)rune.value && rune.value < highSurrogateMin) ||
+				(lowSurrogateMax < rune.value && rune.value <= MaxRune.value))
+			{
 				return true;
-			if (surrogateMax < rune.value && rune.value <= MaxRune.value)
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Reports whether a rune is a surrogate code point.
+		/// </summary>
+		/// <param name="rune">The rune.</param>
+		/// <returns><c>true</c>If is a surrogate code point, <c>false</c>otherwise.</returns>
+		public static bool IsSurrogateRune(uint rune)
+		{
+			return rune >= highSurrogateMin && rune <= lowSurrogateMax;
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="T:System.Rune"/> can be encoded as UTF-16 from a surrogate pair or zero otherwise.
+		/// </summary>
+		/// <param name="highsurrogate">The high surrogate code point.</param>
+		/// <param name="lowSurrogate">The low surrogate code point.</param>
+		/// <param name="rune">The returning rune.</param>
+		/// <returns><c>True</c>if the returning rune is greater than 0 <c>False</c>otherwise.</returns>
+		public static bool EncodeSurrogatePair(uint highsurrogate, uint lowSurrogate, out Rune rune)
+		{
+			rune = 0;
+			if (highsurrogate >= highSurrogateMin && highsurrogate <= highSurrogateMax &&
+				lowSurrogate >= lowSurrogateMin && lowSurrogate <= lowSurrogateMax)
+			{
+				//return 0x10000 + ((highsurrogate - highSurrogateMin) * 0x0400) + (lowSurrogate - lowSurrogateMin);
+				return (rune = 0x10000 + ((highsurrogate - highSurrogateMin) << 10) + (lowSurrogate - lowSurrogateMin)) > 0;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Reports whether this <see cref="T:System.Rune"/> is a valid surrogate pair and can be decoded from UTF-16.
+		/// </summary>
+		/// <param name="rune">The rune</param>
+		/// <param name="chars">The chars if is valid. Empty otherwise.</param>
+		/// <returns><c>true</c>If is a valid surrogate pair, <c>false</c>otherwise.</returns>
+		public static bool DecodeSurrogatePair(uint rune, out char [] chars)
+		{
+			uint s = rune - 0x10000;
+			uint h = highSurrogateMin + (s >> 10);
+			uint l = lowSurrogateMin + (s & 0x3FF);
+
+			if (EncodeSurrogatePair (h, l, out Rune dsp) && dsp == rune)
+			{
+				chars = new char [] { (char)h, (char)l };
 				return true;
+			}
+			chars = null;
+			return false;
+		}
+
+		/// <summary>
+		/// Reports whether this <see cref="T:System.Rune"/> is a valid surrogate pair and can be decoded from UTF-16.
+		/// </summary>
+		/// <param name="str">The string.</param>
+		/// <param name="chars">The chars if is valid. Empty otherwise.</param>
+		/// <returns><c>true</c>If is a valid surrogate pair, <c>false</c>otherwise.</returns>
+		public static bool DecodeSurrogatePair(string str, out char [] chars)
+		{
+			if (str.Length == 2)
+			{
+				chars = str.ToCharArray();
+				if (EncodeSurrogatePair(chars[0], chars[1], out _))
+				{
+					return true;
+				}
+			}
+			chars = null;
 			return false;
 		}
 
@@ -836,7 +905,5 @@ namespace System {
 			Rune p = (Rune)obj;
 			return p.value == value;
 		}
-
 	}
-
 }

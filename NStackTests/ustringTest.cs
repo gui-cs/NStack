@@ -707,5 +707,36 @@ namespace NStackTests {
 			}
 #endif
 		}
+
+		[Test]
+		public void TestConsoleWidth()
+		{
+			var sc = new Rune(0xd83d);
+			var r = new Rune(0xdd2e);
+			Assert.AreEqual(1, Rune.ColumnWidth(sc));
+			Assert.False(Rune.IsNonSpacingChar(r, out _));
+			Assert.AreEqual(1, Rune.ColumnWidth(r));
+			var fr = new Rune(sc, r);
+			Assert.False(Rune.IsNonSpacingChar(fr, out _));
+			Assert.AreEqual(1, Rune.ColumnWidth(fr));
+			var us = ustring.Make(fr);
+			Assert.AreEqual(1, us.ConsoleWidth);
+		}
+
+		[Test]
+		public void Test_Substring()
+		{
+			ustring us = "This a test to return a substring";
+			Assert.AreEqual("test to return a substring", us.Substring(7));
+			Assert.AreEqual("test to return", us.Substring(7, 14));
+		}
+
+		[Test]
+		public void Test_RuneSubstring()
+		{
+			ustring us = "This a test to return a substring";
+			Assert.AreEqual("test to return a substring", us.RuneSubstring(7));
+			Assert.AreEqual("test to return", us.RuneSubstring(7, 14));
+		}
 	}
 }
