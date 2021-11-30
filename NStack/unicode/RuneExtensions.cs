@@ -119,7 +119,23 @@ namespace System
 		/// <param name="str">String to validate.</param>
 		public static bool Valid(this ustring str)
 		{
+			if ((object)str == null)
+				throw new ArgumentNullException(nameof(str));
+
 			return Rune.Valid(str.ToByteArray());
+		}
+
+		/// <summary>
+		/// Given one byte from a utf8 string, return the number of expected bytes that make up the sequence.
+		/// </summary>
+		/// <returns>The number of UTF8 bytes expected given the first prefix.</returns>
+		/// <param name="str">String to get the first byte of a UTF8 sequence.</param>
+		public static int ExpectedSizeFromFirstByte(this ustring str)
+		{
+			if ((object)str == null)
+				throw new ArgumentNullException(nameof(str));
+
+			return Rune.ExpectedSizeFromFirstByte(str[0]);
 		}
 	}
 }

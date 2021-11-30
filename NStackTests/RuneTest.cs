@@ -751,6 +751,14 @@ namespace NStackTests
 		}
 
 		[Test]
+		public void Test_ExpectedSizeFromFirstByte()
+		{
+			Assert.AreEqual(-1, Rune.ExpectedSizeFromFirstByte(255));
+			Assert.AreEqual(1, Rune.ExpectedSizeFromFirstByte(127));
+			Assert.AreEqual(4, Rune.ExpectedSizeFromFirstByte(240));
+		}
+
+		[Test]
 		public void Test_FullRune_Extension()
 		{
 			ustring us = "Hello, 世界";
@@ -812,11 +820,14 @@ namespace NStackTests
 		}
 
 		[Test]
-		public void Test_ExpectedSizeFromFirstByte()
+		public void Test_ExpectedSizeFromFirstByte_Extension()
 		{
-			Assert.AreEqual(-1, Rune.ExpectedSizeFromFirstByte(255));
-			Assert.AreEqual(1, Rune.ExpectedSizeFromFirstByte(127));
-			Assert.AreEqual(4, Rune.ExpectedSizeFromFirstByte(240));
+			ustring us = ustring.Make(255);
+			Assert.AreEqual(-1, us.ExpectedSizeFromFirstByte());
+			us = ustring.Make(127);
+			Assert.AreEqual(1, us.ExpectedSizeFromFirstByte());
+			us = ustring.Make(240);
+			Assert.AreEqual(4, us.ExpectedSizeFromFirstByte());
 		}
 	}
 }
