@@ -324,11 +324,11 @@ namespace NStackTests
 			PrintTextElementCount(ustring.Make('\u0061', '\u0301'), "á", 1, 2, 2, 1);
 			PrintTextElementCount(ustring.Make('\u0065', '\u0301'), "é", 1, 2, 2, 1);
 			PrintTextElementCount(ustring.Make(new Rune[] { new Rune(0x1f469), new Rune(0x1f3fd), new Rune('\u200d'), new Rune(0x1f692) }),
-				"👩🏽‍🚒", 3, 7, 7, 4);
+				"👩🏽‍🚒", 3, 4, 7, 4);
 			PrintTextElementCount(ustring.Make(new Rune[] { new Rune(0x1f469), new Rune(0x1f3fd), new Rune('\u200d'), new Rune(0x1f692) }),
-				"\U0001f469\U0001f3fd\u200d\U0001f692", 3, 7, 7, 4);
+				"\U0001f469\U0001f3fd\u200d\U0001f692", 3, 4, 7, 4);
 			PrintTextElementCount(ustring.Make(new Rune('\ud801', '\udccf')),
-				"\ud801\udccf", 1, 2, 2, 1);
+				"\ud801\udccf", 1, 1, 2, 1);
 		}
 
 		void PrintTextElementCount(ustring us, string s, int consoleWidth, int runeCount, int stringCount, int txtElementCount)
@@ -338,7 +338,6 @@ namespace NStackTests
 			Assert.AreEqual(consoleWidth, us.ConsoleWidth);
 			Assert.AreEqual(runeCount, us.RuneCount);
 			Assert.AreEqual(stringCount, s.Length);
-			Assert.AreEqual(runeCount, s.Length);
 
 			TextElementEnumerator enumerator = StringInfo.GetTextElementEnumerator(s);
 
@@ -598,7 +597,7 @@ namespace NStackTests
 		}
 
 		[Test]
-		public void Sum_Of_ColumnWidth_Is_Always_Equal_To_ConsoleWidth_And_RuneCount_Is_Always_Equal_To_String_Length()
+		public void Sum_Of_ColumnWidth_Is_Always_Equal_To_ConsoleWidth()
 		{
 			const int start = 0x000000;
 			const int end = 0x10ffff;
@@ -629,7 +628,8 @@ namespace NStackTests
 					Assert.AreEqual(us.ToString(), s);
 					Assert.AreEqual(Rune.ColumnWidth(r), us.ConsoleWidth);
 					Assert.AreEqual(s.Sum(c => Rune.ColumnWidth(c)), us.ConsoleWidth);
-					Assert.AreEqual(us.RuneCount, s.Length);
+					Assert.AreEqual(1, us.RuneCount); // Here returns 1 because is a valid surrogate pair resulting in only rune >=U+10000..U+10FFFF
+					Assert.AreEqual(2, s.Length); // String always preserves the originals values of each surrogate pair
 				}
 			}
 		}
@@ -675,15 +675,17 @@ namespace NStackTests
 					Assert.AreEqual(r.ToString(), us);
 					Assert.AreEqual(us, s);
 					Assert.AreEqual(Rune.ColumnWidth(r), us.ConsoleWidth);
+					Assert.AreEqual(us.RuneCount, s.Length); // For not surrogate pairs ustring.RuneCount is always equal to String.Length
 				}
 				else
 				{
 					Assert.AreEqual(r.ToString(), us.ToString());
 					Assert.AreEqual(us.ToString(), s);
 					Assert.AreEqual(Rune.ColumnWidth(r), us.ConsoleWidth);
+					Assert.AreEqual(1, us.RuneCount); // Here returns 1 because is a valid surrogate pair resulting in only rune >=U+10000..U+10FFFF
+					Assert.AreEqual(2, s.Length); // String always preserves the originals values of each surrogate pair
 				}
 				Assert.AreEqual(s.Sum(c => Rune.ColumnWidth(c)), us.ConsoleWidth);
-				Assert.AreEqual(us.RuneCount, s.Length);
 			}
 		}
 
@@ -745,7 +747,8 @@ namespace NStackTests
 					Assert.AreEqual(us.ToString(), s);
 					Assert.AreEqual(Rune.ColumnWidth(r), us.ConsoleWidth);
 					Assert.AreEqual(s.Sum(c => Rune.ColumnWidth(c)), us.ConsoleWidth);
-					Assert.AreEqual(us.RuneCount, s.Length);
+					Assert.AreEqual(1, us.RuneCount); // Here returns 1 because is a valid surrogate pair resulting in only rune >=U+10000..U+10FFFF
+					Assert.AreEqual(2, s.Length); // String always preserves the originals values of each surrogate pair
 				}
 			}
 		}

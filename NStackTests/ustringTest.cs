@@ -738,5 +738,13 @@ namespace NStackTests {
 			Assert.AreEqual("test to return a substring", us.RuneSubstring(7));
 			Assert.AreEqual("test to return", us.RuneSubstring(7, 14));
 		}
+
+		[Test]
+		public void Test_ToRunes()
+		{
+			ustring us = "Some long text that 🤖🧠 is super cool";
+			uint[] runesArray = us.ToRunes();
+			Assert.AreEqual(us, runesArray);
+		}
 	}
 }

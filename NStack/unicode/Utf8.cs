@@ -558,6 +558,16 @@ namespace NStack
 
 				var size = (int)(x & 7);
 
+				//if (i <= str.Length - size )
+				//{
+				//	(Rune rune, _) = Utf8.DecodeRune(str, i, size);
+				//	if (rune.IsSurrogatePair)
+				//	{
+				//		i += size;
+				//		continue;
+				//	}
+				//}
+
 				if (i + size > count) {
 					i++; // Short or invalid.
 					continue;
@@ -586,9 +596,6 @@ namespace NStack
 					i++;
 					continue;
 				}
-				(Rune rune, _) = Utf8.DecodeRune(str, i, size);
-				if (rune.IsSurrogatePair)
-					n++;
 				i += size;
 			}
 			return n;
