@@ -16,7 +16,7 @@ namespace NStackTests
 			Rune b = 'b';
 			Rune c = 123;
 			Rune d = '\u1150';  // 0x1150	ᅐ	Unicode Technical Report #11
-			Rune e = '\u1161';  // 0x1161	ᅡ	null character with column equal to 0
+			Rune e = '\u1161';  // 0x1161	ᅡ	Unicode Hangul Jamo with column width equal to 2 alone or joined.
 			Rune f = 31;    // non printable character
 			Rune g = 127;   // non printable character
 			string h = "\U0001fa01";
@@ -55,9 +55,17 @@ namespace NStackTests
 			Assert.AreEqual("따", join);
 			Assert.AreEqual(4, join.Sum(x => Rune.ColumnWidth(x)));
 			Assert.IsFalse(Rune.DecodeSurrogatePair(join, out _));
+			Assert.AreEqual(2, ((ustring)join).RuneCount);
+			Assert.AreEqual(2, join.Length);
 			Assert.AreEqual("ᅡ", e.ToString());
 			Assert.AreEqual(1, e.ToString().Length);
 			Assert.AreEqual(3, Rune.RuneLen(e));
+			string joinNormalize= join.Normalize();
+			Assert.AreEqual("따", joinNormalize);
+			Assert.AreEqual(2, joinNormalize.Sum(x => Rune.ColumnWidth(x)));
+			Assert.IsFalse(Rune.DecodeSurrogatePair(joinNormalize, out _));
+			Assert.AreEqual(1, ((ustring)joinNormalize).RuneCount);
+			Assert.AreEqual(1, joinNormalize.Length);
 			Assert.AreEqual(-1, Rune.ColumnWidth(f));
 			Assert.AreEqual(1, f.ToString().Length);
 			Assert.AreEqual(1, Rune.RuneLen(f));
