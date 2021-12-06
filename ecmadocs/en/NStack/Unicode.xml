@@ -90,7 +90,7 @@
             IsControl reports whether the rune is a control character.
             </summary>
         <returns>
-          <c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+          <c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
         <remarks>
             The C (Other) Unicode category includes more code points such as surrogates; use C.InRange (r) to test for them.
             </remarks>
@@ -138,7 +138,7 @@
             IsGraphic reports whether the rune is defined as a Graphic by Unicode.
             </summary>
         <returns>
-          <c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+          <c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
         <remarks>
             Such characters include letters, marks, numbers, punctuation, symbols, and
             spaces, from categories L, M, N, P, S, Zs.
@@ -260,7 +260,7 @@
             IsPrint reports whether the rune is defined as printable.
             </summary>
         <returns>
-          <c>true</c>, if the rune is a lower case lette, <c>false</c> otherwise.</returns>
+          <c>true</c>, if the rune is a lower case letter, <c>false</c> otherwise.</returns>
         <remarks>
             Such characters include letters, marks, numbers, punctuation, symbols, and the
             ASCII space character, from categories L, M, N, P, S and the ASCII space
@@ -295,7 +295,7 @@
       </Docs>
     </Member>
     <Member MemberName="IsRuneInRanges">
-      <MemberSignature Language="C#" Value="public static bool IsRuneInRanges (uint rune, NStack.Unicode.RangeTable[] inRanges);" />
+      <MemberSignature Language="C#" Value="public static bool IsRuneInRanges (uint rune, params NStack.Unicode.RangeTable[] inRanges);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsRuneInRanges(unsigned int32 rune, valuetype NStack.Unicode/RangeTable[] inRanges) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
@@ -321,7 +321,7 @@
             Determines if a rune is on a set of ranges.
             </summary>
         <returns>
-          <c>true</c>, if rune in ranges was ised, <c>false</c> otherwise.</returns>
+          <c>true</c>, if rune in ranges was used, <c>false</c> otherwise.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

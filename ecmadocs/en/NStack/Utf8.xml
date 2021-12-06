@@ -480,7 +480,7 @@
              ValidRune reports whether a rune can be legally encoded as UTF-8.
             </summary>
         <returns>
-          <c>true</c>, if rune was valided, <c>false</c> otherwise.</returns>
+          <c>true</c>, if rune is valid, <c>false</c> otherwise.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

@@ -384,6 +384,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Chorasmian">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Chorasmian { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Chorasmian" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Chorasmian is the set of Unicode characters in script Chorasmian.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Common">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Common { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Common" />
@@ -448,6 +464,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Cypro_Minoan">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Cypro_Minoan { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cypro_Minoan" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Cypro_Minoan is the set of Unicode characters in script Cypro_Minoan.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Cyrillic">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Cyrillic { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Cyrillic" />
@@ -496,6 +528,38 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Dives_Akuru">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Dives_Akuru { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Dives_Akuru" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Dives_Akuru is the set of Unicode characters in script Dives_Akuru.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Dogra">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Dogra { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Dogra" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Dogra is the set of Unicode characters in script Dogra.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Duployan">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Duployan { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Duployan" />
@@ -540,6 +604,22 @@
       </ReturnValue>
       <Docs>
         <summary>Elbasan is the set of Unicode characters in script Elbasan.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Elymaic">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Elymaic { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Elymaic" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Elymaic is the set of Unicode characters in script Elymaic.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -676,6 +756,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Gunjala_Gondi">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Gunjala_Gondi { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Gunjala_Gondi" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Gunjala_Gondi is the set of Unicode characters in script Gunjala_Gondi.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Gurmukhi">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Gurmukhi { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Gurmukhi" />
@@ -720,6 +816,22 @@
       </ReturnValue>
       <Docs>
         <summary>Hangul is the set of Unicode characters in script Hangul.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Hanifi_Rohingya">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Hanifi_Rohingya { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Hanifi_Rohingya" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Hanifi_Rohingya is the set of Unicode characters in script Hanifi_Rohingya.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -948,6 +1060,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Khitan_Small_Script">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Khitan_Small_Script { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Khitan_Small_Script" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Khitan_Small_Script is the set of Unicode characters in script Khitan_Small_Script.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Khmer">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Khmer { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Khmer" />
@@ -1156,6 +1284,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Makasar">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Makasar { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Makasar" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Makasar is the set of Unicode characters in script Makasar.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Malayalam">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Malayalam { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Malayalam" />
@@ -1216,6 +1360,38 @@
       </ReturnValue>
       <Docs>
         <summary>Marchen is the set of Unicode characters in script Marchen.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Masaram_Gondi">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Masaram_Gondi { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Masaram_Gondi" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Masaram_Gondi is the set of Unicode characters in script Masaram_Gondi.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Medefaidrin">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Medefaidrin { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Medefaidrin" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Medefaidrin is the set of Unicode characters in script Medefaidrin.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1396,6 +1572,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Nandinagari">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Nandinagari { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Nandinagari" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Nandinagari is the set of Unicode characters in script Nandinagari.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="New_Tai_Lue">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable New_Tai_Lue { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable New_Tai_Lue" />
@@ -1440,6 +1632,38 @@
       </ReturnValue>
       <Docs>
         <summary>Nko is the set of Unicode characters in script Nko.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Nushu">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Nushu { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Nushu" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Nushu is the set of Unicode characters in script Nushu.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Nyiakeng_Puachue_Hmong">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Nyiakeng_Puachue_Hmong { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Nyiakeng_Puachue_Hmong" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Nyiakeng_Puachue_Hmong is the set of Unicode characters in script Nyiakeng_Puachue_Hmong.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1556,6 +1780,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Old_Sogdian">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Old_Sogdian { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_Sogdian" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Old_Sogdian is the set of Unicode characters in script Old_Sogdian.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Old_South_Arabian">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Old_South_Arabian { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_South_Arabian" />
@@ -1584,6 +1824,22 @@
       </ReturnValue>
       <Docs>
         <summary>Old_Turkic is the set of Unicode characters in script Old_Turkic.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Old_Uyghur">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Old_Uyghur { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Old_Uyghur" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Old_Uyghur is the set of Unicode characters in script Old_Uyghur.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1876,6 +2132,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Sogdian">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Sogdian { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sogdian" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Sogdian is the set of Unicode characters in script Sogdian.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Sora_Sompeng">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Sora_Sompeng { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sora_Sompeng" />
@@ -1888,6 +2160,22 @@
       </ReturnValue>
       <Docs>
         <summary>Sora_Sompeng is the set of Unicode characters in script Sora_Sompeng.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Soyombo">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Soyombo { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Soyombo" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Soyombo is the set of Unicode characters in script Soyombo.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -2052,6 +2340,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Tangsa">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Tangsa { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tangsa" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Tangsa is the set of Unicode characters in script Tangsa.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Tangut">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Tangut { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Tangut" />
@@ -2164,6 +2468,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Toto">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Toto { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Toto" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Toto is the set of Unicode characters in script Toto.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Ugaritic">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Ugaritic { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Ugaritic" />
@@ -2196,6 +2516,38 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Vithkuqi">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Vithkuqi { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Vithkuqi" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Vithkuqi is the set of Unicode characters in script Vithkuqi.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Wancho">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Wancho { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Wancho" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Wancho is the set of Unicode characters in script Wancho.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Warang_Citi">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Warang_Citi { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Warang_Citi" />
@@ -2212,6 +2564,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Yezidi">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Yezidi { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Yezidi" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Yezidi is the set of Unicode characters in script Yezidi.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Yi">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Yi { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Yi" />
@@ -2224,6 +2592,22 @@
       </ReturnValue>
       <Docs>
         <summary>Yi is the set of Unicode characters in script Yi.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Zanabazar_Square">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Zanabazar_Square { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Zanabazar_Square" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Zanabazar_Square is the set of Unicode characters in script Zanabazar_Square.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

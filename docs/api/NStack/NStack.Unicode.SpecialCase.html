@@ -10,18 +10,19 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct Unicode.SpecialCase
    ">
-    <meta name="generator" content="docfx 2.18.2.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
     
+    <meta property="docfx:rel" content="../../">
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -36,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../images/logo48.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -57,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -70,32 +81,54 @@
             <article class="content wrap" id="_content" data-uid="NStack.Unicode.SpecialCase">
   
   
-  <h1 id="NStack_Unicode_SpecialCase" data-uid="NStack.Unicode.SpecialCase">Struct Unicode.SpecialCase
+  <h1 id="NStack_Unicode_SpecialCase" data-uid="NStack.Unicode.SpecialCase" class="text-break">Struct Unicode.SpecialCase
   </h1>
-  <div class="markdown level0 summary"><p>SpecialCase represents language-specific case mappings such as Turkish.</p>
+  <div class="markdown level0 summary">
+SpecialCase represents language-specific case mappings such as Turkish.
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="../NStack.html">NStack</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.ValueType.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ValueType.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.ValueType.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NStack.html">NStack</a></h6>
   <h6><strong>Assembly</strong>: NStack.dll</h6>
   <h5 id="NStack_Unicode_SpecialCase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct Unicode.SpecialCase</code></pre>
+    <pre><code class="lang-csharp hljs">public struct SpecialCase</code></pre>
   </div>
   <h5 id="NStack_Unicode_SpecialCase_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Methods of SpecialCase customize (by overriding) the standard mappings.</p>
+  <div class="markdown level0 remarks">
+Methods of SpecialCase customize (by overriding) the standard mappings.
 </div>
   <h3 id="methods">Methods
   </h3>
-  
-  
   <a id="NStack_Unicode_SpecialCase_ToLower_" data-uid="NStack.Unicode.SpecialCase.ToLower*"></a>
   <h4 id="NStack_Unicode_SpecialCase_ToLower_System_UInt32_" data-uid="NStack.Unicode.SpecialCase.ToLower(System.UInt32)">ToLower(UInt32)</h4>
-  <div class="markdown level1 summary"><p>ToLower maps the rune to lower case giving priority to the special mapping.</p>
+  <div class="markdown level1 summary">
+ToLower maps the rune to lower case giving priority to the special mapping.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint ToLower (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public uint ToLower(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -110,8 +143,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -126,21 +158,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>The lower cased rune if it can be.</p>
-</td>
+        <td>The lower cased rune if it can be.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_SpecialCase_ToTitle_" data-uid="NStack.Unicode.SpecialCase.ToTitle*"></a>
   <h4 id="NStack_Unicode_SpecialCase_ToTitle_System_UInt32_" data-uid="NStack.Unicode.SpecialCase.ToTitle(System.UInt32)">ToTitle(UInt32)</h4>
-  <div class="markdown level1 summary"><p>ToTitle maps the rune to title case giving priority to the special mapping.</p>
+  <div class="markdown level1 summary">
+ToTitle maps the rune to title case giving priority to the special mapping.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint ToTitle (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public uint ToTitle(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -155,8 +185,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -171,21 +200,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>The title cased rune if it can be.</p>
-</td>
+        <td>The title cased rune if it can be.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_SpecialCase_ToUpper_" data-uid="NStack.Unicode.SpecialCase.ToUpper*"></a>
   <h4 id="NStack_Unicode_SpecialCase_ToUpper_System_UInt32_" data-uid="NStack.Unicode.SpecialCase.ToUpper(System.UInt32)">ToUpper(UInt32)</h4>
-  <div class="markdown level1 summary"><p>ToUpper maps the rune to upper case giving priority to the special mapping.</p>
+  <div class="markdown level1 summary">
+ToUpper maps the rune to upper case giving priority to the special mapping.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint ToUpper (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public uint ToUpper(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -200,8 +227,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -216,8 +242,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>The upper cased rune if it can be.</p>
-</td>
+        <td>The upper cased rune if it can be.</td>
       </tr>
     </tbody>
   </table>
@@ -226,12 +251,9 @@
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
@@ -246,7 +268,7 @@
               <a href="#top">Back to top</a>
             </span>
             
-            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+            <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>

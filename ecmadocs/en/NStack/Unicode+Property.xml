@@ -468,6 +468,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Regional_Indicator">
+      <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Regional_Indicator { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Regional_Indicator" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NStack.Unicode+RangeTable</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Regional_Indicator is the set of Unicode characters with property Regional_Indicator.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Sentence_Terminal">
       <MemberSignature Language="C#" Value="public static NStack.Unicode.RangeTable Sentence_Terminal { get; }" />
       <MemberSignature Language="ILAsm" Value=".property valuetype NStack.Unicode/RangeTable Sentence_Terminal" />

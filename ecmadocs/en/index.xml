@@ -3,28 +3,28 @@
     <Assembly Name="NStack" Version="1.0.0.0">
       <Attributes>
         <Attribute>
-          <AttributeName>System.Diagnostics.Debuggable(System.Diagnostics.DebuggableAttribute+DebuggingModes.Default | System.Diagnostics.DebuggableAttribute+DebuggingModes.DisableOptimizations | System.Diagnostics.DebuggableAttribute+DebuggingModes.IgnoreSymbolStoreSequencePoints | System.Diagnostics.DebuggableAttribute+DebuggingModes.EnableEditAndContinue)</AttributeName>
+          <AttributeName>System.Diagnostics.Debuggable(System.Diagnostics.DebuggableAttribute+DebuggingModes.IgnoreSymbolStoreSequencePoints)</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyCompany("")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyCompany("Miguel de Icaza")</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyConfiguration("")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyConfiguration("Release")</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyCopyright("${AuthorCopyright}")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyDescription("NStack.Core brings a set of updated APIs to .NET.  \r\n\r\nIt starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing")</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyDescription("")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyFileVersion("1.0.0.0")</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyProduct("")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyInformationalVersion("1.0.0")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyProduct("NStack")</AttributeName>
         </Attribute>
         <Attribute>
           <AttributeName>System.Reflection.AssemblyTitle("NStack")</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.Reflection.AssemblyTrademark("")</AttributeName>
         </Attribute>
         <Attribute>
           <AttributeName>System.Runtime.CompilerServices.CompilationRelaxations(8)</AttributeName>
@@ -33,7 +33,7 @@
           <AttributeName>System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Runtime.Versioning.TargetFramework(".NETFramework,Version=v4.6.1", FrameworkDisplayName=".NET Framework 4.6.1")</AttributeName>
+          <AttributeName>System.Runtime.Versioning.TargetFramework(".NETStandard,Version=v2.0", FrameworkDisplayName="")</AttributeName>
         </Attribute>
       </Attributes>
     </Assembly>
@@ -53,6 +53,195 @@
       <Type Name="ustring+RunePredicate" Kind="Delegate" />
       <Type Name="Utf8" Kind="Class" />
     </Namespace>
+    <Namespace Name="System">
+      <Type Name="Rune" Kind="Structure" />
+      <Type Name="Rune+Case" Kind="Enumeration" />
+      <Type Name="RuneExtensions" Kind="Class" />
+    </Namespace>
   </Types>
   <Title>NStack</Title>
+  <ExtensionMethods>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:NStack.ustring" />
+      </Targets>
+      <Member MemberName="DecodeLastRune">
+        <MemberSignature Language="C#" Value="public static ValueTuple&lt;Rune,int&gt; DecodeLastRune (this NStack.ustring str, int end = -1);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype System.ValueTuple`2&lt;valuetype System.Rune, int32&gt; DecodeLastRune(class NStack.ustring str, int32 end) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.ValueTuple&lt;System.Rune,System.Int32&gt;</ReturnType>
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.Runtime.CompilerServices.TupleElementNames(new System.String[] { "rune", "size" })</AttributeName>
+            </Attribute>
+          </Attributes>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="str" Type="NStack.ustring" RefType="this" />
+          <Parameter Name="end" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <param name="str">String to decode rune from;   if it is empty,
+            it returns (RuneError, 0). Otherwise, if
+            the encoding is invalid, it returns (RuneError, 1). Both are impossible
+            results for correct, non-empty UTF-8.</param>
+          <param name="end">Scan up to that point, if the value is -1, it sets the value to the length of the buffer.</param>
+          <summary>
+            DecodeLastRune unpacks the last UTF-8 encoding in the ustring.
+            </summary>
+        </Docs>
+        <Link Type="System.RuneExtensions" Member="M:System.RuneExtensions.DecodeLastRune(NStack.ustring,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:NStack.ustring" />
+      </Targets>
+      <Member MemberName="DecodeRune">
+        <MemberSignature Language="C#" Value="public static ValueTuple&lt;Rune,int&gt; DecodeRune (this NStack.ustring str, int start = 0, int n = -1);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype System.ValueTuple`2&lt;valuetype System.Rune, int32&gt; DecodeRune(class NStack.ustring str, int32 start, int32 n) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.ValueTuple&lt;System.Rune,System.Int32&gt;</ReturnType>
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.Runtime.CompilerServices.TupleElementNames(new System.String[] { "rune", "size" })</AttributeName>
+            </Attribute>
+          </Attributes>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="str" Type="NStack.ustring" RefType="this" />
+          <Parameter Name="start" Type="System.Int32" />
+          <Parameter Name="n" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <param name="str">ustring to decode.</param>
+          <param name="start">Starting offset to look into..</param>
+          <param name="n">Number of bytes valid in the buffer, or -1 to make it the length of the buffer.</param>
+          <summary>
+            DecodeRune unpacks the first UTF-8 encoding in the ustring returns the rune and
+            its width in bytes. 
+            </summary>
+        </Docs>
+        <Link Type="System.RuneExtensions" Member="M:System.RuneExtensions.DecodeRune(NStack.ustring,System.Int32,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:NStack.ustring" />
+      </Targets>
+      <Member MemberName="ExpectedSizeFromFirstByte">
+        <MemberSignature Language="C#" Value="public static int ExpectedSizeFromFirstByte (this NStack.ustring str);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 ExpectedSizeFromFirstByte(class NStack.ustring str) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="str" Type="NStack.ustring" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="str">String to get the first byte of a UTF8 sequence.</param>
+          <summary>
+            Given one byte from a utf8 string, return the number of expected bytes that make up the sequence.
+            </summary>
+        </Docs>
+        <Link Type="System.RuneExtensions" Member="M:System.RuneExtensions.ExpectedSizeFromFirstByte(NStack.ustring)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:NStack.ustring" />
+      </Targets>
+      <Member MemberName="FullRune">
+        <MemberSignature Language="C#" Value="public static bool FullRune (this NStack.ustring str);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool FullRune(class NStack.ustring str) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="str" Type="NStack.ustring" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="str">The string to check.</param>
+          <summary>
+            FullRune reports whether the ustring begins with a full UTF-8 encoding of a rune.
+            An invalid encoding is considered a full Rune since it will convert as a width-1 error rune.
+            </summary>
+        </Docs>
+        <Link Type="System.RuneExtensions" Member="M:System.RuneExtensions.FullRune(NStack.ustring)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:NStack.ustring" />
+      </Targets>
+      <Member MemberName="InvalidIndex">
+        <MemberSignature Language="C#" Value="public static int InvalidIndex (this NStack.ustring str);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 InvalidIndex(class NStack.ustring str) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="str" Type="NStack.ustring" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="str">String containing the utf8 buffer.</param>
+          <summary>
+            Use to find the index of the first invalid utf8 byte sequence in a buffer
+            </summary>
+        </Docs>
+        <Link Type="System.RuneExtensions" Member="M:System.RuneExtensions.InvalidIndex(NStack.ustring)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:NStack.ustring" />
+      </Targets>
+      <Member MemberName="RuneCount">
+        <MemberSignature Language="C#" Value="public static int RuneCount (this NStack.ustring str);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 RuneCount(class NStack.ustring str) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="str" Type="NStack.ustring" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="str">utf8 string.</param>
+          <summary>
+            Returns the number of runes in a ustring.
+            </summary>
+        </Docs>
+        <Link Type="System.RuneExtensions" Member="M:System.RuneExtensions.RuneCount(NStack.ustring)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:NStack.ustring" />
+      </Targets>
+      <Member MemberName="Valid">
+        <MemberSignature Language="C#" Value="public static bool Valid (this NStack.ustring str);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool Valid(class NStack.ustring str) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="str" Type="NStack.ustring" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="str">String to validate.</param>
+          <summary>
+            Reports whether the ustring consists entirely of valid UTF-8-encoded runes.
+            </summary>
+        </Docs>
+        <Link Type="System.RuneExtensions" Member="M:System.RuneExtensions.Valid(NStack.ustring)" />
+      </Member>
+    </ExtensionMethod>
+  </ExtensionMethods>
 </Overview>

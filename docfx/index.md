@@ -3,14 +3,13 @@
 
 NStack contains a new API for .NET based on modern C# and .NET idioms.
 
-You can start with the new [UTF8 ustring
-class](api/NStack/NStack.ustring.html), which is powered by an updated
-[Unicode library](api/NStack/NStack.Unicode.html) and modern support for
-[UTF8 parsing and decoding](api/NStack/NStack.Utf8.html).
+You can start with the new [UTF8 ustring class](/api/NStack/NStack.ustring.html), which is powered by an updated
+[Unicode library](/api/NStack/NStack.Unicode.html) and modern support for
+[UTF8 parsing and decoding](/api/NStack/NStack.Utf8.html).
 
 # API Documentation
 
-Take a look at the [API documentation](api/NStack) for NStack.
+Take a look at the [API Documentation](/api/NStack/NStack.html) for NStack.
 
 # Future
 
@@ -27,4 +26,5 @@ To make things simple, this assumes that UTF8 strings (ustring in this
 code) can exist without them being valid UTF8 strings, but rather a
 collection of bytes.
 
-
+[1] For example, older file systems can have filenames that made sense with
+a particular character set and are effectively not possible to map into strings.

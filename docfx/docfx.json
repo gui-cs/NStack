@@ -4,16 +4,18 @@
       "src": [
         {
           "files": [
-            "NStack/NStack.csproj"
+            "NStack.csproj"
           ],
           "exclude": [
             "**/obj/**",
             "**/bin/**",
             "_site/**"
-          ]
+          ],
+          "src": "../NStack"
         }
       ],
-      "dest": "api"
+      "dest": "api/NStack",
+      "shouldSkipMarkup": true
     }
   ],
   "build": {
@@ -60,12 +62,17 @@
       }
     ],
     "dest": "../docs",
+    "globalMetadata": {
+      "_enableSearch": "true",
+      "_appLogoPath": "images/logo48.png",
+      "_disableContribution": true
+    },
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
       "default"
     ],
-    "postProcessors": [],
+    "postProcessors": [ "ExtractSearchIndex" ],
     "noLangKeyword": false,
     "keepFileLink": false
   }
