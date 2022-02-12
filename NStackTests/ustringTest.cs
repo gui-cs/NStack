@@ -746,5 +746,24 @@ namespace NStackTests {
 			uint[] runesArray = us.ToRunes();
 			Assert.AreEqual(us, runesArray);
 		}
+
+		[Test]
+		public void Make_Environment_NewLine()
+		{
+			var us = ustring.Make(Environment.NewLine);
+			if (Environment.NewLine.Length == 1)
+			{
+				Assert.AreEqual('\n', us[0]);
+				Assert.AreEqual(10, us[0]);
+			}
+			else
+			{
+				Assert.AreEqual('\r', us[0]);
+				Assert.AreEqual(13, us[0]);
+
+				Assert.AreEqual('\n', us[1]);
+				Assert.AreEqual(10, us[1]);
+			}
+		}
 	}
 }
