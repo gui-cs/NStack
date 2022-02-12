@@ -332,9 +332,9 @@ namespace NStackTests
 			PrintTextElementCount(ustring.Make('\u0061', '\u0301'), "á", 1, 2, 2, 1);
 			PrintTextElementCount(ustring.Make('\u0065', '\u0301'), "é", 1, 2, 2, 1);
 			PrintTextElementCount(ustring.Make(new Rune[] { new Rune(0x1f469), new Rune(0x1f3fd), new Rune('\u200d'), new Rune(0x1f692) }),
-				"👩🏽‍🚒", 3, 4, 7, 4);
+				"👩🏽‍🚒", 3, 4, 7, 1);
 			PrintTextElementCount(ustring.Make(new Rune[] { new Rune(0x1f469), new Rune(0x1f3fd), new Rune('\u200d'), new Rune(0x1f692) }),
-				"\U0001f469\U0001f3fd\u200d\U0001f692", 3, 4, 7, 4);
+				"\U0001f469\U0001f3fd\u200d\U0001f692", 3, 4, 7, 1);
 			PrintTextElementCount(ustring.Make(new Rune('\ud801', '\udccf')),
 				"\ud801\udccf", 1, 1, 2, 1);
 		}
@@ -842,3 +842,4 @@ namespace NStackTests
 		}
 	}
 }
+// A Unicode character is considered a bidirectional text control character if it falls into any of the following ranges: U+061c, U+200e-U+200f, U+202a-U+202e, U+2066-U+2069.

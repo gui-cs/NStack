@@ -673,6 +673,12 @@ namespace NStack {
 				return true;
 			}
 
+			// If both string are identical, return true.
+			if (a.ToString () == b.ToString ())
+			{
+				return true;
+			}
+
 			// If one is null, but not both, return false.
 			if (((object)a == null) || ((object)b == null)) {
 				return false;

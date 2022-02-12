@@ -8,6 +8,7 @@ using System;
 using NStack;
 using System.Runtime.InteropServices;
 using System.Text;
+using Rune = System.Rune;
 
 namespace NStackTests {
 	[TestFixture]
@@ -383,7 +384,7 @@ namespace NStackTests {
 			var s = ustring.Make (ptr, 10, releaseFunc);
 			Assert.True (s is IDisposable);
 			var id = s as IDisposable;
-			id.Dispose ();
+			id?.Dispose ();
 			Assert.True (released);
 		}
 
