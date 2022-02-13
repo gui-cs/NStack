@@ -840,6 +840,47 @@ namespace NStackTests
 			us = ustring.Make(240);
 			Assert.AreEqual(4, us.ExpectedSizeFromFirstByte());
 		}
+
+		[Test]
+		public void Equals()
+		{
+			var a = new List<List<Rune>>() { ustring.Make("First line.").ToRuneList() };
+			var b = new List<List<Rune>>() { ustring.Make("First line.").ToRuneList(), ustring.Make("Second line.").ToRuneList() };
+			var c = new List<Rune>(a[0]);
+			var d = a[0];
+
+			Assert.AreEqual(a[0], b[0]);
+			// Not the same referece
+			Assert.False(a[0] == b[0]);
+			Assert.AreNotEqual(a[0], b[1]);
+			Assert.False(a[0] == b[1]);
+
+			Assert.AreEqual(c, a[0]);
+			Assert.False(c == a[0]);
+			Assert.AreEqual(c, b[0]);
+			Assert.False(c == b[0]);
+			Assert.AreNotEqual(c, b[1]);
+			Assert.False(c == b[1]);
+
+			Assert.AreEqual(d, a[0]);
+			// Is the same reference
+			Assert.True(d == a[0]);
+			Assert.AreEqual(d, b[0]);
+			Assert.False(d == b[0]);
+			Assert.AreNotEqual(d, b[1]);
+			Assert.False(d == b[1]);
+
+			Assert.True(a[0].SequenceEqual(b[0]));
+			Assert.False(a[0].SequenceEqual(b[1]));
+
+			Assert.True(c.SequenceEqual(a[0]));
+			Assert.True(c.SequenceEqual(b[0]));
+			Assert.False(c.SequenceEqual(b[1]));
+
+			Assert.True(d.SequenceEqual(a[0]));
+			Assert.True(d.SequenceEqual(b[0]));
+			Assert.False(d.SequenceEqual(b[1]));
+		}
 	}
 }
 // A Unicode character is considered a bidirectional text control character if it falls into any of the following ranges: U+061c, U+200e-U+200f, U+202a-U+202e, U+2066-U+2069.

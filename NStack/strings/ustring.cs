@@ -629,6 +629,12 @@ namespace NStack {
 		// The high-level version parameters have been validated
 		static bool EqualsHelper (ustring a, ustring b)
 		{
+			// If both string are identical, return true.
+			if (a.SequenceEqual(b))
+			{
+				return true;
+			}
+
 			var alen = a.Length;
 			var blen = b.Length;
 			if (alen != blen)
@@ -670,12 +676,6 @@ namespace NStack {
 		{
 			// If both are null, or both are same instance, return true.
 			if (System.Object.ReferenceEquals (a, b)) {
-				return true;
-			}
-
-			// If both string are identical, return true.
-			if (a.ToString () == b.ToString ())
-			{
 				return true;
 			}
 

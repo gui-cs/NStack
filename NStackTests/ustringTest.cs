@@ -103,7 +103,13 @@ namespace NStackTests {
 			var cp = ustring.Make (c1, len);
 
 			var apalias = ap;
+			Assert.IsTrue(ap.Equals(bp));
 			Assert.IsTrue (ap == bp);
+
+			string arefMod = "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdy$";
+			Assert.IsFalse(ap.Equals(arefMod));
+			Assert.IsFalse(ap == arefMod);
+
 			Assert.IsTrue (ap == apalias);
 			Assert.IsTrue (ap != cp);
 
