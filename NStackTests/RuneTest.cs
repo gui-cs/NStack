@@ -850,7 +850,7 @@ namespace NStackTests
 			var d = a[0];
 
 			Assert.AreEqual(a[0], b[0]);
-			// Not the same referece
+			// Not the same reference
 			Assert.False(a[0] == b[0]);
 			Assert.AreNotEqual(a[0], b[1]);
 			Assert.False(a[0] == b[1]);
