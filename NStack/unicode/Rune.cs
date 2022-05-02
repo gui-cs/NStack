@@ -113,7 +113,7 @@ namespace System {
 		/// Check if the rune is a non-spacing character.
 		/// </summary>
 		/// <returns>True if is a non-spacing character, false otherwise.</returns>
-		public bool IsNonSpacing => IsNonSpacingChar(value, out _);
+		public bool IsNonSpacing => IsNonSpacingChar(value);
 
 		// Code points in the surrogate range are not valid for UTF-8.
 		const uint highSurrogateMin = 0xd800;

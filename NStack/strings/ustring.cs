@@ -1073,7 +1073,7 @@ namespace NStack {
 				for (int i = 0; i < blen;) {
 					(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
 					i += size;
-					total += Rune.IsNonSpacingChar(rune, out int width) ? width : Rune.ColumnWidth(rune);
+					total += Rune.ColumnWidth(rune);
 				}
 				return total;
 			}

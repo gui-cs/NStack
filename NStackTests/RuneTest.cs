@@ -16,7 +16,7 @@ namespace NStackTests
 			Rune b = 'b';
 			Rune c = 123;
 			Rune d = '\u1150';  // 0x1150	ᅐ	Unicode Technical Report #11
-			Rune e = '\u1161';  // 0x1161	ᅡ	Unicode Hangul Jamo with column width equal to 2 alone or joined.
+			Rune e = '\u1161';  // 0x1161	ᅡ	Unicode Hangul Jamo for join with column width equal to 0 alone.
 			Rune f = 31;    // non printable character
 			Rune g = 127;   // non printable character
 			string h = "\U0001fa01";
@@ -50,10 +50,10 @@ namespace NStackTests
 			Assert.AreEqual("ᅐ", d.ToString());
 			Assert.AreEqual(1, d.ToString().Length);
 			Assert.AreEqual(3, Rune.RuneLen(d));
-			Assert.AreEqual(2, Rune.ColumnWidth(e));
+			Assert.AreEqual(0, Rune.ColumnWidth(e));
 			string join = "\u1104\u1161";
 			Assert.AreEqual("따", join);
-			Assert.AreEqual(4, join.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(2, join.Sum(x => Rune.ColumnWidth(x)));
 			Assert.IsFalse(Rune.DecodeSurrogatePair(join, out _));
 			Assert.AreEqual(2, ((ustring)join).RuneCount);
 			Assert.AreEqual(2, join.Length);
@@ -194,14 +194,14 @@ namespace NStackTests
 			Assert.AreEqual('\u1100', (uint)rune);
 			string str = "\u2615";
 			Assert.AreEqual("☕", str);
-			Assert.AreEqual(1, str.Sum(x => Rune.ColumnWidth(x)));
-			Assert.AreEqual(1, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(2, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(2, ((ustring)str).ConsoleWidth);
 			Assert.AreEqual(1, ((ustring)str).RuneCount());
 			Assert.AreEqual(1, str.Length);
 			str = "\u2615\ufe0f"; // Identical but \ufe0f forces it to be rendered as a colorful image as compared to a monochrome text variant.
 			Assert.AreEqual("☕️", str);
-			Assert.AreEqual(1, str.Sum(x => Rune.ColumnWidth(x)));
-			Assert.AreEqual(1, ((ustring)str).ConsoleWidth);
+			Assert.AreEqual(2, str.Sum(x => Rune.ColumnWidth(x)));
+			Assert.AreEqual(2, ((ustring)str).ConsoleWidth);
 			Assert.AreEqual(2, ((ustring)str).RuneCount());
 			Assert.AreEqual(2, str.Length);
 			str = "\u231a";
@@ -316,15 +316,15 @@ namespace NStackTests
 			Assert.AreEqual(2, o.ToString().Length);
 			Assert.AreEqual("🔮", o.ToString());
 			var p = new Rune('\u2329');
-			Assert.AreEqual(1, Rune.ColumnWidth(p));
+			Assert.AreEqual(2, Rune.ColumnWidth(p));
 			Assert.AreEqual(1, p.ToString().Length);
 			Assert.AreEqual("〈", p.ToString());
 			var q = new Rune('\u232a');
-			Assert.AreEqual(1, Rune.ColumnWidth(q));
+			Assert.AreEqual(2, Rune.ColumnWidth(q));
 			Assert.AreEqual(1, q.ToString().Length);
 			Assert.AreEqual("〉", q.ToString());
 			var r = ustring.Make("\U0000232a").DecodeRune().rune;
-			Assert.AreEqual(1, Rune.ColumnWidth(r));
+			Assert.AreEqual(2, Rune.ColumnWidth(r));
 			Assert.AreEqual(1, r.ToString().Length);
 			Assert.AreEqual("〉", r.ToString());
 
@@ -508,11 +508,11 @@ namespace NStackTests
 		public void Test_IsNonSpacingChar()
 		{
 			Rune l = '\u0370';
-			Assert.False(Rune.IsNonSpacingChar(l, out _));
+			Assert.False(Rune.IsNonSpacingChar(l));
 			Assert.AreEqual(1, Rune.ColumnWidth(l));
 			Assert.AreEqual(1, ustring.Make(l).ConsoleWidth);
 			Rune ns = '\u302a';
-			Assert.True(Rune.IsNonSpacingChar(ns, out _));
+			Assert.False(Rune.IsNonSpacingChar(ns));
 			Assert.AreEqual(2, Rune.ColumnWidth(ns));
 			Assert.AreEqual(2, ustring.Make(ns).ConsoleWidth);
 			l = '\u006f';
