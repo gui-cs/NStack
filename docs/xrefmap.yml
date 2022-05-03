@@ -5452,15 +5452,12 @@ references:
   isSpec: "True"
   fullName: System.Rune.IsNonSpacing
   nameWithType: Rune.IsNonSpacing
-- uid: System.Rune.IsNonSpacingChar(System.UInt32,System.Int32@)
-  name: IsNonSpacingChar(UInt32, out Int32)
-  href: api/NStack/System.Rune.html#System_Rune_IsNonSpacingChar_System_UInt32_System_Int32__
-  commentId: M:System.Rune.IsNonSpacingChar(System.UInt32,System.Int32@)
-  name.vb: IsNonSpacingChar(UInt32, ByRef Int32)
-  fullName: System.Rune.IsNonSpacingChar(System.UInt32, out System.Int32)
-  fullName.vb: System.Rune.IsNonSpacingChar(System.UInt32, ByRef System.Int32)
-  nameWithType: Rune.IsNonSpacingChar(UInt32, out Int32)
-  nameWithType.vb: Rune.IsNonSpacingChar(UInt32, ByRef Int32)
+- uid: System.Rune.IsNonSpacingChar(System.UInt32)
+  name: IsNonSpacingChar(UInt32)
+  href: api/NStack/System.Rune.html#System_Rune_IsNonSpacingChar_System_UInt32_
+  commentId: M:System.Rune.IsNonSpacingChar(System.UInt32)
+  fullName: System.Rune.IsNonSpacingChar(System.UInt32)
+  nameWithType: Rune.IsNonSpacingChar(UInt32)
 - uid: System.Rune.IsNonSpacingChar*
   name: IsNonSpacingChar
   href: api/NStack/System.Rune.html#System_Rune_IsNonSpacingChar_
