@@ -10,18 +10,19 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Unicode
    ">
-    <meta name="generator" content="docfx 2.18.2.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
     
+    <meta property="docfx:rel" content="../../">
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -36,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../images/logo48.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -57,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -70,9 +81,10 @@
             <article class="content wrap" id="_content" data-uid="NStack.Unicode">
   
   
-  <h1 id="NStack_Unicode" data-uid="NStack.Unicode">Class Unicode
+  <h1 id="NStack_Unicode" data-uid="NStack.Unicode" class="text-break">Class Unicode
   </h1>
-  <div class="markdown level0 summary"><p>Unicode class contains helper methods to support Unicode encoding.</p>
+  <div class="markdown level0 summary">
+Unicode class contains helper methods to support Unicode encoding.
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -80,59 +92,73 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">Unicode</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="../NStack.html">NStack</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NStack.html">NStack</a></h6>
   <h6><strong>Assembly</strong>: NStack.dll</h6>
   <h5 id="NStack_Unicode_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class Unicode</code></pre>
   </div>
   <h5 id="NStack_Unicode_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>
-               Generally the Unicode class provided methods that can help you classify and
-               convert Unicode code points.  The word codepoint is considered a mouthful so in
-               this class, the word &quot;rune&quot; is used instead and is represented by the
-               uint value type.<br>            </p>
-    <p>
-               Unicode code points can be produced by combining independent characters,
-               so the rune for a character can be produced by combining one character and
-               other elements of it.  Runes on the other hand correspond to a specific
-               character.
-            </p>
-    <p>
-               This class surfaces various methods to classify case of a Rune, like
-               <span class="xref">NStack.Unicode.IsUpper</span>, <span class="xref">NStack.Unicode.IsLower</span>, <span class="xref">NStack.Unicode.IsDigit</span>,
-               <span class="xref">NStack.Unicode.IsGraphic</span> to convert runes from one case to another using the <span class="xref">NStack.Unicode.ToUpper</span>,
-               <span class="xref">NStack.Unicode.ToLower</span>, <span class="xref">NStack.Unicode.ToTitle</span> as well as various constants
-               that are useful when working with Unicode runes.
-            </p>
-    <p>
-               Unicode defines various character classes which are surfaced as RangeTables
-               as static properties in this class.   You can probe whether a rune belongs
-               to a specific range table
-            </p></div>
-  <h3 id="constructors">Constructors
-  </h3>
-  
-  
-  <a id="NStack_Unicode__ctor_" data-uid="NStack.Unicode.#ctor*"></a>
-  <h4 id="NStack_Unicode__ctor" data-uid="NStack.Unicode.#ctor">Unicode()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Unicode ();</code></pre>
-  </div>
+  <div class="markdown level0 remarks">
+<p>
+   Generally the Unicode class provided methods that can help you classify and
+   convert Unicode code points.  The word codepoint is considered a mouthful so in
+   this class, the word &quot;rune&quot; is used instead and is represented by the
+   uint value type.  
+</p>
+<p>
+   Unicode code points can be produced by combining independent characters,
+   so the rune for a character can be produced by combining one character and
+   other elements of it.  Runes on the other hand correspond to a specific
+   character.
+</p>
+<p>
+   This class surfaces various methods to classify case of a Rune, like
+<span class="xref">NStack.Unicode.IsUpper</span>, <span class="xref">NStack.Unicode.IsLower</span>, <span class="xref">NStack.Unicode.IsDigit</span>,
+<span class="xref">NStack.Unicode.IsGraphic</span> to convert runes from one case to another using the <span class="xref">NStack.Unicode.ToUpper</span>,
+<span class="xref">NStack.Unicode.ToLower</span>, <span class="xref">NStack.Unicode.ToTitle</span> as well as various constants
+that are useful when working with Unicode runes.
+</p>  
+<p>
+   Unicode defines various character classes which are surfaced as RangeTables
+   as static properties in this class.   You can probe whether a rune belongs
+   to a specific range table
+</p>
+</div>
   <h3 id="fields">Fields
   </h3>
-  
-  
   <h4 id="NStack_Unicode_GraphicRanges" data-uid="NStack.Unicode.GraphicRanges">GraphicRanges</h4>
-  <div class="markdown level1 summary"><p>The range tables for graphics</p>
+  <div class="markdown level1 summary">
+The range tables for graphics
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable[] GraphicRanges;</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable[] GraphicRanges</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -144,21 +170,19 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a>[]</td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <h4 id="NStack_Unicode_MaxAscii" data-uid="NStack.Unicode.MaxAscii">MaxAscii</h4>
-  <div class="markdown level1 summary"><p>The maximum ASCII value.</p>
+  <div class="markdown level1 summary">
+The maximum ASCII value.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const uint MaxAscii = 127;</code></pre>
+    <pre><code class="lang-csharp hljs">public const uint MaxAscii = 127U</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -171,20 +195,18 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>To be added.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
   <h4 id="NStack_Unicode_MaxLatin1" data-uid="NStack.Unicode.MaxLatin1">MaxLatin1</h4>
-  <div class="markdown level1 summary"><p>The maximum latin1 value.</p>
+  <div class="markdown level1 summary">
+The maximum latin1 value.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const uint MaxLatin1 = 255;</code></pre>
+    <pre><code class="lang-csharp hljs">public const uint MaxLatin1 = 255U</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -197,20 +219,18 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>To be added.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
   <h4 id="NStack_Unicode_MaxRune" data-uid="NStack.Unicode.MaxRune">MaxRune</h4>
-  <div class="markdown level1 summary"><p>Maximum valid Unicode code point.</p>
+  <div class="markdown level1 summary">
+Maximum valid Unicode code point.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const int MaxRune = 1114111;</code></pre>
+    <pre><code class="lang-csharp hljs">public const int MaxRune = 1114111</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -223,20 +243,18 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>To be added.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
   <h4 id="NStack_Unicode_PrintRanges" data-uid="NStack.Unicode.PrintRanges">PrintRanges</h4>
-  <div class="markdown level1 summary"><p>The range tables for print</p>
+  <div class="markdown level1 summary">
+The range tables for print
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable[] PrintRanges;</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable[] PrintRanges</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -248,21 +266,19 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a>[]</td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <h4 id="NStack_Unicode_ReplacementChar" data-uid="NStack.Unicode.ReplacementChar">ReplacementChar</h4>
-  <div class="markdown level1 summary"><p>Represents invalid code points.</p>
+  <div class="markdown level1 summary">
+Represents invalid code points.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const uint ReplacementChar = 65533;</code></pre>
+    <pre><code class="lang-csharp hljs">public const uint ReplacementChar = 65533U</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -275,20 +291,18 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>To be added.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
   <h4 id="NStack_Unicode_TurkishCase" data-uid="NStack.Unicode.TurkishCase">TurkishCase</h4>
-  <div class="markdown level1 summary"><p>Special casing rules for Turkish.</p>
+  <div class="markdown level1 summary">
+Special casing rules for Turkish.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.SpecialCase TurkishCase;</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.SpecialCase TurkishCase</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -300,21 +314,19 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.SpecialCase.html">Unicode.SpecialCase</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <h4 id="NStack_Unicode_Version" data-uid="NStack.Unicode.Version">Version</h4>
-  <div class="markdown level1 summary"><p>Version is the Unicode edition from which the tables are derived.</p>
+  <div class="markdown level1 summary">
+Version is the Unicode edition from which the tables are derived.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const string Version;</code></pre>
+    <pre><code class="lang-csharp hljs">public const string Version = &quot;14.0.0&quot;</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -327,23 +339,21 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><p>To be added.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  
-  
   <a id="NStack_Unicode_IsControl_" data-uid="NStack.Unicode.IsControl*"></a>
   <h4 id="NStack_Unicode_IsControl_System_UInt32_" data-uid="NStack.Unicode.IsControl(System.UInt32)">IsControl(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsControl reports whether the rune is a control character.</p>
+  <div class="markdown level1 summary">
+IsControl reports whether the rune is a control character.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsControl (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsControl(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -358,8 +368,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -374,24 +383,23 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a lower case lette, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a lower case letter, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NStack_Unicode_IsControl_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The C (Other) Unicode category includes more code points such as surrogates; use C.InRange (r) to test for them.</p>
+  <div class="markdown level1 remarks">
+The C (Other) Unicode category includes more code points such as surrogates; use C.InRange (r) to test for them.
 </div>
-  
-  
   <a id="NStack_Unicode_IsDigit_" data-uid="NStack.Unicode.IsDigit*"></a>
   <h4 id="NStack_Unicode_IsDigit_System_UInt32_" data-uid="NStack.Unicode.IsDigit(System.UInt32)">IsDigit(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsDigit reports whether the rune is a decimal digit.</p>
+  <div class="markdown level1 summary">
+IsDigit reports whether the rune is a decimal digit.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsDigit (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsDigit(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -406,8 +414,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -422,21 +429,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_IsGraphic_" data-uid="NStack.Unicode.IsGraphic*"></a>
   <h4 id="NStack_Unicode_IsGraphic_System_UInt32_" data-uid="NStack.Unicode.IsGraphic(System.UInt32)">IsGraphic(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsGraphic reports whether the rune is defined as a Graphic by Unicode.</p>
+  <div class="markdown level1 summary">
+IsGraphic reports whether the rune is defined as a Graphic by Unicode.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsGraphic (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsGraphic(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -451,8 +456,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -467,25 +471,24 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a lower case lette, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a lower case letter, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NStack_Unicode_IsGraphic_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Such characters include letters, marks, numbers, punctuation, symbols, and
-            spaces, from categories L, M, N, P, S, Zs.</p>
+  <div class="markdown level1 remarks">
+Such characters include letters, marks, numbers, punctuation, symbols, and
+spaces, from categories L, M, N, P, S, Zs.
 </div>
-  
-  
   <a id="NStack_Unicode_IsLetter_" data-uid="NStack.Unicode.IsLetter*"></a>
   <h4 id="NStack_Unicode_IsLetter_System_UInt32_" data-uid="NStack.Unicode.IsLetter(System.UInt32)">IsLetter(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsLetter reports whether the rune is a letter (category L).</p>
+  <div class="markdown level1 summary">
+IsLetter reports whether the rune is a letter (category L).
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsLetter (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsLetter(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -500,8 +503,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -516,21 +518,22 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a letter, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a letter, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
-  
-  
+  <h5 id="NStack_Unicode_IsLetter_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+</div>
   <a id="NStack_Unicode_IsLower_" data-uid="NStack.Unicode.IsLower*"></a>
   <h4 id="NStack_Unicode_IsLower_System_UInt32_" data-uid="NStack.Unicode.IsLower(System.UInt32)">IsLower(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Reports whether the rune is a lower case letter.</p>
+  <div class="markdown level1 summary">
+Reports whether the rune is a lower case letter.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsLower (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsLower(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -545,8 +548,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -561,21 +563,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a lower case lette, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a lower case lette, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_IsMark_" data-uid="NStack.Unicode.IsMark*"></a>
   <h4 id="NStack_Unicode_IsMark_System_UInt32_" data-uid="NStack.Unicode.IsMark(System.UInt32)">IsMark(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsMark reports whether the rune is a letter (category M).</p>
+  <div class="markdown level1 summary">
+IsMark reports whether the rune is a letter (category M).
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsMark (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsMark(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -590,8 +590,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -606,24 +605,23 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NStack_Unicode_IsMark_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Reports whether the rune is a mark character (category M).</p>
+  <div class="markdown level1 remarks">
+Reports whether the rune is a mark character (category M).
 </div>
-  
-  
   <a id="NStack_Unicode_IsNumber_" data-uid="NStack.Unicode.IsNumber*"></a>
   <h4 id="NStack_Unicode_IsNumber_System_UInt32_" data-uid="NStack.Unicode.IsNumber(System.UInt32)">IsNumber(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsNumber reports whether the rune is a letter (category N).</p>
+  <div class="markdown level1 summary">
+IsNumber reports whether the rune is a letter (category N).
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsNumber (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsNumber(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -638,8 +636,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -654,24 +651,23 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NStack_Unicode_IsNumber_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Reports whether the rune is a mark character (category N).</p>
+  <div class="markdown level1 remarks">
+Reports whether the rune is a mark character (category N).
 </div>
-  
-  
   <a id="NStack_Unicode_IsPrint_" data-uid="NStack.Unicode.IsPrint*"></a>
   <h4 id="NStack_Unicode_IsPrint_System_UInt32_" data-uid="NStack.Unicode.IsPrint(System.UInt32)">IsPrint(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsPrint reports whether the rune is defined as printable.</p>
+  <div class="markdown level1 summary">
+IsPrint reports whether the rune is defined as printable.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsPrint (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsPrint(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -686,8 +682,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -702,27 +697,26 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a lower case lette, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a lower case letter, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NStack_Unicode_IsPrint_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Such characters include letters, marks, numbers, punctuation, symbols, and the
-            ASCII space character, from categories L, M, N, P, S and the ASCII space
-            character. This categorization is the same as IsGraphic except that the
-            only spacing character is ASCII space, U+0020.</p>
+  <div class="markdown level1 remarks">
+Such characters include letters, marks, numbers, punctuation, symbols, and the
+ASCII space character, from categories L, M, N, P, S and the ASCII space
+character. This categorization is the same as IsGraphic except that the
+only spacing character is ASCII space, U+0020.
 </div>
-  
-  
   <a id="NStack_Unicode_IsPunct_" data-uid="NStack.Unicode.IsPunct*"></a>
   <h4 id="NStack_Unicode_IsPunct_System_UInt32_" data-uid="NStack.Unicode.IsPunct(System.UInt32)">IsPunct(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsPunct reports whether the rune is a letter (category P).</p>
+  <div class="markdown level1 summary">
+IsPunct reports whether the rune is a letter (category P).
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsPunct (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsPunct(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -737,8 +731,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -753,24 +746,23 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NStack_Unicode_IsPunct_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Reports whether the rune is a mark character (category P).</p>
+  <div class="markdown level1 remarks">
+Reports whether the rune is a mark character (category P).
 </div>
-  
-  
   <a id="NStack_Unicode_IsRuneInRanges_" data-uid="NStack.Unicode.IsRuneInRanges*"></a>
-  <h4 id="NStack_Unicode_IsRuneInRanges_System_UInt32_NStack_Unicode_RangeTable___" data-uid="NStack.Unicode.IsRuneInRanges(System.UInt32,NStack.Unicode.RangeTable[])">IsRuneInRanges(UInt32, Unicode+RangeTable[])</h4>
-  <div class="markdown level1 summary"><p>Determines if a rune is on a set of ranges.</p>
+  <h4 id="NStack_Unicode_IsRuneInRanges_System_UInt32_NStack_Unicode_RangeTable___" data-uid="NStack.Unicode.IsRuneInRanges(System.UInt32,NStack.Unicode.RangeTable[])">IsRuneInRanges(UInt32, Unicode.RangeTable[])</h4>
+  <div class="markdown level1 summary">
+Determines if a rune is on a set of ranges.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsRuneInRanges (uint rune, NStack.Unicode.RangeTable[] inRanges);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsRuneInRanges(uint rune, params Unicode.RangeTable[] inRanges)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -785,14 +777,12 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
       <tr>
-        <td></td>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a>[]</td>
         <td><span class="parametername">inRanges</span></td>
-        <td><p>In ranges.</p>
-</td>
+        <td>In ranges.</td>
       </tr>
     </tbody>
   </table>
@@ -807,21 +797,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if rune in ranges was ised, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if rune in ranges was used, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_IsSpace_" data-uid="NStack.Unicode.IsSpace*"></a>
   <h4 id="NStack_Unicode_IsSpace_System_UInt32_" data-uid="NStack.Unicode.IsSpace(System.UInt32)">IsSpace(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsSpace reports whether the rune is a space character as defined by Unicode&#39;s White Space property.</p>
+  <div class="markdown level1 summary">
+IsSpace reports whether the rune is a space character as defined by Unicode&apos;s White Space property.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsSpace (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsSpace(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -836,8 +824,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -852,26 +839,25 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NStack_Unicode_IsSpace_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>In the Latin-1 space, white space includes &#39;\t&#39;, &#39;\n&#39;, &#39;\v&#39;, &#39;\f&#39;, &#39;\r&#39;, &#39; &#39;, 
-            U+0085 (NEL), U+00A0 (NBSP).
-            Other definitions of spacing characters are set by category  Z and property Pattern_White_Space.</p>
+  <div class="markdown level1 remarks">
+In the Latin-1 space, white space includes &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, &apos; &apos;, 
+U+0085 (NEL), U+00A0 (NBSP).
+Other definitions of spacing characters are set by category  Z and property Pattern_White_Space.
 </div>
-  
-  
   <a id="NStack_Unicode_IsSymbol_" data-uid="NStack.Unicode.IsSymbol*"></a>
   <h4 id="NStack_Unicode_IsSymbol_System_UInt32_" data-uid="NStack.Unicode.IsSymbol(System.UInt32)">IsSymbol(UInt32)</h4>
-  <div class="markdown level1 summary"><p>IsSymbol reports whether the rune is a symbolic character.</p>
+  <div class="markdown level1 summary">
+IsSymbol reports whether the rune is a symbolic character.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsSymbol (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsSymbol(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -886,8 +872,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -902,21 +887,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a mark, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_IsTitle_" data-uid="NStack.Unicode.IsTitle*"></a>
   <h4 id="NStack_Unicode_IsTitle_System_UInt32_" data-uid="NStack.Unicode.IsTitle(System.UInt32)">IsTitle(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Reports whether the rune is a title case letter.</p>
+  <div class="markdown level1 summary">
+Reports whether the rune is a title case letter.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsTitle (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsTitle(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -931,8 +914,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -947,21 +929,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is a lower case lette, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is a lower case lette, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_IsUpper_" data-uid="NStack.Unicode.IsUpper*"></a>
   <h4 id="NStack_Unicode_IsUpper_System_UInt32_" data-uid="NStack.Unicode.IsUpper(System.UInt32)">IsUpper(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Reports whether the rune is an upper case letter.</p>
+  <div class="markdown level1 summary">
+Reports whether the rune is an upper case letter.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsUpper (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsUpper(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -976,8 +956,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>The rune to test for.</p>
-</td>
+        <td>The rune to test for.</td>
       </tr>
     </tbody>
   </table>
@@ -992,22 +971,20 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is an upper case lette, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is an upper case lette, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_SimpleFold_" data-uid="NStack.Unicode.SimpleFold*"></a>
   <h4 id="NStack_Unicode_SimpleFold_System_UInt32_" data-uid="NStack.Unicode.SimpleFold(System.UInt32)">SimpleFold(UInt32)</h4>
-  <div class="markdown level1 summary"><p>SimpleFold iterates over Unicode code points equivalent under
-             the Unicode-defined simple case folding.</p>
+  <div class="markdown level1 summary">
+SimpleFold iterates over Unicode code points equivalent under
+the Unicode-defined simple case folding.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint SimpleFold (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint SimpleFold(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1022,8 +999,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -1038,41 +1014,39 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>The simple-case folded rune.</p>
-</td>
+        <td>The simple-case folded rune.</td>
       </tr>
     </tbody>
   </table>
   <h5 id="NStack_Unicode_SimpleFold_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>SimpleFold iterates over Unicode code points equivalent under
-             the Unicode-defined simple case folding. Among the code points
-             equivalent to rune (including rune itself), SimpleFold returns the
-             smallest rune &gt; r if one exists, or else the smallest rune &gt;= 0.
-             If r is not a valid Unicode code point, SimpleFold(r) returns r.</p>
-<pre><code>         For example:
-         &lt;pre&gt;&lt;code&gt;
-              SimpleFold(&#39;A&#39;) = &#39;a&#39;
-              SimpleFold(&#39;a&#39;) = &#39;A&#39;
+  <div class="markdown level1 remarks">
+SimpleFold iterates over Unicode code points equivalent under
+the Unicode-defined simple case folding. Among the code points
+equivalent to rune (including rune itself), SimpleFold returns the
+smallest rune > r if one exists, or else the smallest rune >= 0.
+If r is not a valid Unicode code point, SimpleFold(r) returns r.
 
-              SimpleFold(&#39;K&#39;) = &#39;k&#39;
-              SimpleFold(&#39;k&#39;) = &#39;\u212A&#39; (Kelvin symbol, K)
-              SimpleFold(&#39;\u212A&#39;) = &#39;K&#39;
+For example:
+<pre><code>     SimpleFold(&apos;A&apos;) = &apos;a&apos;
+     SimpleFold(&apos;a&apos;) = &apos;A&apos;
 
-              SimpleFold(&#39;1&#39;) = &#39;1&#39;
+     SimpleFold(&apos;K&apos;) = &apos;k&apos;
+     SimpleFold(&apos;k&apos;) = &apos;\u212A&apos; (Kelvin symbol, K)
+     SimpleFold(&apos;\u212A&apos;) = &apos;K&apos;
 
-              SimpleFold(-2) = -2
-         &lt;/code&gt;&lt;/pre&gt;
-</code></pre></div>
-  
-  
+     SimpleFold(&apos;1&apos;) = &apos;1&apos;
+
+     SimpleFold(-2) = -2</code></pre>
+</div>
   <a id="NStack_Unicode_To_" data-uid="NStack.Unicode.To*"></a>
-  <h4 id="NStack_Unicode_To_NStack_Unicode_Case_System_UInt32_" data-uid="NStack.Unicode.To(NStack.Unicode.Case,System.UInt32)">To(Unicode+Case, UInt32)</h4>
-  <div class="markdown level1 summary"><p>To maps the rune to the specified case: Case.Upper, Case.Lower, or Case.Title</p>
+  <h4 id="NStack_Unicode_To_NStack_Unicode_Case_System_UInt32_" data-uid="NStack.Unicode.To(NStack.Unicode.Case,System.UInt32)">To(Unicode.Case, UInt32)</h4>
+  <div class="markdown level1 summary">
+To maps the rune to the specified case: Case.Upper, Case.Lower, or Case.Title
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint To (NStack.Unicode.Case toCase, uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint To(Unicode.Case toCase, uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1085,16 +1059,14 @@
     </thead>
     <tbody>
       <tr>
-        <td></td>
+        <td><a class="xref" href="NStack.Unicode.Case.html">Unicode.Case</a></td>
         <td><span class="parametername">toCase</span></td>
-        <td><p>The destination case.</p>
-</td>
+        <td>The destination case.</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune to convert.</p>
-</td>
+        <td>Rune to convert.</td>
       </tr>
     </tbody>
   </table>
@@ -1109,21 +1081,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>The cased character.</p>
-</td>
+        <td>The cased character.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_ToLower_" data-uid="NStack.Unicode.ToLower*"></a>
   <h4 id="NStack_Unicode_ToLower_System_UInt32_" data-uid="NStack.Unicode.ToLower(System.UInt32)">ToLower(UInt32)</h4>
-  <div class="markdown level1 summary"><p>ToLower maps the rune to lower case.</p>
+  <div class="markdown level1 summary">
+ToLower maps the rune to lower case.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint ToLower (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint ToLower(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1138,8 +1108,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -1154,21 +1123,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>The lower cased rune if it can be.</p>
-</td>
+        <td>The lower cased rune if it can be.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_ToTitle_" data-uid="NStack.Unicode.ToTitle*"></a>
   <h4 id="NStack_Unicode_ToTitle_System_UInt32_" data-uid="NStack.Unicode.ToTitle(System.UInt32)">ToTitle(UInt32)</h4>
-  <div class="markdown level1 summary"><p>ToLower maps the rune to title case.</p>
+  <div class="markdown level1 summary">
+ToLower maps the rune to title case.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint ToTitle (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint ToTitle(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1183,8 +1150,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -1199,21 +1165,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>The lower cased rune if it can be.</p>
-</td>
+        <td>The lower cased rune if it can be.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_ToUpper_" data-uid="NStack.Unicode.ToUpper*"></a>
   <h4 id="NStack_Unicode_ToUpper_System_UInt32_" data-uid="NStack.Unicode.ToUpper(System.UInt32)">ToUpper(UInt32)</h4>
-  <div class="markdown level1 summary"><p>ToUpper maps the rune to upper case.</p>
+  <div class="markdown level1 summary">
+ToUpper maps the rune to upper case.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint ToUpper (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint ToUpper(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1228,8 +1192,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -1244,8 +1207,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>The upper cased rune if it can be.</p>
-</td>
+        <td>The upper cased rune if it can be.</td>
       </tr>
     </tbody>
   </table>
@@ -1254,12 +1216,9 @@
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
@@ -1274,7 +1233,7 @@
               <a href="#top">Back to top</a>
             </span>
             
-            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+            <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>

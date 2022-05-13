@@ -39,7 +39,8 @@ Added ustring.ColumnWidth to return number of columns that a ustring takes in a 
     
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Debug\netstandard1.6\NStack.xml</DocumentationFile>
+	  <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
+    <DocumentationFile>bin\Release\NStack.xml</DocumentationFile>
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">

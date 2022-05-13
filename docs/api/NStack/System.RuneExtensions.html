@@ -1,0 +1,481 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class RuneExtensions
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class RuneExtensions
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/logo48.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="System.RuneExtensions">
+  
+  
+  <h1 id="System_RuneExtensions" data-uid="System.RuneExtensions" class="text-break">Class RuneExtensions
+  </h1>
+  <div class="markdown level0 summary">
+Helper class that implements <a class="xref" href="System.Rune.html">Rune</a> extensions for the <a class="xref" href="NStack.ustring.html">ustring</a> type.
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">RuneExtensions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="System.html">System</a></h6>
+  <h6><strong>Assembly</strong>: NStack.dll</h6>
+  <h5 id="System_RuneExtensions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class RuneExtensions</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="System_RuneExtensions_DecodeLastRune_" data-uid="System.RuneExtensions.DecodeLastRune*"></a>
+  <h4 id="System_RuneExtensions_DecodeLastRune_NStack_ustring_System_Int32_" data-uid="System.RuneExtensions.DecodeLastRune(NStack.ustring,System.Int32)">DecodeLastRune(ustring, Int32)</h4>
+  <div class="markdown level1 summary">
+DecodeLastRune unpacks the last UTF-8 encoding in the ustring.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static (Rune rune, int size) DecodeLastRune(this ustring str, int end = -1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">str</span></td>
+        <td>String to decode rune from;   if it is empty,
+it returns (RuneError, 0). Otherwise, if
+the encoding is invalid, it returns (RuneError, 1). Both are impossible
+results for correct, non-empty UTF-8.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">end</span></td>
+        <td>Scan up to that point, if the value is -1, it sets the value to the length of the buffer.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<a class="xref" href="System.Rune.html">Rune</a>, <span class="xref">System.Int32</span>&gt;</td>
+        <td>The last rune and its width in bytes.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="System_RuneExtensions_DecodeLastRune_NStack_ustring_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+An encoding is invalid if it is incorrect UTF-8, encodes a rune that is
+out of range, or is not the shortest possible UTF-8 encoding for the
+value. No other validation is performed.</div>
+  <a id="System_RuneExtensions_DecodeRune_" data-uid="System.RuneExtensions.DecodeRune*"></a>
+  <h4 id="System_RuneExtensions_DecodeRune_NStack_ustring_System_Int32_System_Int32_" data-uid="System.RuneExtensions.DecodeRune(NStack.ustring,System.Int32,System.Int32)">DecodeRune(ustring, Int32, Int32)</h4>
+  <div class="markdown level1 summary">
+DecodeRune unpacks the first UTF-8 encoding in the ustring returns the rune and
+its width in bytes. 
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static (Rune rune, int size) DecodeRune(this ustring str, int start = 0, int n = -1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">str</span></td>
+        <td>ustring to decode.</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">start</span></td>
+        <td>Starting offset to look into..</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">n</span></td>
+        <td>Number of bytes valid in the buffer, or -1 to make it the length of the buffer.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<a class="xref" href="System.Rune.html">Rune</a>, <span class="xref">System.Int32</span>&gt;</td>
+        <td>If p is empty it returns (RuneError, 0). Otherwise, if
+the encoding is invalid, it returns (RuneError, 1). Both are impossible
+results for correct, non-empty UTF-8.
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="System_RuneExtensions_ExpectedSizeFromFirstByte_" data-uid="System.RuneExtensions.ExpectedSizeFromFirstByte*"></a>
+  <h4 id="System_RuneExtensions_ExpectedSizeFromFirstByte_NStack_ustring_" data-uid="System.RuneExtensions.ExpectedSizeFromFirstByte(NStack.ustring)">ExpectedSizeFromFirstByte(ustring)</h4>
+  <div class="markdown level1 summary">
+Given one byte from a utf8 string, return the number of expected bytes that make up the sequence.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ExpectedSizeFromFirstByte(this ustring str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">str</span></td>
+        <td>String to get the first byte of a UTF8 sequence.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td>The number of UTF8 bytes expected given the first prefix.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="System_RuneExtensions_FullRune_" data-uid="System.RuneExtensions.FullRune*"></a>
+  <h4 id="System_RuneExtensions_FullRune_NStack_ustring_" data-uid="System.RuneExtensions.FullRune(NStack.ustring)">FullRune(ustring)</h4>
+  <div class="markdown level1 summary">
+FullRune reports whether the ustring begins with a full UTF-8 encoding of a rune.
+An invalid encoding is considered a full Rune since it will convert as a width-1 error rune.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool FullRune(this ustring str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">str</span></td>
+        <td>The string to check.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><code>true</code>, if the bytes in p begin with a full UTF-8 encoding of a rune, <code>false</code> otherwise.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="System_RuneExtensions_InvalidIndex_" data-uid="System.RuneExtensions.InvalidIndex*"></a>
+  <h4 id="System_RuneExtensions_InvalidIndex_NStack_ustring_" data-uid="System.RuneExtensions.InvalidIndex(NStack.ustring)">InvalidIndex(ustring)</h4>
+  <div class="markdown level1 summary">
+Use to find the index of the first invalid utf8 byte sequence in a buffer
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int InvalidIndex(this ustring str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">str</span></td>
+        <td>String containing the utf8 buffer.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td>The index of the first invalid byte sequence or -1 if the entire buffer is valid.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="System_RuneExtensions_RuneCount_" data-uid="System.RuneExtensions.RuneCount*"></a>
+  <h4 id="System_RuneExtensions_RuneCount_NStack_ustring_" data-uid="System.RuneExtensions.RuneCount(NStack.ustring)">RuneCount(ustring)</h4>
+  <div class="markdown level1 summary">
+Returns the number of runes in a ustring.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int RuneCount(this ustring str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">str</span></td>
+        <td>utf8 string.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td>Number of runes.</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="System_RuneExtensions_Valid_" data-uid="System.RuneExtensions.Valid*"></a>
+  <h4 id="System_RuneExtensions_Valid_NStack_ustring_" data-uid="System.RuneExtensions.Valid(NStack.ustring)">Valid(ustring)</h4>
+  <div class="markdown level1 summary">
+Reports whether the ustring consists entirely of valid UTF-8-encoded runes.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Valid(this ustring str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.ustring.html">ustring</a></td>
+        <td><span class="parametername">str</span></td>
+        <td>String to validate.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

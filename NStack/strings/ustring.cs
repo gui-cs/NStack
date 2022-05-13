@@ -57,7 +57,7 @@ namespace NStack {
 	///     <description>Creates a ustring from a range in a byte array.</description>
 	///   </item>
 	///   <item>
-	///     <term><see cref="M:NStack.ustring.Make(uint)"/></term>
+	///     <term><see cref="M:NStack.ustring.Make(uint[])"/></term>
 	///     <description>Creates a ustring from a single rune.</description>
 	///   </item>
 	///   <item>
@@ -65,11 +65,11 @@ namespace NStack {
 	///     <description>Creates a ustring from a character array.</description>
 	///   </item>
 	///   <item>
-	///     <term><see cref="M:NStack.ustring.Make(System.IntPtr,int,System.Action{NStack.ustring, System.IntPtr})"/></term>
+	///     <term><see cref="M:NStack.ustring.Make(System.IntPtr,int,System.Action{System.IntPtr})"/></term>
 	///     <description>Creates a ustring from an unmanaged memory block, with an optional method to invoke to release the block when the ustring is garbage collected.</description>
 	///   </item>
 	///   <item>
-	///     <term><see cref="M:NStack.ustring.Make(System.IntPtr,System.Action{NStack.ustring, System.IntPtr})"/></term>
+	///     <term><see cref="M:NStack.ustring.Make(System.IntPtr,System.Action{System.IntPtr})"/></term>
 	///     <description>
 	///       Creates a ustring from an unmanaged memory block that is null-terminated, suitable for interoperability with C APIs.   
 	///       It takes an optional method to invoke to release the block when the ustring is garbage collected.
@@ -89,7 +89,7 @@ namespace NStack {
 	/// </para>
 	/// <para>
 	///   The Length property describes the length in bytes of the underlying array, while the RuneCount 
-	///   property describes the number of code points (or runes) that are reprenseted by the underlying 
+	///   property describes the number of code points (or runes) that are represented by the underlying 
 	///   utf8 encoded buffer.
 	/// </para>
 	/// <para>
@@ -629,6 +629,12 @@ namespace NStack {
 		// The high-level version parameters have been validated
 		static bool EqualsHelper (ustring a, ustring b)
 		{
+			// If both string are identical, return true.
+			if (a.SequenceEqual(b))
+			{
+				return true;
+			}
+
 			var alen = a.Length;
 			var blen = b.Length;
 			if (alen != blen)
@@ -1067,14 +1073,14 @@ namespace NStack {
 				for (int i = 0; i < blen;) {
 					(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
 					i += size;
-					total += Rune.IsNonSpacingChar(rune, out int width) ? width : Rune.ColumnWidth(rune);
+					total += Rune.ColumnWidth(rune);
 				}
 				return total;
 			}
 		}
 
 		/// <summary>
-		/// Copies the specified number of bytes from the the underlying ustring representation to the target array at the specified offset.
+		/// Copies the specified number of bytes from the underlying ustring representation to the target array at the specified offset.
 		/// </summary>
 		/// <param name="fromOffset">Offset in the underlying ustring buffer to copy from.</param>
 		/// <param name="target">Target array where the buffer contents will be copied to.</param>
@@ -1299,7 +1305,7 @@ namespace NStack {
 		/// Returns a value indicating whether any of the characters in the provided string occurs within this string.
 		/// </summary>
 		/// <returns>true if any of the characters in <paramref name="chars" /> parameter occurs within this string; otherwise, false.</returns>
-		/// <param name="chars">string contanining one or more characters.</param>
+		/// <param name="chars">string containing one or more characters.</param>
 		public bool ContainsAny (ustring chars)
 		{
 			if ((object)chars == null)

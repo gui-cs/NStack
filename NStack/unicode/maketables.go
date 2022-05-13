@@ -8,7 +8,6 @@
 //
 // Last import from Go code: 8eca08611ac1c65622400f526ab5b9065a4c9d67
 
-
 // Copyright 2009 The Go Authors, Microsoft. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
@@ -16,6 +15,7 @@
 // NOTES:
 //    Dictionary ctors should probably come after the actual things they reference
 
+//go:build ignore
 // +build ignore
 
 // Unicode table generator.
@@ -52,15 +52,15 @@ func main() {
 	printLatinProperties()
 	printCasefold()
 	printSizes()
-	printf ("} /* partial class Unicode */\n");
-	printf ("} /* namespace */\n");
+	printf("} /* partial class Unicode */\n")
+	printf("} /* namespace */\n")
 	flushOutput()
 }
 
 var dataURL = flag.String("data", "", "full URL for UnicodeData.txt; defaults to --url/UnicodeData.txt")
 var casefoldingURL = flag.String("casefolding", "", "full URL for CaseFolding.txt; defaults to --url/CaseFolding.txt")
 var url = flag.String("url",
-	"http://www.unicode.org/Public/9.0.0/ucd/",
+	"http://www.unicode.org/Public/14.0.0/ucd/",
 	"URL of Unicode database directory")
 var tablelist = flag.String("tables",
 	"all",
@@ -156,7 +156,8 @@ func open(url string) *reader {
 		logger.Fatal(err)
 	}
 	if resp.StatusCode != 200 {
-		logger.Fatalf("bad GET status for %s: %d", file, resp.Status)
+		_, err := strconv.ParseInt(resp.Status, 10, 0)
+		logger.Fatalf("bad GET status for %s: %d", file, err)
 	}
 	return &reader{bufio.NewReader(resp.Body), nil, resp}
 
@@ -484,15 +485,17 @@ func printCategories() {
 	}
 	printf(progHeader, *tablelist, *dataURL, *casefoldingURL)
 
-	println("\t// Version is the Unicode edition from which the tables are derived.")
+	println("\t/// <summary>")
+	println("\t/// Version is the Unicode edition from which the tables are derived.")
+	println("\t/// </summary>")
 	printf("\tpublic const string Version = %q;\n\n", version())
 
-	println ("\t/// <summary>Static class containing the various Unicode category range tables</summary>")
-	println ("\t/// <remarks><para>There are static properties that can be used to fetch a specific category, or you can use the <see cref=\"M:NStack.Unicode.Category.Get\"/> method this class to retrieve the RangeTable by its Unicode category table name</para></remarks>")
-	println ("\tpublic static class Category {")
-	println ("\t\t/// <summary>Retrieves the specified RangeTable from the Unicode category name</summary>")
-	println ("\t\t/// <param name=\"categoryName\">The unicode character category name</param>")
-	println ("\t\tpublic static RangeTable Get (string categoryName) => Categories [categoryName];")
+	println("\t/// <summary>Static class containing the various Unicode category range tables</summary>")
+	println("\t/// <remarks><para>There are static properties that can be used to fetch a specific category, or you can use the <see cref=\"M:NStack.Unicode.Category.Get\"/> method this class to retrieve the RangeTable by its Unicode category table name</para></remarks>")
+	println("\tpublic static class Category {")
+	println("\t\t/// <summary>Retrieves the specified RangeTable from the Unicode category name</summary>")
+	println("\t\t/// <param name=\"categoryName\">The unicode character category name</param>")
+	println("\t\tpublic static RangeTable Get (string categoryName) => Categories [categoryName];")
 
 	if *tablelist == "all" {
 		println("\t\t// Categories is the set of Unicode category tables.")
@@ -516,51 +519,51 @@ func printCategories() {
 		varDecl := ""
 		switch name {
 		case "C":
-		        varDecl = "\t/// <summary>Other/C is the set of Unicode control and special characters, category C.</summary>\n";
+			varDecl = "\t/// <summary>Other/C is the set of Unicode control and special characters, category C.</summary>\n"
 			varDecl += "\tpublic static RangeTable Other => _C; \n"
-		        varDecl += "\t/// <summary>Other/C is the set of Unicode control and special characters, category C.</summary>\n";
+			varDecl += "\t/// <summary>Other/C is the set of Unicode control and special characters, category C.</summary>\n"
 			varDecl += "\tpublic static RangeTable C => _C;\n"
 		case "L":
-		        varDecl = "\t/// <summary>Letter/L is the set of Unicode letters, category L.</summary>\n";
+			varDecl = "\t/// <summary>Letter/L is the set of Unicode letters, category L.</summary>\n"
 			varDecl += "\tpublic static RangeTable Letter => _L;\n"
-		        varDecl += "\t/// <summary>Letter/L is the set of Unicode letters, category L.</summary>\n";
+			varDecl += "\t/// <summary>Letter/L is the set of Unicode letters, category L.</summary>\n"
 			varDecl += "\tpublic static RangeTable L => _L;\n"
 		case "M":
-		        varDecl = "\t/// <summary>Mark/M is the set of Unicode mark characters, category M.</summary>\n";
+			varDecl = "\t/// <summary>Mark/M is the set of Unicode mark characters, category M.</summary>\n"
 			varDecl += "\tpublic static RangeTable Mark => _M;\n"
-		        varDecl += "\t/// <summary>Mark/M is the set of Unicode mark characters, category M.</summary>;\n";
+			varDecl += "\t/// <summary>Mark/M is the set of Unicode mark characters, category M.</summary>;\n"
 			varDecl += "\tpublic static RangeTable M => _M;\n"
 		case "N":
-		        varDecl = "\t/// <summary>Number/N is the set of Unicode number characters, category N.</summary>\n";
+			varDecl = "\t/// <summary>Number/N is the set of Unicode number characters, category N.</summary>\n"
 			varDecl += "\tpublic static RangeTable Number => _N;\n"
-		        varDecl += "\t/// <summary>Number/N is the set of Unicode number characters, category N.</summary>;\n";
+			varDecl += "\t/// <summary>Number/N is the set of Unicode number characters, category N.</summary>;\n"
 			varDecl += "\tpublic static RangeTable N => _N;\n"
 		case "P":
-		        varDecl = "\t/// <summary>Punct/P is the set of Unicode punctuation characters, category P.</summary>\n";
+			varDecl = "\t/// <summary>Punct/P is the set of Unicode punctuation characters, category P.</summary>\n"
 			varDecl += "\tpublic static RangeTable Punct => _P;\n"
-		        varDecl += "\t/// <summary>Punct/P is the set of Unicode punctuation characters, category P.</summary>;\n";
+			varDecl += "\t/// <summary>Punct/P is the set of Unicode punctuation characters, category P.</summary>;\n"
 			varDecl += "\tpublic static RangeTable P => _P;\n"
 		case "S":
-		        varDecl = "\t/// <summary>Symbol/S is the set of Unicode symbol characters, category S.</summary>\n";
+			varDecl = "\t/// <summary>Symbol/S is the set of Unicode symbol characters, category S.</summary>\n"
 			varDecl += "\tpublic static RangeTable Symbol => _S;\n"
-		        varDecl += "\t/// <summary>Symbol/S is the set of Unicode symbol characters, category S.</summary>;\n";
+			varDecl += "\t/// <summary>Symbol/S is the set of Unicode symbol characters, category S.</summary>;\n"
 			varDecl += "\tpublic static RangeTable S => _S;\n"
 		case "Z":
-		        varDecl = "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>\n";
+			varDecl = "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>\n"
 			varDecl += "\tpublic static RangeTable Space => _Z;\n"
-		        varDecl += "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>;\n";
+			varDecl += "\t/// <summary>Space/Z is the set of Unicode space characters, category Z.</summary>;\n"
 			varDecl += "\tpublic static RangeTable Z => _Z;\n"
 		case "Nd":
-		        varDecl = "\t/// <summary>Digit is the set of Unicode characters with the \"decimal digit\" property.</summary>\n";
+			varDecl = "\t/// <summary>Digit is the set of Unicode characters with the \"decimal digit\" property.</summary>\n"
 			varDecl += "\tpublic static RangeTable Digit => _Nd;\n"
 		case "Lu":
-		        varDecl = "\t/// <summary>Upper is the set of Unicode upper case letters.</summary>;\n";
+			varDecl = "\t/// <summary>Upper is the set of Unicode upper case letters.</summary>;\n"
 			varDecl += "\tpublic static RangeTable Upper => _Lu;\n"
 		case "Ll":
-		        varDecl = "\t/// <summary>Lower is the set of Unicode lower case letters.</summary>;\n";
+			varDecl = "\t/// <summary>Lower is the set of Unicode lower case letters.</summary>;\n"
 			varDecl += "\tpublic static RangeTable Lower => _Ll;\n"
 		case "Lt":
-		        varDecl = "\t/// <summary>Title is the set of Unicode title case letters.</summary>;\n";
+			varDecl = "\t/// <summary>Title is the set of Unicode title case letters.</summary>;\n"
 			varDecl += "\tpublic static RangeTable Title => _Lt;\n"
 		}
 		if len(name) > 1 {
@@ -585,7 +588,8 @@ func printCategories() {
 	for _, d := range decl {
 		print(d)
 	}
-	println ("\t}\n")
+	println("\t}")
+	println()
 }
 
 type Op func(code rune) bool
@@ -601,7 +605,6 @@ func dumpRange(header string, inCategory Op) {
 	// one Range for each iteration
 	count := &range16Count
 	size := 16
-	format := "NONE";
 	for {
 		// look for start of range
 		for next < rune(len(chars)) && !inCategory(next) {
@@ -622,14 +625,9 @@ func dumpRange(header string, inCategory Op) {
 		for next < rune(len(chars)) && !inCategory(next) {
 			next++
 		}
-		if size == 16 {
-			format = format16
-		} else {
-			format = format32
-		}
 		if next >= rune(len(chars)) {
 			// no more characters
-			printf(format, lo, hi, stride)
+			printRange(uint32(lo), uint32(hi), uint32(stride), size, count)
 			break
 		}
 		// set stride
@@ -657,7 +655,7 @@ func dumpRange(header string, inCategory Op) {
 	if latinOffset > 0 {
 		printf(",\n\t\tlatinOffset: %d\n", latinOffset)
 	} else {
-	        printf ("\n")
+		printf("\n")
 	}
 	print("\t);\n\n")
 }
@@ -669,7 +667,7 @@ func printRange(lo, hi, stride uint32, size int, count *int) (int, *int) {
 	} else {
 		format = format32
 	}
-	
+
 	if size == 16 && hi >= 1<<16 {
 		if lo < 1<<16 {
 			if lo+stride != hi {
@@ -687,7 +685,7 @@ func printRange(lo, hi, stride uint32, size int, count *int) (int, *int) {
 		print("\t\tr32: new Range32 [] {\n")
 		size = 32
 		format = format32
-		
+
 		count = &range32Count
 	}
 	printf(format, lo, hi, stride)
@@ -851,19 +849,19 @@ func printScriptOrProperty(doProps bool) {
 		flaglist,
 		*url)
 	if doProps {
-		println ("\t/// <summary>Static class containing the proeprty-based tables.</summary>")
-		println ("\t/// <remarks><para>There are static properties that can be used to fetch RangeTables that identify characters that have a specific property, or you can use the <see cref=\"T:NStack.Unicode.Property.Get\"/> method in this class to retrieve the range table by the property name</para></remarks>")
-		println ("\tpublic static class Property {")
-		println ("\t\t/// <summary>Retrieves the specified RangeTable having that property.</summary>")
-		println ("\t\t/// <param name=\"propertyName\">The property name.</param>")
-		println ("\t\tpublic static RangeTable Get (string propertyName) => Properties [propertyName];")
+		println("\t/// <summary>Static class containing the proeprty-based tables.</summary>")
+		println("\t/// <remarks><para>There are static properties that can be used to fetch RangeTables that identify characters that have a specific property, or you can use the <see cref=\"T:NStack.Unicode.Property.Get\"/> method in this class to retrieve the range table by the property name</para></remarks>")
+		println("\tpublic static class Property {")
+		println("\t\t/// <summary>Retrieves the specified RangeTable having that property.</summary>")
+		println("\t\t/// <param name=\"propertyName\">The property name.</param>")
+		println("\t\tpublic static RangeTable Get (string propertyName) => Properties [propertyName];")
 	} else {
-		println ("\t/// <summary>Static class containing the Unicode script tables.</summary>")
-		println ("\t/// <remarks><para>There are static properties that can be used to fetch a specific category, or you can use the <see cref=\"T:NStack.Unicode.Script.Get\"/> method in this class to retrieve the range table by its script name</para></remarks>")
-		println ("\tpublic static class Script {")
-		println ("\t\t/// <summary>Retrieves the specified RangeTable from the Unicode script name.</summary>")
-		println ("\t\t/// <param name=\"scriptName\">The unicode script name</param>")
-		println ("\t\tpublic static RangeTable Get (string scriptName) => Scripts [scriptName];")
+		println("\t/// <summary>Static class containing the Unicode script tables.</summary>")
+		println("\t/// <remarks><para>There are static properties that can be used to fetch a specific category, or you can use the <see cref=\"T:NStack.Unicode.Script.Get\"/> method in this class to retrieve the range table by its script name</para></remarks>")
+		println("\tpublic static class Script {")
+		println("\t\t/// <summary>Retrieves the specified RangeTable from the Unicode script name.</summary>")
+		println("\t\t/// <param name=\"scriptName\">The unicode script name</param>")
+		println("\t\tpublic static RangeTable Get (string scriptName) => Scripts [scriptName];")
 	}
 	if flaglist == "all" {
 		if doProps {
@@ -918,11 +916,12 @@ func printScriptOrProperty(doProps bool) {
 		print("\t); /* RangeTable */\n\n")
 	}
 	decl.Sort()
-	
+
 	for _, d := range decl {
 		print(d)
 	}
-	println ("\t}\n")
+	println("\t}")
+	println()
 }
 
 func findLatinOffset(ranges []unicode.Range32) int {
@@ -1082,7 +1081,7 @@ func printCases() {
 		return
 	}
 	printf(
-			"\t// Generated by running\n"+
+		"\t// Generated by running\n"+
 			"\t//	maketables --data=%s --casefolding=%s\n"+
 			"\t// DO NOT EDIT\n\n"+
 			"\t// CaseRanges is the table describing case mappings for all letters with\n"+

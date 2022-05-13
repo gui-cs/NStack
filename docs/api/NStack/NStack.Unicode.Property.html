@@ -10,18 +10,19 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Unicode.Property
    ">
-    <meta name="generator" content="docfx 2.18.2.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
     
+    <meta property="docfx:rel" content="../../">
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -36,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../images/logo48.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -57,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -70,36 +81,56 @@
             <article class="content wrap" id="_content" data-uid="NStack.Unicode.Property">
   
   
-  <h1 id="NStack_Unicode_Property" data-uid="NStack.Unicode.Property">Class Unicode.Property
+  <h1 id="NStack_Unicode_Property" data-uid="NStack.Unicode.Property" class="text-break">Class Unicode.Property
   </h1>
-  <div class="markdown level0 summary"><p>Static class containing the proeprty-based tables.</p>
-</div>
+  <div class="markdown level0 summary">Static class containing the proeprty-based tables.</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">Unicode.Property</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="../NStack.html">NStack</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NStack.html">NStack</a></h6>
   <h6><strong>Assembly</strong>: NStack.dll</h6>
   <h5 id="NStack_Unicode_Property_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class Unicode.Property</code></pre>
+    <pre><code class="lang-csharp hljs">public static class Property</code></pre>
   </div>
   <h5 id="NStack_Unicode_Property_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>There are static properties that can be used to fetch RangeTables that identify characters that have a specific property, or you can use the <span class="xref">NStack.Unicode.Property.Get</span> method in this class to retrieve the range table by the property name</p></div>
   <h3 id="properties">Properties
   </h3>
-  
-  
   <a id="NStack_Unicode_Property_ASCII_Hex_Digit_" data-uid="NStack.Unicode.Property.ASCII_Hex_Digit*"></a>
   <h4 id="NStack_Unicode_Property_ASCII_Hex_Digit" data-uid="NStack.Unicode.Property.ASCII_Hex_Digit">ASCII_Hex_Digit</h4>
-  <div class="markdown level1 summary"><p>ASCII_Hex_Digit is the set of Unicode characters with property ASCII_Hex_Digit.</p>
-</div>
+  <div class="markdown level1 summary">ASCII_Hex_Digit is the set of Unicode characters with property ASCII_Hex_Digit.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable ASCII_Hex_Digit { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable ASCII_Hex_Digit { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -111,22 +142,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Bidi_Control_" data-uid="NStack.Unicode.Property.Bidi_Control*"></a>
   <h4 id="NStack_Unicode_Property_Bidi_Control" data-uid="NStack.Unicode.Property.Bidi_Control">Bidi_Control</h4>
-  <div class="markdown level1 summary"><p>Bidi_Control is the set of Unicode characters with property Bidi_Control.</p>
-</div>
+  <div class="markdown level1 summary">Bidi_Control is the set of Unicode characters with property Bidi_Control.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Bidi_Control { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Bidi_Control { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -138,22 +165,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Dash_" data-uid="NStack.Unicode.Property.Dash*"></a>
   <h4 id="NStack_Unicode_Property_Dash" data-uid="NStack.Unicode.Property.Dash">Dash</h4>
-  <div class="markdown level1 summary"><p>Dash is the set of Unicode characters with property Dash.</p>
-</div>
+  <div class="markdown level1 summary">Dash is the set of Unicode characters with property Dash.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Dash { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Dash { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -165,22 +188,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Deprecated_" data-uid="NStack.Unicode.Property.Deprecated*"></a>
   <h4 id="NStack_Unicode_Property_Deprecated" data-uid="NStack.Unicode.Property.Deprecated">Deprecated</h4>
-  <div class="markdown level1 summary"><p>Deprecated is the set of Unicode characters with property Deprecated.</p>
-</div>
+  <div class="markdown level1 summary">Deprecated is the set of Unicode characters with property Deprecated.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Deprecated { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Deprecated { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -192,22 +211,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Diacritic_" data-uid="NStack.Unicode.Property.Diacritic*"></a>
   <h4 id="NStack_Unicode_Property_Diacritic" data-uid="NStack.Unicode.Property.Diacritic">Diacritic</h4>
-  <div class="markdown level1 summary"><p>Diacritic is the set of Unicode characters with property Diacritic.</p>
-</div>
+  <div class="markdown level1 summary">Diacritic is the set of Unicode characters with property Diacritic.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Diacritic { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Diacritic { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -219,22 +234,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Extender_" data-uid="NStack.Unicode.Property.Extender*"></a>
   <h4 id="NStack_Unicode_Property_Extender" data-uid="NStack.Unicode.Property.Extender">Extender</h4>
-  <div class="markdown level1 summary"><p>Extender is the set of Unicode characters with property Extender.</p>
-</div>
+  <div class="markdown level1 summary">Extender is the set of Unicode characters with property Extender.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Extender { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Extender { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -246,22 +257,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Hex_Digit_" data-uid="NStack.Unicode.Property.Hex_Digit*"></a>
   <h4 id="NStack_Unicode_Property_Hex_Digit" data-uid="NStack.Unicode.Property.Hex_Digit">Hex_Digit</h4>
-  <div class="markdown level1 summary"><p>Hex_Digit is the set of Unicode characters with property Hex_Digit.</p>
-</div>
+  <div class="markdown level1 summary">Hex_Digit is the set of Unicode characters with property Hex_Digit.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Hex_Digit { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Hex_Digit { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -273,22 +280,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Hyphen_" data-uid="NStack.Unicode.Property.Hyphen*"></a>
   <h4 id="NStack_Unicode_Property_Hyphen" data-uid="NStack.Unicode.Property.Hyphen">Hyphen</h4>
-  <div class="markdown level1 summary"><p>Hyphen is the set of Unicode characters with property Hyphen.</p>
-</div>
+  <div class="markdown level1 summary">Hyphen is the set of Unicode characters with property Hyphen.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Hyphen { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Hyphen { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -300,22 +303,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Ideographic_" data-uid="NStack.Unicode.Property.Ideographic*"></a>
   <h4 id="NStack_Unicode_Property_Ideographic" data-uid="NStack.Unicode.Property.Ideographic">Ideographic</h4>
-  <div class="markdown level1 summary"><p>Ideographic is the set of Unicode characters with property Ideographic.</p>
-</div>
+  <div class="markdown level1 summary">Ideographic is the set of Unicode characters with property Ideographic.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Ideographic { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Ideographic { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -327,22 +326,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_IDS_Binary_Operator_" data-uid="NStack.Unicode.Property.IDS_Binary_Operator*"></a>
   <h4 id="NStack_Unicode_Property_IDS_Binary_Operator" data-uid="NStack.Unicode.Property.IDS_Binary_Operator">IDS_Binary_Operator</h4>
-  <div class="markdown level1 summary"><p>IDS_Binary_Operator is the set of Unicode characters with property IDS_Binary_Operator.</p>
-</div>
+  <div class="markdown level1 summary">IDS_Binary_Operator is the set of Unicode characters with property IDS_Binary_Operator.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable IDS_Binary_Operator { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable IDS_Binary_Operator { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -354,22 +349,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_IDS_Trinary_Operator_" data-uid="NStack.Unicode.Property.IDS_Trinary_Operator*"></a>
   <h4 id="NStack_Unicode_Property_IDS_Trinary_Operator" data-uid="NStack.Unicode.Property.IDS_Trinary_Operator">IDS_Trinary_Operator</h4>
-  <div class="markdown level1 summary"><p>IDS_Trinary_Operator is the set of Unicode characters with property IDS_Trinary_Operator.</p>
-</div>
+  <div class="markdown level1 summary">IDS_Trinary_Operator is the set of Unicode characters with property IDS_Trinary_Operator.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable IDS_Trinary_Operator { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable IDS_Trinary_Operator { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -381,22 +372,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Join_Control_" data-uid="NStack.Unicode.Property.Join_Control*"></a>
   <h4 id="NStack_Unicode_Property_Join_Control" data-uid="NStack.Unicode.Property.Join_Control">Join_Control</h4>
-  <div class="markdown level1 summary"><p>Join_Control is the set of Unicode characters with property Join_Control.</p>
-</div>
+  <div class="markdown level1 summary">Join_Control is the set of Unicode characters with property Join_Control.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Join_Control { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Join_Control { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -408,22 +395,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Logical_Order_Exception_" data-uid="NStack.Unicode.Property.Logical_Order_Exception*"></a>
   <h4 id="NStack_Unicode_Property_Logical_Order_Exception" data-uid="NStack.Unicode.Property.Logical_Order_Exception">Logical_Order_Exception</h4>
-  <div class="markdown level1 summary"><p>Logical_Order_Exception is the set of Unicode characters with property Logical_Order_Exception.</p>
-</div>
+  <div class="markdown level1 summary">Logical_Order_Exception is the set of Unicode characters with property Logical_Order_Exception.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Logical_Order_Exception { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Logical_Order_Exception { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -435,22 +418,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Noncharacter_Code_Point_" data-uid="NStack.Unicode.Property.Noncharacter_Code_Point*"></a>
   <h4 id="NStack_Unicode_Property_Noncharacter_Code_Point" data-uid="NStack.Unicode.Property.Noncharacter_Code_Point">Noncharacter_Code_Point</h4>
-  <div class="markdown level1 summary"><p>Noncharacter_Code_Point is the set of Unicode characters with property Noncharacter_Code_Point.</p>
-</div>
+  <div class="markdown level1 summary">Noncharacter_Code_Point is the set of Unicode characters with property Noncharacter_Code_Point.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Noncharacter_Code_Point { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Noncharacter_Code_Point { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -462,22 +441,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Other_Alphabetic_" data-uid="NStack.Unicode.Property.Other_Alphabetic*"></a>
   <h4 id="NStack_Unicode_Property_Other_Alphabetic" data-uid="NStack.Unicode.Property.Other_Alphabetic">Other_Alphabetic</h4>
-  <div class="markdown level1 summary"><p>Other_Alphabetic is the set of Unicode characters with property Other_Alphabetic.</p>
-</div>
+  <div class="markdown level1 summary">Other_Alphabetic is the set of Unicode characters with property Other_Alphabetic.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Other_Alphabetic { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Other_Alphabetic { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -489,22 +464,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Other_Default_Ignorable_Code_Point_" data-uid="NStack.Unicode.Property.Other_Default_Ignorable_Code_Point*"></a>
   <h4 id="NStack_Unicode_Property_Other_Default_Ignorable_Code_Point" data-uid="NStack.Unicode.Property.Other_Default_Ignorable_Code_Point">Other_Default_Ignorable_Code_Point</h4>
-  <div class="markdown level1 summary"><p>Other_Default_Ignorable_Code_Point is the set of Unicode characters with property Other_Default_Ignorable_Code_Point.</p>
-</div>
+  <div class="markdown level1 summary">Other_Default_Ignorable_Code_Point is the set of Unicode characters with property Other_Default_Ignorable_Code_Point.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Other_Default_Ignorable_Code_Point { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Other_Default_Ignorable_Code_Point { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -516,22 +487,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Other_Grapheme_Extend_" data-uid="NStack.Unicode.Property.Other_Grapheme_Extend*"></a>
   <h4 id="NStack_Unicode_Property_Other_Grapheme_Extend" data-uid="NStack.Unicode.Property.Other_Grapheme_Extend">Other_Grapheme_Extend</h4>
-  <div class="markdown level1 summary"><p>Other_Grapheme_Extend is the set of Unicode characters with property Other_Grapheme_Extend.</p>
-</div>
+  <div class="markdown level1 summary">Other_Grapheme_Extend is the set of Unicode characters with property Other_Grapheme_Extend.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Other_Grapheme_Extend { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Other_Grapheme_Extend { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -543,22 +510,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Other_ID_Continue_" data-uid="NStack.Unicode.Property.Other_ID_Continue*"></a>
   <h4 id="NStack_Unicode_Property_Other_ID_Continue" data-uid="NStack.Unicode.Property.Other_ID_Continue">Other_ID_Continue</h4>
-  <div class="markdown level1 summary"><p>Other_ID_Continue is the set of Unicode characters with property Other_ID_Continue.</p>
-</div>
+  <div class="markdown level1 summary">Other_ID_Continue is the set of Unicode characters with property Other_ID_Continue.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Other_ID_Continue { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Other_ID_Continue { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -570,22 +533,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Other_ID_Start_" data-uid="NStack.Unicode.Property.Other_ID_Start*"></a>
   <h4 id="NStack_Unicode_Property_Other_ID_Start" data-uid="NStack.Unicode.Property.Other_ID_Start">Other_ID_Start</h4>
-  <div class="markdown level1 summary"><p>Other_ID_Start is the set of Unicode characters with property Other_ID_Start.</p>
-</div>
+  <div class="markdown level1 summary">Other_ID_Start is the set of Unicode characters with property Other_ID_Start.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Other_ID_Start { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Other_ID_Start { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -597,22 +556,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Other_Lowercase_" data-uid="NStack.Unicode.Property.Other_Lowercase*"></a>
   <h4 id="NStack_Unicode_Property_Other_Lowercase" data-uid="NStack.Unicode.Property.Other_Lowercase">Other_Lowercase</h4>
-  <div class="markdown level1 summary"><p>Other_Lowercase is the set of Unicode characters with property Other_Lowercase.</p>
-</div>
+  <div class="markdown level1 summary">Other_Lowercase is the set of Unicode characters with property Other_Lowercase.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Other_Lowercase { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Other_Lowercase { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -624,22 +579,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Other_Math_" data-uid="NStack.Unicode.Property.Other_Math*"></a>
   <h4 id="NStack_Unicode_Property_Other_Math" data-uid="NStack.Unicode.Property.Other_Math">Other_Math</h4>
-  <div class="markdown level1 summary"><p>Other_Math is the set of Unicode characters with property Other_Math.</p>
-</div>
+  <div class="markdown level1 summary">Other_Math is the set of Unicode characters with property Other_Math.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Other_Math { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Other_Math { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -651,22 +602,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Other_Uppercase_" data-uid="NStack.Unicode.Property.Other_Uppercase*"></a>
   <h4 id="NStack_Unicode_Property_Other_Uppercase" data-uid="NStack.Unicode.Property.Other_Uppercase">Other_Uppercase</h4>
-  <div class="markdown level1 summary"><p>Other_Uppercase is the set of Unicode characters with property Other_Uppercase.</p>
-</div>
+  <div class="markdown level1 summary">Other_Uppercase is the set of Unicode characters with property Other_Uppercase.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Other_Uppercase { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Other_Uppercase { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -678,22 +625,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Pattern_Syntax_" data-uid="NStack.Unicode.Property.Pattern_Syntax*"></a>
   <h4 id="NStack_Unicode_Property_Pattern_Syntax" data-uid="NStack.Unicode.Property.Pattern_Syntax">Pattern_Syntax</h4>
-  <div class="markdown level1 summary"><p>Pattern_Syntax is the set of Unicode characters with property Pattern_Syntax.</p>
-</div>
+  <div class="markdown level1 summary">Pattern_Syntax is the set of Unicode characters with property Pattern_Syntax.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Pattern_Syntax { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Pattern_Syntax { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -705,22 +648,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Pattern_White_Space_" data-uid="NStack.Unicode.Property.Pattern_White_Space*"></a>
   <h4 id="NStack_Unicode_Property_Pattern_White_Space" data-uid="NStack.Unicode.Property.Pattern_White_Space">Pattern_White_Space</h4>
-  <div class="markdown level1 summary"><p>Pattern_White_Space is the set of Unicode characters with property Pattern_White_Space.</p>
-</div>
+  <div class="markdown level1 summary">Pattern_White_Space is the set of Unicode characters with property Pattern_White_Space.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Pattern_White_Space { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Pattern_White_Space { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -732,22 +671,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Prepended_Concatenation_Mark_" data-uid="NStack.Unicode.Property.Prepended_Concatenation_Mark*"></a>
   <h4 id="NStack_Unicode_Property_Prepended_Concatenation_Mark" data-uid="NStack.Unicode.Property.Prepended_Concatenation_Mark">Prepended_Concatenation_Mark</h4>
-  <div class="markdown level1 summary"><p>Prepended_Concatenation_Mark is the set of Unicode characters with property Prepended_Concatenation_Mark.</p>
-</div>
+  <div class="markdown level1 summary">Prepended_Concatenation_Mark is the set of Unicode characters with property Prepended_Concatenation_Mark.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Prepended_Concatenation_Mark { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Prepended_Concatenation_Mark { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -759,22 +694,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Quotation_Mark_" data-uid="NStack.Unicode.Property.Quotation_Mark*"></a>
   <h4 id="NStack_Unicode_Property_Quotation_Mark" data-uid="NStack.Unicode.Property.Quotation_Mark">Quotation_Mark</h4>
-  <div class="markdown level1 summary"><p>Quotation_Mark is the set of Unicode characters with property Quotation_Mark.</p>
-</div>
+  <div class="markdown level1 summary">Quotation_Mark is the set of Unicode characters with property Quotation_Mark.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Quotation_Mark { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Quotation_Mark { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -786,22 +717,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Radical_" data-uid="NStack.Unicode.Property.Radical*"></a>
   <h4 id="NStack_Unicode_Property_Radical" data-uid="NStack.Unicode.Property.Radical">Radical</h4>
-  <div class="markdown level1 summary"><p>Radical is the set of Unicode characters with property Radical.</p>
-</div>
+  <div class="markdown level1 summary">Radical is the set of Unicode characters with property Radical.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Radical { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Radical { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -813,22 +740,41 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
+  <a id="NStack_Unicode_Property_Regional_Indicator_" data-uid="NStack.Unicode.Property.Regional_Indicator*"></a>
+  <h4 id="NStack_Unicode_Property_Regional_Indicator" data-uid="NStack.Unicode.Property.Regional_Indicator">Regional_Indicator</h4>
+  <div class="markdown level1 summary">Regional_Indicator is the set of Unicode characters with property Regional_Indicator.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Regional_Indicator { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="NStack_Unicode_Property_Sentence_Terminal_" data-uid="NStack.Unicode.Property.Sentence_Terminal*"></a>
   <h4 id="NStack_Unicode_Property_Sentence_Terminal" data-uid="NStack.Unicode.Property.Sentence_Terminal">Sentence_Terminal</h4>
-  <div class="markdown level1 summary"><p>Sentence_Terminal is the set of Unicode characters with property Sentence_Terminal.</p>
-</div>
+  <div class="markdown level1 summary">Sentence_Terminal is the set of Unicode characters with property Sentence_Terminal.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Sentence_Terminal { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Sentence_Terminal { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -840,22 +786,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Soft_Dotted_" data-uid="NStack.Unicode.Property.Soft_Dotted*"></a>
   <h4 id="NStack_Unicode_Property_Soft_Dotted" data-uid="NStack.Unicode.Property.Soft_Dotted">Soft_Dotted</h4>
-  <div class="markdown level1 summary"><p>Soft_Dotted is the set of Unicode characters with property Soft_Dotted.</p>
-</div>
+  <div class="markdown level1 summary">Soft_Dotted is the set of Unicode characters with property Soft_Dotted.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Soft_Dotted { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Soft_Dotted { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -867,22 +809,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_STerm_" data-uid="NStack.Unicode.Property.STerm*"></a>
   <h4 id="NStack_Unicode_Property_STerm" data-uid="NStack.Unicode.Property.STerm">STerm</h4>
-  <div class="markdown level1 summary"><p>STerm is an alias for Sentence_Terminal.</p>
-</div>
+  <div class="markdown level1 summary">STerm is an alias for Sentence_Terminal.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable STerm { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable STerm { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -894,22 +832,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Terminal_Punctuation_" data-uid="NStack.Unicode.Property.Terminal_Punctuation*"></a>
   <h4 id="NStack_Unicode_Property_Terminal_Punctuation" data-uid="NStack.Unicode.Property.Terminal_Punctuation">Terminal_Punctuation</h4>
-  <div class="markdown level1 summary"><p>Terminal_Punctuation is the set of Unicode characters with property Terminal_Punctuation.</p>
-</div>
+  <div class="markdown level1 summary">Terminal_Punctuation is the set of Unicode characters with property Terminal_Punctuation.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Terminal_Punctuation { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Terminal_Punctuation { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -921,22 +855,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Unified_Ideograph_" data-uid="NStack.Unicode.Property.Unified_Ideograph*"></a>
   <h4 id="NStack_Unicode_Property_Unified_Ideograph" data-uid="NStack.Unicode.Property.Unified_Ideograph">Unified_Ideograph</h4>
-  <div class="markdown level1 summary"><p>Unified_Ideograph is the set of Unicode characters with property Unified_Ideograph.</p>
-</div>
+  <div class="markdown level1 summary">Unified_Ideograph is the set of Unicode characters with property Unified_Ideograph.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Unified_Ideograph { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Unified_Ideograph { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -948,22 +878,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_Variation_Selector_" data-uid="NStack.Unicode.Property.Variation_Selector*"></a>
   <h4 id="NStack_Unicode_Property_Variation_Selector" data-uid="NStack.Unicode.Property.Variation_Selector">Variation_Selector</h4>
-  <div class="markdown level1 summary"><p>Variation_Selector is the set of Unicode characters with property Variation_Selector.</p>
-</div>
+  <div class="markdown level1 summary">Variation_Selector is the set of Unicode characters with property Variation_Selector.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Variation_Selector { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Variation_Selector { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -975,22 +901,18 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_Property_White_Space_" data-uid="NStack.Unicode.Property.White_Space*"></a>
   <h4 id="NStack_Unicode_Property_White_Space" data-uid="NStack.Unicode.Property.White_Space">White_Space</h4>
-  <div class="markdown level1 summary"><p>White_Space is the set of Unicode characters with property White_Space.</p>
-</div>
+  <div class="markdown level1 summary">White_Space is the set of Unicode characters with property White_Space.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable White_Space { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable White_Space { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1002,24 +924,20 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  
-  
   <a id="NStack_Unicode_Property_Get_" data-uid="NStack.Unicode.Property.Get*"></a>
   <h4 id="NStack_Unicode_Property_Get_System_String_" data-uid="NStack.Unicode.Property.Get(System.String)">Get(String)</h4>
-  <div class="markdown level1 summary"><p>Retrieves the specified RangeTable having that property.</p>
-</div>
+  <div class="markdown level1 summary">Retrieves the specified RangeTable having that property.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NStack.Unicode.RangeTable Get (string propertyName);</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unicode.RangeTable Get(string propertyName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1034,8 +952,7 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">propertyName</span></td>
-        <td><p>The property name.</p>
-</td>
+        <td>The property name.</td>
       </tr>
     </tbody>
   </table>
@@ -1049,9 +966,8 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="NStack.Unicode.RangeTable.html">Unicode.RangeTable</a></td>
         <td></td>
-        <td><p>To be added.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -1060,12 +976,9 @@
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
@@ -1080,7 +993,7 @@
               <a href="#top">Back to top</a>
             </span>
             
-            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+            <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>

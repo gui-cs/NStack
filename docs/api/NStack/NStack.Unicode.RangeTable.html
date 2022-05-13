@@ -10,18 +10,19 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct Unicode.RangeTable
    ">
-    <meta name="generator" content="docfx 2.18.2.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
     <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
     
+    <meta property="docfx:rel" content="../../">
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -36,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../images/logo48.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -57,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -70,27 +81,49 @@
             <article class="content wrap" id="_content" data-uid="NStack.Unicode.RangeTable">
   
   
-  <h1 id="NStack_Unicode_RangeTable" data-uid="NStack.Unicode.RangeTable">Struct Unicode.RangeTable
+  <h1 id="NStack_Unicode_RangeTable" data-uid="NStack.Unicode.RangeTable" class="text-break">Struct Unicode.RangeTable
   </h1>
-  <div class="markdown level0 summary"><p>Range tables describe classes of unicode code points.</p>
+  <div class="markdown level0 summary">
+Range tables describe classes of unicode code points.
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="../NStack.html">NStack</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.ValueType.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ValueType.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.ValueType.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NStack.html">NStack</a></h6>
   <h6><strong>Assembly</strong>: NStack.dll</h6>
   <h5 id="NStack_Unicode_RangeTable_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct Unicode.RangeTable</code></pre>
+    <pre><code class="lang-csharp hljs">public struct RangeTable</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
-  
-  
   <h4 id="NStack_Unicode_RangeTable_LatinOffset" data-uid="NStack.Unicode.RangeTable.LatinOffset">LatinOffset</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+The number of entries in the short range table (R16) with Hi being less than MaxLatin1
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly int LatinOffset;</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int LatinOffset</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -103,23 +136,21 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>To be added.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  
-  
   <a id="NStack_Unicode_RangeTable_InRange_" data-uid="NStack.Unicode.RangeTable.InRange*"></a>
   <h4 id="NStack_Unicode_RangeTable_InRange_System_UInt32_" data-uid="NStack.Unicode.RangeTable.InRange(System.UInt32)">InRange(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Used to determine if a given rune is in the range of this RangeTable.</p>
+  <div class="markdown level1 summary">
+Used to determine if a given rune is in the range of this RangeTable.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool InRange (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public bool InRange(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -134,8 +165,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -150,21 +180,19 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is in this RangeTable, <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is in this RangeTable, <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
-  
-  
   <a id="NStack_Unicode_RangeTable_IsExcludingLatin_" data-uid="NStack.Unicode.RangeTable.IsExcludingLatin*"></a>
   <h4 id="NStack_Unicode_RangeTable_IsExcludingLatin_System_UInt32_" data-uid="NStack.Unicode.RangeTable.IsExcludingLatin(System.UInt32)">IsExcludingLatin(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Used to determine if a given rune is in the range of this RangeTable, excluding latin1 characters.</p>
+  <div class="markdown level1 summary">
+Used to determine if a given rune is in the range of this RangeTable, excluding latin1 characters.
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsExcludingLatin (uint rune);</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsExcludingLatin(uint rune)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -179,8 +207,7 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">rune</span></td>
-        <td><p>Rune.</p>
-</td>
+        <td>Rune.</td>
       </tr>
     </tbody>
   </table>
@@ -195,8 +222,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><code>true</code>, if the rune is part of the range (not including latin), <code>false</code> otherwise.</p>
-</td>
+        <td><code>true</code>, if the rune is part of the range (not including latin), <code>false</code> otherwise.</td>
       </tr>
     </tbody>
   </table>
@@ -205,12 +231,9 @@
           
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                </ul>
-              </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
@@ -225,7 +248,7 @@
               <a href="#top">Back to top</a>
             </span>
             
-            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+            <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>

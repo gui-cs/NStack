@@ -113,7 +113,7 @@ namespace System {
 		/// Check if the rune is a non-spacing character.
 		/// </summary>
 		/// <returns>True if is a non-spacing character, false otherwise.</returns>
-		public bool IsNonSpacing => IsNonSpacingChar(value, out _);
+		public bool IsNonSpacing => IsNonSpacingChar(value);
 
 		// Code points in the surrogate range are not valid for UTF-8.
 		const uint highSurrogateMin = 0xd800;
@@ -615,6 +615,23 @@ namespace System {
 			}
 			chars = null;
 			return false;
+		}
+
+		/// <summary>
+		/// Given one byte from a utf8 string, return the number of expected bytes that make up the sequence.
+		/// </summary>
+		/// <returns>The number of UTF8 bytes expected given the first prefix.</returns>
+		/// <param name="firstByte">Is the first byte of a UTF8 sequence.</param>
+		public static int ExpectedSizeFromFirstByte(byte firstByte)
+		{
+			var x = first[firstByte];
+
+			// Invalid runes, just return 1 for byte, and let higher level pass to print
+			if (x == xx)
+				return -1;
+			if (x == a1)
+				return 1;
+			return x & 0xf;
 		}
 
 		/// <summary>

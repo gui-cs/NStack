@@ -8,6 +8,7 @@ using System;
 using NStack;
 using System.Runtime.InteropServices;
 using System.Text;
+using Rune = System.Rune;
 
 namespace NStackTests {
 	[TestFixture]
@@ -102,7 +103,13 @@ namespace NStackTests {
 			var cp = ustring.Make (c1, len);
 
 			var apalias = ap;
+			Assert.IsTrue(ap.Equals(bp));
 			Assert.IsTrue (ap == bp);
+
+			string arefMod = "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdy$";
+			Assert.IsFalse(ap.Equals(arefMod));
+			Assert.IsFalse(ap == arefMod);
+
 			Assert.IsTrue (ap == apalias);
 			Assert.IsTrue (ap != cp);
 
@@ -383,7 +390,7 @@ namespace NStackTests {
 			var s = ustring.Make (ptr, 10, releaseFunc);
 			Assert.True (s is IDisposable);
 			var id = s as IDisposable;
-			id.Dispose ();
+			id?.Dispose ();
 			Assert.True (released);
 		}
 
@@ -714,10 +721,10 @@ namespace NStackTests {
 			var sc = new Rune(0xd83d);
 			var r = new Rune(0xdd2e);
 			Assert.AreEqual(1, Rune.ColumnWidth(sc));
-			Assert.False(Rune.IsNonSpacingChar(r, out _));
+			Assert.False(Rune.IsNonSpacingChar(r));
 			Assert.AreEqual(1, Rune.ColumnWidth(r));
 			var fr = new Rune(sc, r);
-			Assert.False(Rune.IsNonSpacingChar(fr, out _));
+			Assert.False(Rune.IsNonSpacingChar(fr));
 			Assert.AreEqual(1, Rune.ColumnWidth(fr));
 			var us = ustring.Make(fr);
 			Assert.AreEqual(1, us.ConsoleWidth);
@@ -737,6 +744,33 @@ namespace NStackTests {
 			ustring us = "This a test to return a substring";
 			Assert.AreEqual("test to return a substring", us.RuneSubstring(7));
 			Assert.AreEqual("test to return", us.RuneSubstring(7, 14));
+		}
+
+		[Test]
+		public void Test_ToRunes()
+		{
+			ustring us = "Some long text that 🤖🧠 is super cool";
+			uint[] runesArray = us.ToRunes();
+			Assert.AreEqual(us, runesArray);
+		}
+
+		[Test]
+		public void Make_Environment_NewLine()
+		{
+			var us = ustring.Make(Environment.NewLine);
+			if (Environment.NewLine.Length == 1)
+			{
+				Assert.AreEqual('\n', us[0]);
+				Assert.AreEqual(10, us[0]);
+			}
+			else
+			{
+				Assert.AreEqual('\r', us[0]);
+				Assert.AreEqual(13, us[0]);
+
+				Assert.AreEqual('\n', us[1]);
+				Assert.AreEqual(10, us[1]);
+			}
 		}
 	}
 }

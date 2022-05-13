@@ -95,7 +95,7 @@ namespace NStack
 			readonly Range32 []R32;
 
 			/// <summary>
-			/// The number of entries in the short range table (R16) with with Hi being less than MaxLatin1
+			/// The number of entries in the short range table (R16) with Hi being less than MaxLatin1
 			/// </summary>
 			public readonly int LatinOffset;
 
