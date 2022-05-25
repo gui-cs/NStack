@@ -21,17 +21,17 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build Debug
-      run: dotnet build --no-restore
+    #- name: Build Debug
+    #  run: dotnet build --no-restore
 
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    #- name: Test
+    #  run: dotnet test --no-build --verbosity normal
 
     - name: Build Release
       run: dotnet build --no-restore -c Release
 
     - name: Pack
-      run: dotnet pack -c Release --include-symbols -v
+      run: dotnet pack -c Release --include-symbols -v d
 
     - name: Prep packages
       run: dotnet nuget add source --username tig --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/tig/index.json"
