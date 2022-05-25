@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />
+  <!--<Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />-->
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RepositoryUrl>https://github.com/tig/NStack</RepositoryUrl>
     <PackageId>NStack.Core</PackageId>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
-    <PackageVersion>0.16</PackageVersion>
+    <PackageVersion>0.17</PackageVersion>
     <Authors>Miguel de Icaza</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Owners>Miguel de Icaza</Owners>
+    <Owners>Charlie Kindel</Owners>
     <PackageProjectUrl>http://github.com/migueldeicaza/NStack</PackageProjectUrl>
-    <Summary>NStack.Core brings a set of updated APIs to .NET including a UTF8-string aware string.</Summary>
+    <Summary>NStack.Core brings a set of updated string APIs to .NET including a UTF8-string aware string.</Summary>
     <PackageTags>unicode, c#</PackageTags>
     <Title>NStack.Core</Title>
-    <Description>NStack.Core brings a set of updated APIs to .NET.  
+    <Description>NStack.Core brings a set of updated string APIs to .NET.  
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
     <ReleaseVersion>0.3</ReleaseVersion>
-    <PackageReleaseNotes>0.16: Fixes issue #51 (chess symbols);  0.15: Fixes to MaxRune;   ColumnWidth differentiates between non-printable and nul characters; Rune has a constructor from two surrogate pairs; contributions by @BDisp;  0.14: Upgrade the NetStandard dependencies;
-
+    <PackageReleaseNotes>
+0.17: Fork by @tig to re-enabling nuget publishing
+0.16: Fixes issue #51 (chess symbols);  
+0.15: Fixes to MaxRune;   ColumnWidth differentiates between non-printable and nul characters; Rune has a constructor from two surrogate pairs; contributions by @BDisp;  
+0.14: Upgrade the NetStandard dependencies;
 0.13: Fixes ustring.Map() and Lower(); Extends Rune.IsValid to match Go; add Rune.ExpectedSizeFromFirstByte()  plus a bug fix;
-stack 0.12: Rebuilt
+stack 
+0.12: Rebuilt
 Rebuild with an older Roslyn, to prevent regressions on Xamarin.
-
 0.10:
 Merged some changes from upstream.
 
