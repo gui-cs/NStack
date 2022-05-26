@@ -10,9 +10,28 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    outputs: 
+      Version: ${{ steps.gitversion.outputs.SemVer }}
+      CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }} 
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 #fetch-depth is needed for GitVersion
+
+    #Install and calculate the new version with GitVersion  
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.13
+      with:
+        versionSpec: 5.x
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v0.9.13
+      id: gitversion # step id used as reference for output values
+    - name: Display GitVersion outputs
+      run: |
+        echo "Version: ${{ steps.gitversion.outputs.SemVer }}"
+        echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
@@ -31,7 +50,7 @@ jobs:
       run: dotnet build --no-restore -c Release
 
     - name: Pack
-      run: dotnet pack -c Release --include-symbols -v d
+      run: dotnet pack -c Release -p:Version='${{ steps.gitversion.outputs.SemVer }}' -v d
 
     - name: Prep packages
       run: dotnet nuget add source --username tig --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/tig/index.json"
