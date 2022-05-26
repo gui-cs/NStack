@@ -2,13 +2,11 @@
 
 [![Build Status](https://travis-ci.org/migueldeicaza/NStack.svg?branch=master)](https://travis-ci.org/migueldeicaza/NStack)
 
-Currently this module contains a port of the Go string, and Go rune
-support as well as other Unicode helper methods.
+Currently this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
 
 You can browse the [API documentation](https://migueldeicaza.github.io/NStack/api/NStack.html).
 
-Install the [NuGet package](https://www.nuget.org/packages/NStack.Core) by installing
-`NStack.Core`.
+Install the [NuGet package from NuGet.org](https://www.nuget.org/packages/NStack.Core) by installing `NStack.Core`.
 
 # Future Additions
 
