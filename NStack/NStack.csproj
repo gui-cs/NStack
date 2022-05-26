@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!--<Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />-->
+  <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RepositoryUrl>https://github.com/tig/NStack</RepositoryUrl>
@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <Authors>Miguel de Icaza</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Owners>Charlie Kindel</Owners>
+    <Owners>Miguel de Icaza</Owners>
     <PackageProjectUrl>http://github.com/migueldeicaza/NStack</PackageProjectUrl>
     <Summary>NStack.Core brings a set of updated string APIs to .NET including a UTF8-string aware string.</Summary>
     <PackageTags>unicode, c#</PackageTags>
@@ -15,9 +15,8 @@
     <Description>NStack.Core brings a set of updated string APIs to .NET.  
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
-    <ReleaseVersion>0.3</ReleaseVersion>
     <PackageReleaseNotes>
-0.17: Fork by @tig to re-enabling nuget publishing
+0.20: Fork by @tig modernize build/deploy and help publishing newer versions. No functional changes.
 0.16: Fixes issue #51 (chess symbols);  
 0.15: Fixes to MaxRune;   ColumnWidth differentiates between non-printable and nul characters; Rune has a constructor from two surrogate pairs; contributions by @BDisp;  
 0.14: Upgrade the NetStandard dependencies;
@@ -35,11 +34,14 @@ Added ustring.ColumnWidth to return number of columns that a ustring takes in a 
 * Renamed some methods to match the equivalent methods in Char.
 * Introduced Substring (int start)
 * Introduced difference between this [int start, int end] and this [int start, object end] the latter used to mean "until the end", replacing '0' as the previous value for "until the end".
-* Introduced new method in Rune to measure the width in columns for console applications.</PackageReleaseNotes>
-    <AssemblyVersion>0.18.2.0</AssemblyVersion>
-    <FileVersion>0.18.2.0</FileVersion>
-    <InformationalVersion>0.18.2+Branch.master.Sha.56eded02c5a23f60d4252fb9fc7f227aa6b6f8c9</InformationalVersion>
-    <Version>0.18.2</Version>
+* Introduced new method in Rune to measure the width in columns for console applications.
+</PackageReleaseNotes>
+
+    <!--Version is managed by gitver now. See publish.yml-->
+    <AssemblyVersion>0.20.0.0</AssemblyVersion>
+    <FileVersion>0.20.0.0</FileVersion>
+    <InformationalVersion>0.20.0+Branch.main.Sha.8157792de6c7c039bf62aea2965505b27d1fffc9</InformationalVersion>
+    <Version>0.20.0</Version>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>

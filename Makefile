@@ -1,6 +1,7 @@
 all: dotnet-build doc-update yaml
 
 dotnet-build:
+	dotnet-gitversion /updateprojectfiles
 	msbuild NStack.sln /t:clean /p:configuration=Release
 	msbuild NStack.sln -t:restore -p:RestorePackagesConfig=true /p:configuration=Release
 	msbuild NStack.sln /p:Configuration=Release /p:DocumentationFile="bin/Release/NStack.xml"
