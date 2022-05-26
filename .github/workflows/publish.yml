@@ -1,4 +1,4 @@
-name: Publish NStack.Core to GitHub Packages
+name: Publish NStack.Core to NuGet and GitHub Packages
 on:
   push:
     tags:
@@ -48,3 +48,6 @@ jobs:
 
     - name: Publish to GitHub packages 
       run: dotnet nuget push NStack/bin/Release/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "github"
+
+    - name: Publish to NuGet.org
+      run: dotnet nuget push NStack/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }}  -s https://api.nuget.org/v3/index.json
