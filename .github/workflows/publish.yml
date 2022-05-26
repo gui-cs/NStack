@@ -43,8 +43,8 @@ jobs:
     - name: Pack
       run: dotnet pack -c Release -p:Version='${{ steps.gitversion.outputs.SemVer }}' -v d
 
-    - name: Prep packages
-      run: dotnet nuget add source --username tig --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/tig/index.json"
+    #- name: Prep GitHub Packages
+    #  run: dotnet nuget add source --username tig --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/tig/index.json"
 
     #- name: Publish to GitHub packages 
     #  run: dotnet nuget push NStack/bin/Release/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "github"
