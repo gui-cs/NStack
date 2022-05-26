@@ -47,7 +47,9 @@ jobs:
     #  run: dotnet test --no-build --verbosity normal
 
     - name: Build Release
-      run: dotnet build --no-restore -c Release
+      run: |
+        dotnet-gitversion /updateprojectfiles
+        dotnet build --no-restore -c Release
 
     - name: Pack
       run: dotnet pack -c Release -p:Version='${{ steps.gitversion.outputs.SemVer }}' -v d

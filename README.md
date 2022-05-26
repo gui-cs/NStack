@@ -2,13 +2,15 @@
 
 [![Build Status](https://travis-ci.org/migueldeicaza/NStack.svg?branch=master)](https://travis-ci.org/migueldeicaza/NStack)
 
-Currently this module contains a port of the Go string, and Go rune
-support as well as other Unicode helper methods.
+This is a fork of Miguel De Icaza's NStack - created to enable publishing while Miguel is working out getting an operational dev system.
+
+Currently this module contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
 
 You can browse the [API documentation](https://migueldeicaza.github.io/NStack/api/NStack.html).
 
-Install the [NuGet package](https://www.nuget.org/packages/NStack.Core) by installing
-`NStack.Core`.
+Install the [NEW TEMPORARY NuGet package from GitHub](https://github.com/tig/NStack/packages/1443745) by installing `NStack.Core`.
+
+Install the [OLD NuGet package from NuGet](https://www.nuget.org/packages/NStack.Core) by installing `NStack.Core`.
 
 # Future Additions
 

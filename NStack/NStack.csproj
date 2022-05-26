@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!--<Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />-->
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RepositoryUrl>https://github.com/tig/NStack</RepositoryUrl>
     <PackageId>NStack.Core</PackageId>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
-    <PackageVersion>0.18.1</PackageVersion>
     <Authors>Miguel de Icaza</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Owners>Charlie Kindel</Owners>
@@ -39,11 +36,14 @@ Added ustring.ColumnWidth to return number of columns that a ustring takes in a 
 * Introduced Substring (int start)
 * Introduced difference between this [int start, int end] and this [int start, object end] the latter used to mean "until the end", replacing '0' as the previous value for "until the end".
 * Introduced new method in Rune to measure the width in columns for console applications.</PackageReleaseNotes>
+    <AssemblyVersion>0.18.2.0</AssemblyVersion>
+    <FileVersion>0.18.2.0</FileVersion>
+    <InformationalVersion>0.18.2+Branch.master.Sha.56eded02c5a23f60d4252fb9fc7f227aa6b6f8c9</InformationalVersion>
+    <Version>0.18.2</Version>
   </PropertyGroup>
-    
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	  <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
+    <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
     <DocumentationFile>bin\Release\NStack.xml</DocumentationFile>
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
@@ -51,8 +51,8 @@ Added ustring.ColumnWidth to return number of columns that a ustring takes in a 
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
-	<Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets')" />
-	<ItemGroup>
-	  <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-	</ItemGroup>
+  <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets')" />
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
 </Project>
