@@ -1,6 +1,6 @@
 # NStack
 
-![build](https://github.com/migueldeicaza/NStack/actions/workflows/build/badge.svg)
+![Build](https://github.com/migueldeicaza/NStack/actions/workflows/build.yaml/badge.svg)
 [![Version](https://img.shields.io/nuget/v/NStack.Core.svg)](https://www.nuget.org/packages/NStack.Core)
 [![Downloads](https://img.shields.io/nuget/dt/NStack.Core)](https://www.nuget.org/packages/NStack.Core)
 [![License](https://img.shields.io/github/license/migueldeicaza/NStack.svg)](LICENSE)
