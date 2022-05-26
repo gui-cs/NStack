@@ -8,8 +8,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NStackTests", "NStackTests\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{760C271D-E55A-4F44-BE2C-9B476D310CAC}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		.github\workflows\build.yml = .github\workflows\build.yml
 		.github\workflows\publish.yml = .github\workflows\publish.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global

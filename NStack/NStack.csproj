@@ -16,7 +16,7 @@
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
     <PackageReleaseNotes>
-0.20: Fork by @tig modernize build/deploy and help publishing newer versions. No functional changes.
+0.17: Fork by @tig modernize build/deploy and help publishing newer versions. No functional changes.
 0.16: Fixes issue #51 (chess symbols);  
 0.15: Fixes to MaxRune;   ColumnWidth differentiates between non-printable and nul characters; Rune has a constructor from two surrogate pairs; contributions by @BDisp;  
 0.14: Upgrade the NetStandard dependencies;
