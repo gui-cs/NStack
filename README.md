@@ -1,10 +1,10 @@
 # NStack
 
-![.NET Core](https://github.com/migueldeicaza/NStack/workflows/build/badge.svg?branch=master)
+![.NET Core](https://github.com/migueldeicaza/NStack/workflows/build/badge.svg?branch=main)
 [![Version](https://img.shields.io/nuget/v/NStack.Core.svg)](https://www.nuget.org/packages/NStack.Core)
 [![Downloads](https://img.shields.io/nuget/dt/NStack.Core)](https://www.nuget.org/packages/NStack.Core)
 [![License](https://img.shields.io/github/license/migueldeicaza/NStack.svg)](LICENSE)
-![Bugs](https://img.shields.io/github/issues/migueldeicaza/NStack/bug)
+![Bugs](https://img.shields.io/github/issues/migueldeicaza/NStack)
 
 Currently this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
 
