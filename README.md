@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/migueldeicaza/NStack.svg?branch=master)](https://travis-ci.org/migueldeicaza/NStack)
 
-Currently this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
+NOTE: Nstack has moved to the guo-cs org: https://github.com/orgs/gui-cs/Currently, this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
 
 You can browse the [API documentation](https://migueldeicaza.github.io/NStack/api/NStack.html).
 
