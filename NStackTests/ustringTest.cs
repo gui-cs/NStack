@@ -138,67 +138,66 @@ namespace NStackTests {
 
 		// string, substring, expected
 		(string, string, bool) [] ContainTests = {
-	("abc", "bc", true),
-	("abc", "bcd", false),
-	("abc", "", true),
-	("", "a", false),
-
+			("abc", "bc", true),
+			("abc", "bcd", false),
+			("abc", "", true),
+			("", "a", false),
 			// 2-byte needle
 			("xxxxxx", "01", false),
-	("01xxxx", "01", true),
-	("xx01xx", "01", true),
-	("xxxx01", "01", true),
-	("1xxxxx", "01", false),
-	("xxxxx0", "01", false),
+			("01xxxx", "01", true),
+			("xx01xx", "01", true),
+			("xxxx01", "01", true),
+			("1xxxxx", "01", false),
+			("xxxxx0", "01", false),
 			// 3-byte needle
 			("xxxxxxx", "012", false),
-	("012xxxx", "012", true),
-	("xx012xx", "012", true),
-	("xxxx012", "012", true),
-	("12xxxxx", "012", false),
-	("xxxxx01", "012", false),
+			("012xxxx", "012", true),
+			("xx012xx", "012", true),
+			("xxxx012", "012", true),
+			("12xxxxx", "012", false),
+			("xxxxx01", "012", false),
 			// 4-byte needle
 			("xxxxxxxx", "0123", false),
-	("0123xxxx", "0123", true),
-	("xx0123xx", "0123", true),
-	("xxxx0123", "0123", true),
-	("123xxxxx", "0123", false),
-	("xxxxx012", "0123", false),
+			("0123xxxx", "0123", true),
+			("xx0123xx", "0123", true),
+			("xxxx0123", "0123", true),
+			("123xxxxx", "0123", false),
+			("xxxxx012", "0123", false),
 			// 5-7-byte needle
 			("xxxxxxxxx", "01234", false),
-	("01234xxxx", "01234", true),
-	("xx01234xx", "01234", true),
-	("xxxx01234", "01234", true),
-	("1234xxxxx", "01234", false),
-	("xxxxx0123", "01234", false),
+			("01234xxxx", "01234", true),
+			("xx01234xx", "01234", true),
+			("xxxx01234", "01234", true),
+			("1234xxxxx", "01234", false),
+			("xxxxx0123", "01234", false),
 			// 8-byte needle
 			("xxxxxxxxxxxx", "01234567", false),
-	("01234567xxxx", "01234567", true),
-	("xx01234567xx", "01234567", true),
-	("xxxx01234567", "01234567", true),
-	("1234567xxxxx", "01234567", false),
-	("xxxxx0123456", "01234567", false),
+			("01234567xxxx", "01234567", true),
+			("xx01234567xx", "01234567", true),
+			("xxxx01234567", "01234567", true),
+			("1234567xxxxx", "01234567", false),
+			("xxxxx0123456", "01234567", false),
 			// 9-15-byte needle
 			("xxxxxxxxxxxxx", "012345678", false),
-	("012345678xxxx", "012345678", true),
-	("xx012345678xx", "012345678", true),
-	("xxxx012345678", "012345678", true),
-	("12345678xxxxx", "012345678", false),
-	("xxxxx01234567", "012345678", false),
+			("012345678xxxx", "012345678", true),
+			("xx012345678xx", "012345678", true),
+			("xxxx012345678", "012345678", true),
+			("12345678xxxxx", "012345678", false),
+			("xxxxx01234567", "012345678", false),
 			// 16-byte needle
 			("xxxxxxxxxxxxxxxxxxxx", "0123456789ABCDEF", false),
-	("0123456789ABCDEFxxxx", "0123456789ABCDEF", true),
-	("xx0123456789ABCDEFxx", "0123456789ABCDEF", true),
-	("xxxx0123456789ABCDEF", "0123456789ABCDEF", true),
-	("123456789ABCDEFxxxxx", "0123456789ABCDEF", false),
-	("xxxxx0123456789ABCDE", "0123456789ABCDEF", false),
+			("0123456789ABCDEFxxxx", "0123456789ABCDEF", true),
+			("xx0123456789ABCDEFxx", "0123456789ABCDEF", true),
+			("xxxx0123456789ABCDEF", "0123456789ABCDEF", true),
+			("123456789ABCDEFxxxxx", "0123456789ABCDEF", false),
+			("xxxxx0123456789ABCDE", "0123456789ABCDEF", false),
 			// 17-31-byte needle
 			("xxxxxxxxxxxxxxxxxxxxx", "0123456789ABCDEFG", false),
-	("0123456789ABCDEFGxxxx", "0123456789ABCDEFG", true),
-	("xx0123456789ABCDEFGxx", "0123456789ABCDEFG", true),
-	("xxxx0123456789ABCDEFG", "0123456789ABCDEFG", true),
-	("123456789ABCDEFGxxxxx", "0123456789ABCDEFG", false),
-	("xxxxx0123456789ABCDEF", "0123456789ABCDEFG", false),
+			("0123456789ABCDEFGxxxx", "0123456789ABCDEFG", true),
+			("xx0123456789ABCDEFGxx", "0123456789ABCDEFG", true),
+			("xxxx0123456789ABCDEFG", "0123456789ABCDEFG", true),
+			("123456789ABCDEFGxxxxx", "0123456789ABCDEFG", false),
+			("xxxxx0123456789ABCDEF", "0123456789ABCDEFG", false),
 
 			// partial match cases
 			("xx01x", "012", false),                             // 3
@@ -210,18 +209,18 @@ namespace NStackTests {
 		(string, string, bool) [] containsAnyTests = {
 			// string, substring, expected
 			("", "", false),
-	("", "a", false),
-	("", "abc", false),
-	("a", "", false),
-	("a", "a", true),
-	("aaa", "a", true),
-	("abc", "xyz", false),
-	("abc", "xcz", true),
-	("a☺b☻c☹d", "uvw☻xyz", true),
-	("aRegExp*", ".(|)*+?^$[]", true),
-	("1....2....3....41....2....3....41....2....3....4", " ", false),
+			("", "a", false),
+			("", "abc", false),
+			("a", "", false),
+			("a", "a", true),
+			("aaa", "a", true),
+			("abc", "xyz", false),
+			("abc", "xcz", true),
+			("a☺b☻c☹d", "uvw☻xyz", true),
+			("aRegExp*", ".(|)*+?^$[]", true),
+			("1....2....3....41....2....3....41....2....3....4", " ", false),
 
-    };
+		};
 
 		[Test]
 		public void TestContainsAny ()
@@ -247,15 +246,15 @@ namespace NStackTests {
 		}
 
 		(string, uint, bool) [] containsRuneTests = {
-	("", 'a', false),
-	("a", 'a', true),
-	("aaa", 'a', true),
-	("abc", 'y', false),
-	("abc", 'c', true),
-	("a☺b☻c☹d", 'x', false),
-	("a☺b☻c☹d", '☻', true),
-	("aRegExp*", '*', true),
-    };
+			("", 'a', false),
+			("a", 'a', true),
+			("aaa", 'a', true),
+			("abc", 'y', false),
+			("abc", 'c', true),
+			("a☺b☻c☹d", 'x', false),
+			("a☺b☻c☹d", '☻', true),
+			("aRegExp*", '*', true),
+		};
 
 		[Test]
 		public void TestContainsRune ()
@@ -267,21 +266,21 @@ namespace NStackTests {
 		}
 
 		(string, string, bool) [] equalFoldsTest = {
-	("abc", "abc", true),
-	("ABcd", "ABcd", true),
-	("123abc", "123ABC", true),
-	("αβδ", "ΑΒΔ", true),
-	("abc", "xyz", false),
-	("abc", "XYZ", false),
-	("abcdefghijk", "abcdefghijX", false),
+			("abc", "abc", true),
+			("ABcd", "ABcd", true),
+			("123abc", "123ABC", true),
+			("αβδ", "ΑΒΔ", true),
+			("abc", "xyz", false),
+			("abc", "XYZ", false),
+			("abcdefghijk", "abcdefghijX", false),
 
-			// need byte array for these, as they are not 
-			("abcdefghijk", "abcdefghij\u212A", true),
-	("abcdefghijK", "abcdefghij\u212A", true),
-	("abcdefghijkz", "abcdefghij\u212Ay", false),
-	("abcdefghijKz", "abcdefghij\u212Ay", false),
+					// need byte array for these, as they are not 
+					("abcdefghijk", "abcdefghij\u212A", true),
+			("abcdefghijK", "abcdefghij\u212A", true),
+			("abcdefghijkz", "abcdefghij\u212Ay", false),
+			("abcdefghijKz", "abcdefghij\u212Ay", false),
 
-    };
+		};
 
 		[Test]
 		public void TestEqualFolds ()
@@ -296,17 +295,17 @@ namespace NStackTests {
 		}
 
 		(string, string, int) [] countTests = {
-	("", "", 1),
-	("", "notempty", 0),
-	("notempty", "", 9),
-	("smaller", "not smaller", 0),
-	("12345678987654321", "6", 2),
-	("611161116", "6", 3),
-	("notequal", "NotEqual", 0),
-	("equal", "equal", 1),
-	("abc1231231123q", "123", 3),
-	("11111", "11", 2)
-    };
+			("", "", 1),
+			("", "notempty", 0),
+			("notempty", "", 9),
+			("smaller", "not smaller", 0),
+			("12345678987654321", "6", 2),
+			("611161116", "6", 3),
+			("notequal", "NotEqual", 0),
+			("equal", "equal", 1),
+			("abc1231231123q", "123", 3),
+			("11111", "11", 2)
+		};
 
 		[Test]
 		public void TestCount ()
@@ -461,25 +460,25 @@ namespace NStackTests {
 		static (string, string, string, int, string) [] replaceTexts = {
 			// input, oldValue, newValue, n parameter, expected
 			("hello", "l", "L", 0, "hello"),
-	("hello", "l", "L", -1, "heLLo"),
-	("hello", "x", "X", -1, "hello"),
-	("", "x", "X", -1, ""),
-	("radar", "r", "<r>", -1, "<r>ada<r>"),
-	("", "", "<>", -1, "<>"),
-	("banana", "a", "<>", -1, "b<>n<>n<>"),
-	("banana", "a", "<>", 1, "b<>nana"),
-	("banana", "a", "<>", 1000, "b<>n<>n<>"),
-	("banana", "an", "<>", -1, "b<><>a"),
-	("banana", "ana", "<>", -1, "b<>na"),
-	("banana", "", "<>", -1, "<>b<>a<>n<>a<>n<>a<>"),
-	("banana", "", "<>", 10, "<>b<>a<>n<>a<>n<>a<>"),
-	("banana", "", "<>", 6, "<>b<>a<>n<>a<>n<>a"),
-	("banana", "", "<>", 5, "<>b<>a<>n<>a<>na"),
-	("banana", "", "<>", 1, "<>banana"),
-	("banana", "a", "a", -1, "banana"),
-	("banana", "a", "a", 1, "banana"),
-	("☺☻☹", "", "<>", -1, "<>☺<>☻<>☹<>")
-    };
+			("hello", "l", "L", -1, "heLLo"),
+			("hello", "x", "X", -1, "hello"),
+			("", "x", "X", -1, ""),
+			("radar", "r", "<r>", -1, "<r>ada<r>"),
+			("", "", "<>", -1, "<>"),
+			("banana", "a", "<>", -1, "b<>n<>n<>"),
+			("banana", "a", "<>", 1, "b<>nana"),
+			("banana", "a", "<>", 1000, "b<>n<>n<>"),
+			("banana", "an", "<>", -1, "b<><>a"),
+			("banana", "ana", "<>", -1, "b<>na"),
+			("banana", "", "<>", -1, "<>b<>a<>n<>a<>n<>a<>"),
+			("banana", "", "<>", 10, "<>b<>a<>n<>a<>n<>a<>"),
+			("banana", "", "<>", 6, "<>b<>a<>n<>a<>n<>a"),
+			("banana", "", "<>", 5, "<>b<>a<>n<>a<>na"),
+			("banana", "", "<>", 1, "<>banana"),
+			("banana", "a", "a", -1, "banana"),
+			("banana", "a", "a", 1, "banana"),
+			("☺☻☹", "", "<>", -1, "<>☺<>☻<>☹<>")
+		};
 
 		[Test]
 		public void TestReplace ()
@@ -495,80 +494,80 @@ namespace NStackTests {
 		(string, string, int) [] indexTests = {
 			// string, substring, expected index return
 			("", "", 0),
-	("", "a", -1),
-	("", "foo", -1),
-	("fo", "foo", -1),
-	("foo", "foo", 0),
-	("oofofoofooo", "f", 2),
-	("oofofoofooo", "foo", 4),
-	("barfoobarfoo", "foo", 3),
-	("foo", "", 0),
-	("foo", "o", 1),
-	("abcABCabc", "A", 3),
+			("", "a", -1),
+			("", "foo", -1),
+			("fo", "foo", -1),
+			("foo", "foo", 0),
+			("oofofoofooo", "f", 2),
+			("oofofoofooo", "foo", 4),
+			("barfoobarfoo", "foo", 3),
+			("foo", "", 0),
+			("foo", "o", 1),
+			("abcABCabc", "A", 3),
 			// cases with one byte strings - test special case in Index()
 			("", "a", -1),
-	("x", "a", -1),
-	("x", "x", 0),
-	("abc", "a", 0),
-	("abc", "b", 1),
-	("abc", "c", 2),
-	("abc", "x", -1),
+			("x", "a", -1),
+			("x", "x", 0),
+			("abc", "a", 0),
+			("abc", "b", 1),
+			("abc", "c", 2),
+			("abc", "x", -1),
 			// test special cases in Index() for short strings
 			("", "ab", -1),
-	("bc", "ab", -1),
-	("ab", "ab", 0),
-	("xab", "ab", 1),
-	("", "abc", -1),
-	("xbc", "abc", -1),
-	("abc", "abc", 0),
-	("xabc", "abc", 1),
-	("xabxc", "abc", -1),
-	("", "abcd", -1),
-	("xbcd", "abcd", -1),
-	("abcd", "abcd", 0),
-	("xabcd", "abcd", 1),
-	("xbcqq", "abcqq", -1),
-	("abcqq", "abcqq", 0),
-	("xabcqq", "abcqq", 1),
-	("xabxcqq", "abcqq", -1),
-	("xabcqxq", "abcqq", -1),
-	("", "01234567", -1),
-	("32145678", "01234567", -1),
-	("01234567", "01234567", 0),
-	("x01234567", "01234567", 1),
-	("x0123456x01234567", "01234567", 9),
-	("", "0123456789", -1),
-	("3214567844", "0123456789", -1),
-	("0123456789", "0123456789", 0),
-	("x0123456789", "0123456789", 1),
-	("x012345678x0123456789", "0123456789", 11),
-	("x01234567x89", "0123456789", -1),
-	("", "0123456789012345", -1),
-	("3214567889012345", "0123456789012345", -1),
-	("0123456789012345", "0123456789012345", 0),
-	("x0123456789012345", "0123456789012345", 1),
-	("x012345678901234x0123456789012345", "0123456789012345", 17),
-	("", "01234567890123456789", -1),
-	("32145678890123456789", "01234567890123456789", -1),
-	("01234567890123456789", "01234567890123456789", 0),
-	("x01234567890123456789", "01234567890123456789", 1),
-	("x0123456789012345678x01234567890123456789", "01234567890123456789", 21),
-	("", "0123456789012345678901234567890", -1),
-	("321456788901234567890123456789012345678911", "0123456789012345678901234567890", -1),
-	("0123456789012345678901234567890", "0123456789012345678901234567890", 0),
-	("x0123456789012345678901234567890", "0123456789012345678901234567890", 1),
-	("x012345678901234567890123456789x0123456789012345678901234567890", "0123456789012345678901234567890", 32),
-	("", "01234567890123456789012345678901", -1),
-	("32145678890123456789012345678901234567890211", "01234567890123456789012345678901", -1),
-	("01234567890123456789012345678901", "01234567890123456789012345678901", 0),
-	("x01234567890123456789012345678901", "01234567890123456789012345678901", 1),
-	("x0123456789012345678901234567890x01234567890123456789012345678901", "01234567890123456789012345678901", 33),
-	("xxxxxx012345678901234567890123456789012345678901234567890123456789012", "012345678901234567890123456789012345678901234567890123456789012", 6),
-	("", "0123456789012345678901234567890123456789", -1),
-	("xx012345678901234567890123456789012345678901234567890123456789012", "0123456789012345678901234567890123456789", 2),
-	("xx012345678901234567890123456789012345678901234567890123456789012", "0123456789012345678901234567890123456xxx", -1),
-	("xx0123456789012345678901234567890123456789012345678901234567890120123456789012345678901234567890123456xxx", "0123456789012345678901234567890123456xxx", 65)
-    };
+			("bc", "ab", -1),
+			("ab", "ab", 0),
+			("xab", "ab", 1),
+			("", "abc", -1),
+			("xbc", "abc", -1),
+			("abc", "abc", 0),
+			("xabc", "abc", 1),
+			("xabxc", "abc", -1),
+			("", "abcd", -1),
+			("xbcd", "abcd", -1),
+			("abcd", "abcd", 0),
+			("xabcd", "abcd", 1),
+			("xbcqq", "abcqq", -1),
+			("abcqq", "abcqq", 0),
+			("xabcqq", "abcqq", 1),
+			("xabxcqq", "abcqq", -1),
+			("xabcqxq", "abcqq", -1),
+			("", "01234567", -1),
+			("32145678", "01234567", -1),
+			("01234567", "01234567", 0),
+			("x01234567", "01234567", 1),
+			("x0123456x01234567", "01234567", 9),
+			("", "0123456789", -1),
+			("3214567844", "0123456789", -1),
+			("0123456789", "0123456789", 0),
+			("x0123456789", "0123456789", 1),
+			("x012345678x0123456789", "0123456789", 11),
+			("x01234567x89", "0123456789", -1),
+			("", "0123456789012345", -1),
+			("3214567889012345", "0123456789012345", -1),
+			("0123456789012345", "0123456789012345", 0),
+			("x0123456789012345", "0123456789012345", 1),
+			("x012345678901234x0123456789012345", "0123456789012345", 17),
+			("", "01234567890123456789", -1),
+			("32145678890123456789", "01234567890123456789", -1),
+			("01234567890123456789", "01234567890123456789", 0),
+			("x01234567890123456789", "01234567890123456789", 1),
+			("x0123456789012345678x01234567890123456789", "01234567890123456789", 21),
+			("", "0123456789012345678901234567890", -1),
+			("321456788901234567890123456789012345678911", "0123456789012345678901234567890", -1),
+			("0123456789012345678901234567890", "0123456789012345678901234567890", 0),
+			("x0123456789012345678901234567890", "0123456789012345678901234567890", 1),
+			("x012345678901234567890123456789x0123456789012345678901234567890", "0123456789012345678901234567890", 32),
+			("", "01234567890123456789012345678901", -1),
+			("32145678890123456789012345678901234567890211", "01234567890123456789012345678901", -1),
+			("01234567890123456789012345678901", "01234567890123456789012345678901", 0),
+			("x01234567890123456789012345678901", "01234567890123456789012345678901", 1),
+			("x0123456789012345678901234567890x01234567890123456789012345678901", "01234567890123456789012345678901", 33),
+			("xxxxxx012345678901234567890123456789012345678901234567890123456789012", "012345678901234567890123456789012345678901234567890123456789012", 6),
+			("", "0123456789012345678901234567890123456789", -1),
+			("xx012345678901234567890123456789012345678901234567890123456789012", "0123456789012345678901234567890123456789", 2),
+			("xx012345678901234567890123456789012345678901234567890123456789012", "0123456789012345678901234567890123456xxx", -1),
+			("xx0123456789012345678901234567890123456789012345678901234567890120123456789012345678901234567890123456xxx", "0123456789012345678901234567890123456xxx", 65)
+		};
 
 		[Test]
 		public void TestIndex ()
@@ -579,21 +578,20 @@ namespace NStackTests {
 		}
 
 		(string, string, int) [] lastIndexTests = {
-	("", "", 0),
-	("", "a", -1),
-	("", "foo", -1),
-	("fo", "foo", -1),
-	("foo", "foo", 0),
-	("foo", "f", 0),
-	("oofofoofooo", "f", 7),
-	("oofofoofooo", "foo", 7),
-	("barfoobarfoo", "foo", 9),
-	("foo", "", 3),
-	("foo", "o", 2),
-	("abcABCabc", "A", 3),
-	("abcABCabc", "a", 6),
-
-    };
+			("", "", 0),
+			("", "a", -1),
+			("", "foo", -1),
+			("fo", "foo", -1),
+			("foo", "foo", 0),
+			("foo", "f", 0),
+			("oofofoofooo", "f", 7),
+			("oofofoofooo", "foo", 7),
+			("barfoobarfoo", "foo", 9),
+			("foo", "", 3),
+			("foo", "o", 2),
+			("abcABCabc", "A", 3),
+			("abcABCabc", "a", 6),
+	    };
 
 		[Test]
 		public void TestLastIndex ()
@@ -604,45 +602,45 @@ namespace NStackTests {
 		}
 
 		(string, string, int) [] indexAnyTests = {
-	("", "", -1),
-	("", "a", -1),
-	("", "abc", -1),
-	("a", "", -1),
-	("a", "a", 0),
-	("aaa", "a", 0),
-	("abc", "xyz", -1),
-	("abc", "xcz", 2),
-	("ab☺c", "x☺yz", 2),
-	("a☺b☻c☹d", "cx", ustring.Make ("a☺b☻").Length),
-	("a☺b☻c☹d", "uvw☻xyz", ustring.Make("a☺b").Length),
-	("aRegExp*", ".(|)*+?^$[]", 7),
-	("1....2....3....41....2....3....41....2....3....4", " ", -1),
+			("", "", -1),
+			("", "a", -1),
+			("", "abc", -1),
+			("a", "", -1),
+			("a", "a", 0),
+			("aaa", "a", 0),
+			("abc", "xyz", -1),
+			("abc", "xcz", 2),
+			("ab☺c", "x☺yz", 2),
+			("a☺b☻c☹d", "cx", ustring.Make ("a☺b☻").Length),
+			("a☺b☻c☹d", "uvw☻xyz", ustring.Make("a☺b").Length),
+			("aRegExp*", ".(|)*+?^$[]", 7),
+			("1....2....3....41....2....3....41....2....3....4", " ", -1),
 
 			// Need a byte initializer instead for Go [\xff][b] below
 			// ("012abcba210", "\xffb", 4),
 			//("012\x80bcb\x80210", "\xffb", 3)			
 		}, lastIndexAnyTests = {
-	("abc", "xyz", -1),
-	("a", "a", 0),
-	("", "", -1),
-	("", "a", -1),
-	("", "abc", -1),
-	("a", "", -1),
-	("aaa", "a", 2),
-	("abc", "ab", 1),
-	("ab☺c", "x☺yz", 2),
-	("a☺b☻c☹d", "cx", ustring.Make("a☺b☻").Length),
-	("a☺b☻c☹d", "uvw☻xyz", ustring.Make("a☺b").Length),
-	("a.RegExp*", ".(|)*+?^$[]", 8),
-	("1....2....3....41....2....3....41....2....3....4", " ", -1),
+			("abc", "xyz", -1),
+			("a", "a", 0),
+			("", "", -1),
+			("", "a", -1),
+			("", "abc", -1),
+			("a", "", -1),
+			("aaa", "a", 2),
+			("abc", "ab", 1),
+			("ab☺c", "x☺yz", 2),
+			("a☺b☻c☹d", "cx", ustring.Make("a☺b☻").Length),
+			("a☺b☻c☹d", "uvw☻xyz", ustring.Make("a☺b").Length),
+			("a.RegExp*", ".(|)*+?^$[]", 8),
+			("1....2....3....41....2....3....41....2....3....4", " ", -1),
 			// Need a byte initializer instead for Go [\xff][b] below
 			//("012abcba210", "\xffb", 6),
 			//("012\x80bcb\x80210", "\xffb", 7)
 		}, lastIndexByteTests = {
-	("abcdefabcdef", "a", ustring.Make("abcdef").Length),      // something in the middle
+			("abcdefabcdef", "a", ustring.Make("abcdef").Length),      // something in the middle
 			("", "q", -1),
-	("abcdef", "q", -1),
-	("abcdefabcdef", "f", ustring.Make("abcdefabcde").Length), // last byte
+			("abcdef", "q", -1),
+			("abcdefabcdef", "f", ustring.Make("abcdefabcde").Length), // last byte
 			("zabcdefabcdef", "z", 0),                 // first byte
 			("a☺b☻c☹d", "b", ustring.Make("a☺").Length),               // non-ascii
 		};
@@ -675,17 +673,17 @@ namespace NStackTests {
 		public void TestIndexRune ()
 		{
 			(string, uint, int) [] testFirst = {
-	("", 'a', -1),
-	("", '☺', -1),
-	("foo", '☹', -1),
-	("foo", 'o', 1),
-	("foo☺bar", '☺', 3),
-	("foo☺☻☹bar", '☹', 9),
-	("a A x", 'A', 2),
-	("some_text=some_value", '=', 9),
-	("☺a", 'a', 3),
-	("a☻☺b", '☺', 4),
-	};
+				("", 'a', -1),
+				("", '☺', -1),
+				("foo", '☹', -1),
+				("foo", 'o', 1),
+				("foo☺bar", '☺', 3),
+				("foo☺☻☹bar", '☹', 9),
+				("a A x", 'A', 2),
+				("some_text=some_value", '=', 9),
+				("☺a", 'a', 3),
+				("a☻☺b", '☺', 4),
+			};
 			foreach ((string str, uint rune, int expected) in testFirst) {
 				var ustr = ustring.Make (str);
 				Assert.AreEqual (expected, ustr.IndexOf (rune));
