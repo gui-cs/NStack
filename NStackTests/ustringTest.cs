@@ -274,8 +274,8 @@ namespace NStackTests {
 			("abc", "XYZ", false),
 			("abcdefghijk", "abcdefghijX", false),
 
-					// need byte array for these, as they are not 
-					("abcdefghijk", "abcdefghij\u212A", true),
+			// need byte array for these, as they are not 
+			("abcdefghijk", "abcdefghij\u212A", true),
 			("abcdefghijK", "abcdefghij\u212A", true),
 			("abcdefghijkz", "abcdefghij\u212Ay", false),
 			("abcdefghijKz", "abcdefghij\u212Ay", false),
@@ -591,7 +591,7 @@ namespace NStackTests {
 			("foo", "o", 2),
 			("abcABCabc", "A", 3),
 			("abcABCabc", "a", 6),
-	    };
+		};
 
 		[Test]
 		public void TestLastIndex ()
@@ -771,11 +771,23 @@ namespace NStackTests {
 		[Test]
 		public void Substring_Same_As_String_Substring ()
 		{
-			ustring text = "Check this out 你";
-			var str = text.ToString ();
-			str = str?.Substring (0, Math.Min (17, str.Length));
-			var ustr = text.Substring (0, text.Length);
+			ustring ustrText = "Check this out 你";
+			string str = (string)ustrText.Substring (0, ustrText.Length);
+			Assert.AreEqual (16, str.Length);
+			ustring ustr = ustrText.Substring (0, ustrText.Length);
+			Assert.AreEqual (18, ustr.Length);
 			Assert.AreEqual (str, ustr);
+			Assert.AreEqual (str, ustrText);
+			Assert.AreEqual (ustr, ustrText);
+
+			string strText = "Check this out 你";
+			str = strText.Substring (0, strText.Length);
+			Assert.AreEqual (16, str.Length);
+			ustr = strText.Substring (0, strText.Length);
+			Assert.AreEqual (18, ustr.Length);
+			Assert.AreEqual (str, ustr);
+			Assert.AreEqual (str, strText);
+			Assert.AreEqual (ustr, strText);
 		}
 
 		[Test]
