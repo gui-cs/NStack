@@ -18,6 +18,7 @@
       "shouldSkipMarkup": true,
       "properties": {
         "TargetFramework": "net6.0"
+      }
     }
   ],
   "build": {

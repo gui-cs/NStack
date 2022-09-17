@@ -1,5 +1,7 @@
 - name: Articles
   href: articles/
-- name: Api Documentation
-  href: /api/NStack/
-  homepage: /api/NStack/NStack.html
+- name: API Reference
+  href: api/NStack/
+  homepage: api/NStack/NStack.html
+- name: Source
+  href: https://github.com/gui-cs/NStack
