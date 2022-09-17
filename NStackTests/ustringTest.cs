@@ -103,12 +103,12 @@ namespace NStackTests {
 			var cp = ustring.Make (c1, len);
 
 			var apalias = ap;
-			Assert.IsTrue(ap.Equals(bp));
+			Assert.IsTrue (ap.Equals (bp));
 			Assert.IsTrue (ap == bp);
 
 			string arefMod = "asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdy$";
-			Assert.IsFalse(ap.Equals(arefMod));
-			Assert.IsFalse(ap == arefMod);
+			Assert.IsFalse (ap.Equals (arefMod));
+			Assert.IsFalse (ap == arefMod);
 
 			Assert.IsTrue (ap == apalias);
 			Assert.IsTrue (ap != cp);
@@ -142,7 +142,6 @@ namespace NStackTests {
 			("abc", "bcd", false),
 			("abc", "", true),
 			("", "a", false),
-
 			// 2-byte needle
 			("xxxxxx", "01", false),
 			("01xxxx", "01", true),
@@ -592,7 +591,6 @@ namespace NStackTests {
 			("foo", "o", 2),
 			("abcABCabc", "A", 3),
 			("abcABCabc", "a", 6),
-
 		};
 
 		[Test]
@@ -716,61 +714,112 @@ namespace NStackTests {
 		}
 
 		[Test]
-		public void TestConsoleWidth()
+		public void TestConsoleWidth ()
 		{
-			var sc = new Rune(0xd83d);
-			var r = new Rune(0xdd2e);
-			Assert.AreEqual(1, Rune.ColumnWidth(sc));
-			Assert.False(Rune.IsNonSpacingChar(r));
-			Assert.AreEqual(1, Rune.ColumnWidth(r));
-			var fr = new Rune(sc, r);
-			Assert.False(Rune.IsNonSpacingChar(fr));
-			Assert.AreEqual(1, Rune.ColumnWidth(fr));
-			var us = ustring.Make(fr);
-			Assert.AreEqual(1, us.ConsoleWidth);
+			var sc = new Rune (0xd83d);
+			var r = new Rune (0xdd2e);
+			Assert.AreEqual (1, Rune.ColumnWidth (sc));
+			Assert.False (Rune.IsNonSpacingChar (r));
+			Assert.AreEqual (1, Rune.ColumnWidth (r));
+			var fr = new Rune (sc, r);
+			Assert.False (Rune.IsNonSpacingChar (fr));
+			Assert.AreEqual (1, Rune.ColumnWidth (fr));
+			var us = ustring.Make (fr);
+			Assert.AreEqual (1, us.ConsoleWidth);
 		}
 
 		[Test]
-		public void Test_Substring()
-		{
-			ustring us = "This a test to return a substring";
-			Assert.AreEqual("test to return a substring", us.Substring(7));
-			Assert.AreEqual("test to return", us.Substring(7, 14));
-		}
-
-		[Test]
-		public void Test_RuneSubstring()
+		public void Test_Substring ()
 		{
 			ustring us = "This a test to return a substring";
-			Assert.AreEqual("test to return a substring", us.RuneSubstring(7));
-			Assert.AreEqual("test to return", us.RuneSubstring(7, 14));
+			Assert.AreEqual ("test to return a substring", us.Substring (7));
+			Assert.AreEqual ("test to return", us.Substring (7, 14));
 		}
 
 		[Test]
-		public void Test_ToRunes()
+		public void Test_RuneSubstring ()
+		{
+			ustring us = "This a test to return a substring";
+			Assert.AreEqual ("test to return a substring", us.RuneSubstring (7));
+			Assert.AreEqual ("test to return", us.RuneSubstring (7, 14));
+		}
+
+		[Test]
+		public void Test_ToRunes ()
 		{
 			ustring us = "Some long text that 🤖🧠 is super cool";
-			uint[] runesArray = us.ToRunes();
-			Assert.AreEqual(us, runesArray);
+			uint [] runesArray = us.ToRunes ();
+			Assert.AreEqual (us, runesArray);
 		}
 
 		[Test]
-		public void Make_Environment_NewLine()
+		public void Make_Environment_NewLine ()
 		{
-			var us = ustring.Make(Environment.NewLine);
-			if (Environment.NewLine.Length == 1)
-			{
-				Assert.AreEqual('\n', us[0]);
-				Assert.AreEqual(10, us[0]);
-			}
-			else
-			{
-				Assert.AreEqual('\r', us[0]);
-				Assert.AreEqual(13, us[0]);
+			var us = ustring.Make (Environment.NewLine);
+			if (Environment.NewLine.Length == 1) {
+				Assert.AreEqual ('\n', us [0]);
+				Assert.AreEqual (10, us [0]);
+			} else {
+				Assert.AreEqual ('\r', us [0]);
+				Assert.AreEqual (13, us [0]);
 
-				Assert.AreEqual('\n', us[1]);
-				Assert.AreEqual(10, us[1]);
+				Assert.AreEqual ('\n', us [1]);
+				Assert.AreEqual (10, us [1]);
 			}
+		}
+
+		[Test]
+		public void Substring_Same_As_String_Substring ()
+		{
+			ustring ustrText = "Check this out 你";
+			string str = (string)ustrText.Substring (0, ustrText.Length);
+			Assert.AreEqual (16, str.Length);
+			ustring ustr = ustrText.Substring (0, ustrText.Length);
+			Assert.AreEqual (18, ustr.Length);
+			Assert.AreEqual (str, ustr);
+			Assert.AreEqual (str, ustrText);
+			Assert.AreEqual (ustr, ustrText);
+
+			string strText = "Check this out 你";
+			str = strText.Substring (0, strText.Length);
+			Assert.AreEqual (16, str.Length);
+			ustr = strText.Substring (0, strText.Length);
+			Assert.AreEqual (18, ustr.Length);
+			Assert.AreEqual (str, ustr);
+			Assert.AreEqual (str, strText);
+			Assert.AreEqual (ustr, strText);
+		}
+
+		[Test]
+		public void IsNullOrEmpty_Accept_Null_String_Arg ()
+		{
+			string? str = null;
+			Assert.True (string.IsNullOrEmpty (str));
+			Assert.True (ustring.IsNullOrEmpty (str));
+
+			str = "";
+			Assert.True (string.IsNullOrEmpty (str));
+			Assert.True (ustring.IsNullOrEmpty (str));
+
+			str = " ";
+			Assert.False (string.IsNullOrEmpty (str));
+			Assert.False (ustring.IsNullOrEmpty (str));
+		}
+
+		[Test]
+		public void IsNullOrEmpty_Accept_Null_Ustring_Arg ()
+		{
+			ustring? ustr = null;
+			Assert.True (string.IsNullOrEmpty ((string)ustr));
+			Assert.True (ustring.IsNullOrEmpty (ustr));
+
+			ustr = "";
+			Assert.True (string.IsNullOrEmpty (ustr.ToString ()));
+			Assert.True (ustring.IsNullOrEmpty (ustr));
+
+			ustr = " ";
+			Assert.False (string.IsNullOrEmpty (ustr.ToString ()));
+			Assert.False (ustring.IsNullOrEmpty (ustr));
 		}
 	}
 }
