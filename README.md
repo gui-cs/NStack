@@ -32,3 +32,31 @@ can exist without them being valid UTF8 strings, but rather a collection of byte
 
 [1] For example, older file systems can have filenames that made sense with
 a particular character set and are effectively not possible to map into strings.
+
+
+# Version Numbers
+
+Version info for NStack is managed by [gitversion](https://gitversion.net).
+
+Install `gitversion`:
+
+```powershell
+dotnet tool install --global GitVersion.Tool
+dotnet-gitversion
+```
+
+The project version (the nuget package and in `NStack.dll`) is determined from the latest `git tag`. 
+
+The format of version numbers is `vmajor.minor.patch.build.height` and follows the [Semantic Versioning](https://semver.org/) rules.
+
+To define a new version (e.g. with a higher `major`, `minor`, `patch`, or `build` value) tag a commit using `git tag`:
+
+```powershell
+git tag v1.3.4-beta.5 -a -m "Release v1.3.4 Beta 5"
+dotnet-gitversion /updateprojectfiles
+dotnet build -c Release
+```
+
+**DO NOT COMMIT AFTER USING `/updateprojectfiles`!**
+
+Doing so will update the `.csproj` files in your branch with version info, which we do not want.
