@@ -2,13 +2,13 @@
   <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RepositoryUrl>https://github.com/tig/NStack</RepositoryUrl>
+    <RepositoryUrl>https://github.com/gui-cs/NStack</RepositoryUrl>
     <PackageId>NStack.Core</PackageId>
     <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
     <Authors>Miguel de Icaza</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Owners>Miguel de Icaza</Owners>
-    <PackageProjectUrl>http://github.com/migueldeicaza/NStack</PackageProjectUrl>
+    <PackageProjectUrl>http://github.com/gui-cs/NStack</PackageProjectUrl>
     <Summary>NStack.Core brings a set of updated string APIs to .NET including a UTF8-string aware string.</Summary>
     <PackageTags>unicode, c#</PackageTags>
     <Title>NStack.Core</Title>

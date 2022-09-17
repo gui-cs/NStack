@@ -8,8 +8,8 @@
     <authors>Miguel de Icaza</authors>
     <owners>Miguel de Icaza</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <licenseUrl>https://github.com/migueldeicaza/NStack/blob/master/LICENSE.md</licenseUrl>
-    <projectUrl>http://github.com/migueldeicaza/NStack</projectUrl>
+    <licenseUrl>https://github.com/gui-cs/NStack/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>http://github.com/gui-cs/NStack</projectUrl>
     <description>NStack.Core brings a set of updated APIs to .NET.  
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</description>
