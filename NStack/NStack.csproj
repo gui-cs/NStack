@@ -26,7 +26,7 @@
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
     <PackageReleaseNotes>
-Version 1.0.0-pre.1 - Moderinized API doc generation and now using gitflow
+Version 1.0.1 - Moderinized API doc generation and now using gitflow
    * Fixes #59. Automatically generate API docs via github action 
    * Fixes #61. ustring.IsNullOrEmpty doesn't work the same way as the string.IsNullOrEmpty method. 
    
