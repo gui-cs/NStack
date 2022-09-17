@@ -15,7 +15,9 @@
         }
       ],
       "dest": "api/NStack",
-      "shouldSkipMarkup": true
+      "shouldSkipMarkup": true,
+      "properties": {
+        "TargetFramework": "net6.0"
     }
   ],
   "build": {
@@ -65,14 +67,17 @@
     "globalMetadata": {
       "_enableSearch": "true",
       "_appLogoPath": "images/logo48.png",
-      "_disableContribution": true
+      "_disableContribution": false,
+      "_gitContribute": {
+        "repo": "https://github.com/gui-cs/NStack",
+        "branch": "develop",
+        "apiSpecFolder": "docfx/overrides"
+      },
+      "_gitUrlPattern": "github"
     },
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
-    "template": [
-      "default"
-    ],
-    "postProcessors": [ "ExtractSearchIndex" ],
+    "postProcessors": ["ExtractSearchIndex"],
     "noLangKeyword": false,
     "keepFileLink": false
   }
