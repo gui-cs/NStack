@@ -1,16 +1,16 @@
 # NStack
 
-![Build](https://github.com/migueldeicaza/NStack/actions/workflows/build.yml/badge.svg)
+![Build](https://github.com/gui-cs/NStack/actions/workflows/build.yml/badge.svg)
 [![Version](https://img.shields.io/nuget/v/NStack.Core.svg)](https://www.nuget.org/packages/NStack.Core)
 [![Downloads](https://img.shields.io/nuget/dt/NStack.Core)](https://www.nuget.org/packages/NStack.Core)
-[![License](https://img.shields.io/github/license/migueldeicaza/NStack.svg)](LICENSE)
-![Bugs](https://img.shields.io/github/issues/migueldeicaza/NStack)
+[![License](https://img.shields.io/github/license/gui-cs/NStack.svg)](LICENSE)
+![Bugs](https://img.shields.io/github/issues/gui-cs/NStack)
 
 NOTE: NStack has moved to the gui-cs org: https://github.com/orgs/gui-cs/Currently, this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
 
 Currently, this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
 
-You can browse the [API documentation](https://migueldeicaza.github.io/NStack/api/NStack.html).
+You can browse the [API documentation](https://gui-cs.github.io/NStack).
 
 Install the [NuGet package from NuGet.org](https://www.nuget.org/packages/NStack.Core) by installing `NStack.Core`.
 
