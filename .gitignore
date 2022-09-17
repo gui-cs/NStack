@@ -40,3 +40,12 @@ Thumbs.db
 *.dotCover
 
 .vs/*
+
+# API Docs
+docfx/api
+
+# Never push ./docs folder - the gh-pages branch is now used to publish to GH Pages
+docs/
+
+#git merge files
+*.orig
