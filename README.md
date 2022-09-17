@@ -10,7 +10,7 @@ NOTE: NStack has moved to the gui-cs org: https://github.com/orgs/gui-cs/Current
 
 Currently, this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
 
-You can browse the [API documentation](https://migueldeicaza.github.io/NStack).
+You can browse the [API documentation](https://gui-cs.github.io/NStack).
 
 Install the [NuGet package from NuGet.org](https://www.nuget.org/packages/NStack.Core) by installing `NStack.Core`.
 
