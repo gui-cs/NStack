@@ -142,7 +142,7 @@ We analyze unit tests and code coverage on each PR push.
 
 The code coverage of the latest released build (on NuGet) is shown as a badge at the top of `README.md`. Here as well:
 
-![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/migueldeicaza/90ef67a684cb71db1817921a970f8d27/raw/code-coverage.json)
+![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/gui-cs/90ef67a684cb71db1817921a970f8d27/raw/code-coverage.json)
 
 The project uses Fine Code Coverage to allow easy access to code coverage info on a per-component basis.
 
