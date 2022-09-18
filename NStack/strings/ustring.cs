@@ -2230,9 +2230,7 @@ namespace NStack {
 		/// <returns></returns>
 		public static bool IsNullOrEmpty (ustring value)
 		{
-			if (value == null)
-				return true;
-			if (value.Length == 0)
+			if (value?.IsEmpty != false)
 				return true;
 			return false;
 		}
