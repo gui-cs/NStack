@@ -821,5 +821,71 @@ namespace NStackTests {
 			Assert.False (string.IsNullOrEmpty (ustr.ToString ()));
 			Assert.False (ustring.IsNullOrEmpty (ustr));
 		}
+
+		[Test]
+		public void Operator_Equal_Ustring_Versus_String ()
+		{
+			ustring? ustr = null;
+			string? str = null;
+			Assert.True (ustr == str);
+			Assert.True (str == ustr);
+			Assert.True (ustr == null);
+			Assert.True (str == null);
+			Assert.False (ustr == "");
+			Assert.False (str == "");
+
+			ustr = "";
+			str = "";
+			Assert.True (ustr == str);
+			Assert.True (str == ustr);
+			Assert.False (ustr == null);
+			Assert.False (str == null);
+			Assert.True (ustr == "");
+			Assert.True (str == "");
+
+			ustr = " ";
+			str = " ";
+			Assert.True (ustr == str);
+			Assert.True (str == ustr);
+			Assert.False (ustr == null);
+			Assert.False (str == null);
+			Assert.False (ustr == "");
+			Assert.False (str == "");
+			Assert.True (ustr == " ");
+			Assert.True (str == " ");
+		}
+
+		[Test]
+		public void Operator_Not_Equal_Ustring_Versus_String ()
+		{
+			ustring? ustr = null;
+			string? str = null;
+			Assert.False (ustr != str);
+			Assert.False (str != ustr);
+			Assert.False (ustr != null);
+			Assert.False (str != null);
+			Assert.True (ustr != "");
+			Assert.True (str != "");
+
+			ustr = "";
+			str = "";
+			Assert.False (ustr != str);
+			Assert.False (str != ustr);
+			Assert.True (ustr != null);
+			Assert.True (str != null);
+			Assert.False (ustr != "");
+			Assert.False (str != "");
+
+			ustr = " ";
+			str = " ";
+			Assert.False (ustr != str);
+			Assert.False (str != ustr);
+			Assert.True (ustr != null);
+			Assert.True (str != null);
+			Assert.True (ustr != "");
+			Assert.True (str != "");
+			Assert.False (ustr != " ");
+			Assert.False (str != " ");
+		}
 	}
 }
