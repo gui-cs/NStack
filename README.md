@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/gui-cs/NStack.svg)](LICENSE)
 ![Bugs](https://img.shields.io/github/issues/gui-cs/NStack)
 
-NOTE: NStack has moved to the gui-cs org: https://github.com/orgs/gui-cs/Currently, this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
+NOTE: NStack has moved to the [gui-cs org](https://github.com/orgs/gui-cs/).
 
 Currently, this library contains a port of the Go string, and Go rune support as well as other Unicode helper methods.
 
