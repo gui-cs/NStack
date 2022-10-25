@@ -1065,7 +1065,7 @@ namespace NStack {
 				for (int i = 0; i < blen;) {
 					(var rune, var size) = Utf8.DecodeRune (this, i, i - blen);
 					i += size;
-					total += Rune.ColumnWidth (rune);
+					total += Math.Max (Rune.ColumnWidth (rune), 0);
 				}
 				return total;
 			}
