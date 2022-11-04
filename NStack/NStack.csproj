@@ -29,7 +29,7 @@ It starts with a new string type that is focused on Unicode code-points as oppos
       Version 1.0.3
       * Fixes #83. Ustring ConsoleWidth must return the exactly character size or zero and not Rune.ColumnWidth
       
-      Version 1.0.2
+      Version 1.0.3
       * Fixes #79. Needed to add unit test for equal and not equal operators.
 
       Version 1.0.1 - Moderinized API doc generation and now using gitflow
