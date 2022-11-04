@@ -26,7 +26,7 @@
 
 It starts with a new string type that is focused on Unicode code-points as opposed to the historical chars and  UTF-16 encoding and introduces a utf8 string that supports slicing</Description>
     <PackageReleaseNotes>
-      Version 1.0.3
+      Version 1.0.5
       * Fixes #83. Ustring ConsoleWidth must return the exactly character size or zero and not Rune.ColumnWidth
       
       Version 1.0.3
