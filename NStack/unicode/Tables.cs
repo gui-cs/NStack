@@ -8256,7 +8256,7 @@ public partial class Unicode {
 		/*0x7C */ CharClass.pS | CharClass.pp, // '|'
 		/*0x7D */ CharClass.pP | CharClass.pp, // '}'
 		/*0x7E */ CharClass.pS | CharClass.pp, // '~'
-		/*0x7F */ CharClass.pC, // '\x7f'
+		/*0x7F */ CharClass.pC, // '\u007f'
 		/*0x80 */ CharClass.pC, // '\u0080'
 		/*0x81 */ CharClass.pC, // '\u0081'
 		/*0x82 */ CharClass.pC, // '\u0082'

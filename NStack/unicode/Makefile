@@ -1,5 +1,11 @@
+ifeq ($(OS),Windows_NT)
+    EXEC := maketables --tables=all --url=https://www.unicode.org/Public/15.0.0/ucd/ > Tables.cs
+else
+    EXEC := ./maketables --tables=all --url=https://www.unicode.org/Public/15.0.0/ucd/ > Tables.cs
+endif
+
 tables: unicodeData caseFolding maketables
-	maketables --tables=all --url=https://www.unicode.org/Public/15.0.0/ucd/ > Tables.cs
+	$(EXEC)
 
 unicodeData:
 	curl -O https://www.unicode.org/Public/15.0.0/ucd/UnicodeData.txt
