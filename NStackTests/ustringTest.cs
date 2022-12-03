@@ -723,9 +723,9 @@ namespace NStackTests {
 			Assert.AreEqual (1, Rune.ColumnWidth (r));
 			var fr = new Rune (sc, r);
 			Assert.False (Rune.IsNonSpacingChar (fr));
-			Assert.AreEqual (1, Rune.ColumnWidth (fr));
+			Assert.AreEqual (2, Rune.ColumnWidth (fr));
 			var us = ustring.Make (fr);
-			Assert.AreEqual (1, us.ConsoleWidth);
+			Assert.AreEqual (2, us.ConsoleWidth);
 		}
 
 		[Test]
@@ -886,6 +886,32 @@ namespace NStackTests {
 			Assert.True (str != "");
 			Assert.False (ustr != " ");
 			Assert.False (str != " ");
+		}
+
+		[Test]
+		public void Ustring_Array_Is_Not_Equal_ToRunes_Array_And_String_Array ()
+		{
+			var text = "New Test 你";
+			ustring us = text;
+			string s = text;
+			Assert.AreEqual (10, us.RuneCount);
+			Assert.AreEqual (10, s.Length);
+			// The reason is ustring index is related to byte length and not rune length
+			Assert.AreEqual (12, us.Length);
+			Assert.AreNotEqual (20320, us [9]);
+			Assert.AreEqual (20320, s [9]);
+			Assert.AreEqual (228, us [9]);
+			Assert.AreEqual ("ä", ((Rune)us [9]).ToString ());
+			Assert.AreEqual ("你", s [9].ToString ());
+
+			// Rune array is equal to string array
+			var usToRunes = us.ToRunes ();
+			Assert.AreEqual (10, usToRunes.Length);
+			Assert.AreEqual (10, s.Length);
+			Assert.AreEqual (20320, usToRunes [9]);
+			Assert.AreEqual (20320, s [9]);
+			Assert.AreEqual ("你", ((Rune)usToRunes [9]).ToString ());
+			Assert.AreEqual ("你", s [9].ToString ());
 		}
 	}
 }

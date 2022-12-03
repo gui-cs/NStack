@@ -4,11 +4,9 @@
 //
 using NStack;
 
-namespace System
-{
-	public partial struct Rune
-	{
-		static uint[,] combining = new uint[,] {
+namespace System {
+	public partial struct Rune {
+		static uint [,] combining = new uint [,] {
 			{ 0x0300, 0x036F }, { 0x0483, 0x0486 }, { 0x0488, 0x0489 },
 			{ 0x0591, 0x05BD }, { 0x05BF, 0x05BF }, { 0x05C1, 0x05C2 },
 			{ 0x05C4, 0x05C5 }, { 0x05C7, 0x05C7 }, { 0x0600, 0x0603 },
@@ -48,16 +46,16 @@ namespace System
 			{ 0x1B36, 0x1B3A }, { 0x1B3C, 0x1B3C }, { 0x1B42, 0x1B42 },
 			{ 0x1B6B, 0x1B73 }, { 0x1DC0, 0x1DCA }, { 0x1DFE, 0x1DFF },
 			{ 0x200B, 0x200F }, { 0x202A, 0x202E }, { 0x2060, 0x2063 },
-			{ 0x206A, 0x206F }, { 0x20D0, 0x20EF }, { 0x2e9a, 0x2e9a },
-			{ 0x2ef4, 0x2eff }, { 0x2fd6, 0x2fef }, { 0x2ffc, 0x2fff },
-			{ 0x31e4, 0x31ef }, { 0x321f, 0x321f }, { 0xA48D, 0xA48F },
+			{ 0x206A, 0x206F }, { 0x20D0, 0x20EF }, { 0x2E9A, 0x2E9A },
+			{ 0x2EF4, 0x2EFF }, { 0x2FD6, 0x2FEF }, { 0x2FFC, 0x2FFF },
+			{ 0x31E4, 0x31EF }, { 0x321F, 0x321F }, { 0xA48D, 0xA48F },
 			{ 0xA806, 0xA806 }, { 0xA80B, 0xA80B }, { 0xA825, 0xA826 },
 			{ 0xFB1E, 0xFB1E }, { 0xFE00, 0xFE0F }, { 0xFE1A, 0xFE1F },
 			{ 0xFE20, 0xFE23 }, { 0xFE53, 0xFE53 }, { 0xFE67, 0xFE67 },
 			{ 0xFEFF, 0xFEFF }, { 0xFFF9, 0xFFFB },
 		};
 
-		static uint[,] combiningWideChars = new uint[,] {
+		static uint [,] combiningWideChars = new uint [,] {
 			/* Hangul Jamo init. consonants - 0x1100, 0x11ff */
 			/* Miscellaneous Technical - 0x2300, 0x23ff */
 			/* Hangul Syllables - 0x11a8, 0x11c2 */
@@ -84,22 +82,21 @@ namespace System
 			{ 0x3131, 0x318e }, { 0x3190, 0x3247 }, { 0x3250, 0x4dbf },
 			{ 0x4e00, 0xa4c6 }, { 0xa960, 0xa97c }, { 0xac00 ,0xd7a3 },
 			{ 0xf900, 0xfaff }, { 0xfe10, 0xfe1f }, { 0xfe30 ,0xfe6b },
-			{ 0xff01, 0xff60 }, { 0xffe0, 0xffe6 }
+			{ 0xff01, 0xff60 }, { 0xffe0, 0xffe6 }, { 0x10000, 0x10ffff }
 		};
 
-		static int bisearch(uint rune, uint[,] table, int max)
+		static int bisearch (uint rune, uint [,] table, int max)
 		{
 			int min = 0;
 			int mid;
 
-			if (rune < table[0, 0] || rune > table[max, 1])
+			if (rune < table [0, 0] || rune > table [max, 1])
 				return 0;
-			while (max >= min)
-			{
+			while (max >= min) {
 				mid = (min + max) / 2;
-				if (rune > table[mid, 1])
+				if (rune > table [mid, 1])
 					min = mid + 1;
-				else if (rune < table[mid, 0])
+				else if (rune < table [mid, 0])
 					max = mid - 1;
 				else
 					return 1;
@@ -127,21 +124,14 @@ namespace System
 		//	return false;
 		//}
 
-		static uint gethexaformat(uint rune, int length)
-		{
-			var hex = rune.ToString($"x{length}");
-			var hexstr = hex.Substring(hex.Length - length, length);
-			return (uint)int.Parse(hexstr, System.Globalization.NumberStyles.HexNumber);
-		}
-
 		/// <summary>
 		/// Check if the rune is a non-spacing character.
 		/// </summary>
 		/// <param name="rune">The rune.</param>
 		/// <returns>True if is a non-spacing character, false otherwise.</returns>
-		public static bool IsNonSpacingChar(uint rune)
+		public static bool IsNonSpacingChar (uint rune)
 		{
-			return bisearch(rune, combining, combining.GetLength(0) - 1) != 0;
+			return bisearch (rune, combining, combining.GetLength (0) - 1) != 0;
 		}
 
 		/// <summary>
@@ -149,60 +139,29 @@ namespace System
 		/// </summary>
 		/// <param name="rune">The rune.</param>
 		/// <returns>True if is a wide character, false otherwise.</returns>
-		public static bool IsWideChar(uint rune)
+		public static bool IsWideChar (uint rune)
 		{
-			return bisearch(gethexaformat(rune, 4), combiningWideChars, combiningWideChars.GetLength(0) - 1) != 0;
+			return bisearch (rune, combiningWideChars, combiningWideChars.GetLength (0) - 1) != 0;
 		}
-
-		static char firstSurrogatePairChar = '\0';
 
 		/// <summary>
 		/// Number of column positions of a wide-character code.   This is used to measure runes as displayed by text-based terminals.
 		/// </summary>
 		/// <returns>The width in columns, 0 if the argument is the null character, -1 if the value is not printable, otherwise the number of columns that the rune occupies.</returns>
 		/// <param name="rune">The rune.</param>
-		public static int ColumnWidth(Rune rune)
+		public static int ColumnWidth (Rune rune)
 		{
-			if (firstSurrogatePairChar != '\0')
-				firstSurrogatePairChar = '\0';
 			uint irune = (uint)rune;
 			if (irune < 0x20 || (irune >= 0x7f && irune < 0xa0))
 				return -1;
 			if (irune < 0x7f)
 				return 1;
 			/* binary search in table of non-spacing characters */
-			if (bisearch(gethexaformat(irune, 4), combining, combining.GetLength(0) - 1) != 0)
+			if (bisearch (irune, combining, combining.GetLength (0) - 1) != 0)
 				return 0;
 			/* if we arrive here, ucs is not a combining or C0/C1 control character */
 			return 1 +
-				(bisearch(gethexaformat(irune, 4), combiningWideChars, combiningWideChars.GetLength(0) - 1) != 0 ? 1 : 0);
-		}
-
-		/// <summary>
-		/// Number of column positions of a wide-character code.   This is used to measure runes as displayed by text-based terminals.
-		/// </summary>
-		/// <returns>The width in columns, 0 if the argument is the null character, -1 if the value is not printable, otherwise the number of columns that the rune occupies.</returns>
-		/// <param name="c">The char.</param>
-		public static int ColumnWidth(char c)
-		{
-			if (!((Rune)c).IsValid)
-			{
-				if (firstSurrogatePairChar == '\0')
-				{
-					firstSurrogatePairChar = c;
-					return 0;
-				}
-				else if (firstSurrogatePairChar != '\0')
-				{
-					var r = new Rune(firstSurrogatePairChar, c);
-					firstSurrogatePairChar = '\0';
-					return ColumnWidth(r);
-				}
-			}
-			if (firstSurrogatePairChar != '\0')
-				firstSurrogatePairChar = '\0';
-
-			return ColumnWidth((Rune)c);
+				(bisearch (irune, combiningWideChars, combiningWideChars.GetLength (0) - 1) != 0 ? 1 : 0);
 		}
 	}
 }
