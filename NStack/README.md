@@ -101,19 +101,19 @@ git push --atomic upstream main v2.3.4
 
 ### 8) Monitor Github Actions to ensure the Nuget publishing worked.
 
-https://github.com/gui-cs/Terminal.Gui/actions
+https://github.com/gui-cs/NStack/actions
 
 ### 9) Check Nuget to see the new package version (wait a few minutes) 
-https://www.nuget.org/packages/Terminal.Gui
+https://www.nuget.org/packages/NStack.Core
 
-### 10) Add a new Release in Github: https://github.com/gui-cs/Terminal.Gui/releases
+### 10) Add a new Release in Github: https://github.com/gui-cs/NStack/releases
 
 Generate release notes with the list of PRs since the last release 
 
 Use `gh` to get a list with just titles to make it easy to paste into release notes: 
 
 ```powershell
-gh pr list --limit 500 --search "is:pr is:closed is:merged closed:>=2021-05-18"
+gh pr list --limit 500 --search "is:pr is:closed is:merged closed:>=2022-11-1"
 ```
 ### 11) Update the `develop` branch with the new version
 
