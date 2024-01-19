@@ -36,6 +36,8 @@ It starts with a new string type that is focused on Unicode code-points as oppos
     <FileVersion>1.0</FileVersion>
     <Version>1.0</Version>
     <InformationalVersion>1.0</InformationalVersion>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>NStack.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   
   
