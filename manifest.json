@@ -1,0 +1,338 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/a/NStack/NStack/docfx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "sQTMhlHpkY8fPcHs5RmP677DWeFgyIt75AkZGTcY5XI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.Unicode.Case.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.Unicode.Case.html",
+          "hash": "m0SdvNjre34Xk58lmQ8LLztqsOmBosGGsnIeI+3D5NU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.Unicode.Category.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.Unicode.Category.html",
+          "hash": "WbU5nSu8PvELhS9YfUSh+YJ4fk/aDQUOssM00pHSxOk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.Unicode.Property.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.Unicode.Property.html",
+          "hash": "7RtvcV2KV58pMAq57rPF+Y3z7qtJ8YKPDUQkDo3t7aY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.Unicode.RangeTable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.Unicode.RangeTable.html",
+          "hash": "gC8daEe8VBcfgKVKTHCnqqCowxirvv0N5CzQNV3f43Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.Unicode.Script.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.Unicode.Script.html",
+          "hash": "UNE0I1C6qUg1sE4xJgaIbMJ7qXX4nHucO4fmmrl7pno="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.Unicode.SpecialCase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.Unicode.SpecialCase.html",
+          "hash": "id8qI5hYayh44L3gD+Z7oHKUp0dVfZ/awXtlchjI+E4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.Unicode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.Unicode.html",
+          "hash": "KllY2JztOkLGkPcRoV/slR0tlpVBWCK8qCoVyzW8ppw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.Utf8.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.Utf8.html",
+          "hash": "CKojkooaOj/6paYSR8xww+4k9VC+xzzjrHhLCYvp1NU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.ustring.RunePredicate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.ustring.RunePredicate.html",
+          "hash": "jUFonzv6Jg+B+lZ1cGY6zz0G9BNbBvIS92l9O9rNCF8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.ustring.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.ustring.html",
+          "hash": "mwL9QK1hloBdWhHp9BHkrUk0jmsS6b9Y0ROEcGSPu9k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/NStack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/NStack.html",
+          "hash": "G7qtDZt0bcEz5uPqvhDfobVhMfARifes6Gpfqu2RzPE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/System.Rune.Case.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/System.Rune.Case.html",
+          "hash": "XhFNnRd8SFXTNK+HgNaHhD2jQgcyQwo3q2mNlMmxfWo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/System.Rune.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/System.Rune.html",
+          "hash": "/Fn058DhpyGJ3CwBtgXZkssHppaYZrMEwxZWM77NbuA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/System.RuneExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/System.RuneExtensions.html",
+          "hash": "qhYAifsDC9jNI6uMCax6DgzZA8zFO17MT1HL+VO+oUE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NStack/System.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/System.html",
+          "hash": "2AbUUvHEColmcXYLUJZqVl4EHd/JWXx9YIotFulKpLo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/NStack/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NStack/toc.html",
+          "hash": "XqQokdR4K6CYntEx5iGgKoWEZT060XXqYEkMzl+Cy3o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "2xZuUxNfuoLnZrKKHWjHk0ogrG+XS+bR3lDG+IS1IWY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo48.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo48.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "QaXVx+8aiRqAKYvXYgfGxVDqqZqdzjpGby0acFrM6I8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "QGXwiClOd+4KaOjF9GCC/K1de2Q59s115gh0DbI98d4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 15,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
