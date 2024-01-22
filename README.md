@@ -16,14 +16,14 @@ Install the [NuGet package from NuGet.org](https://www.nuget.org/packages/NStack
 
 # Future Additions
 
-The long term goal is to make this module an exploration of what the .NET APIs for IO looked like if they only
+The long-term goal is to make this module an exploration of what the .NET APIs for IO looked like if they only
 used exceptions for either invalid parameters being passed to
 methods and used results/error codes for most IO operations:
 
 * Exceptions have a role, but IO code tends to become ugly in its presence.
 
 * Other areas include making an IO layer that does not surface "string" for
-filenames, as in Unix there are really no filenames as we treat them in
+filenames, as in Unix there are no filenames as we treat them in
 .NET, but rather file names are a collection of bytes, which do not necessarily
 can be decoded into UTF8 [1].  
 
